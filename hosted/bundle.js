@@ -1615,6 +1615,7 @@ var setup = function setup(csrf) {
 		passwordButton.className = "disabledLink";
 		statsButton.className = "disabledLink";
 		scoreButton.className = "disabledLink";
+		gameButton.className = "disabledLink";
 		gameButton.focus();
 
 		//Begin update loop

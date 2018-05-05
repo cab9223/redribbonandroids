@@ -21324,7 +21324,7 @@ app.main = (_app$main = {
     this.android17.decisionTimer = 0; */
 				this.vegeta.endurance = 1;
 				this.vegeta.health = 1;
-				this.roundScore += 500;
+				//this.roundScore += 500;
 				//this.sound.pauseVoice();
 				//this.vegeta.startFallKick = true;
 				//this.vegeta.fallPrepTele = true;
@@ -22060,7 +22060,7 @@ app.main = (_app$main = {
 				//SUPERFADE
 				ctx.globalAlpha = .01;
 			} else {
-				ctx.globalAlpha = .2;
+				ctx.globalAlpha = .3;
 			}
 			ctx.fillStyle = "red";
 			ctx.fillRect(49, 55, 375, 70);
