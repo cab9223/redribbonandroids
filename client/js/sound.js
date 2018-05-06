@@ -308,6 +308,8 @@ app.sound = (function(){
 	"GNO1.wav",			//46
 	"GNO2.wav",			//47
 	"GNO3.wav",			//48
+	"GSAVE1.wav",		//49
+	"GSAVE2.wav",		//50
 	];
 	
 	var voiceSoundsTien = [ //Tien

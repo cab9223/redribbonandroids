@@ -1401,15 +1401,92 @@ app.Android17 = (function(){
 							ctx.drawImage(this.blastCharge1,28,31,15,21);
 						}
 						if(this.hurtBTimer < 16 && this.hurtBTimer > 14){
-							app.main.sound.playTaunt6(Math.round(getRandom(46,48)));
+							app.main.vegeta.success = getRandom(0,1);
+							if(app.main.vegeta.exhausted == true || app.main.vegeta.attacking == true || app.main.vegeta.blocking == true || app.main.vegeta.superSpeed == true || app.main.vegeta.stun == true || app.main.vegeta.blasting == true){
+								app.main.sound.playTaunt6(Math.round(getRandom(46,48)));
+							} else {
+								app.main.sound.playTaunt6(Math.round(getRandom(49,50)));
+								app.main.sound.playSpecialReaction(19);
+								app.main.vegeta.attacking = false;
+								app.main.vegeta.blocking = false;
+								app.main.vegeta.stun = false;
+								app.main.vegeta.hit = false;
+								app.main.vegeta.hardHit = false;
+								app.main.vegeta.blasting = false;
+								app.main.vegeta.powerMove = false;
+								app.main.vegeta.fight = false;
+								app.main.vegeta.taunting = false;
+								app.main.vegeta.charging = false;
+								app.main.vegeta.superSpeed = false;
+								app.main.vegeta.velocity.x = 0;
+								app.main.vegeta.decel.x = 0;
+								app.main.vegeta.saveThem = true;
+								
+							}
+							
 						}
 					} else if(this.hurtBTimer < 21){
 						app.main.roundScore2 += (70 + Math.round(getRandom(0,30)));
 						app.main.environment.flash = true;
-						app.main.environment.shake = true;
-						app.main.environment.powerUp = true;
 						app.main.sound.playEffect(64);
+						
+						app.main.environment.shake = true;
 						app.main.environment.nuked = true;
+						app.main.environment.powerUp = true;
+						
+						/* if(app.main.vegeta.saveThem == false){
+							app.main.environment.shake = true;
+							app.main.environment.nuked = true;
+							app.main.environment.powerUp = true;
+						} else {
+							if(app.main.android17.farLeft == true){
+								app.main.vegeta.position.x = 150;
+								app.main.vegeta.position.y = 420;
+								app.main.environment.smogPos.push(new Victor(50,400));
+								app.main.environment.smogSize.push(new Victor(250,250));
+								app.main.environment.smogAlpha.push(1.1);
+								app.main.environment.smogTimer.push(0);
+								app.main.environment.smogAngle.push(0);
+								app.main.environment.smogCount += 1;
+							} else {
+								app.main.vegeta.position.x = 700;
+								app.main.vegeta.position.y = 420;
+								app.main.environment.smogPos.push(new Victor(600,400));
+								app.main.environment.smogSize.push(new Victor(250,250));
+								app.main.environment.smogAlpha.push(1.1);
+								app.main.environment.smogTimer.push(0);
+								app.main.environment.smogAngle.push(0);
+								app.main.environment.smogCount += 1;
+							}
+							if(app.main.vegeta.saveThem == true){
+							if(app.main.vegeta.success < 0){ //doesnt work
+								app.main.vegeta.counter = 0;
+								app.main.vegeta.specialBlock = true;
+							} else {
+								app.main.vegeta.counter = 0;
+								app.main.vegeta.stun = true;
+								app.main.vegeta.stunCounter = 0;
+								app.main.vegeta.hardHit = true;
+								app.main.vegeta.hit = true;
+								app.main.vegeta.blasted = true;
+								app.main.vegeta.punched = true;
+								app.main.vegeta.jumpVelocity.y = 10;
+								if(app.main.SB == true){
+									app.main.vegeta.blastBurnLength = 100;
+								} else {
+									app.main.vegeta.blastBurnLength = 80;
+								}
+								app.main.vegeta.blastBurn = true;
+							//app.main.sound.playTaunt6(Math.round(getRandom(40,42)));
+							}
+							app.main.vegeta.aboveBuilding = false;
+							app.main.vegeta.saveThem = false;
+							}
+							app.main.environment.powerUp = false;
+							this.hurtBlasting = false;
+							this.nukeCounter = 0;
+							this.hurtBTimer = 0;
+						} */
 						//app.main.environment.decay = true;
 					} else if(this.hurtBTimer < 30){
 						this.nukeCounter++;

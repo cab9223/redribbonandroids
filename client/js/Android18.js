@@ -815,10 +815,10 @@ app.Android18 = (function(){
 					this.flyDust = true;
 				}
 				if(app.main.BA == true){
-					this.jumpAccel = new Victor(0,-2);
+					this.jumpAccel = new Victor(0,-2.5);
 					this.jumpVelocity = new Victor(0,-20);
 				} else {
-					this.jumpAccel = new Victor(0,-1);
+					this.jumpAccel = new Victor(0,-1.5);
 					this.jumpVelocity = new Victor(0,-15);
 				}
 			}
@@ -1512,11 +1512,11 @@ app.Android18 = (function(){
 					this.fallingKick = false;
 					this.jumpVelocity.y = -50;
 					if(this.right == true){
-						this.velocity.x -= 25;
-						app.main.vegeta.velocity.x += 15;
+						this.velocity.x -= 30;
+						app.main.vegeta.velocity.x += 25;
 					} else {
-						this.velocity.x += 25;
-						app.main.vegeta.velocity.x -= 15;
+						this.velocity.x += 30;
+						app.main.vegeta.velocity.x -= 25;
 					}
 					this.decel = this.velocity.clone();
 					app.main.vegeta.decel = app.main.vegeta.velocity.clone();
