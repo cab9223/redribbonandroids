@@ -5356,9 +5356,9 @@ app.main = {
 							} else {
 								this.support[x].teleUp = true;
 							}
-							this.superSpeed = true;
+							this.support[x].superSpeed = true;
 						} else {
-							this.superSpeed = true;
+							this.support[x].superSpeed = true;
 						}
 						
 					}
