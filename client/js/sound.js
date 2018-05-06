@@ -584,7 +584,35 @@ app.sound = (function(){
 	}
 	
 	function rewindEffect(){
+		effectAudio[28].currentTime = 0;
+		effectAudio[27].currentTime = 0;
+		effectAudio[26].currentTime = 0;
+		effectAudio[25].currentTime = 0;
+		effectAudio[24].currentTime = 0;
+		effectAudio[23].currentTime = 0;
+		effectAudio[22].currentTime = 0;
+		effectAudio[21].currentTime = 0;
+		effectAudio[20].currentTime = 0;
+		effectAudio[19].currentTime = 0;
+		effectAudio[18].currentTime = 0;
+		effectAudio[17].currentTime = 0;
+		effectAudio[16].currentTime = 0;
+		effectAudio[15].currentTime = 0;
+		effectAudio[14].currentTime = 0;
+		effectAudio[13].currentTime = 0;
+		effectAudio[12].currentTime = 0;
+		effectAudio[11].currentTime = 0;
+		effectAudio[10].currentTime = 0;
+		effectAudio[9].currentTime = 0;
+		effectAudio[8].currentTime = 0;
+		effectAudio[7].currentTime = 0;
+		effectAudio[6].currentTime = 0;
+		effectAudio[5].currentTime = 0;
+		effectAudio[4].currentTime = 0;
+		effectAudio[3].currentTime = 0;
+		effectAudio[2].currentTime = 0;
 		effectAudio[1].currentTime = 0;
+		effectAudio[0].currentTime = 0;
 	}
 	
 	function pauseEffect(){

@@ -1000,7 +1000,7 @@ app.Environment = (function(){
 			
 			//Foreground of background
 			if(this.buildingActive == true){
-				ctx.drawImage(this.cityForeground1,0,0);
+				ctx.drawImage(this.cityForeground2,0,0);
 			} else {
 				ctx.drawImage(this.cityForeground2,0,0);
 			}

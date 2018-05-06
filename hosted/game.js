@@ -9743,7 +9743,7 @@ app.Environment = function () {
 
 			//Foreground of background
 			if (this.buildingActive == true) {
-				ctx.drawImage(this.cityForeground1, 0, 0);
+				ctx.drawImage(this.cityForeground2, 0, 0);
 			} else {
 				ctx.drawImage(this.cityForeground2, 0, 0);
 			}
@@ -22238,7 +22238,7 @@ app.main = (_app$main = {
 					this.fillText(ctx, "Smug", 560, 172, "15pt heavy_data", "yellow");
 				}
 			} else {
-				if (this.scene == 0 || this.gameState == this.GAME_STATE.TUTORIAL) {
+				if ((this.scene == 0 || this.gameState == this.GAME_STATE.TUTORIAL) && this.battle < 1) {
 					this.fillText(ctx, "Determined", 585, 172, "15pt heavy_data", "grey");
 				} else if (this.sceneNum == 1) {
 					this.fillText(ctx, "Arrogant", 575, 172, "15pt heavy_data", "grey");
@@ -22248,7 +22248,7 @@ app.main = (_app$main = {
 					this.fillText(ctx, "Murderous", 580, 172, "15pt heavy_data", "Red");
 				} else if (this.sceneNum == 4 && this.trueEnding == false) {
 					this.fillText(ctx, "Irritated", 575, 172, "15pt heavy_data", "grey");
-				} else if ((this.sceneNum == 4 || this.battle == 3) && this.trueEnding == true && this.sceneNum != 5) {
+				} else if ((this.sceneNum == 4 || this.battle == 3) && this.trueEnding == true) {
 					if (this.vegeta.superForm == false) {
 						this.fillText(ctx, "Homicidal", 580, 172, "15pt heavy_data", "red");
 					} else {
@@ -24211,7 +24211,35 @@ app.sound = function () {
 	}
 
 	function rewindEffect() {
+		effectAudio[28].currentTime = 0;
+		effectAudio[27].currentTime = 0;
+		effectAudio[26].currentTime = 0;
+		effectAudio[25].currentTime = 0;
+		effectAudio[24].currentTime = 0;
+		effectAudio[23].currentTime = 0;
+		effectAudio[22].currentTime = 0;
+		effectAudio[21].currentTime = 0;
+		effectAudio[20].currentTime = 0;
+		effectAudio[19].currentTime = 0;
+		effectAudio[18].currentTime = 0;
+		effectAudio[17].currentTime = 0;
+		effectAudio[16].currentTime = 0;
+		effectAudio[15].currentTime = 0;
+		effectAudio[14].currentTime = 0;
+		effectAudio[13].currentTime = 0;
+		effectAudio[12].currentTime = 0;
+		effectAudio[11].currentTime = 0;
+		effectAudio[10].currentTime = 0;
+		effectAudio[9].currentTime = 0;
+		effectAudio[8].currentTime = 0;
+		effectAudio[7].currentTime = 0;
+		effectAudio[6].currentTime = 0;
+		effectAudio[5].currentTime = 0;
+		effectAudio[4].currentTime = 0;
+		effectAudio[3].currentTime = 0;
+		effectAudio[2].currentTime = 0;
 		effectAudio[1].currentTime = 0;
+		effectAudio[0].currentTime = 0;
 	}
 
 	function pauseEffect() {

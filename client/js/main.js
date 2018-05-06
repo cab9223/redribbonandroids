@@ -9196,7 +9196,7 @@ app.main = {
 					this.fillText(ctx,"Smug", 560, 172, "15pt heavy_data", "yellow");
 				}
 			} else {
-				if(this.scene == 0 || this.gameState == this.GAME_STATE.TUTORIAL){
+				if((this.scene == 0 || this.gameState == this.GAME_STATE.TUTORIAL) && this.battle < 1){
 					this.fillText(ctx,"Determined", 585, 172, "15pt heavy_data", "grey");
 				} else if(this.sceneNum == 1){
 					this.fillText(ctx,"Arrogant", 575, 172, "15pt heavy_data", "grey");
@@ -9206,7 +9206,7 @@ app.main = {
 					this.fillText(ctx,"Murderous", 580, 172, "15pt heavy_data", "Red");
 				} else if(this.sceneNum == 4 && this.trueEnding == false){
 					this.fillText(ctx,"Irritated", 575, 172, "15pt heavy_data", "grey");
-				} else if((this.sceneNum == 4 || this.battle == 3) && this.trueEnding == true && this.sceneNum != 5){
+				} else if((this.sceneNum == 4 || this.battle == 3) && this.trueEnding == true){
 					if(this.vegeta.superForm == false){
 						this.fillText(ctx,"Homicidal", 580, 172, "15pt heavy_data", "red");
 					} else {
