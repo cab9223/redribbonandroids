@@ -203,6 +203,8 @@ app.Vegeta = (function(){
 		this.exhaustTalk = false;
 		this.deathTalk = false;
 		
+		this.fast17 = false;
+		
 		this.firstDeadSupport = false;
 		
 		//Value holders
@@ -1338,6 +1340,8 @@ app.Vegeta = (function(){
 		this.flySoundDelay++;
 		
 		//Handling 17
+		if(this.fast17 == false){
+		
 		if(app.main.android17.active == true){
 			//console.log("FOCUS FOCUS FOCUS 17 17 17 @@@@: " + this.focus17);
 			if(hardAttackHitTest(app.main.vegeta,app.main.android18) == true){
@@ -1355,6 +1359,10 @@ app.Vegeta = (function(){
 		
 		if(app.main.android17.encounter != true){
 			this.focus17 = false;
+		}
+		
+		} else {
+			this.focus17 = true;
 		}
 		
 		
@@ -1616,6 +1624,10 @@ app.Vegeta = (function(){
 		
 		if((this.hardHit == true || this.hit == true) && this.blastBurn == true){
 			this.blastBurnCounter = 0;
+		}
+		
+		if(this.charging == false && app.main.scene == false){
+			app.main.environment.powerUp = false;
 		}
 		
 		if(this.hardHit == true || this.hit == true){
@@ -1996,6 +2008,7 @@ app.Vegeta = (function(){
 			this.taunting = false;
 			this.charging = false;
 			this.intensify = false;
+			this.fast17 = false;
 			this.quickDodge = getRandom(0,1);
 			//this.blastRelease = false;
 			//this.unstoppable = false;
@@ -2046,6 +2059,11 @@ app.Vegeta = (function(){
 		
 		if(this.superSpeed == true){
 			this.blocking = false;
+			if(this.end == false){
+				this.hit = false;
+				this.hardHit = false;
+				this.punched = false;
+			}
 		}
 		
 		if(this.swoosh == false && this.fallingKick == false && this.reverse == false && this.hit == false && this.stun == false && (this.velocity.x > 19 || this.velocity.x < -19)){
@@ -6403,6 +6421,7 @@ app.Vegeta = (function(){
 				this.attacking = false;
 				this.blasting = false;
 				this.blastRelease = false;
+				this.fast17 = false;
 			}
 			} else { //HEAD SMASH
 			

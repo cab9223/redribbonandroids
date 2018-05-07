@@ -950,7 +950,11 @@ app.Android17 = (function(){
 		
 		//Mute Voice
 		if(this.hit == true && this.voiceStop == false){
-			app.main.sound.pauseVoice5();
+			if(app.main.vegeta.gohan == true && app.main.vegeta.superForm == true){
+				
+			} else {
+				app.main.sound.pauseVoice5();
+			}
 			app.main.sound.pauseEffect17();
 			this.voiceStop = true;
 		} else if(this.hit == false){
@@ -1085,6 +1089,7 @@ app.Android17 = (function(){
 			//this.fieldOn = false;
 			//this.blastRelease = false;
 		}
+		
 		
 		if(this.stun == false && this.end == false && this.dead == false){
 			this.stunCounter = 0;
@@ -1391,7 +1396,36 @@ app.Android17 = (function(){
 						} else if(this.hurtBTimer < 5 && this.hurtBTimer > 3){
 							app.main.sound.playTaunt5(Math.round(getRandom(22,23)));
 						}
-					} else if(this.hurtBTimer < 20){
+						if(this.hurtBTimer < 8 && this.hurtBTimer > 6){
+							if((app.main.vegeta.exhausted == false && app.main.vegeta.attacking == false && app.main.vegeta.blocking == false && app.main.vegeta.superSpeed == false && app.main.vegeta.stun == false && app.main.vegeta.blasting == false) || (app.main.vegeta.blasting == true && app.main.powerMove == true && app.main.chance2 > .5 && app.main.vegeta.justTurned == false)){
+								app.main.sound.playTaunt6(Math.round(getRandom(49,50)));
+								app.main.vegeta.fast17 = true;
+							} else {
+								
+							}
+						}
+						if(this.hurtBTimer < 9 && this.hurtBTimer > 7){
+							if(app.main.vegeta.fast17 == true){
+								if(app.main.vegeta.powerMove == false){
+									app.main.vegeta.taunting = false;
+									app.main.vegeta.charging = false;
+									app.main.vegeta.intensify = false;
+									app.main.environment.powerUp = false;
+									app.main.vegeta.velocity.x = 0;
+									app.main.vegeta.decel.x = 0;
+									app.main.chance2 = .6;
+									app.main.aiChoice2 = 10;
+									app.main.vegeta.counter = 0;
+									app.main.cooldownAI = 0;
+									app.main.vegeta.powerMove = true;
+									app.main.vegeta.attacking = true;
+									app.main.vegeta.blasting = true;
+									app.main.vegeta.fight = true;
+								}
+								
+							}
+						}
+					} else if(this.hurtBTimer < 30){
 						if(this.hurtBTimer < 11){
 							app.main.sound.playEffect(27);
 						}
@@ -1400,7 +1434,7 @@ app.Android17 = (function(){
 						} else {
 							ctx.drawImage(this.blastCharge1,28,31,15,21);
 						}
-						if(this.hurtBTimer < 16 && this.hurtBTimer > 14){
+						/* if(this.hurtBTimer < 16 && this.hurtBTimer > 14){
 							app.main.vegeta.success = getRandom(0,1);
 							if(app.main.vegeta.exhausted == true || app.main.vegeta.attacking == true || app.main.vegeta.blocking == true || app.main.vegeta.superSpeed == true || app.main.vegeta.stun == true || app.main.vegeta.blasting == true){
 								app.main.sound.playTaunt6(Math.round(getRandom(46,48)));
@@ -1424,15 +1458,16 @@ app.Android17 = (function(){
 								
 							}
 							
-						}
-					} else if(this.hurtBTimer < 21){
-						app.main.roundScore2 += (70 + Math.round(getRandom(0,30)));
+						} */
+					} else if(this.hurtBTimer < 31){
+						app.main.roundScore2 += (70 + Math.round(getRandom(0,80)));
 						app.main.environment.flash = true;
 						app.main.sound.playEffect(64);
 						
 						app.main.environment.shake = true;
 						app.main.environment.nuked = true;
 						app.main.environment.powerUp = true;
+						
 						
 						/* if(app.main.vegeta.saveThem == false){
 							app.main.environment.shake = true;
@@ -1488,11 +1523,15 @@ app.Android17 = (function(){
 							this.hurtBTimer = 0;
 						} */
 						//app.main.environment.decay = true;
-					} else if(this.hurtBTimer < 30){
+					} else if(this.hurtBTimer < 40){
 						this.nukeCounter++;
 						ctx.save();
 						ctx.globalAlpha = .4;
 						ctx.scale(1.5,.8);
+						
+						if(this.hurtBTimer > 32 && this.hurtBTimer < 34){
+							app.main.sound.playTaunt6(Math.round(getRandom(46,48)));
+						}
 						if(this.nukeCounter < 2){
 							if(this.right == true){
 								ctx.drawImage(this.nuke1,100,-222);
@@ -1537,6 +1576,7 @@ app.Android17 = (function(){
 						this.hurtBlasting = false;
 						this.nukeCounter = 0;
 						this.hurtBTimer = 0;
+						app.main.vegeta.fast17 = false;
 					}
 					
 					ctx.drawImage(this.injuredBlast,-10,0);
@@ -2642,7 +2682,7 @@ app.Android17 = (function(){
 		} else if(this.hardHit == true && this.hit == true && (this.air == false || this.blasted == true)){
 			if(this.stunCounter < 22){
 				this.voiceChance = Math.random();
-				if(this.stunCounter < 2 && app.main.battle != 3 && this.voiceChance > .5){
+				if(this.stunCounter < 2 && app.main.battle != 3 && (this.voiceChance > .5 || this.blasted == true)){
 					app.main.sound.playTaunt5(Math.round(getRandom(12,14)));
 				} else if(this.stunCounter < 2 && app.main.battle == 3){
 					app.main.sound.playTaunt2(Math.round(getRandom(9,11)));
