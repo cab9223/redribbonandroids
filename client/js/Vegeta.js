@@ -1526,8 +1526,8 @@ app.Vegeta = (function(){
 			}
 		}
 		
-		if(this.blasted == true && this.end == false){
-			if(this.quickDodge > .7){
+		if(this.blasted == true && this.stun == false && this.hardHit == false && this.end == false && app.main.scene == false){
+			if(this.quickDodge > .6){
 				this.superSpeed = true;
 				this.quickDodge = 0;
 				this.blasted = false;
@@ -1683,7 +1683,7 @@ app.Vegeta = (function(){
 			}
 		} else {
 			if(this.endurance < 100 && this.stun == false && this.end == false && this.tien == false && this.krillin == false){
-				this.endurance += .23;
+				this.endurance += .2;
 			}
 		}
 		//Energy recovery (NO RECOVER ENERGY)
@@ -2057,7 +2057,8 @@ app.Vegeta = (function(){
 		}
 		}
 		
-		if(this.superSpeed == true){
+		
+		if(this.vanish == true){
 			this.blocking = false;
 			if(this.end == false){
 				this.hit = false;

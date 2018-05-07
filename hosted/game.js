@@ -14411,6 +14411,7 @@ app.main = (_app$main = {
 					if (this.blasts[i].type == 0 && this.blasts[i].lifetime > 0) {
 						this.vegeta.hit = true;
 						this.vegeta.stun = true;
+						this.vegeta.blasted = true;
 						if (this.blasts[i].blastUser == 0) {
 							if (this.CP == true) {
 								this.roundScore += 14;
@@ -14645,6 +14646,7 @@ app.main = (_app$main = {
 						this.vegeta.punched = false;
 						this.vegeta.hit = true;
 						this.vegeta.stun = true;
+						this.vegeta.blasted = true;
 						if (this.blasts[i].blastUser == 0) {
 							if (this.CP == true) {
 								this.roundScore += 22;
@@ -14951,6 +14953,7 @@ app.main = (_app$main = {
 							} else {
 								this.android18.hit = true;
 								this.android18.stun = true;
+								this.android18.blasted = true;
 								if (this.ER == true) {
 									this.android18.blastBurnLength = 3;
 									this.android18.blastBurn = true;
@@ -15130,6 +15133,7 @@ app.main = (_app$main = {
 							} else {
 								this.android18.hit = true;
 								this.android18.stun = true;
+								this.android18.blasted = true;
 								//this.android18.hardHit = true;
 								if (this.ER == true) {
 									this.android18.blastBurnLength = 7;
@@ -15450,6 +15454,7 @@ app.main = (_app$main = {
 							} else {
 								this.android17.hit = true;
 								this.android17.stun = true;
+								this.android17.blasted = true;
 								if (this.battle != 3) {
 									this.roundScore2 -= 25;
 								}
@@ -15649,6 +15654,7 @@ app.main = (_app$main = {
 							} else {
 								this.android17.hit = true;
 								this.android17.stun = true;
+								this.android17.blasted = true;
 								//this.android17.hardHit = true;
 								this.android17.blastBurnLength = 20;
 								this.android17.blastBurn = true;
@@ -23076,7 +23082,9 @@ app.main = (_app$main = {
 		this.fillText(this.ctx, "Audio Engineer: Christopher Bennett", this.WIDTH / 2, this.spacing * 6 + 300 - this.creditsRoll, "25pt heavy_data", "#c9be03");
 		this.fillText(this.ctx, "Artist: Christopher Bennett", this.WIDTH / 2, this.spacing * 7 + 300 - this.creditsRoll, "25pt heavy_data", "#c9be03");
 		this.fillText(this.ctx, "Level Editor: Christopher Bennett", this.WIDTH / 2, this.spacing * 8 + 300 - this.creditsRoll, "25pt heavy_data", "#c9be03");
-		this.fillText(this.ctx, "QA Tester: Christopher Bennett", this.WIDTH / 2, this.spacing * 9 + 300 - this.creditsRoll, "25pt heavy_data", "#c9be03");
+		this.fillText(this.ctx, "QA Testers: Christopher Bennett", this.WIDTH / 2, this.spacing * 9 + 300 - this.creditsRoll, "25pt heavy_data", "#c9be03");
+		this.fillText(this.ctx, "                 Raven Roussell", this.WIDTH / 2, this.spacing * 9 + 335 - this.creditsRoll, "25pt heavy_data", "#c9be03");
+		this.fillText(this.ctx, "                 Tyler Smith", this.WIDTH / 2, this.spacing * 9 + 370 - this.creditsRoll, "25pt heavy_data", "#c9be03");
 		this.fillText(this.ctx, "Credited Assets/Resources", this.WIDTH / 2, this.spacing * 10 + 300 - this.creditsRoll, "50pt heavy_data", "#c9be03");
 		this.fillText(this.ctx, "Used and modified for creative educational purposes", this.WIDTH / 2, this.spacing * 10 + 360 - this.creditsRoll, "25pt heavy_data", "#c9be03");
 		this.fillText(this.ctx, "Many energy attack sprites: http://www.spriters-resource.com/game_boy_advance/dbzsuperwar/sheet/26657/", this.WIDTH / 2, this.spacing * 11 + 300 - this.creditsRoll, "12pt arial", "#c9be03");
@@ -26564,8 +26572,8 @@ app.Vegeta = function () {
 			}
 		}
 
-		if (this.blasted == true && this.end == false) {
-			if (this.quickDodge > .7) {
+		if (this.blasted == true && this.stun == false && this.hardHit == false && this.end == false && app.main.scene == false) {
+			if (this.quickDodge > .6) {
 				this.superSpeed = true;
 				this.quickDodge = 0;
 				this.blasted = false;
@@ -26720,7 +26728,7 @@ app.Vegeta = function () {
 			}
 		} else {
 			if (this.endurance < 100 && this.stun == false && this.end == false && this.tien == false && this.krillin == false) {
-				this.endurance += .23;
+				this.endurance += .2;
 			}
 		}
 		//Energy recovery (NO RECOVER ENERGY)
@@ -27088,7 +27096,7 @@ app.Vegeta = function () {
 			}
 		}
 
-		if (this.superSpeed == true) {
+		if (this.vanish == true) {
 			this.blocking = false;
 			if (this.end == false) {
 				this.hit = false;
