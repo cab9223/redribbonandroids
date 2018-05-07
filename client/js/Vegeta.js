@@ -7190,7 +7190,13 @@ app.Vegeta = (function(){
 			} else if(this.reverse == true && this.farLeft == false && this.farRight == false){
 				ctx.drawImage(this.moveReverseTien,0,0);
 			} else if(this.air == true && this.up == false){
-				ctx.drawImage(this.flyDownSlowTien,0,0);
+				if(this.lookUp == true){
+					ctx.drawImage(this.flyUpUpTien,0,0);
+				} else if(this.lookDown == true){
+					ctx.drawImage(this.flyUpDownTien,0,0);
+				} else {
+					ctx.drawImage(this.flyUpTien,0,0);
+				}
 			} else {
 				if(this.lookUp == true){
 					ctx.drawImage(this.stanceUpTien,0,0);

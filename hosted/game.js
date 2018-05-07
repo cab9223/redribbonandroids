@@ -14408,7 +14408,7 @@ app.main = (_app$main = {
 				}
 				//HIT VEGETA
 				if (this.blasts[i].exploding == false && (attackHitTestBlast(this.blasts[i], this.vegeta) == true || (hardAttackHitTest(this.android18, this.vegeta) == true && this.vegeta.behind == false && this.blasts[i].blastUser == 0 || hardAttackHitTest(this.android17, this.vegeta) == true && this.blasts[i].blastUser == 6) && this.blasts[i].lifetime < 2 && (this.blasts[i].type != 5 || this.blasts[i].moving == true && this.blasts[i].triggerState == 0)) && this.blasts[i].activated == true && this.vegeta.superSpeed == false && this.vegeta.vanish == false && (this.blasts[i].blastUser != 1 && this.blasts[i].blastUser != 2 && this.blasts[i].blastUser != 3 || this.vegeta.hardHit == true) && this.blasts[i].blastUser != 4 && this.blasts[i].blastUser != 5) {
-					if (this.blasts[i].type == 0) {
+					if (this.blasts[i].type == 0 && this.blasts[i].lifetime > 0) {
 						this.vegeta.hit = true;
 						this.vegeta.stun = true;
 						if (this.blasts[i].blastUser == 0) {
@@ -14935,7 +14935,7 @@ app.main = (_app$main = {
 				}
 				//HIT Android18
 				if (this.blasts[i].exploding == false && (attackHitTestBlast(this.blasts[i], this.android18) == true || (hardAttackHitTest(this.android18, this.vegeta) == true && this.blasts[i].type != 5 && this.android18.behind == false && this.blasts[i].blastUser != 0 && this.blasts[i].blastUser != 4 && this.blasts[i].blastUser != 5 && this.blasts[i].blastUser != 6 || hardAttackHitTest(this.android17, this.vegeta) == true && this.blasts[i].blastUser == 6) && this.blasts[i].lifetime < 2 && (this.blasts[i].type != 5 || this.blasts[i].moving == true && this.blasts[i].triggerState == 0)) && this.blasts[i].activated == true && this.android18.superSpeed == false && this.blasts[i].blastUser != 0 && (this.blasts[i].blastUser != 6 || this.DD == false) && (this.blasts[i].blastUser != 6 || this.together == false || this.blasts[i].lifetime > 3)) {
-					if (this.blasts[i].type == 0) {
+					if (this.blasts[i].type == 0 && this.blasts[i].lifetime > 0) {
 						if (hardAttackHitTest(this.vegeta, this.android18) == true && this.blasts[i].lifetime < 2 && this.blasts[i].blastUser != 0 && this.android18.behind == false) {
 							this.pointBlank = true;
 							this.blasts[i].position.x = this.android18.position.x;
@@ -15443,7 +15443,7 @@ app.main = (_app$main = {
 				}
 				//HIT Android17
 				if (this.blasts[i].exploding == false && (attackHitTestBlast(this.blasts[i], this.android17) == true || (hardAttackHitTest(this.vegeta, this.android17) == true && this.blasts[i].type != 5 && this.android17.behind == false && this.blasts[i].blastUser != 0 || hardAttackHitTest(this.android18, this.android17) == true && this.blasts[i].blastUser == 0) && this.blasts[i].lifetime < 2 && (this.blasts[i].type != 5 || this.blasts[i].moving == true && this.blasts[i].triggerState == 0)) && this.blasts[i].activated == true && this.android17.superSpeed == false && this.blasts[i].blastUser != 6 && this.android17.vanish == false && this.android17.city == false && (this.blasts[i].blastUser != 0 || this.together == false || this.blasts[i].lifetime > 3)) {
-					if (this.blasts[i].type == 0) {
+					if (this.blasts[i].type == 0 && this.blasts[i].lifetime > 0) {
 						if (this.android17.fieldOn == false) {
 							if (this.IB == true && this.android17.blocking == true) {
 								//this.android18.stamina += 8;
@@ -32202,7 +32202,13 @@ app.Vegeta = function () {
 				} else if (this.reverse == true && this.farLeft == false && this.farRight == false) {
 					ctx.drawImage(this.moveReverseTien, 0, 0);
 				} else if (this.air == true && this.up == false) {
-					ctx.drawImage(this.flyDownSlowTien, 0, 0);
+					if (this.lookUp == true) {
+						ctx.drawImage(this.flyUpUpTien, 0, 0);
+					} else if (this.lookDown == true) {
+						ctx.drawImage(this.flyUpDownTien, 0, 0);
+					} else {
+						ctx.drawImage(this.flyUpTien, 0, 0);
+					}
 				} else {
 					if (this.lookUp == true) {
 						ctx.drawImage(this.stanceUpTien, 0, 0);
