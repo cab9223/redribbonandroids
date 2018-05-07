@@ -749,7 +749,7 @@ const displayInfo = function(type){
   }
   if(info === "IB"){
 	$("#nameData").text("Iron Block");
-    $("#contentData").text("BOTH -- Blocks will now withstand normal blasts at a fatigue cost.");
+    $("#contentData").text("BOTH -- Blocking will now withstand normal blasts at a fatigue cost.");
 	$("#contentData2").text("");
   }
   if(info === "CP"){
@@ -759,7 +759,7 @@ const displayInfo = function(type){
   }
   if(info === "SB"){
 	$("#nameData").text("Scalding Blasts");
-    $("#contentData").text("BOTH -- Blasts are much hotter allowing longer lasting blast burn effects.");
+    $("#contentData").text("BOTH -- Blasts are much hotter with longer lasting blast burn effects.");
 	$("#contentData2").text("");
   }
   if(info === "EI"){

@@ -15,7 +15,7 @@ app.Vegeta = (function(){
 		this.stamina = 28;
 		
 		//Special Stats
-		this.specialHealth = 10;
+		this.specialHealth = 1;
 		
 		this.specialDamage = false;
 		this.spSaying = false;
@@ -53,6 +53,7 @@ app.Vegeta = (function(){
 		this.blastRelease = false;
 		this.blastTrigger = false;
 		this.blasted = false;
+		this.smallBlasted = false;
 		this.exhausted = false;
 		this.blastBurn = false;
 		this.hit = false;
@@ -89,6 +90,7 @@ app.Vegeta = (function(){
 		this.fallTimer = 0;
 		
 		this.quickDodge = 0;
+		this.rollDodge = false;
 		
 		this.startFallKick = false;
 		
@@ -1526,11 +1528,13 @@ app.Vegeta = (function(){
 			}
 		}
 		
-		if(this.blasted == true && this.stun == false && this.hardHit == false && this.end == false && app.main.scene == false){
+		if(this.smallBlasted == true && this.superSpeed == false && this.stun == false && this.hit == false && this.hardHit == false && this.end == false && app.main.scene == false){
 			if(this.quickDodge > .6){
 				this.superSpeed = true;
 				this.quickDodge = 0;
-				this.blasted = false;
+				this.smallBlasted = false;
+			} else {
+				this.smallBlasted = false;
 			}
 		}
 		
@@ -2009,10 +2013,17 @@ app.Vegeta = (function(){
 			this.charging = false;
 			this.intensify = false;
 			this.fast17 = false;
-			this.quickDodge = getRandom(0,1);
+			if(this.rollDodge == false){
+				this.quickDodge = getRandom(0,1);
+				this.rollDodge = true;
+			}
 			//this.blastRelease = false;
 			//this.unstoppable = false;
 			//this.specMove = false;
+		} 
+		
+		if(this.hit == false && this.hardHit == false && this.blasted == false && this.stun == false) {
+			this.rollDodge = false;
 		}
 		
 		this.decelerate(); //DECEL
@@ -3766,6 +3777,7 @@ app.Vegeta = (function(){
 				this.hardHit = false;
 				this.hit = false; 
 				this.blasted = false;
+				this.smallBlasted = false;
 			}
 			if(this.stunCounter < 22){
 				this.voiceChance = Math.random();

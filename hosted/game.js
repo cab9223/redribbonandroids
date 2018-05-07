@@ -13622,7 +13622,7 @@ app.main = (_app$main = {
 	endingState: false,
 	scene: false,
 	titleScreen: true
-}, _defineProperty(_app$main, 'endingState', false), _defineProperty(_app$main, 'changed', false), _defineProperty(_app$main, 'firstTimeMode', false), _defineProperty(_app$main, 'sceneNum', 0), _defineProperty(_app$main, 'battle', 0), _defineProperty(_app$main, 'camX', 1), _defineProperty(_app$main, 'camY', 1), _defineProperty(_app$main, 'trueEnding', false), _defineProperty(_app$main, 'savesGohan', 0), _defineProperty(_app$main, 'blasts', undefined), _defineProperty(_app$main, 'blinking', 0), _defineProperty(_app$main, 'pulsing', 0), _defineProperty(_app$main, 'warnings', 0), _defineProperty(_app$main, 'sceneCounter', 0), _defineProperty(_app$main, 'sceneTimer', 0), _defineProperty(_app$main, 'damageTimer', 0), _defineProperty(_app$main, 'instructions', 0), _defineProperty(_app$main, 'sceneChange', 0), _defineProperty(_app$main, 'holdTime', 0), _defineProperty(_app$main, 'firstTime', 0), _defineProperty(_app$main, 'modeSwitch', 0), _defineProperty(_app$main, 'modeSwitch17', 0), _defineProperty(_app$main, 'cooldownAI', 0), _defineProperty(_app$main, 'cooldownAI2', 0), _defineProperty(_app$main, 'cooldownAI3', 0), _defineProperty(_app$main, 'cooldownAndroid17', 0), _defineProperty(_app$main, 'cooldownAndroid18', 0), _defineProperty(_app$main, 'changeDelay', 0), _defineProperty(_app$main, 'GI', false), _defineProperty(_app$main, 'HM', false), _defineProperty(_app$main, 'IB', false), _defineProperty(_app$main, 'CP', false), _defineProperty(_app$main, 'SB', false), _defineProperty(_app$main, 'BH', false), _defineProperty(_app$main, 'FR', false), _defineProperty(_app$main, 'EF', false), _defineProperty(_app$main, 'CF', false), _defineProperty(_app$main, 'BA', false), _defineProperty(_app$main, 'IR', false), _defineProperty(_app$main, 'PE', false), _defineProperty(_app$main, 'BB', false), _defineProperty(_app$main, 'BR', false), _defineProperty(_app$main, 'ES', false), _defineProperty(_app$main, 'LG', false), _defineProperty(_app$main, 'AI', false), _defineProperty(_app$main, 'ER', false), _defineProperty(_app$main, 'AB', false), _defineProperty(_app$main, 'SF', false), _defineProperty(_app$main, 'EE', false), _defineProperty(_app$main, 'NR', false), _defineProperty(_app$main, 'DB', false), _defineProperty(_app$main, 'HZ', false), _defineProperty(_app$main, 'SC', false), _defineProperty(_app$main, 'MS', false), _defineProperty(_app$main, 'DD', false), _defineProperty(_app$main, 'EI', false), _defineProperty(_app$main, 'powerModule', false), _defineProperty(_app$main, 'temporalModule', false), _defineProperty(_app$main, 'aegisChip', false), _defineProperty(_app$main, 'synchronousChip', false), _defineProperty(_app$main, 'mindCircuit', false), _defineProperty(_app$main, 'masteryCircuit', false), _defineProperty(_app$main, 'dataOfPiccolo', false), _defineProperty(_app$main, 'dataOfVegeta', false), _defineProperty(_app$main, 'dataOfGohan', false), _defineProperty(_app$main, 'dataOfTien', false), _defineProperty(_app$main, 'dataOfKrillin', false), _defineProperty(_app$main, 'targetHidden', true), _defineProperty(_app$main, 'targetDead', false), _defineProperty(_app$main, 'whatLoot', undefined), _defineProperty(_app$main, 'gamepad', undefined), _defineProperty(_app$main, 'vegetaDying', false), _defineProperty(_app$main, 'piccoloDying', false), _defineProperty(_app$main, 'gohanDying', false), _defineProperty(_app$main, 'dying18', false), _defineProperty(_app$main, 'vegetaDead', false), _defineProperty(_app$main, 'piccoloDead', false), _defineProperty(_app$main, 'gohanDead', false), _defineProperty(_app$main, 'krillinDead', false), _defineProperty(_app$main, 'tienDead', false), _defineProperty(_app$main, 'yamchaDead', false), _defineProperty(_app$main, 'chaotzuDead', false), _defineProperty(_app$main, 'fpsBack', 20), _defineProperty(_app$main, 'lastExecutionBack', undefined), _defineProperty(_app$main, 'init', function init() {
+}, _defineProperty(_app$main, 'endingState', false), _defineProperty(_app$main, 'changed', false), _defineProperty(_app$main, 'firstTimeMode', false), _defineProperty(_app$main, 'sceneNum', 3), _defineProperty(_app$main, 'battle', 2), _defineProperty(_app$main, 'camX', 1), _defineProperty(_app$main, 'camY', 1), _defineProperty(_app$main, 'trueEnding', false), _defineProperty(_app$main, 'savesGohan', 0), _defineProperty(_app$main, 'blasts', undefined), _defineProperty(_app$main, 'blinking', 0), _defineProperty(_app$main, 'pulsing', 0), _defineProperty(_app$main, 'warnings', 0), _defineProperty(_app$main, 'sceneCounter', 0), _defineProperty(_app$main, 'sceneTimer', 0), _defineProperty(_app$main, 'damageTimer', 0), _defineProperty(_app$main, 'instructions', 0), _defineProperty(_app$main, 'sceneChange', 0), _defineProperty(_app$main, 'holdTime', 0), _defineProperty(_app$main, 'firstTime', 0), _defineProperty(_app$main, 'modeSwitch', 0), _defineProperty(_app$main, 'modeSwitch17', 0), _defineProperty(_app$main, 'cooldownAI', 0), _defineProperty(_app$main, 'cooldownAI2', 0), _defineProperty(_app$main, 'cooldownAI3', 0), _defineProperty(_app$main, 'cooldownAndroid17', 0), _defineProperty(_app$main, 'cooldownAndroid18', 0), _defineProperty(_app$main, 'changeDelay', 0), _defineProperty(_app$main, 'GI', false), _defineProperty(_app$main, 'HM', false), _defineProperty(_app$main, 'IB', false), _defineProperty(_app$main, 'CP', false), _defineProperty(_app$main, 'SB', false), _defineProperty(_app$main, 'BH', false), _defineProperty(_app$main, 'FR', false), _defineProperty(_app$main, 'EF', false), _defineProperty(_app$main, 'CF', false), _defineProperty(_app$main, 'BA', false), _defineProperty(_app$main, 'IR', false), _defineProperty(_app$main, 'PE', false), _defineProperty(_app$main, 'BB', false), _defineProperty(_app$main, 'BR', false), _defineProperty(_app$main, 'ES', false), _defineProperty(_app$main, 'LG', false), _defineProperty(_app$main, 'AI', false), _defineProperty(_app$main, 'ER', false), _defineProperty(_app$main, 'AB', false), _defineProperty(_app$main, 'SF', false), _defineProperty(_app$main, 'EE', false), _defineProperty(_app$main, 'NR', false), _defineProperty(_app$main, 'DB', false), _defineProperty(_app$main, 'HZ', false), _defineProperty(_app$main, 'SC', false), _defineProperty(_app$main, 'MS', false), _defineProperty(_app$main, 'DD', false), _defineProperty(_app$main, 'EI', false), _defineProperty(_app$main, 'powerModule', false), _defineProperty(_app$main, 'temporalModule', false), _defineProperty(_app$main, 'aegisChip', false), _defineProperty(_app$main, 'synchronousChip', false), _defineProperty(_app$main, 'mindCircuit', false), _defineProperty(_app$main, 'masteryCircuit', false), _defineProperty(_app$main, 'dataOfPiccolo', false), _defineProperty(_app$main, 'dataOfVegeta', false), _defineProperty(_app$main, 'dataOfGohan', false), _defineProperty(_app$main, 'dataOfTien', false), _defineProperty(_app$main, 'dataOfKrillin', false), _defineProperty(_app$main, 'targetHidden', true), _defineProperty(_app$main, 'targetDead', false), _defineProperty(_app$main, 'whatLoot', undefined), _defineProperty(_app$main, 'gamepad', undefined), _defineProperty(_app$main, 'vegetaDying', false), _defineProperty(_app$main, 'piccoloDying', false), _defineProperty(_app$main, 'gohanDying', false), _defineProperty(_app$main, 'dying18', false), _defineProperty(_app$main, 'vegetaDead', false), _defineProperty(_app$main, 'piccoloDead', false), _defineProperty(_app$main, 'gohanDead', false), _defineProperty(_app$main, 'krillinDead', false), _defineProperty(_app$main, 'tienDead', false), _defineProperty(_app$main, 'yamchaDead', false), _defineProperty(_app$main, 'chaotzuDead', false), _defineProperty(_app$main, 'fpsBack', 20), _defineProperty(_app$main, 'lastExecutionBack', undefined), _defineProperty(_app$main, 'init', function init() {
 	var _this = this;
 
 	//console.log("app.main.init() called");
@@ -14408,10 +14408,10 @@ app.main = (_app$main = {
 				}
 				//HIT VEGETA
 				if (this.blasts[i].exploding == false && (attackHitTestBlast(this.blasts[i], this.vegeta) == true || (hardAttackHitTest(this.android18, this.vegeta) == true && this.vegeta.behind == false && this.blasts[i].blastUser == 0 || hardAttackHitTest(this.android17, this.vegeta) == true && this.blasts[i].blastUser == 6) && this.blasts[i].lifetime < 2 && (this.blasts[i].type != 5 || this.blasts[i].moving == true && this.blasts[i].triggerState == 0)) && this.blasts[i].activated == true && this.vegeta.superSpeed == false && this.vegeta.vanish == false && (this.blasts[i].blastUser != 1 && this.blasts[i].blastUser != 2 && this.blasts[i].blastUser != 3 || this.vegeta.hardHit == true) && this.blasts[i].blastUser != 4 && this.blasts[i].blastUser != 5) {
-					if (this.blasts[i].type == 0 && this.blasts[i].lifetime > 0) {
+					if (this.blasts[i].type == 0 && this.blasts[i].lifetime > 1) {
 						this.vegeta.hit = true;
 						this.vegeta.stun = true;
-						this.vegeta.blasted = true;
+						this.vegeta.smallBlasted = true;
 						if (this.blasts[i].blastUser == 0) {
 							if (this.CP == true) {
 								this.roundScore += 14;
@@ -14937,7 +14937,7 @@ app.main = (_app$main = {
 				}
 				//HIT Android18
 				if (this.blasts[i].exploding == false && (attackHitTestBlast(this.blasts[i], this.android18) == true || (hardAttackHitTest(this.android18, this.vegeta) == true && this.blasts[i].type != 5 && this.android18.behind == false && this.blasts[i].blastUser != 0 && this.blasts[i].blastUser != 4 && this.blasts[i].blastUser != 5 && this.blasts[i].blastUser != 6 || hardAttackHitTest(this.android17, this.vegeta) == true && this.blasts[i].blastUser == 6) && this.blasts[i].lifetime < 2 && (this.blasts[i].type != 5 || this.blasts[i].moving == true && this.blasts[i].triggerState == 0)) && this.blasts[i].activated == true && this.android18.superSpeed == false && this.blasts[i].blastUser != 0 && (this.blasts[i].blastUser != 6 || this.DD == false) && (this.blasts[i].blastUser != 6 || this.together == false || this.blasts[i].lifetime > 3)) {
-					if (this.blasts[i].type == 0 && this.blasts[i].lifetime > 0) {
+					if (this.blasts[i].type == 0 && this.blasts[i].lifetime > 1) {
 						if (hardAttackHitTest(this.vegeta, this.android18) == true && this.blasts[i].lifetime < 2 && this.blasts[i].blastUser != 0 && this.android18.behind == false) {
 							this.pointBlank = true;
 							this.blasts[i].position.x = this.android18.position.x;
@@ -14953,7 +14953,7 @@ app.main = (_app$main = {
 							} else {
 								this.android18.hit = true;
 								this.android18.stun = true;
-								this.android18.blasted = true;
+								this.vegeta.smallBlasted = true;
 								if (this.ER == true) {
 									this.android18.blastBurnLength = 3;
 									this.android18.blastBurn = true;
@@ -15447,14 +15447,14 @@ app.main = (_app$main = {
 				}
 				//HIT Android17
 				if (this.blasts[i].exploding == false && (attackHitTestBlast(this.blasts[i], this.android17) == true || (hardAttackHitTest(this.vegeta, this.android17) == true && this.blasts[i].type != 5 && this.android17.behind == false && this.blasts[i].blastUser != 0 || hardAttackHitTest(this.android18, this.android17) == true && this.blasts[i].blastUser == 0) && this.blasts[i].lifetime < 2 && (this.blasts[i].type != 5 || this.blasts[i].moving == true && this.blasts[i].triggerState == 0)) && this.blasts[i].activated == true && this.android17.superSpeed == false && this.blasts[i].blastUser != 6 && this.android17.vanish == false && this.android17.city == false && (this.blasts[i].blastUser != 0 || this.together == false || this.blasts[i].lifetime > 3)) {
-					if (this.blasts[i].type == 0 && this.blasts[i].lifetime > 0) {
+					if (this.blasts[i].type == 0 && this.blasts[i].lifetime > 1) {
 						if (this.android17.fieldOn == false) {
 							if (this.IB == true && this.android17.blocking == true) {
 								//this.android18.stamina += 8;
 							} else {
 								this.android17.hit = true;
 								this.android17.stun = true;
-								this.android17.blasted = true;
+								this.vegeta.smallBlasted = true;
 								if (this.battle != 3) {
 									this.roundScore2 -= 25;
 								}
@@ -21128,7 +21128,7 @@ app.main = (_app$main = {
 				} else if (this.sceneTimer < 259 && this.sceneTimer > 248) {
 					this.android17.stun = false;
 					//this.android17.flying = true;
-					this.android17.jumpVelocity.y -= 1.5;
+					this.android17.jumpVelocity.y -= 2;
 					this.android17.air = true;
 				} else if (this.sceneTimer < 260 && this.sceneTimer > 258) {
 					//this.android17.flying = false;
@@ -22355,13 +22355,13 @@ app.main = (_app$main = {
 					this.fillText(ctx, "Murderous", 580, 172, "15pt heavy_data", "Red");
 				} else if (this.sceneNum == 4 && this.trueEnding == false) {
 					this.fillText(ctx, "Disgusted", 580, 172, "15pt heavy_data", "grey");
-				} else if ((this.sceneNum == 4 || this.battle == 3) && this.trueEnding == true && this.gohanDead == false) {
+				} else if ((this.sceneNum == 4 || this.battle == 3) && this.trueEnding == true && (this.gohanDead == false || this.target == true)) {
 					if (this.vegeta.superForm == false) {
 						this.fillText(ctx, "Homicidal", 580, 172, "15pt heavy_data", "red");
 					} else {
 						this.fillText(ctx, "Injured", 570, 172, "15pt heavy_data", "darkRed");
 					}
-				} else if (this.gohanDead == true) {
+				} else if (this.gohanDead == true && this.target == false) {
 					this.fillText(ctx, "Bloodthirsty", 590, 172, "15pt heavy_data", "black");
 				} else {
 					this.fillText(ctx, "Unpredicable", 590, 172, "15pt heavy_data", "Grey");
@@ -23211,7 +23211,7 @@ app.main = (_app$main = {
 		ctx.textAlign = "center";
 		ctx.textBaseline = "middle";
 		ctx.globalAlpha = .7;
-		this.fillText(this.ctx, "Credits", this.WIDTH / 2, 300 - this.creditsRoll, "120pt heavy_data", "Red");
+		this.fillText(this.ctx, "Credits", this.WIDTH / 2, 300 - this.creditsRoll, "120pt heavy_data", "DarkRed");
 		this.fillText(this.ctx, "Creative Director: Christopher Bennett", this.WIDTH / 2, this.spacing * 1 + 300 - this.creditsRoll, "25pt heavy_data", "#c9be03");
 		this.fillText(this.ctx, "Producer: Christopher Bennett", this.WIDTH / 2, this.spacing * 2 + 300 - this.creditsRoll, "25pt heavy_data", "#c9be03");
 		this.fillText(this.ctx, "Game Designer: Christopher Bennett", this.WIDTH / 2, this.spacing * 3 + 300 - this.creditsRoll, "25pt heavy_data", "#c9be03");
@@ -23444,9 +23444,9 @@ app.main = (_app$main = {
 			this.fillText(this.ctx, "Systems Upgraded... Now running Version " + this.version + ".0", this.WIDTH / 2, this.HEIGHT / 2 + 230, "32pt heavy_data", "Green");
 		}
 		if (this.leveledUp == true && this.version != 4 && this.version != 5 && this.version != 9 && this.version != 10 && this.version != 14 && this.version != 15 && this.version != 19 && this.version != 20) {
-			this.fillText(this.ctx, "New modification aquired... " + this.whatLoot, this.WIDTH / 2, this.HEIGHT / 2 + 255, "20pt heavy_data", "DarkGreen");
+			this.fillText(this.ctx, "New modification aquired... " + this.whatLoot, this.WIDTH / 2, this.HEIGHT / 2 + 260, "20pt heavy_data", "DarkGreen");
 		} else if (this.leveledUp == true && (this.version == 5 || this.version == 10 || this.version == 15 || this.version == 20)) {
-			this.fillText(this.ctx, "Modification structure has expanded a tier... ", this.WIDTH / 2, this.HEIGHT / 2 + 255, "20pt heavy_data", "DarkGreen");
+			this.fillText(this.ctx, "Modification structure has expanded a tier... ", this.WIDTH / 2, this.HEIGHT / 2 + 260, "20pt heavy_data", "DarkGreen");
 		}
 		this.fillText(this.ctx, "A Christopher Bennett Game", this.WIDTH / 2, this.HEIGHT / 2 - 300, "15pt heavy_data", "Grey");
 	} // end if
@@ -25232,7 +25232,7 @@ app.Vegeta = function () {
 		this.stamina = 28;
 
 		//Special Stats
-		this.specialHealth = 10;
+		this.specialHealth = 1;
 
 		this.specialDamage = false;
 		this.spSaying = false;
@@ -25270,6 +25270,7 @@ app.Vegeta = function () {
 		this.blastRelease = false;
 		this.blastTrigger = false;
 		this.blasted = false;
+		this.smallBlasted = false;
 		this.exhausted = false;
 		this.blastBurn = false;
 		this.hit = false;
@@ -25306,6 +25307,7 @@ app.Vegeta = function () {
 		this.fallTimer = 0;
 
 		this.quickDodge = 0;
+		this.rollDodge = false;
 
 		this.startFallKick = false;
 
@@ -26727,11 +26729,13 @@ app.Vegeta = function () {
 			}
 		}
 
-		if (this.blasted == true && this.stun == false && this.hardHit == false && this.end == false && app.main.scene == false) {
+		if (this.smallBlasted == true && this.superSpeed == false && this.stun == false && this.hit == false && this.hardHit == false && this.end == false && app.main.scene == false) {
 			if (this.quickDodge > .6) {
 				this.superSpeed = true;
 				this.quickDodge = 0;
-				this.blasted = false;
+				this.smallBlasted = false;
+			} else {
+				this.smallBlasted = false;
 			}
 		}
 
@@ -27204,10 +27208,17 @@ app.Vegeta = function () {
 			this.charging = false;
 			this.intensify = false;
 			this.fast17 = false;
-			this.quickDodge = getRandom(0, 1);
+			if (this.rollDodge == false) {
+				this.quickDodge = getRandom(0, 1);
+				this.rollDodge = true;
+			}
 			//this.blastRelease = false;
 			//this.unstoppable = false;
 			//this.specMove = false;
+		}
+
+		if (this.hit == false && this.hardHit == false && this.blasted == false && this.stun == false) {
+			this.rollDodge = false;
 		}
 
 		this.decelerate(); //DECEL
@@ -28947,6 +28958,7 @@ app.Vegeta = function () {
 					this.hardHit = false;
 					this.hit = false;
 					this.blasted = false;
+					this.smallBlasted = false;
 				}
 				if (this.stunCounter < 22) {
 					this.voiceChance = Math.random();
