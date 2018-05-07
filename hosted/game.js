@@ -22644,7 +22644,7 @@ app.main = (_app$main = {
 		if (this.gameState == this.GAME_STATE.TUTORIAL) {
 			if (myKeys.keydown[myKeys.KEYBOARD.KEY_SPACE] == true && this.toggle1 == false && this.next == false) {
 				this.next = true;
-				if (this.instructions < 22) {
+				if (this.instructions < 24) {
 					this.sound.playEffect(68);
 					if (this.instructions == 0 && this.targetHidden == true && this.scene == true) {
 						this.targetHidden = false;
@@ -22727,7 +22727,7 @@ app.main = (_app$main = {
 					this.fillText(ctx, "'Arrow Keys':", this.WIDTH / 2 + 400 - 100, 610, "12pt heavy_data", "white");
 				} else {
 					this.fillText(ctx, "'Start' to end this", this.WIDTH / 2 + 400 - 100, 367, "16pt heavy_data", "darkRed");
-					this.fillText(ctx, "'Select': Toggle Tutorials", this.WIDTH / 2 + 400 - 100, 390, "12pt heavy_data", "red");
+					this.fillText(ctx, "'R3-RS': Toggle Tutorials", this.WIDTH / 2 + 400 - 100, 390, "12pt heavy_data", "red");
 					this.fillText(ctx, "Controls", this.WIDTH / 2 + 400 - 100, 335, "32pt heavy_data", "#c9be03");
 					this.fillText(ctx, "Controls", this.WIDTH / 2 + 400 - 100, 335, "32pt heavy_data", "white");
 					this.fillText(ctx, "'Square-X': Basic Attack", this.WIDTH / 2 + 400 - 100, 410, "12pt heavy_data", "#c9be03");
@@ -22784,125 +22784,263 @@ app.main = (_app$main = {
 					this.fillText(ctx, "Select to progress", this.WIDTH / 2 - 125 + 5, 515, "11pt heavy_data", "white");
 					this.fillText(ctx, "Start to end", this.WIDTH / 2 + 120 + 15, 515, "11pt heavy_data", "white");
 				}
-				this.fillText(ctx, this.instructions + 1 + " OF 23", this.WIDTH / 2 + 15, 515, "16pt heavy_data", "red");
-				if (this.instructions == 0) {
-					this.fillText(ctx, "Lets begin the testing my androids", this.WIDTH / 2, 425, "24pt heavy_data", "darkred");
-					this.fillText(ctx, "Use the space bar for instructions and attack for practice", this.WIDTH / 2, 460, "14pt heavy_data", "#c9be03");
-					this.fillText(ctx, "Press T to toggle each of the test displays on or off", this.WIDTH / 2, 490, "14pt heavy_data", "#c9be03");
-				} else if (this.instructions == 1) {
-					this.fillText(ctx, "Interface Meters", this.WIDTH / 2, 445, "48pt heavy_data", "darkred");
-				} else if (this.instructions == 2) {
-					this.fillText(ctx, "Look above, for you and your target", this.WIDTH / 2, 430, "14pt heavy_data", "#c9be03");
-					this.fillText(ctx, "There are 4 bars on the battle interface", this.WIDTH / 2, 460, "14pt heavy_data", "#c9be03");
-					ctx.save();
-					ctx.globalAlpha = .3;
-					ctx.fillStyle = "Green";
-					ctx.fillRect(49, 55, 375, 35);
-					ctx.fillRect(595, 55, 375, 35);
-					ctx.fillRect(49, 90, 375, 37);
-					ctx.fillRect(595, 90, 375, 37);
-					ctx.fillRect(49, 127, 246, 30);
-					ctx.fillRect(725, 127, 246, 30);
-					ctx.restore();
-				} else if (this.instructions == 3) {
-					this.fillText(ctx, "The top white bar is endurance", this.WIDTH / 2, 430, "14pt heavy_data", "#c9be03");
-					this.fillText(ctx, "This reduces when hit but will regenerate over time", this.WIDTH / 2, 460, "14pt heavy_data", "#c9be03");
-					ctx.save();
-					ctx.globalAlpha = .3;
-					ctx.fillStyle = "Green";
-					ctx.fillRect(49, 55, 375, 35);
-					ctx.fillRect(595, 55, 375, 35);
-					ctx.restore();
-				} else if (this.instructions == 4) {
-					this.fillText(ctx, "The lower white bar is health", this.WIDTH / 2, 430, "14pt heavy_data", "#c9be03");
-					this.fillText(ctx, "This reduces when hit but only when edurance is depleated", this.WIDTH / 2, 460, "14pt heavy_data", "#c9be03");
-					this.fillText(ctx, "This bar will NOT regenerate", this.WIDTH / 2, 490, "14pt heavy_data", "#c9be03");
-					ctx.save();
-					ctx.globalAlpha = .3;
-					ctx.fillStyle = "Green";
-					ctx.fillRect(49, 90, 375, 37);
-					ctx.fillRect(595, 90, 375, 37);
-					ctx.restore();
-				} else if (this.instructions == 5) {
-					this.fillText(ctx, "This sometimes dark red bar is a measure of fatigue", this.WIDTH / 2, 430, "14pt heavy_data", "#c9be03");
-					this.fillText(ctx, "This will fill a bit with each physical attack", this.WIDTH / 2, 460, "14pt heavy_data", "#c9be03");
-					this.fillText(ctx, "If this reaches max it will cause exhaustion", this.WIDTH / 2, 490, "14pt heavy_data", "#c9be03");
-					ctx.save();
-					ctx.globalAlpha = .3;
-					ctx.fillStyle = "Green";
-					ctx.fillRect(49, 110, 246, 30);
-					ctx.fillRect(725, 110, 246, 30);
-					ctx.restore();
-				} else if (this.instructions == 6) {
-					this.fillText(ctx, "If exhaustion occurs the bar will blink bright red", this.WIDTH / 2, 430, "14pt heavy_data", "#c9be03");
-					this.fillText(ctx, "This will prevent you from using physical attacks", this.WIDTH / 2, 460, "14pt heavy_data", "#c9be03");
-					this.fillText(ctx, "Normalize by allowing it to depleat halfway or by taunting", this.WIDTH / 2, 490, "14pt heavy_data", "#c9be03");
-					ctx.save();
-					ctx.globalAlpha = .3;
-					ctx.fillStyle = "Green";
-					ctx.fillRect(49, 110, 246, 30);
-					ctx.fillRect(725, 110, 246, 30);
-					ctx.restore();
-				} else if (this.instructions == 7) {
-					this.fillText(ctx, "The yellow bar is your energy meter", this.WIDTH / 2, 430, "14pt heavy_data", "#c9be03");
-					this.fillText(ctx, "This will be used by energy attacks and activating Super Speed", this.WIDTH / 2, 460, "14pt heavy_data", "#c9be03");
-					this.fillText(ctx, "I have designed your systems to forever regenerate energy", this.WIDTH / 2, 490, "14pt heavy_data", "#c9be03");
-					ctx.save();
-					ctx.globalAlpha = .3;
-					ctx.fillStyle = "Green";
-					ctx.fillRect(49, 133, 246, 24);
-					ctx.fillRect(725, 133, 246, 24);
-					ctx.restore();
-				} else if (this.instructions == 8) {
-					this.fillText(ctx, "Movement", this.WIDTH / 2, 445, "48pt heavy_data", "darkred");
-				} else if (this.instructions == 9) {
-					this.fillText(ctx, "Tap the up key to jump or hold it to defy gravity and fly", this.WIDTH / 2, 430, "14pt heavy_data", "#c9be03");
-					this.fillText(ctx, "Attacking or engaging the enemy in air will allow you to hover", this.WIDTH / 2, 460, "14pt heavy_data", "#c9be03");
-					this.fillText(ctx, "Attacks may change depending on if your grounded or airborne", this.WIDTH / 2, 490, "14pt heavy_data", "#c9be03");
-				} else if (this.instructions == 10) {
-					this.fillText(ctx, "Left and Right arrows to move in those directions respectively", this.WIDTH / 2, 430, "14pt heavy_data", "#c9be03");
-					this.fillText(ctx, "Down works if your airborne to accelerate you downward", this.WIDTH / 2, 460, "14pt heavy_data", "#c9be03");
-				} else if (this.instructions == 11) {
-					this.fillText(ctx, "Battle Controls ", this.WIDTH / 2, 445, "48pt heavy_data", "darkred");
-				} else if (this.instructions == 12) {
-					this.fillText(ctx, "The only useable keys for combat are W, A, S, D, and Q", this.WIDTH / 2, 430, "14pt heavy_data", "#c9be03");
-					this.fillText(ctx, "'A': Fast Basic Attacks with low fatigue build up", this.WIDTH / 2, 460, "14pt heavy_data", "#c9be03");
-					this.fillText(ctx, "'S': Ranged Energy Blast Attacks with a low energy cost", this.WIDTH / 2, 490, "14pt heavy_data", "#c9be03");
-				} else if (this.instructions == 13) {
-					this.fillText(ctx, "'W': Block incoming physical attacks only", this.WIDTH / 2, 430, "14pt heavy_data", "#c9be03");
-					this.fillText(ctx, "Blocking stops all damage but will increase fatigue when hit", this.WIDTH / 2, 460, "14pt heavy_data", "#c9be03");
-					this.fillText(ctx, "You cannot block if your exhausted", this.WIDTH / 2, 490, "14pt heavy_data", "#c9be03");
-				} else if (this.instructions == 14) {
-					this.fillText(ctx, "'Q': Move at Super Speed to essentially teleport", this.WIDTH / 2, 430, "14pt heavy_data", "#c9be03");
-					this.fillText(ctx, "This will use energy and avoid all damage until it ends", this.WIDTH / 2, 460, "14pt heavy_data", "#c9be03");
-					this.fillText(ctx, "You'll appear behind your enemy or in a direction your moving", this.WIDTH / 2, 490, "14pt heavy_data", "#c9be03");
-				} else if (this.instructions == 15) {
-					this.fillText(ctx, "'D': Holding this key will intensify or alter abilies", this.WIDTH / 2, 430, "14pt heavy_data", "#c9be03");
-					this.fillText(ctx, "'D' with 'A': strong physical attacks with high fatigue build up", this.WIDTH / 2, 460, "14pt heavy_data", "#c9be03");
-					this.fillText(ctx, "'D' with 'S': Powerful Energy attacks with high energy cost", this.WIDTH / 2, 490, "14pt heavy_data", "#c9be03");
-				} else if (this.instructions == 16) {
-					this.fillText(ctx, "'D' combined with 'W' will turn block into an android barrier", this.WIDTH / 2, 430, "14pt heavy_data", "#c9be03");
-					this.fillText(ctx, "This will drain a lot of energy and cant be stopped early", this.WIDTH / 2, 460, "14pt heavy_data", "#c9be03");
-					this.fillText(ctx, "However nothing can hurt you while within this energy shield", this.WIDTH / 2, 490, "14pt heavy_data", "#c9be03");
-				} else if (this.instructions == 17) {
-					this.fillText(ctx, "'E' will cause you to taunt your opponent", this.WIDTH / 2, 430, "14pt heavy_data", "#c9be03");
-					this.fillText(ctx, "This will make you vulnerable to attacks and may fail if hit", this.WIDTH / 2, 460, "14pt heavy_data", "#c9be03");
-					this.fillText(ctx, "A sucessful taunt will lower your fatigue to zero", this.WIDTH / 2, 490, "14pt heavy_data", "#c9be03");
-				} else if (this.instructions == 18) {
-					this.fillText(ctx, "Important Facts", this.WIDTH / 2, 445, "48pt heavy_data", "darkred");
-				} else if (this.instructions == 19) {
-					this.fillText(ctx, "You can land on some structures by flying above it first", this.WIDTH / 2, 430, "14pt heavy_data", "#c9be03");
-					this.fillText(ctx, "To drop below it again just hold the down key while airborne", this.WIDTH / 2, 460, "14pt heavy_data", "#c9be03");
-				} else if (this.instructions == 20) {
-					this.fillText(ctx, "Energy attack hits will cause burns that halt endurance regen", this.WIDTH / 2, 430, "14pt heavy_data", "#c9be03");
-					this.fillText(ctx, "The length of this halt depends on the intersity of the attack", this.WIDTH / 2, 460, "14pt heavy_data", "#c9be03");
-				} else if (this.instructions == 21) {
-					this.fillText(ctx, "Flying behind the battle interface will cause it to fade", this.WIDTH / 2, 430, "14pt heavy_data", "#c9be03");
-					this.fillText(ctx, "Keep this in mind when fighting at high altitudes", this.WIDTH / 2, 460, "14pt heavy_data", "#c9be03");
-				} else if (this.instructions == 22) {
-					this.fillText(ctx, "That is all I need for now my androids", this.WIDTH / 2, 425, "18pt heavy_data", "#c9be03");
-					this.fillText(ctx, "Now prove your worth in a battle examination", this.WIDTH / 2, 455, "18pt heavy_data", "#c9be03");
-					this.fillText(ctx, "Else I dismantle you both like I did android 19!", this.WIDTH / 2, 485, "18pt heavy_data", "#c9be03");
+				this.fillText(ctx, this.instructions + 1 + " OF 25", this.WIDTH / 2 + 15, 515, "16pt heavy_data", "red");
+				if (this.controllerDetected == false) {
+					if (this.instructions == 0) {
+						this.fillText(ctx, "Lets begin the testing my androids", this.WIDTH / 2, 425, "24pt heavy_data", "darkred");
+						this.fillText(ctx, "Use the space bar for instructions and attack for practice", this.WIDTH / 2, 460, "14pt heavy_data", "#c9be03");
+						this.fillText(ctx, "Press T to toggle each of the test displays on or off", this.WIDTH / 2, 490, "14pt heavy_data", "#c9be03");
+					} else if (this.instructions == 1) {
+						this.fillText(ctx, "Interface Meters", this.WIDTH / 2, 445, "48pt heavy_data", "darkred");
+					} else if (this.instructions == 2) {
+						this.fillText(ctx, "Look above for your targeting data", this.WIDTH / 2, 430, "14pt heavy_data", "#c9be03");
+						this.fillText(ctx, "There are 4 bars on the battle interface", this.WIDTH / 2, 460, "14pt heavy_data", "#c9be03");
+						ctx.save();
+						ctx.globalAlpha = .3;
+						ctx.fillStyle = "Green";
+						ctx.fillRect(49, 55, 375, 35);
+						ctx.fillRect(595, 55, 375, 35);
+						ctx.fillRect(49, 90, 375, 37);
+						ctx.fillRect(595, 90, 375, 37);
+						ctx.fillRect(49, 127, 246, 30);
+						ctx.fillRect(725, 127, 246, 30);
+						ctx.restore();
+					} else if (this.instructions == 3) {
+						this.fillText(ctx, "The top white bar is endurance", this.WIDTH / 2, 430, "14pt heavy_data", "#c9be03");
+						this.fillText(ctx, "This reduces when hit but will regenerate over time", this.WIDTH / 2, 460, "14pt heavy_data", "#c9be03");
+						ctx.save();
+						ctx.globalAlpha = .3;
+						ctx.fillStyle = "Green";
+						ctx.fillRect(49, 55, 375, 35);
+						ctx.fillRect(595, 55, 375, 35);
+						ctx.restore();
+					} else if (this.instructions == 4) {
+						this.fillText(ctx, "The lower grey bar is health", this.WIDTH / 2, 430, "14pt heavy_data", "#c9be03");
+						this.fillText(ctx, "This reduces when hit but only when edurance is depleated", this.WIDTH / 2, 460, "14pt heavy_data", "#c9be03");
+						this.fillText(ctx, "This bar will NOT regenerate", this.WIDTH / 2, 490, "14pt heavy_data", "#c9be03");
+						ctx.save();
+						ctx.globalAlpha = .3;
+						ctx.fillStyle = "Green";
+						ctx.fillRect(49, 90, 375, 37);
+						ctx.fillRect(595, 90, 375, 37);
+						ctx.restore();
+					} else if (this.instructions == 5) {
+						this.fillText(ctx, "This generating dark red bar is a measure of fatigue", this.WIDTH / 2, 430, "14pt heavy_data", "#c9be03");
+						this.fillText(ctx, "This will fill a bit with each physical attack", this.WIDTH / 2, 460, "14pt heavy_data", "#c9be03");
+						this.fillText(ctx, "If this reaches max it will cause exhaustion", this.WIDTH / 2, 490, "14pt heavy_data", "#c9be03");
+						ctx.save();
+						ctx.globalAlpha = .3;
+						ctx.fillStyle = "Green";
+						ctx.fillRect(49, 110, 246, 30);
+						ctx.fillRect(725, 110, 246, 30);
+						ctx.restore();
+					} else if (this.instructions == 6) {
+						this.fillText(ctx, "If exhaustion occurs the bar will blink bright red", this.WIDTH / 2, 430, "14pt heavy_data", "#c9be03");
+						this.fillText(ctx, "This will prevent you from using physical attacks", this.WIDTH / 2, 460, "14pt heavy_data", "#c9be03");
+						this.fillText(ctx, "Normalize by allowing it to depleat halfway or by taunting", this.WIDTH / 2, 490, "14pt heavy_data", "#c9be03");
+						ctx.save();
+						ctx.globalAlpha = .3;
+						ctx.fillStyle = "Green";
+						ctx.fillRect(49, 110, 246, 30);
+						ctx.fillRect(725, 110, 246, 30);
+						ctx.restore();
+					} else if (this.instructions == 7) {
+						this.fillText(ctx, "The yellow bar is your energy meter", this.WIDTH / 2, 430, "14pt heavy_data", "#c9be03");
+						this.fillText(ctx, "This will be used by energy attacks and activating Super Speed", this.WIDTH / 2, 460, "14pt heavy_data", "#c9be03");
+						this.fillText(ctx, "I have designed your systems to forever regenerate energy!", this.WIDTH / 2, 490, "14pt heavy_data", "#c9be03");
+						ctx.save();
+						ctx.globalAlpha = .3;
+						ctx.fillStyle = "Green";
+						ctx.fillRect(49, 133, 246, 24);
+						ctx.fillRect(725, 133, 246, 24);
+						ctx.restore();
+					} else if (this.instructions == 8) {
+						this.fillText(ctx, "Movement", this.WIDTH / 2, 445, "48pt heavy_data", "darkred");
+					} else if (this.instructions == 9) {
+						this.fillText(ctx, "Tap the up key to jump or hold it to defy gravity and fly", this.WIDTH / 2, 430, "14pt heavy_data", "#c9be03");
+						this.fillText(ctx, "Attacking or engaging the enemy in air will allow you to hover", this.WIDTH / 2, 460, "14pt heavy_data", "#c9be03");
+						this.fillText(ctx, "Attacks may change depending on if your grounded or airborne", this.WIDTH / 2, 490, "14pt heavy_data", "#c9be03");
+					} else if (this.instructions == 10) {
+						this.fillText(ctx, "Left and Right arrows to move in those directions respectively", this.WIDTH / 2, 430, "14pt heavy_data", "#c9be03");
+						this.fillText(ctx, "Down works if your airborne to accelerate you downward", this.WIDTH / 2, 460, "14pt heavy_data", "#c9be03");
+					} else if (this.instructions == 11) {
+						this.fillText(ctx, "Battle Controls ", this.WIDTH / 2, 445, "48pt heavy_data", "darkred");
+					} else if (this.instructions == 12) {
+						this.fillText(ctx, "The only useable keys for combat are W, A, S, D, Q, and E", this.WIDTH / 2, 430, "14pt heavy_data", "#c9be03");
+						this.fillText(ctx, "'A': Fast Basic Attacks with low fatigue build up", this.WIDTH / 2, 460, "14pt heavy_data", "#c9be03");
+						this.fillText(ctx, "'S': Ranged Energy Blast Attacks with a low energy cost", this.WIDTH / 2, 490, "14pt heavy_data", "#c9be03");
+					} else if (this.instructions == 13) {
+						this.fillText(ctx, "You can also use 'A' when flying down fast with the down key", this.WIDTH / 2, 430, "14pt heavy_data", "#c9be03");
+						this.fillText(ctx, "This will allow for an arial kick to impact an opponent", this.WIDTH / 2, 460, "14pt heavy_data", "#c9be03");
+						this.fillText(ctx, "You can hold this move on a target and crush it into the ground", this.WIDTH / 2, 490, "14pt heavy_data", "#c9be03");
+					} else if (this.instructions == 14) {
+						this.fillText(ctx, "'W': Block incoming physical attacks only", this.WIDTH / 2, 430, "14pt heavy_data", "#c9be03");
+						this.fillText(ctx, "Blocking stops all damage but will increase fatigue when hit", this.WIDTH / 2, 460, "14pt heavy_data", "#c9be03");
+						this.fillText(ctx, "You cannot block if your exhausted", this.WIDTH / 2, 490, "14pt heavy_data", "#c9be03");
+					} else if (this.instructions == 15) {
+						this.fillText(ctx, "'Q': Hold to Move at Super Speed 'teleport' until released", this.WIDTH / 2, 430, "14pt heavy_data", "#c9be03");
+						this.fillText(ctx, "This will use energy but avoid all damage until it ends", this.WIDTH / 2, 460, "14pt heavy_data", "#c9be03");
+						this.fillText(ctx, "You'll appear behind your enemy or in a direction your holding", this.WIDTH / 2, 490, "14pt heavy_data", "#c9be03");
+					} else if (this.instructions == 16) {
+						this.fillText(ctx, "'E' will cause you to taunt your opponent", this.WIDTH / 2, 430, "14pt heavy_data", "#c9be03");
+						this.fillText(ctx, "This will make you vulnerable to attacks and may fail if hit", this.WIDTH / 2, 460, "14pt heavy_data", "#c9be03");
+						this.fillText(ctx, "A sucessful taunt will lower your fatigue to zero", this.WIDTH / 2, 490, "14pt heavy_data", "#c9be03");
+					} else if (this.instructions == 17) {
+						this.fillText(ctx, "'D': Holding this key will intensify or alter abilies", this.WIDTH / 2, 430, "14pt heavy_data", "#c9be03");
+						this.fillText(ctx, "'D' with 'A': strong physical attacks with high fatigue build up", this.WIDTH / 2, 460, "14pt heavy_data", "#c9be03");
+						this.fillText(ctx, "'D' with 'S': Powerful Energy attacks with high energy cost", this.WIDTH / 2, 490, "14pt heavy_data", "#c9be03");
+					} else if (this.instructions == 18) {
+						this.fillText(ctx, "'D' combined with 'W' will turn block into an android barrier", this.WIDTH / 2, 430, "14pt heavy_data", "#c9be03");
+						this.fillText(ctx, "This will drain a lot of energy and cant be stopped early", this.WIDTH / 2, 460, "14pt heavy_data", "#c9be03");
+						this.fillText(ctx, "However nothing can hurt you while within this energy shield", this.WIDTH / 2, 490, "14pt heavy_data", "#c9be03");
+					} else if (this.instructions == 19) {
+						this.fillText(ctx, "'D' with 'E' will allow you to call for android 17", this.WIDTH / 2, 430, "14pt heavy_data", "#c9be03");
+						this.fillText(ctx, "Depending on his mood you might have him rejoin the fight", this.WIDTH / 2, 460, "14pt heavy_data", "#c9be03");
+						this.fillText(ctx, "However this takes vulnerable time and he might refuse", this.WIDTH / 2, 490, "14pt heavy_data", "#c9be03");
+					} else if (this.instructions == 20) {
+						this.fillText(ctx, "Important Facts", this.WIDTH / 2, 445, "48pt heavy_data", "darkred");
+					} else if (this.instructions == 21) {
+						this.fillText(ctx, "You can land on some structures by flying above it first", this.WIDTH / 2, 430, "14pt heavy_data", "#c9be03");
+						this.fillText(ctx, "To drop below it again just hold the down key while airborne", this.WIDTH / 2, 460, "14pt heavy_data", "#c9be03");
+					} else if (this.instructions == 22) {
+						this.fillText(ctx, "Energy attack hits will cause burns that halt endurance regen", this.WIDTH / 2, 430, "14pt heavy_data", "#c9be03");
+						this.fillText(ctx, "The length of this halt depends on the intersity of the attack", this.WIDTH / 2, 460, "14pt heavy_data", "#c9be03");
+					} else if (this.instructions == 23) {
+						this.fillText(ctx, "Flying behind the battle interface will cause it to fade", this.WIDTH / 2, 430, "14pt heavy_data", "#c9be03");
+						this.fillText(ctx, "Keep this in mind when fighting at high altitudes", this.WIDTH / 2, 460, "14pt heavy_data", "#c9be03");
+					} else if (this.instructions == 24) {
+						this.fillText(ctx, "That is all I need to explain for now my androids", this.WIDTH / 2, 425, "18pt heavy_data", "#c9be03");
+						this.fillText(ctx, "Now prove your worth in a battle examination", this.WIDTH / 2, 455, "18pt heavy_data", "#c9be03");
+						this.fillText(ctx, "Else I dismantle you both.. like android 19!", this.WIDTH / 2, 485, "18pt heavy_data", "#c9be03");
+					}
+				} else {
+					if (this.instructions == 0) {
+						this.fillText(ctx, "Lets begin the testing my androids", this.WIDTH / 2, 425, "24pt heavy_data", "darkred");
+						this.fillText(ctx, "Use the space bar for instructions and attack for practice", this.WIDTH / 2, 460, "14pt heavy_data", "#c9be03");
+						this.fillText(ctx, "Press R3-RS to toggle each of the test displays on or off", this.WIDTH / 2, 490, "14pt heavy_data", "#c9be03");
+					} else if (this.instructions == 1) {
+						this.fillText(ctx, "Interface Meters", this.WIDTH / 2, 445, "48pt heavy_data", "darkred");
+					} else if (this.instructions == 2) {
+						this.fillText(ctx, "Look above for your targeting data", this.WIDTH / 2, 430, "14pt heavy_data", "#c9be03");
+						this.fillText(ctx, "There are 4 bars on the battle interface", this.WIDTH / 2, 460, "14pt heavy_data", "#c9be03");
+						ctx.save();
+						ctx.globalAlpha = .3;
+						ctx.fillStyle = "Green";
+						ctx.fillRect(49, 55, 375, 35);
+						ctx.fillRect(595, 55, 375, 35);
+						ctx.fillRect(49, 90, 375, 37);
+						ctx.fillRect(595, 90, 375, 37);
+						ctx.fillRect(49, 127, 246, 30);
+						ctx.fillRect(725, 127, 246, 30);
+						ctx.restore();
+					} else if (this.instructions == 3) {
+						this.fillText(ctx, "The top white bar is endurance", this.WIDTH / 2, 430, "14pt heavy_data", "#c9be03");
+						this.fillText(ctx, "This reduces when hit but will regenerate over time", this.WIDTH / 2, 460, "14pt heavy_data", "#c9be03");
+						ctx.save();
+						ctx.globalAlpha = .3;
+						ctx.fillStyle = "Green";
+						ctx.fillRect(49, 55, 375, 35);
+						ctx.fillRect(595, 55, 375, 35);
+						ctx.restore();
+					} else if (this.instructions == 4) {
+						this.fillText(ctx, "The lower grey bar is health", this.WIDTH / 2, 430, "14pt heavy_data", "#c9be03");
+						this.fillText(ctx, "This reduces when hit but only when edurance is depleated", this.WIDTH / 2, 460, "14pt heavy_data", "#c9be03");
+						this.fillText(ctx, "This bar will NOT regenerate", this.WIDTH / 2, 490, "14pt heavy_data", "#c9be03");
+						ctx.save();
+						ctx.globalAlpha = .3;
+						ctx.fillStyle = "Green";
+						ctx.fillRect(49, 90, 375, 37);
+						ctx.fillRect(595, 90, 375, 37);
+						ctx.restore();
+					} else if (this.instructions == 5) {
+						this.fillText(ctx, "This generating dark red bar is a measure of fatigue", this.WIDTH / 2, 430, "14pt heavy_data", "#c9be03");
+						this.fillText(ctx, "This will fill a bit with each physical attack", this.WIDTH / 2, 460, "14pt heavy_data", "#c9be03");
+						this.fillText(ctx, "If this reaches max it will cause exhaustion", this.WIDTH / 2, 490, "14pt heavy_data", "#c9be03");
+						ctx.save();
+						ctx.globalAlpha = .3;
+						ctx.fillStyle = "Green";
+						ctx.fillRect(49, 110, 246, 30);
+						ctx.fillRect(725, 110, 246, 30);
+						ctx.restore();
+					} else if (this.instructions == 6) {
+						this.fillText(ctx, "If exhaustion occurs the bar will blink bright red", this.WIDTH / 2, 430, "14pt heavy_data", "#c9be03");
+						this.fillText(ctx, "This will prevent you from using physical attacks", this.WIDTH / 2, 460, "14pt heavy_data", "#c9be03");
+						this.fillText(ctx, "Normalize by allowing it to depleat halfway or by taunting", this.WIDTH / 2, 490, "14pt heavy_data", "#c9be03");
+						ctx.save();
+						ctx.globalAlpha = .3;
+						ctx.fillStyle = "Green";
+						ctx.fillRect(49, 110, 246, 30);
+						ctx.fillRect(725, 110, 246, 30);
+						ctx.restore();
+					} else if (this.instructions == 7) {
+						this.fillText(ctx, "The yellow bar is your energy meter", this.WIDTH / 2, 430, "14pt heavy_data", "#c9be03");
+						this.fillText(ctx, "This will be used by energy attacks and activating Super Speed", this.WIDTH / 2, 460, "14pt heavy_data", "#c9be03");
+						this.fillText(ctx, "I have designed your systems to forever regenerate energy!", this.WIDTH / 2, 490, "14pt heavy_data", "#c9be03");
+						ctx.save();
+						ctx.globalAlpha = .3;
+						ctx.fillStyle = "Green";
+						ctx.fillRect(49, 133, 246, 24);
+						ctx.fillRect(725, 133, 246, 24);
+						ctx.restore();
+					} else if (this.instructions == 8) {
+						this.fillText(ctx, "Movement", this.WIDTH / 2, 445, "48pt heavy_data", "darkred");
+					} else if (this.instructions == 9) {
+						this.fillText(ctx, "Tap the Dpad Up to jump or hold it to defy gravity and fly", this.WIDTH / 2, 430, "14pt heavy_data", "#c9be03");
+						this.fillText(ctx, "Attacking or engaging the enemy in air will allow you to hover", this.WIDTH / 2, 460, "14pt heavy_data", "#c9be03");
+						this.fillText(ctx, "Attacks may change depending on if your grounded or airborne", this.WIDTH / 2, 490, "14pt heavy_data", "#c9be03");
+					} else if (this.instructions == 10) {
+						this.fillText(ctx, "Dpad Left and Right to move in those directions respectively", this.WIDTH / 2, 430, "14pt heavy_data", "#c9be03");
+						this.fillText(ctx, "Down works if your airborne to accelerate you downward", this.WIDTH / 2, 460, "14pt heavy_data", "#c9be03");
+					} else if (this.instructions == 11) {
+						this.fillText(ctx, "Battle Controls ", this.WIDTH / 2, 445, "48pt heavy_data", "darkred");
+					} else if (this.instructions == 12) {
+						this.fillText(ctx, "This is how the console control system is setup", this.WIDTH / 2, 430, "14pt heavy_data", "#c9be03");
+						this.fillText(ctx, "'Square-X': Fast Basic Attacks with low fatigue build up", this.WIDTH / 2, 460, "14pt heavy_data", "#c9be03");
+						this.fillText(ctx, "'Triangle-Y': Ranged Energy Blast Attacks with a low energy cost", this.WIDTH / 2, 490, "14pt heavy_data", "#c9be03");
+					} else if (this.instructions == 13) {
+						this.fillText(ctx, "You can use 'Square-X' when flying down fast with down held", this.WIDTH / 2, 430, "14pt heavy_data", "#c9be03");
+						this.fillText(ctx, "This will allow for an arial kick to impact an opponent", this.WIDTH / 2, 460, "14pt heavy_data", "#c9be03");
+						this.fillText(ctx, "You can hold this move on a target and crush it into the ground", this.WIDTH / 2, 490, "14pt heavy_data", "#c9be03");
+					} else if (this.instructions == 14) {
+						this.fillText(ctx, "'L2-LT': Block incoming physical attacks only", this.WIDTH / 2, 430, "14pt heavy_data", "#c9be03");
+						this.fillText(ctx, "Blocking stops all damage but will increase fatigue when hit", this.WIDTH / 2, 460, "14pt heavy_data", "#c9be03");
+						this.fillText(ctx, "You cannot block if your exhausted", this.WIDTH / 2, 490, "14pt heavy_data", "#c9be03");
+					} else if (this.instructions == 15) {
+						this.fillText(ctx, "'R2-RT': Hold to Move at Super Speed 'teleport' until released", this.WIDTH / 2, 430, "14pt heavy_data", "#c9be03");
+						this.fillText(ctx, "This will use energy but avoid all damage until it ends", this.WIDTH / 2, 460, "14pt heavy_data", "#c9be03");
+						this.fillText(ctx, "You'll appear behind your enemy or in a direction your holding", this.WIDTH / 2, 490, "14pt heavy_data", "#c9be03");
+					} else if (this.instructions == 16) {
+						this.fillText(ctx, "Just tap 'L1-LB' will cause you to taunt your opponent", this.WIDTH / 2, 430, "14pt heavy_data", "#c9be03");
+						this.fillText(ctx, "This will make you vulnerable to attacks and may fail if hit", this.WIDTH / 2, 460, "14pt heavy_data", "#c9be03");
+						this.fillText(ctx, "A sucessful taunt will lower your fatigue to zero", this.WIDTH / 2, 490, "14pt heavy_data", "#c9be03");
+					} else if (this.instructions == 17) {
+						this.fillText(ctx, "Hold and release 'L1-LB' will allow you to call for android 17", this.WIDTH / 2, 430, "14pt heavy_data", "#c9be03");
+						this.fillText(ctx, "Depending on his mood you might have him rejoin the fight", this.WIDTH / 2, 460, "14pt heavy_data", "#c9be03");
+						this.fillText(ctx, "However this takes vulnerable time and he might refuse", this.WIDTH / 2, 490, "14pt heavy_data", "#c9be03");
+					} else if (this.instructions == 18) {
+						this.fillText(ctx, "The more powerful attacks will costly but very useful", this.WIDTH / 2, 430, "14pt heavy_data", "#c9be03");
+						this.fillText(ctx, "'X-A': strong physical attacks with high fatigue build up", this.WIDTH / 2, 460, "14pt heavy_data", "#c9be03");
+						this.fillText(ctx, "'Circle-B': Powerful Energy attacks with high energy cost", this.WIDTH / 2, 490, "14pt heavy_data", "#c9be03");
+					} else if (this.instructions == 19) {
+						this.fillText(ctx, "'L2-LT' will turn block into an android barrier", this.WIDTH / 2, 430, "14pt heavy_data", "#c9be03");
+						this.fillText(ctx, "This will drain a lot of energy and cant be stopped early", this.WIDTH / 2, 460, "14pt heavy_data", "#c9be03");
+						this.fillText(ctx, "However nothing can hurt you while within this energy shield", this.WIDTH / 2, 490, "14pt heavy_data", "#c9be03");
+					} else if (this.instructions == 20) {
+						this.fillText(ctx, "Important Facts", this.WIDTH / 2, 445, "48pt heavy_data", "darkred");
+					} else if (this.instructions == 21) {
+						this.fillText(ctx, "You can land on some structures by flying above it first", this.WIDTH / 2, 430, "14pt heavy_data", "#c9be03");
+						this.fillText(ctx, "To drop below it again just hold the down key while airborne", this.WIDTH / 2, 460, "14pt heavy_data", "#c9be03");
+					} else if (this.instructions == 22) {
+						this.fillText(ctx, "Energy attack hits will cause burns that halt endurance regen", this.WIDTH / 2, 430, "14pt heavy_data", "#c9be03");
+						this.fillText(ctx, "The length of this halt depends on the intersity of the attack", this.WIDTH / 2, 460, "14pt heavy_data", "#c9be03");
+					} else if (this.instructions == 23) {
+						this.fillText(ctx, "Flying behind the battle interface will cause it to fade", this.WIDTH / 2, 430, "14pt heavy_data", "#c9be03");
+						this.fillText(ctx, "Keep this in mind when fighting at high altitudes", this.WIDTH / 2, 460, "14pt heavy_data", "#c9be03");
+					} else if (this.instructions == 24) {
+						this.fillText(ctx, "That is all I need to explain for now my androids", this.WIDTH / 2, 425, "18pt heavy_data", "#c9be03");
+						this.fillText(ctx, "Now prove your worth in a battle examination", this.WIDTH / 2, 455, "18pt heavy_data", "#c9be03");
+						this.fillText(ctx, "Else I dismantle you both.. like android 19!", this.WIDTH / 2, 485, "18pt heavy_data", "#c9be03");
+					}
 				}
 			}
 			ctx.restore();
@@ -23064,7 +23202,7 @@ app.main = (_app$main = {
 	} // end if
 
 	if (this.gameState == this.GAME_STATE.CREDITS) {
-		if (this.creditsRoll < 240 + (this.spacing * 11 + 3550)) {
+		if (this.creditsRoll < 240 + (this.spacing * 11 + 4200)) {
 			this.creditsRoll += 10;
 		}
 		ctx.save();
@@ -23073,7 +23211,7 @@ app.main = (_app$main = {
 		ctx.textAlign = "center";
 		ctx.textBaseline = "middle";
 		ctx.globalAlpha = .7;
-		this.fillText(this.ctx, "Credits", this.WIDTH / 2, 300 - this.creditsRoll, "120pt heavy_data", "#c9be03");
+		this.fillText(this.ctx, "Credits", this.WIDTH / 2, 300 - this.creditsRoll, "120pt heavy_data", "Red");
 		this.fillText(this.ctx, "Creative Director: Christopher Bennett", this.WIDTH / 2, this.spacing * 1 + 300 - this.creditsRoll, "25pt heavy_data", "#c9be03");
 		this.fillText(this.ctx, "Producer: Christopher Bennett", this.WIDTH / 2, this.spacing * 2 + 300 - this.creditsRoll, "25pt heavy_data", "#c9be03");
 		this.fillText(this.ctx, "Game Designer: Christopher Bennett", this.WIDTH / 2, this.spacing * 3 + 300 - this.creditsRoll, "25pt heavy_data", "#c9be03");
@@ -23085,6 +23223,16 @@ app.main = (_app$main = {
 		this.fillText(this.ctx, "QA Testers: Christopher Bennett", this.WIDTH / 2, this.spacing * 9 + 300 - this.creditsRoll, "25pt heavy_data", "#c9be03");
 		this.fillText(this.ctx, "                 Raven Roussell", this.WIDTH / 2, this.spacing * 9 + 335 - this.creditsRoll, "25pt heavy_data", "#c9be03");
 		this.fillText(this.ctx, "                 Tyler Smith", this.WIDTH / 2, this.spacing * 9 + 370 - this.creditsRoll, "25pt heavy_data", "#c9be03");
+		this.fillText(this.ctx, "                 Ethan Cavanaugh", this.WIDTH / 2, this.spacing * 9 + 405 - this.creditsRoll, "25pt heavy_data", "#c9be03");
+		this.fillText(this.ctx, "                 Maddie Cavanaugh", this.WIDTH / 2, this.spacing * 9 + 440 - this.creditsRoll, "25pt heavy_data", "#c9be03");
+		this.fillText(this.ctx, "                 Adam Magee", this.WIDTH / 2, this.spacing * 9 + 475 - this.creditsRoll, "25pt heavy_data", "#c9be03");
+		this.fillText(this.ctx, "                 Andy Magee", this.WIDTH / 2, this.spacing * 9 + 510 - this.creditsRoll, "25pt heavy_data", "#c9be03");
+		this.fillText(this.ctx, "                 Gavin Root", this.WIDTH / 2, this.spacing * 9 + 545 - this.creditsRoll, "25pt heavy_data", "#c9be03");
+		this.fillText(this.ctx, "                 Mike Kelsey", this.WIDTH / 2, this.spacing * 9 + 580 - this.creditsRoll, "25pt heavy_data", "#c9be03");
+		this.fillText(this.ctx, "                 Samantha Updike", this.WIDTH / 2, this.spacing * 9 + 615 - this.creditsRoll, "25pt heavy_data", "#c9be03");
+		this.fillText(this.ctx, "Special Thanks: Sophie Herdzik -- RR Cover Art 'Login Picture'", this.WIDTH / 2, this.spacing * 9 + 900 - this.creditsRoll, "25pt heavy_data", "#c9be03");
+		ctx.save();
+		ctx.translate(0, 650);
 		this.fillText(this.ctx, "Credited Assets/Resources", this.WIDTH / 2, this.spacing * 10 + 300 - this.creditsRoll, "50pt heavy_data", "#c9be03");
 		this.fillText(this.ctx, "Used and modified for creative educational purposes", this.WIDTH / 2, this.spacing * 10 + 360 - this.creditsRoll, "25pt heavy_data", "#c9be03");
 		this.fillText(this.ctx, "Many energy attack sprites: http://www.spriters-resource.com/game_boy_advance/dbzsuperwar/sheet/26657/", this.WIDTH / 2, this.spacing * 11 + 300 - this.creditsRoll, "12pt arial", "#c9be03");
@@ -23136,6 +23284,8 @@ app.main = (_app$main = {
 		ctx.globalAlpha = .7;
 		this.fillText(this.ctx, "The", this.WIDTH / 2, 60 + (this.spacing * 11 + 4000) - this.creditsRoll, "70pt heavy_data", "#c9be03");
 		this.fillText(this.ctx, "Androids", this.WIDTH / 2 + 8, 240 + (this.spacing * 11 + 4000) - this.creditsRoll, "85pt heavy_data", "#c9be03");
+		ctx.restore();
+
 		ctx.restore();
 
 		ctx.restore();
@@ -23408,8 +23558,13 @@ app.main = (_app$main = {
 		}
 
 		this.fillText(this.ctx, "System Failure", this.WIDTH / 2, this.HEIGHT / 2 - 120, "50pt heavy_data", "DarkRed");
-		this.fillText(this.ctx, "Press Enter to reboot.......", this.WIDTH / 2, this.HEIGHT / 2 + 170, "20pt heavy_data", "#c9be03");
-		this.fillText(this.ctx, "Press Enter to reboot.......", this.WIDTH / 2, this.HEIGHT / 2 + 170, "20pt heavy_data", "white");
+		if (this.controllerDetected == false) {
+			this.fillText(this.ctx, "Press Enter to reboot.......", this.WIDTH / 2, this.HEIGHT / 2 + 170, "20pt heavy_data", "#c9be03");
+			this.fillText(this.ctx, "Press Enter to reboot.......", this.WIDTH / 2, this.HEIGHT / 2 + 170, "20pt heavy_data", "white");
+		} else {
+			this.fillText(this.ctx, "Press Start to reboot.......", this.WIDTH / 2, this.HEIGHT / 2 + 170, "20pt heavy_data", "#c9be03");
+			this.fillText(this.ctx, "Press Start to reboot.......", this.WIDTH / 2, this.HEIGHT / 2 + 170, "20pt heavy_data", "white");
+		}
 		this.fillText(this.ctx, "Android 18 Points Detected:... " + this.roundScore, this.WIDTH / 2, this.HEIGHT / 2 + 30, "30pt heavy_data", "#c9be03");
 		this.fillText(this.ctx, "Android 17 Points Detected:... " + this.roundScore2, this.WIDTH / 2, this.HEIGHT / 2 + 68, "30pt heavy_data", "#c9be03");
 		this.fillText(this.ctx, "Points Total:... " + this.totalPoints, this.WIDTH / 2, this.HEIGHT / 2 + 120, "30pt heavy_data", "yellow");
@@ -26567,7 +26722,7 @@ app.Vegeta = function () {
 		}
 
 		if (this.blocking == true) {
-			if (this.revese == false) {
+			if (this.reverse == false) {
 				this.velocity.x = 0;
 			}
 		}

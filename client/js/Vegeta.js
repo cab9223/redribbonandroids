@@ -1521,7 +1521,7 @@ app.Vegeta = (function(){
 		}
 		
 		if(this.blocking == true){
-			if(this.revese == false){
+			if(this.reverse == false){
 				this.velocity.x = 0;
 			}
 		}
