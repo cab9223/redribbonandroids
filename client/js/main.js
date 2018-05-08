@@ -233,8 +233,8 @@ app.main = {
 	endingState : false,
 	changed : false,
 	firstTimeMode: false,
-	sceneNum : 3,
-	battle : 2,
+	sceneNum : 0,
+	battle : 0,
 	camX : 1,
 	camY : 1,
 	

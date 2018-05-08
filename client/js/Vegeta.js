@@ -15,7 +15,7 @@ app.Vegeta = (function(){
 		this.stamina = 28;
 		
 		//Special Stats
-		this.specialHealth = 1;
+		this.specialHealth = 10;
 		
 		this.specialDamage = false;
 		this.spSaying = false;
