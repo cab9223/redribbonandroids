@@ -968,7 +968,7 @@ app.main = {
 					this.vegeta = new app.Vegeta(100,0,this.android18);
 					//this.android18 = new app.Android18(600,this.vegeta);
 				} else if(this.battle == 2){
-					this.activeSupport = true;
+					//this.activeSupport = true;
 					if(this.sceneNum < 3){
 						this.sceneNum = 3;
 					}
@@ -986,7 +986,10 @@ app.main = {
 			}
 		
 		
-			
+			if(this.tienDead == true && this.krillinDead == true){
+				this.activeSupport = false;
+				this.environment.supportActive = false;
+			}
 			
 			
 			//do actual drawing
@@ -7214,6 +7217,7 @@ app.main = {
 					this.android17.cinematic = true;
 				} else if(this.sceneTimer < 270 && this.sceneTimer > 268){
 					this.sound.playVoice1(19);
+					this.activeSupport = true; //Activate supports
 				} else if(this.sceneTimer < 280 && this.sceneTimer > 278){
 					this.android17.cine = 1;
 					this.android17.cinematic = true;

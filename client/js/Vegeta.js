@@ -1536,6 +1536,8 @@ app.Vegeta = (function(){
 			} else {
 				this.smallBlasted = false;
 			}
+		} else {
+			this.smallBlasted = false;
 		}
 		
 		if(hitTest(app.main.vegeta, app.main.android18) == true && this.stun == false && this.end == false && ((this.farRight == true && app.main.android18.farRight == true) || (this.farLeft == true && app.main.android18.farLeft == true))){
