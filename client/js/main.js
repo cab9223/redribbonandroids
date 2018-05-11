@@ -991,6 +991,7 @@ app.main = {
 				this.environment.supportActive = false;
 			}
 			
+			console.log("Active supports: " + this.activeSupport + this.environment.supportActive);
 			
 			//do actual drawing
 			this.ctx.save();
