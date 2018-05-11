@@ -7219,6 +7219,10 @@ app.main = {
 				} else if(this.sceneTimer < 270 && this.sceneTimer > 268){
 					this.sound.playVoice1(19);
 					this.activeSupport = true; //Activate supports
+					this.support[0] = new app.Vegeta(120,4,this.android18);
+					this.support[1] = new app.Vegeta(20,5,this.android18);
+					this.support[0].vanish = true;
+					this.support[1].vanish = true;
 				} else if(this.sceneTimer < 280 && this.sceneTimer > 278){
 					this.android17.cine = 1;
 					this.android17.cinematic = true;
