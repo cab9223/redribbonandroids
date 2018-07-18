@@ -7104,14 +7104,15 @@ app.main = {
 					if(this.sceneTimer < 71){
 						this.sound.playTaunt2(1);
 					} else if(this.sceneTimer > 133 && this.sceneTimer < 135){
-						if(this.android17.position.y < 620){
+						/* if(this.android17.position.y < 620){
 							this.android17.air = true;
 							this.android17.flying = false;
 							this.android17.hover = false;
-						}
+						} */
 						this.android17.city = true;
 						this.android17.fight = true;
 						this.android17.superSpeed = true;
+						//this.android17.position.y = this.android17.GROUND.y;
 					} else if(this.sceneTimer > 153 && this.sceneTimer < 155){
 						//this.android17.air = false;
 						this.vegeta = new app.Vegeta(100,0,this.android18);
@@ -8523,8 +8524,8 @@ app.main = {
 				this.android17.encounter = true;
 				this.aiChoice4 = .96;
 				this.android17.decisionTimer = 0; */
-				this.vegeta.endurance = 1;
-				this.vegeta.health = 1;
+				//this.vegeta.endurance = 1;
+				//this.vegeta.health = 1;
 				/* if(this.battle != 2){
 					this.android17.hurtBlasting = true;
 				} else {

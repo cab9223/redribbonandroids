@@ -1129,6 +1129,13 @@ app.Android17 = function () {
 			this.byBuilding = false;
 		}
 
+		if (app.main.scene == true && app.main.battle == 1) {
+			this.flying = false;
+			if (this.air == false) {
+				this.jumpVelocity.y = 0;
+			}
+		}
+
 		if (app.main.gameState == app.main.GAME_STATE.TUTORIAL) {
 			this.BUILDING = new Victor(0, 135);
 		} else {
@@ -1149,7 +1156,9 @@ app.Android17 = function () {
 	Android17.prototype.speed = function () {
 		this.delayingTele = false;
 		this.energy -= 5;
-		if (this.fallPrepTele == true) {
+		if (app.main.scene == true && app.main.gameState != app.main.GAME_STATE.TUTORIAL) {
+			this.position.y = this.GROUND.y;
+		} else if (this.fallPrepTele == true) {
 			if (app.main.vegeta.position.y < app.main.vegeta.SKYTOP.y + 150) {
 				this.position.y = this.GROUND.y;
 				this.aboveBuilding = false;
@@ -2849,7 +2858,7 @@ app.Android17 = function () {
 					this.speedCounter = 0;
 				}
 			} else if (this.counter < 8) {
-				if ((this.end == false || app.main.gameState == app.main.GAME_STATE.TUTORIAL) && (this.delayingTele == false || this.teleDelay > 25)) {
+				if ((this.end == false || app.main.gameState == app.main.GAME_STATE.TUTORIAL) && (this.delayingTele == false || this.teleDelay > 25) || app.main.scene == true) {
 					this.teleDelay = 0;
 					this.speed();
 
@@ -2858,8 +2867,10 @@ app.Android17 = function () {
 					}
 				} else {
 					this.aboveBuilding = false;
-					this.position.x = getRandom(0, 1024);
-					this.position.y = getRandom(0, 450);
+					if (app.main.scene == false) {
+						this.position.x = getRandom(0, 1024);
+						this.position.y = getRandom(0, 450);
+					}
 					this.aboveBuilding = false;
 					this.teleDelay++;
 					this.counter = 6;
@@ -20862,14 +20873,15 @@ app.main = (_app$main = {
 					if (this.sceneTimer < 71) {
 						this.sound.playTaunt2(1);
 					} else if (this.sceneTimer > 133 && this.sceneTimer < 135) {
-						if (this.android17.position.y < 620) {
-							this.android17.air = true;
-							this.android17.flying = false;
-							this.android17.hover = false;
-						}
+						/* if(this.android17.position.y < 620){
+      	this.android17.air = true;
+      	this.android17.flying = false;
+      	this.android17.hover = false;
+      } */
 						this.android17.city = true;
 						this.android17.fight = true;
 						this.android17.superSpeed = true;
+						//this.android17.position.y = this.android17.GROUND.y;
 					} else if (this.sceneTimer > 153 && this.sceneTimer < 155) {
 						//this.android17.air = false;
 						this.vegeta = new app.Vegeta(100, 0, this.android18);
@@ -22262,8 +22274,7 @@ app.main = (_app$main = {
 					this.toggle2 = false;
 				}
 			}
-			if (myKeys.keydown[myKeys.KEYBOARD.KEY_J] == true) {
-				//CHEAT CODE
+			if (myKeys.keydown[myKeys.KEYBOARD.KEY_J] == true) {//CHEAT CODE
 				//this.environment.shake = true;
 				//this.environment.remote = true;
 				/* this.android17.decision= .5;
@@ -22273,8 +22284,8 @@ app.main = (_app$main = {
     this.android17.encounter = true;
     this.aiChoice4 = .96;
     this.android17.decisionTimer = 0; */
-				this.vegeta.endurance = 1;
-				this.vegeta.health = 1;
+				//this.vegeta.endurance = 1;
+				//this.vegeta.health = 1;
 				/* if(this.battle != 2){
     	this.android17.hurtBlasting = true;
     } else {
@@ -22316,6 +22327,7 @@ app.main = (_app$main = {
 				//this.android17.fight = true;
 				//this.vegeta.charging = true;
 				//this.support[1].triggerBlast = true;
+
 			}
 			if (myKeys.keydown[myKeys.KEYBOARD.KEY_J] != true) {//CHEAT CODE
 				//this.environment.shake = true;

@@ -1150,6 +1150,13 @@ app.Android17 = (function(){
 			this.byBuilding = false;
 		}
 		
+		if(app.main.scene == true && app.main.battle == 1){
+			this.flying = false;
+			if(this.air == false){
+				this.jumpVelocity.y = 0;
+			}
+		}
+		
 		
 		if(app.main.gameState == app.main.GAME_STATE.TUTORIAL){
 			this.BUILDING = new Victor(0,135);
@@ -1172,7 +1179,9 @@ app.Android17 = (function(){
 	Android17.prototype.speed = function(){
 		this.delayingTele = false;
 		this.energy -= 5;
-		if(this.fallPrepTele == true){
+		if(app.main.scene == true && app.main.gameState != app.main.GAME_STATE.TUTORIAL){
+			this.position.y = this.GROUND.y;
+		} else if(this.fallPrepTele == true){
 			if(app.main.vegeta.position.y < app.main.vegeta.SKYTOP.y + 150){
 				this.position.y = this.GROUND.y;
 				this.aboveBuilding = false;
@@ -2879,7 +2888,7 @@ app.Android17 = (function(){
 				}
 				
 			} else if(this.counter < 8){
-				if((this.end == false || app.main.gameState == app.main.GAME_STATE.TUTORIAL) && (this.delayingTele == false || this.teleDelay > 25)){
+			if(((this.end == false || app.main.gameState == app.main.GAME_STATE.TUTORIAL) && (this.delayingTele == false || this.teleDelay > 25)) || app.main.scene == true){
 				this.teleDelay = 0;
 				this.speed();
 				
@@ -2889,8 +2898,10 @@ app.Android17 = (function(){
 				
 				} else {
 					this.aboveBuilding = false;
-					this.position.x = getRandom(0,1024);
-					this.position.y = getRandom(0,450);
+					if(app.main.scene == false){
+						this.position.x = getRandom(0,1024);
+						this.position.y = getRandom(0,450);
+					}
 					this.aboveBuilding = false;
 					this.teleDelay++;
 					this.counter = 6;
