@@ -44,11 +44,63 @@ app.Vid = (function(){
 	};
 	
 	Vid.prototype.rewind = function(){
+		app.main.finished1 = false;
+		app.main.finished2 = false;
+		app.main.finished3 = false;
+		app.main.finished4 = false;
+		app.main.finished5 = false;
 		this.vid.currentTime = 0;
 		this.vid2.currentTime = 0;
 		this.vid3.currentTime = 0;
 		this.vid4.currentTime = 0;
 		this.vid5.currentTime = 0;
+	};
+	
+	
+	Vid.prototype.check1 = function(){
+		if(this.vid.currentTime < this.vid.duration && !this.vid.paused){
+			app.main.finished1 = false;
+		} else if(this.vid.currentTime == this.vid.duration) {
+			app.main.finished1 = true;
+			app.main.sceneCounter = 0;
+		}
+	};
+	
+	Vid.prototype.check2 = function(){
+		if(this.vid2.currentTime < this.vid2.duration && !this.vid2.paused){
+			app.main.finished2 = false;
+		} else if(this.vid2.currentTime == this.vid2.duration) {
+			app.main.finished2 = true;
+			app.main.sceneCounter = 0;
+		}
+	};
+	
+	Vid.prototype.check3 = function(){
+		if(this.vid3.currentTime < this.vid3.duration && !this.vid3.paused){
+			app.main.finished3 = false;
+		} else if(this.vid3.currentTime == this.vid3.duration) {
+			app.main.finished3 = true;
+			app.main.sceneCounter = 0;
+		}
+	};
+	
+	Vid.prototype.check4 = function(){
+		if(this.vid4.currentTime < this.vid4.duration && !this.vid4.paused){
+			app.main.finished4 = false;
+		} else if(this.vid4.currentTime == this.vid4.duration) {
+			app.main.finished4 = true;
+			app.main.sceneCounter = 0;
+		}
+	};
+	
+	Vid.prototype.check5 = function(){
+		if(this.vid5.currentTime < this.vid5.duration - 2 && !this.vid5.paused){
+			app.main.finished5 = false;
+		} else if(this.vid5.currentTime == this.vid5.duration) {
+			app.main.finished5 = true;
+			app.main.sceneCounter = 0;
+			upVidTimer = 0;
+		}
 	};
 	
 	Vid.prototype.rewind5 = function(){

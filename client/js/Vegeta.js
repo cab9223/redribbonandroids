@@ -1235,6 +1235,18 @@ app.Vegeta = (function(){
 		this.teleport3 = image;
 		
 		image = new Image();
+		image.src =  app.attack.teleThin;
+		this.teleportThin = image;
+		
+		image = new Image();
+		image.src =  app.attack.tele2Thin;
+		this.teleport2Thin = image;
+		
+		image = new Image();
+		image.src =  app.attack.tele3Thin;
+		this.teleport3Thin = image;
+		
+		image = new Image();
 		image.src =  app.attack.tele5;
 		this.teleport5 = image;
 		
@@ -1313,6 +1325,13 @@ app.Vegeta = (function(){
 	
 	//FUNCTION TO UPDATE MANY VALUES
 	Vegeta.prototype.update = function(){
+		
+		if((this.gero == true || this.piccolo == true || this.vegeta == true) && this.stun == true && app.main.scene == true){
+			this.position.y = this.GROUND.y;
+			this.air = false;
+			this.ground = true;
+			this.jumpVelocity.y = 0;
+		}
 
 		//Hit detection adjustment
 		/*
@@ -1334,8 +1353,6 @@ app.Vegeta = (function(){
 			this.size = new Victor(20, 100);
 		}
 		*/
-		
-		
 		
 		
 		
@@ -1367,6 +1384,10 @@ app.Vegeta = (function(){
 			this.focus17 = true;
 		}
 		
+		if(this.fast17 == true && app.main.android17.hurtBlasting == false){
+			this.fast17 = false;
+		}
+		
 		
 		//Looking around
 		if(this.focus17 == false){
@@ -1391,12 +1412,12 @@ app.Vegeta = (function(){
 		
 		//WALL POSITIONING
 		if(this.focus17 == false){
-			if(this.position.x < this.LEFTWALL.x + 30 && (hardAttackHitTest(app.main.vegeta, app.main.android18) != true) && (hitTest(app.main.vegeta, app.main.android18) != true)){
+			if(this.position.x < this.LEFTWALL.x + 30 && (hardAttackHitTest(app.main.vegeta, app.main.android18) != true) && (hitTest(app.main.vegeta, app.main.android18) != true) && this.stun == false && this.attacking == false && this.blasting == false && this.blocking == false && this.charging == false){
 				this.farLeft = true;
 				this.farRight = false;
 				this.right = true;
 				this.left = false;
-			} else if(this.position.x > this.RIGHTWALL.x - 30 && (hardAttackHitTest(app.main.vegeta, app.main.android18) != true) && (hitTest(app.main.vegeta, app.main.android18) != true)){
+			} else if(this.position.x > this.RIGHTWALL.x - 30 && (hardAttackHitTest(app.main.vegeta, app.main.android18) != true) && (hitTest(app.main.vegeta, app.main.android18) != true) && this.stun == false && this.attacking == false && this.blasting == false && this.blocking == false && this.charging == false){
 				this.farRight = true;
 				this.farLeft = false;
 				this.right = false;
@@ -1406,12 +1427,12 @@ app.Vegeta = (function(){
 				this.farRight = false;
 			}
 		} else {
-			if(this.position.x < this.LEFTWALL.x + 30 && (hardAttackHitTest(app.main.vegeta, app.main.android17) != true) && (hitTest(app.main.vegeta, app.main.android17) != true)){
+			if(this.position.x < this.LEFTWALL.x + 30 && (hardAttackHitTest(app.main.vegeta, app.main.android17) != true) && (hitTest(app.main.vegeta, app.main.android17) != true) && this.stun == false && this.attacking == false && this.blasting == false && this.blocking == false && this.charging == false){
 				this.farLeft = true;
 				this.farRight = false;
 				this.right = true;
 				this.left = false;
-			} else if(this.position.x > this.RIGHTWALL.x - 30 && (hardAttackHitTest(app.main.vegeta, app.main.android17) != true) && (hitTest(app.main.vegeta, app.main.android17) != true)){
+			} else if(this.position.x > this.RIGHTWALL.x - 30 && (hardAttackHitTest(app.main.vegeta, app.main.android17) != true) && (hitTest(app.main.vegeta, app.main.android17) != true) && this.stun == false && this.attacking == false && this.blasting == false && this.blocking == false && this.charging == false){
 				this.farRight = true;
 				this.farLeft = false;
 				this.right = false;
@@ -1526,6 +1547,14 @@ app.Vegeta = (function(){
 			if(this.reverse == false){
 				this.velocity.x = 0;
 			}
+		}
+		
+		if(this.dodge == true){
+			this.smallBlasted = false;
+		}
+		
+		if(this.ground == false){
+			this.air = true;
 		}
 		
 		if(this.smallBlasted == true && this.superSpeed == false && this.stun == false && this.hit == false && this.hardHit == false && this.end == false && app.main.scene == false){
@@ -2052,6 +2081,17 @@ app.Vegeta = (function(){
 			this.aboveBuilding = false;
 		}
 		
+		if(this.superSpeed == true && this.position.y < this.GROUND.y){
+			this.air = true;
+		}
+		
+		if(this.superSpeed == true && this.speedCounter > 8 && this.speedCounter < 12){
+			this.vanish = true;
+		}
+		
+		if(this.stun == false){
+			this.blasted = false;
+		}
 		
 		//PUSH 
 		if(app.main.android17.vanish == false && this.superSpeed == false && app.main.android17.superSpeed == false && app.main.android17.gone == false){
@@ -2226,9 +2266,11 @@ app.Vegeta = (function(){
 				
 				if(this.spSaying == false){
 					if(this.specialHealth == 0){
+						app.main.sound.pauseVoice7();
 						app.main.sound.playTaunt7(6);
 						this.spSaying = true;
 					} else if(this.specialHealth == 4){
+						app.main.sound.pauseVoice7();
 						app.main.sound.playTaunt7(5);
 						this.spSaying = true;
 						if((app.main.android18.farLeft == true && this.farLeft == false) || (app.main.android18.farRight == true && this.farRight == false)){
@@ -2242,6 +2284,7 @@ app.Vegeta = (function(){
 							this.superSpeed = true;
 						}
 					} else if(this.specialHealth == 8){
+						app.main.sound.pauseVoice7();
 						app.main.sound.playTaunt7(4);
 						this.spSaying = true;
 						if((app.main.android18.farLeft == true && this.farLeft == false) || (app.main.android18.farRight == true && this.farRight == false)){
@@ -2276,9 +2319,11 @@ app.Vegeta = (function(){
 				
 				if(this.spSaying == false){
 					if(this.specialHealth == 0){
+						app.main.sound.pauseVoice8();
 						app.main.sound.playTaunt8(10);
 						this.spSaying = true;
 					} else if(this.specialHealth == 4){
+						app.main.sound.pauseVoice8();
 						app.main.sound.playTaunt8(9);
 						this.spSaying = true;
 						if((app.main.android18.farLeft == true && this.farLeft == false) || (app.main.android18.farRight == true && this.farRight == false)){
@@ -2292,6 +2337,7 @@ app.Vegeta = (function(){
 							this.superSpeed = true;
 						}
 					} else if(this.specialHealth == 8){
+						app.main.sound.pauseVoice8();
 						app.main.sound.playTaunt8(8);
 						this.spSaying = true;
 						if((app.main.android18.farLeft == true && this.farLeft == false) || (app.main.android18.farRight == true && this.farRight == false)){
@@ -2333,19 +2379,26 @@ app.Vegeta = (function(){
 			if(this.exhausted == true && this.exhaustTalk == false){
 				this.exhaustTalk = true;
 				if(this.vegeta == true){
+					app.main.sound.pauseVoice2();
 					app.main.sound.playTaunt2(Math.round(getRandom(43,44)));
 				} else if(this.gero == true){
 					app.main.sound.playIntro(72);
+					app.main.sound.pauseVoice2();
 					app.main.sound.playTaunt2(Math.round(getRandom(49,50)));
 				} else if(this.piccolo == true){
+					app.main.sound.pauseVoice4();
 					app.main.sound.playTaunt4(Math.round(getRandom(16,17)));
 				} else if(this.gohan == true && this.superForm == false){
+					app.main.sound.pauseVoice6();
 					app.main.sound.playTaunt6(Math.round(getRandom(30,31)));
 				} else if(this.gohan == true && this.superForm == true){
+					app.main.sound.pauseVoice6();
 					app.main.sound.playTaunt6(Math.round(getRandom(32,33)));
 				} else if(this.tien == true && app.main.tienDead == false){
+					app.main.sound.pauseVoice7();
 					app.main.sound.playTaunt7(Math.round(getRandom(7,8)));
 				} else if(this.krillin == true && app.main.krillinDead == false){
+					app.main.sound.pauseVoice8();
 					app.main.sound.playTaunt8(Math.round(getRandom(13,14)));
 				}
 
@@ -2358,18 +2411,21 @@ app.Vegeta = (function(){
 			if(this.end == true && this.deathTalk == false){
 				this.deathTalk = true;
 				if(this.vegeta == true){
+					app.main.sound.pauseVoice2();
 					if(this.position.y < 350){
 						app.main.sound.playTaunt2(47);
 					} else {
 						app.main.sound.playTaunt2(48);
 					}
 				} else if(this.piccolo == true){
+					app.main.sound.pauseVoice4();
 					if(this.position.y < 350){
 						app.main.sound.playTaunt4(18);
 					} else {
 						app.main.sound.playTaunt4(19);
 					}
 				} else if(this.gohan == true && this.superForm == false){
+					app.main.sound.pauseVoice6();
 					if(this.position.y < 350){
 						app.main.sound.playTaunt6(34);
 					} else {
@@ -2396,6 +2452,10 @@ app.Vegeta = (function(){
 		
 		if(this.ground == true && this.hardHit == true){
 			this.jumpVelocity.y = 0;
+		}
+		
+		if(this.superSpeed == true && this.powerBlast == true){
+			this.superSpeed = false;
 		}
 		
 		if(this.backOffGero == true){
@@ -2762,7 +2822,7 @@ app.Vegeta = (function(){
 			} else if(this.cine == 1){
 				ctx.drawImage(this.special1Vegeta,0,-10);
 			}
-		} else if((this.velocity.x == 0 || this.startFallKick == true) && this.attacking != true && this.blocking != true && this.taunting != true && this.hit == false && this.hardHit != true && this.charging != true && this.sceneOpen == false && this.end == false) {
+		} else if((this.velocity.x == 0 || this.startFallKick == true) && this.attacking != true && this.blocking != true && this.taunting != true && this.hit == false && this.hardHit != true && this.charging != true && this.sceneOpen == false && this.end == false && this.specMove == false) {
 			if((this.up == true && this.flying == true) || (this.jumpVelocity.y < 15 && this.air == true) && this.startFallKick == false){
 				if(this.lookUp == true){
 					ctx.drawImage(this.flyUpUp,0,0);
@@ -2869,10 +2929,12 @@ app.Vegeta = (function(){
 							} else {
 								app.main.android18.punched = false;
 							}
+							if(app.main.android18.air == true){
 							if(app.main.android18.right == true){
 								app.main.android18.velocity.x = this.velocity.x;
 							} else {
 								app.main.android18.velocity.x = this.velocity.x;
+							}
 							}
 							app.main.android18.decel = app.main.android18.velocity.clone();
 							if(app.main.android18.stamina > 64 && app.main.android18.exhausted == true){
@@ -2898,10 +2960,12 @@ app.Vegeta = (function(){
 							} else {
 								app.main.android17.punched = false;
 							}
+							if(app.main.android17.air == true){
 							if(app.main.android17.right == true){
 								app.main.android17.velocity.x = this.velocity.x;
 							} else {
 								app.main.android17.velocity.x = this.velocity.x;
+							}
 							}
 							app.main.android17.decel = app.main.android17.velocity.clone();
 							if(app.main.android17.stamina > 64 && app.main.android17.exhausted == true){
@@ -2940,7 +3004,7 @@ app.Vegeta = (function(){
 				}
 			}
 		//MOVING DRAWS
-		} else if(this.velocity.x != 0 && this.attacking != true && this.blocking != true && this.taunting != true && this.hit == false && this.hardHit != true && this.charging == false && this.end == false ){ //&& (this.fallingKick == false || this.air == false)
+		} else if(this.velocity.x != 0 && this.attacking != true && this.blocking != true && this.taunting != true && this.hit == false && this.hardHit != true && this.charging == false && this.end == false  && this.specMove == false){ //&& (this.fallingKick == false || this.air == false)
 			if(this.slow == true && this.reverse == false){
 				ctx.drawImage(this.slowFly,0,0);
 			} else if(this.fast == true && this.reverse == false){
@@ -2961,7 +3025,7 @@ app.Vegeta = (function(){
 				}
 			}
 		//BASIC ATTACK
-		} else if(this.attacking == true && this.air == false && this.hit == false && this.blasting == false && this.intensify == false){
+		} else if(this.attacking == true && this.air == false && this.hit == false && this.blasting == false && this.intensify == false && this.specMove == false){
 			this.randomEffect = Math.random();
 			//this.chance2 = Math.random();
 			if(this.counter < 3 && app.main.chance2 > .3){
@@ -3016,7 +3080,7 @@ app.Vegeta = (function(){
 				this.counter = 0;
 			} 
 		//AIR BASIC ATTACK
-		} else if(this.attacking == true && this.air == true && this.hit == false && this.down == false && this.intensify == false && this.blasting == false){
+		} else if(this.attacking == true && this.air == true && this.hit == false && this.down == false && this.intensify == false && this.blasting == false && this.specMove == false){
 			this.randomEffect = Math.random();
 			//this.chance2 = Math.random();
 			if(this.counter < 3 && app.main.chance2 > .3){
@@ -3080,7 +3144,7 @@ app.Vegeta = (function(){
 				this.attacking = false;
 			} */
 		//HARD PUNCH AND KICK
-		} else if(this.attacking == true && this.intensify == true && this.air == false && this.hit == false && this.down == false){
+		} else if(this.attacking == true && this.intensify == true && this.air == false && this.hit == false && this.down == false && this.specMove == false){
 			this.randomEffect = Math.random();
 			this.hard = true;
 			//app.main.chance2 = .3;
@@ -3162,7 +3226,7 @@ app.Vegeta = (function(){
 				} 
 			}
 		//AIR HARD PUNCH
-		} else if(this.attacking == true && this.intensify == true && this.air == true && this.hit == false && this.down == false){
+		} else if(this.attacking == true && this.intensify == true && this.air == true && this.hit == false && this.down == false && this.specMove == false){
 			this.randomEffect = Math.random();
 			this.hard = true;
 			if(app.main.chance2 > .5){
@@ -3211,6 +3275,18 @@ app.Vegeta = (function(){
 		//BURST ATTACK
 		} else if((this.attacking == true || this.specMove == true) && (this.hit == false || this.specMove == true) && this.intensify == false && this.powerMove == false && this.charging == false){ //KEY CHANGE
 			if(this.specMove == true && this.specTimer > 50){
+				/* this.specMove = true;
+				this.attacking = false;
+				this.blasting = false;
+				this.powerMove = false;
+				this.taunting = false;
+				this.charging = false;
+				if(this.end == false){
+					this.stun = false;
+				}
+				this.hard = false;
+				this.fight = false;
+				this.intensify = false; */
 				this.unstoppable = true;
 				if(this.counter < 4){
 					ctx.drawImage(this.burst1Vegeta,-20,0);
@@ -3568,7 +3644,7 @@ app.Vegeta = (function(){
 				ctx.drawImage(this.charge,0,14);
 				if(this.counter > 6){
 				if(this.counter < 8){
-					app.main.sound.playEffect(28);
+					app.main.sound.playEffect2(28);
 				}
 				this.chargeCounter++;
 				ctx.save();
@@ -3683,7 +3759,7 @@ app.Vegeta = (function(){
 					app.main.android18.velocity.x += 10;
 					app.main.android18.decelerate();
 					if(this.sceneCounter < 71){
-						app.main.sound.playEffect(28);
+						app.main.sound.playEffect2(28);
 					}
 					if(this.sceneCounter < 120 && this.sceneCounter > 118){
 						app.main.sound.playTaunt2(32);
@@ -4086,7 +4162,7 @@ app.Vegeta = (function(){
 						this.deadCount = true;
 					}
 					if(this.stunCounter > 40){
-						//app.main.sound.playEffect(57);
+						//app.main.sound.playEffect2(57);
 						this.vanish = true;
 						app.main.environment.deathVegetaDirLeft = this.left;
 						app.main.environment.deathLocationVegeta = new Victor(this.position.x, this.position.y);
@@ -5261,7 +5337,7 @@ app.Vegeta = (function(){
 			} else if(this.counter < 6){
 				ctx.drawImage(this.energy2Piccolo,5,-15);
 			} else if(this.counter < 7){
-				app.main.sound.playEffect(Math.round(getRandom(8,10)));
+				app.main.sound.playEffect2(Math.round(getRandom(8,10)));
 				ctx.drawImage(this.energy3Piccolo,5,17);
 			} else if(this.counter < 8){
 				ctx.drawImage(this.energy4Piccolo,5,32);
@@ -5420,7 +5496,7 @@ app.Vegeta = (function(){
 				ctx.drawImage(this.chargePiccolo,5,22);
 				if(this.counter > 6){
 				if(this.counter < 8){
-					app.main.sound.playEffect(28);
+					app.main.sound.playEffect2(28);
 				}
 				this.chargeCounter++;
 				ctx.save();
@@ -6252,6 +6328,14 @@ app.Vegeta = (function(){
 			}	
 		//BLAST ATTACK
 		} else if(this.attacking == true && this.hit == false && this.intensify == false && this.powerMove == false && this.charging == false){ //KEY CHANGE
+			if(this.farLeft == true){
+				this.right = true;
+				this.left = false;
+			} else if(this.farRight == true){
+				this.right = false;
+				this.left = true;
+			}
+			
 			if(this.counter < 3){
 				ctx.drawImage(this.blastPrepGohan,0,0);
 			} else if(this.counter < 6){
@@ -6353,6 +6437,8 @@ app.Vegeta = (function(){
 			} else if(this.counter < 45){
 				if(this.arms == false){
 					if(this.counter < 18){
+						app.main.sound.pauseVoice6();
+						app.main.sound.pauseEffectVegeta();
 						this.blastRelease = true;
 						app.main.sound.playEnergyAttack2(29);
 						this.energy -= 15;
@@ -6388,6 +6474,8 @@ app.Vegeta = (function(){
 					}
 				} else if(this.arms == true){
 					if(this.counter < 18){
+						app.main.sound.pauseVoice6();
+						app.main.sound.pauseEffectVegeta();
 						this.blastRelease = true;
 						app.main.sound.playEnergyAttack2(29);
 						this.energy -= 15;
@@ -6440,12 +6528,15 @@ app.Vegeta = (function(){
 			}
 			} else { //HEAD SMASH
 			
-			if(hardAttackHitTest(app.main.vegeta,app.main.android18) && app.main.android18.superSpeed == false && app.main.android18.fieldOn == false && this.striking == true){
+			if((hardAttackHitTest(app.main.vegeta,app.main.android18) == true || hitTest(app.main.vegeta,app.main.android18) == true ) && app.main.android18.superSpeed == false && app.main.android18.fieldOn == false && this.striking == true){
 				if(this.left == true){
 					app.main.android18.velocity.x -= 40;
+					this.velocity.x = -40;
 				} else {
 					app.main.android18.velocity.x += 40;
+					this.velocity.x = 40;
 				}
+				this.decel = this.velocity.clone();
 				app.main.android18.decel = app.main.android18.velocity.clone();
 				app.main.sound.playSpecialReaction2(49);
 				app.main.sound.playEnergyReaction2(16);
@@ -6459,12 +6550,15 @@ app.Vegeta = (function(){
 					app.main.android18.health = app.main.android18.health - (10 + getRandom(2, 8));
 				}
 				this.striking = false;
-			} else if(hardAttackHitTest(app.main.vegeta,app.main.android17) && app.main.android17.superSpeed == false && app.main.android18.fieldOn == false && this.striking == true){
+			} else if((hardAttackHitTest(app.main.vegeta,app.main.android17) == true || hardAttackHitTest(app.main.vegeta,app.main.android17) == true ) && app.main.android17.superSpeed == false && app.main.android18.fieldOn == false && this.striking == true){
 				if(this.left == true){
 					app.main.android17.velocity.x -= 40;
+					this.velocity.x = -40;
 				} else {
 					app.main.android17.velocity.x += 40;
+					this.velocity.x = 40;
 				}
+				this.decel = this.velocity.clone();
 				app.main.android17.decel = app.main.android17.velocity.clone();
 				app.main.sound.playSpecialReaction2(49);
 				app.main.sound.playEnergyReaction2(16);
@@ -6499,10 +6593,12 @@ app.Vegeta = (function(){
 			if(this.counter < 2){
 				/* this.lastKnown.x = app.main.android18.position.x;
 				this.lastKnown.y = app.main.android18.position.y; */
-				this.flying = false;
-				this.jumpVelocity.y = 0;
-				this.velocity.y = 0;
-				this.hover = true;
+				if(this.hit == false){
+					this.flying = false;
+					this.jumpVelocity.y = 0;
+					this.velocity.y = 0;
+					this.hover = true;
+				}
 				ctx.drawImage(this.headPrepGohan,0,0);
 			} else if(this.counter < 3){
 				app.main.sound.playTaunt6(Math.round(getRandom(23,24)))
@@ -6544,7 +6640,7 @@ app.Vegeta = (function(){
 				if(this.counter < 50){
 					this.specialBlock = true;
 					if(this.counter > 1 && this.counter < 3){
-						app.main.sound.playEffect(48);
+						app.main.sound.playEffect2(48);
 					}
 					this.stun = true;
 					ctx.drawImage(this.blockGohan,0,0);
@@ -6582,7 +6678,7 @@ app.Vegeta = (function(){
 
 				ctx.drawImage(this.tauntGohan,0,0);
 				if(this.counter > 1 && this.counter < 3 && this.superForm == true){
-					app.main.sound.playEffect(48);
+					app.main.sound.playEffect2(48);
 				}
 				if(this.counter > 5 && this.counter < 7){
 					var check = Math.round(getRandom(0,1));
@@ -6724,9 +6820,9 @@ app.Vegeta = (function(){
 				if(this.counter > 6){
 				if(this.counter < 8){
 					if(this.superForm == false){
-						app.main.sound.playEffect(28);
+						app.main.sound.playEffect2(28);
 					} else {
-						app.main.sound.playEffect(42);
+						app.main.sound.playEffect2(42);
 					}
 				}
 				this.chargeCounter++;
@@ -7455,7 +7551,7 @@ app.Vegeta = (function(){
 				ctx.drawImage(this.charge,0,14);
 				if(this.counter > 6){
 				if(this.counter < 8){
-					app.main.sound.playEffect(28);
+					app.main.sound.playEffect2(28);
 				}
 				this.chargeCounter++;
 				ctx.save();
@@ -8052,7 +8148,7 @@ app.Vegeta = (function(){
 				ctx.drawImage(this.charge,0,14);
 				if(this.counter > 6){
 				if(this.counter < 8){
-					app.main.sound.playEffect(28);
+					app.main.sound.playEffect2(28);
 				}
 				this.chargeCounter++;
 				ctx.save();
@@ -8392,6 +8488,11 @@ app.Vegeta = (function(){
 		//SUPER SPEED (TELEPORT) DRAW 
 		if(this.superSpeed == true && this.appear == false && this.superSpeedExhaustion == false){
 			this.speedCounter++;
+			
+			if(this.superSpeed == true && this.speedCounter > 8 && this.speedCounter < 12){
+				this.vanish = true;
+			}
+			
 			ctx.save();
 			ctx.scale(1.2,1.2);
 			//console.log("Counter" + this.counter);
@@ -8409,21 +8510,40 @@ app.Vegeta = (function(){
 					}
 				}
 				if(this.speedCounter < 2){
-					if(this.piccolo == true){
-						ctx.drawImage(this.teleport2,-10,-5);
-					} else if (this.gero == true){
-						ctx.drawImage(this.teleport3,-10,-5);
-					} else if(this.vegeta == true){
-						ctx.drawImage(this.teleport,-10,-5);
-					} else if(this.gohan == true){
-						ctx.drawImage(this.teleport2,10,30);
-					} else if(this.tien == true){
-						ctx.drawImage(this.teleport5,110,70);
-					} else if(this.krillin == true){
-						ctx.drawImage(this.teleport6,100,70);
+					if(this.velocity.x != 0){
+						if(this.piccolo == true){
+							ctx.drawImage(this.teleport2,-10,-5);
+						} else if (this.gero == true){
+							ctx.drawImage(this.teleport3,-10,-5);
+						} else if(this.vegeta == true){
+							ctx.drawImage(this.teleport,-10,-5);
+						} else if(this.gohan == true){
+							ctx.drawImage(this.teleport2,10,30);
+						} else if(this.tien == true){
+							ctx.drawImage(this.teleport5,110,70);
+						} else if(this.krillin == true){
+							ctx.drawImage(this.teleport6,100,70);
+						} else {
+							ctx.drawImage(this.teleport,-10,-5);
+						}
 					} else {
-						ctx.drawImage(this.teleport,-10,-5);
+						if(this.piccolo == true){
+							ctx.drawImage(this.teleport2Thin,0,-5);
+						} else if (this.gero == true){
+							ctx.drawImage(this.teleport3Thin,0,-5);
+						} else if(this.vegeta == true){
+							ctx.drawImage(this.teleportThin,0,-5);
+						} else if(this.gohan == true){
+							ctx.drawImage(this.teleport2Thin,20,30);
+						} else if(this.tien == true){
+							ctx.drawImage(this.teleport5,110,70);
+						} else if(this.krillin == true){
+							ctx.drawImage(this.teleport6,100,70);
+						} else {
+							ctx.drawImage(this.teleport,-10,-5);
+						}
 					}
+					
 				} else if(this.speedCounter < 3){
 					//blink
 				} else {
@@ -8432,31 +8552,69 @@ app.Vegeta = (function(){
 				}
 			} else if(this.counter < 7){
 				//console.log("STAGE 3");
+				if(this.gohan == true){
+					this.lastKnown.x = app.main.android18.position.x;
+					this.lastKnown.y = app.main.android18.position.y;
+					if(this.powerMove == true){
+						if(this.left == true){
+							this.velocity.x = -30;
+						} else {
+							this.velocity.x = 30;
+						}
+						this.decel = this.velocity.clone();
+					}
+				}
 				this.stun = true;
 				this.vanish = true;
 				if(this.speedCounter < 2){
-					if(this.piccolo == true){
-						ctx.drawImage(this.teleport2,-10,-5);
-						ctx.drawImage(this.teleport2,-10,-2);
-					} else if (this.gero == true){
-						ctx.drawImage(this.teleport3,-10,-5);
-						ctx.drawImage(this.teleport3,-10,-2);
-					} else if(this.vegeta == true){
-						ctx.drawImage(this.teleport,-10,-5);
-						ctx.drawImage(this.teleport,-10,-2);
-					} else if(this.gohan == true){
-						ctx.drawImage(this.teleport2,10,30);
-						ctx.drawImage(this.teleport2,10,33);
-					} else if(this.tien == true){
-						ctx.drawImage(this.teleport5,110,70);
-						ctx.drawImage(this.teleport5,110,73);
-					} else if(this.krillin == true){
-						ctx.drawImage(this.teleport6,100,70);
-						ctx.drawImage(this.teleport6,100,73);
+					if(this.velocity.x != 0){
+						if(this.piccolo == true){
+							ctx.drawImage(this.teleport2,-10,-5);
+							ctx.drawImage(this.teleport2,-10,-2);
+						} else if (this.gero == true){
+							ctx.drawImage(this.teleport3,-10,-5);
+							ctx.drawImage(this.teleport3,-10,-2);
+						} else if(this.vegeta == true){
+							ctx.drawImage(this.teleport,-10,-5);
+							ctx.drawImage(this.teleport,-10,-2);
+						} else if(this.gohan == true){
+							ctx.drawImage(this.teleport2,10,30);
+							ctx.drawImage(this.teleport2,10,33);
+						} else if(this.tien == true){
+							ctx.drawImage(this.teleport5,110,70);
+							ctx.drawImage(this.teleport5,110,73);
+						} else if(this.krillin == true){
+							ctx.drawImage(this.teleport6,100,70);
+							ctx.drawImage(this.teleport6,100,73);
+						} else {
+							ctx.drawImage(this.teleport,-10,-5);
+							ctx.drawImage(this.teleport,-10,-2);
+						}
 					} else {
-						ctx.drawImage(this.teleport,-10,-5);
-						ctx.drawImage(this.teleport,-10,-2);
+						if(this.piccolo == true){
+							ctx.drawImage(this.teleport2Thin,0,-5);
+							ctx.drawImage(this.teleport2Thin,0,-2);
+						} else if (this.gero == true){
+							ctx.drawImage(this.teleport3Thin,0,-5);
+							ctx.drawImage(this.teleport3Thin,0,-2);
+						} else if(this.vegeta == true){
+							ctx.drawImage(this.teleportThin,0,-5);
+							ctx.drawImage(this.teleportThin,0,-2);
+						} else if(this.gohan == true){
+							ctx.drawImage(this.teleport2Thin,20,30);
+							ctx.drawImage(this.teleport2Thin,20,33);
+						} else if(this.tien == true){
+							ctx.drawImage(this.teleport5,110,70);
+							ctx.drawImage(this.teleport5,110,73);
+						} else if(this.krillin == true){
+							ctx.drawImage(this.teleport6,100,70);
+							ctx.drawImage(this.teleport6,100,73);
+						} else {
+							ctx.drawImage(this.teleport,-10,-5);
+							ctx.drawImage(this.teleport,-10,-2);
+						}
 					}
+					
 				} else if(this.speedCounter < 3){
 					//blink
 				} else {
@@ -8477,19 +8635,29 @@ app.Vegeta = (function(){
 					this.counter = 6;
 				}
 			} else if(this.counter < 12){
+				if(this.gohan == true){
+					if(this.powerMove == true){
+						if(this.left == true){
+							this.velocity.x = -40;
+						} else {
+							this.velocity.x = 40;
+						}
+						this.decel = this.velocity.clone();
+					}
+				}
 				if(this.speedCounter < 2){
 					if(this.piccolo == true){
-						ctx.drawImage(this.teleport2,-10,-5);
-						ctx.drawImage(this.teleport2,-10,-2);
+						ctx.drawImage(this.teleport2,0,-5);
+						ctx.drawImage(this.teleport2,0,-2);
 					} else if (this.gero == true){
-						ctx.drawImage(this.teleport3,-10,-5);
-						ctx.drawImage(this.teleport3,-10,-2);
+						ctx.drawImage(this.teleport3,0,-5);
+						ctx.drawImage(this.teleport3,0,-2);
 					} else if(this.vegeta == true){
-						ctx.drawImage(this.teleport,-10,-5);
-						ctx.drawImage(this.teleport,-10,-2);
+						ctx.drawImage(this.teleport,0,-5);
+						ctx.drawImage(this.teleport,0,-2);
 					} else if(this.gohan == true){
-						ctx.drawImage(this.teleport2,10,30);
-						ctx.drawImage(this.teleport2,10,33);
+						ctx.drawImage(this.teleport2,20,30);
+						ctx.drawImage(this.teleport2,20,33);
 					} else if(this.tien == true){
 						ctx.drawImage(this.teleport5,110,70);
 						ctx.drawImage(this.teleport5,110,73);
@@ -8506,19 +8674,21 @@ app.Vegeta = (function(){
 					this.speedCounter = 0;
 				}
 			} else if(this.counter < 15){
-				this.velocity.x = 0;
-				this.decel.x = 0;
+				if(this.gohan == false || this.powerMode == false){
+					this.velocity.x = 0;
+					this.decel.x = 0;
+				}
 				//this.jumpVelocity.y = 0;
 				this.vanish = false;
 				if(this.speedCounter < 2){
 					if(this.piccolo == true){
-						ctx.drawImage(this.teleport2,-10,-5);
+						ctx.drawImage(this.teleport2,0,-5);
 					} else if (this.gero == true){
-						ctx.drawImage(this.teleport3,-10,-5);
+						ctx.drawImage(this.teleport3,0,-5);
 					} else if(this.vegeta == true){
-						ctx.drawImage(this.teleport,-10,-5);
+						ctx.drawImage(this.teleport,0,-5);
 					} else if(this.gohan == true){
-						ctx.drawImage(this.teleport2,-10,30);
+						ctx.drawImage(this.teleport2,20,30);
 					} else if(this.tien == true){
 						ctx.drawImage(this.teleport5,110,70);
 					} else if(this.krillin == true){
@@ -8535,6 +8705,16 @@ app.Vegeta = (function(){
 				app.main.sound.playSpecialReaction2(20);
 				this.stun = false;
 				this.fight = false;
+				/* if(this.gohan == true){
+					if(this.powerMove == true){
+						if(this.left == true){
+							this.velocity.x = -30;
+						} else {
+							this.velocity.x = 30;
+						}
+						this.decel = this.velocity.clone();
+					}
+				} */
 				if(this.krillin == true || this.tien == true){
 					app.main.aiChoiceSupport2 = (Math.random());
 					this.jumpVelocity.y = 0;
@@ -8571,10 +8751,12 @@ app.Vegeta = (function(){
 					this.aboveBuilding = false;
 					this.saveThem = false;
 				} */
+				
 				this.counter = 0;
 				this.superSpeed = false;
 				this.superSpeedExhaustion = true;
 				this.speedExhaust = 0;
+				
 			}
 			ctx.restore();
 		} 

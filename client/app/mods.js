@@ -46,9 +46,23 @@ const setActiveMods = () => {
   $("#contentData").text("click integrated mod for information");
   $("#contentData2").text("");
   
+  $('.nope1').hide();
+  $('.nope2').hide();
+  $('.nope3').hide();
+  $('.nope4').hide();
+  $('.nope5').hide();
+  
+  $('.check1').hide();
+  $('.check2').hide();
+  $('.check3').hide();
+  $('.check4').hide();
+  $('.check5').hide();
+
+  
   
   //Tier 1
   if(mod0 !== -1){ //No 3 or 10 currently
+    $('.check1').show();
 	if(mod0 == 0){
       modsT1 = "GI";
 	  $("#body17T1").text("GI:T1");
@@ -61,6 +75,9 @@ const setActiveMods = () => {
       modsT1 = "IB";
 	  $("#body17T1").text("IB:T1");
 	  $("#body18T1").text("IB:T1");
+    } else if(mod0 == 3){
+      $('.nope1').show();
+	  $('.check1').hide();
     } else if(mod0 == 4){
       modsT1 = "CP";
 	  $("#body17T1").text("CP:T1");
@@ -89,11 +106,17 @@ const setActiveMods = () => {
       modsT1 = "CF";
 	  $("#body17T1").text("CF:T1");
 	  $("#body18T1").text("CF:T1");
-    }
+    } else {
+		$('.check1').hide();
+		$('.nope1').show();
+	}
+  } else {
+	  $('.check1').hide();
   }
   
   //Tier 2
   if(mod1 !== -1 && mod2 !== -1){
+	$('.check2').show();
 	if((mod1 == 0 && mod2 == 1) || (mod1 == 1 && mod2 == 0)){
       modsT2 = "BA";
 	  $("#body17T2").text("BA:T2");
@@ -166,11 +189,17 @@ const setActiveMods = () => {
       modsT2 = "DD";
 	  $("#body17T2").text("DD:17");
 	  $("#body18T2").text("DD:18");
-    }
+    } else {
+      $('.nope2').show();
+	  $('.check2').hide();
+	}
+  } else {
+	  $('.check2').hide();
   }
   
   //Tier 3
   if(mod3 !== -1){ //No 3 or 10 currently
+    $('.check3').show();
 	if(mod3 == 0){
       modsT3 = "GI";
 	  $("#body17T3").text("GI:T3");
@@ -183,6 +212,9 @@ const setActiveMods = () => {
       modsT3 = "IB";
 	  $("#body17T3").text("IB:T3");
 	  $("#body18T3").text("IB:T3");
+    } else if(mod3 == 3){
+      $('.nope3').show();
+	  $('.check3').hide();
     } else if(mod3 == 4){
       modsT3 = "CP";
 	  $("#body17T3").text("CP:T3");
@@ -211,11 +243,17 @@ const setActiveMods = () => {
       modsT3 = "CF";
 	  $("#body17T3").text("CF:T3");
 	  $("#body18T3").text("CF:T3");
-    }
+    } else {
+		$('.nope3').show();
+		$('.check3').hide();
+	}
+  } else {
+	  $('.check3').hide();
   }
   
   //Tier 4
   if(mod4 !== -1 && mod5 !== -1){
+	$('.check4').show();
 	if((mod4 == 0 && mod5 == 1) || (mod4 == 1 && mod5 == 0)){
       modsT4 = "BA";
 	  $("#body17T4").text("BA:T4");
@@ -288,11 +326,17 @@ const setActiveMods = () => {
       modsT4 = "DD";
 	  $("#body17T4").text("DD:17");
 	  $("#body18T4").text("DD:18");
-    }
+    } else {
+		$('.nope4').show();
+		$('.check4').hide();
+	}
+  } else {
+	  $('.check4').hide();
   }
   
   //Tier 5
   if(mod6 !== -1 && mod7 !== -1){
+	$('.check5').show();
 	if((mod6 == 0 && mod7 == 1) || (mod6 == 1 && mod7 == 0)){
       modsT5 = "BA";
 	  $("#body17T5").text("BA:T5");
@@ -365,7 +409,12 @@ const setActiveMods = () => {
       modsT5 = "DD";
 	  $("#body17T5").text("DD:17");
 	  $("#body18T5").text("DD:18");
-    }
+    } else {
+		$('.nope5').show();
+		$('.check5').hide();
+	}
+  } else {
+	  $('.check5').hide();
   }
   
   
@@ -763,7 +812,7 @@ const displayInfo = function(type){
 	$("#contentData2").text("");
   }
   if(info === "EI"){
-	$("#nameData").text("Endurance Improve");
+	$("#nameData").text("Endurance Improved");
     $("#contentData").text("UNIT 18 -- Data enhanced ability to recover endurance a bit faster.");
 	$("#contentData2").text("UNIT 17 -- Will join the fight more willingly when called");
   }
@@ -825,7 +874,7 @@ const displayInfo = function(type){
   if(info === "AI"){
 	$("#nameData").text("After Image");
     $("#contentData").text("UNIT 18 -- Create a false image while in super speed state that can be a distraction.");
-	$("#contentData2").text("UNIT 17 -- Fire 2 Power Blitz attacks in quick succession every time with no addional energy cost.");
+	$("#contentData2").text("UNIT 17 -- Fire 2 Power Blitz attacks in quick succession.");
   }
   if(info === "ER"){
 	$("#nameData").text("Energy Resilience");

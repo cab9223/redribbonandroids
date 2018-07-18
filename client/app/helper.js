@@ -178,12 +178,16 @@ const update = () => {
 	  if(upVidTimer < 2){
 		app.main.videos.startU();
 	  }
+	  if(app.main.finished5 == false){
+		app.main.videos.check5();
+	  }
 	} else {
 	  upVidTimer = 0;
 	}
+	
 
 	// When mods video finishes
-	if(upVidPlay === true && upVidTimer > 545){
+	if(upVidPlay === true && app.main.finished5 == true && upVidTimer > 2){
 	  app.main.resetTalents();
 	  app.main.setupTalents("T1");
       app.main.setupTalents("T2");
@@ -196,6 +200,9 @@ const update = () => {
 	    paused = false;
 	  }
 	  app.main.videos.endU();
+	  app.main.videos.rewind5();
+	  app.main.finished5 = false;
+	  upVidTimer = 0;
 	  modsButton.className = "";
       passwordButton.className = "";
       statsButton.className = "";
@@ -205,7 +212,7 @@ const update = () => {
 	}
 	
 	if (myKeys.keydown[myKeys.KEYBOARD.KEY_ENTER] == true && upVidTimer > 60){
-	  upVidTimer = 550;
+	  app.main.finished5 = true;
 	}
   
 		

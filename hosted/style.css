@@ -249,8 +249,8 @@ nav {
 
 #tiny {
 	position:fixed;
-	top:3%;
-	margin-left: 22%;
+	top:3.2%;
+	margin-left: 23.3%;
 	font-size:0.7em;
 }
 
@@ -274,12 +274,28 @@ nav:nth-child(1) {
 
 .navlink {
     padding-top: 12px;
-	padding-left: 5%;
+	padding-left: 4.5%;
     width: 15%;
     color: white;
     font-size: 1.3em;
     float: left;
 	outline: none;
+}
+
+#stat {
+    font-size: 1.4em;
+}
+
+#scoreButton {
+    font-size: 1.35em;
+}
+
+#modsButton {
+    font-size: 1.4em;
+}
+
+#passwordButton {
+    font-size: 1.4em;
 }
 
 .navlink a, .navlink a:link, .navlink a:visited, .navlink a:hover, .navlink a:active {
@@ -576,7 +592,7 @@ img.scoreFace {
 .labled {
 	font-size: 3em !important;
 	color: #c7c7a1 !important;
-	transform: scale(1,1.3);
+	transform: scale(1,1.5);
 }
 
 .labled2 {
@@ -669,7 +685,7 @@ h3.emptyStats {
 }
 
 #gameButton {
-	font-size: 1.8em !important;
+	font-size: 2em !important;
 	top: -15px;
 	left: -10px;
 	outline: none !important;
@@ -677,15 +693,17 @@ h3.emptyStats {
 
 #loginButton {
 	position: fixed;
-	left: 31.5% !important;
-	font-size: 1.5em !important;
+	top: -.5% !important;
+	left: 28.5% !important;
+	font-size: 2em !important;
 	outline: none !important;
 }
 
 #signupButton {
 	position: fixed;
+	top: -.5% !important;
 	left: 63.5% !important;
-	font-size: 1.5em !important;
+	font-size: 2em !important;
 }
 
 #moreContent {
@@ -932,13 +950,43 @@ h3.emptyStats {
     background-color: black;
 	opacity:0.2;
 }
+.nope1 {
+	display:none;
+}
+.check1 {
+	display:none;
+}
+.nope2 {
+	display:none;
+}
+.check2 {
+	display:none;
+}
+.nope3 {
+	display:none;
+}
+.check3 {
+	display:none;
+}
+.nope4 {
+	display:none;
+}
+.check4 {
+	display:none;
+}
+.nope5 {
+	display:none;
+}
+.check5 {
+	display:none;
+}
 #nameData {
 	text-align: center;
 	font-size:2em;
 	width: 375px;
 	color: #c7c7a1 !important;
 	position: fixed !important;
-	top: 66% !important;
+	top: 64.5% !important;
 	left: 41.3% !important;
 }
 #contentData {
@@ -947,7 +995,7 @@ h3.emptyStats {
 	color: #999900 !important;
 	overflow-wrap: break-word;
 	position: fixed !important;
-	top: 71.5% !important;
+	top: 70% !important;
 	left: 41.3% !important;
 }
 #contentData2 {
@@ -956,7 +1004,7 @@ h3.emptyStats {
 	overflow-wrap: break-word;
 	color: #777700 !important;
 	position: fixed !important;
-	top: 82% !important;
+	top: 80.5% !important;
 	left: 41.3% !important;
 }
 #specialMessage {

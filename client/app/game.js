@@ -158,6 +158,8 @@ const createModsWindow = (csrf) => {
   $("#visuals3").children().show();
   $("#profile").children().hide(); //bug fix
   
+  $("#nope3").children().hide();
+  
   //Choose chips to display
   if(modsT1 === ""){
 	  $("#imgT1").children().hide();

@@ -102,6 +102,8 @@ app.Android17 = (function(){
 		this.hurtBTrigger = 0;
 		this.hurtBRandom = Math.round(getRandom(250,400));
 		
+		this.quickHurt = false;
+		
 		this.fallTimer = 0;
 		this.fallHit = false;
 		
@@ -117,6 +119,7 @@ app.Android17 = (function(){
 		this.decision = .9;
 		this.decisionTimer = 0;
 		this.ouchCounter = 0;
+		this.hurtStun = 0;
 		
 		this.aggressive = true;
 		this.defensive = false;
@@ -338,6 +341,10 @@ app.Android17 = (function(){
 		this.teleport = image;
 		
 		image = new Image();
+		image.src =  app.attack.tele4Thin;
+		this.teleportThin = image;
+		
+		image = new Image();
 		image.src =  app.attack.nuke1;
 		this.nuke1 = image;
 		
@@ -500,7 +507,7 @@ app.Android17 = (function(){
 			//this.position
 		}
 		
-		if((this.powerMove == true || this.fieldOn == true) && this.air == true){
+		if((this.powerMove == true) && this.air == true){
 			this.hover = true;
 			if(this.hoverFix == false){
 				this.jumpVelocity.y = 0;
@@ -552,12 +559,12 @@ app.Android17 = (function(){
 		
 		
 		//WALL POSITIONING
-		if(this.position.x < this.LEFTWALL.x + 30 && (hardAttackHitTest(app.main.android17, app.main.vegeta) != true) && (hitTest(app.main.android17, app.main.vegeta) != true)){
+		if(this.position.x < this.LEFTWALL.x + 30 && (hardAttackHitTest(app.main.android17, app.main.vegeta) != true) && (hitTest(app.main.android17, app.main.vegeta) != true) && this.stun == false && this.attacking == false && this.blasting == false && this.blocking == false){
 			this.farLeft = true;
 			this.farRight = false;
 			this.right = true;
 			this.left = false;
-		} else if(this.position.x > this.RIGHTWALL.x - 30 && (hardAttackHitTest(app.main.android17, app.main.vegeta) != true) && (hitTest(app.main.android17, app.main.vegeta) != true)){
+		} else if(this.position.x > this.RIGHTWALL.x - 30 && (hardAttackHitTest(app.main.android17, app.main.vegeta) != true) && (hitTest(app.main.android17, app.main.vegeta) != true) && this.stun == false && this.attacking == false && this.blasting == false && this.blocking == false){
 			this.farRight = true;
 			this.farleft = false;
 			this.right = false;
@@ -882,6 +889,10 @@ app.Android17 = (function(){
 			}
 		}
 		
+		if(this.superSpeed == true && this.position.y < this.GROUND.y){
+			this.air = true;
+		}
+		
 		//HOVER
 		if(app.main.scene == false && app.main.gameState != app.main.GAME_STATE.TUTORIAL){
 		if(this.air == true && this.down == false && this.position.y > this.SKYTOP.y && this.up == false && this.hit == false && this.hardHit == false && this.end == false && app.main.vegeta.end == false && ((hardAttackHitTest(app.main.android17,app.main.vegeta) && this.hardHit == false) || this.blasting == true || this.fieldOn == true || this.powerMove == true || this.taunting == true || (this.superSpeed == true && this.fallPrepTele == false) || this.blocking == true || this.attacking == true)){ //Hover
@@ -1052,6 +1063,8 @@ app.Android17 = (function(){
 		if(app.main.battle == 3 && this.hardHit == true){
 			this.ouchCounter++;
 			if(this.ouchCounter < 2){
+				app.main.sound.pauseVoice5();
+				app.main.sound.pauseEffect17();
 				app.main.sound.playTaunt5(Math.round(getRandom(9,11)));
 			} else if(this.ouchCounter < 20){
 				
@@ -1165,7 +1178,6 @@ app.Android17 = (function(){
 				this.aboveBuilding = false;
 				this.fallPrepTele = false;
 			} else {
-				console.log("17 FALLLLLL FALLLLL ");
 				this.position.y = app.main.vegeta.position.y - 300;
 				this.position.x = app.main.vegeta.position.x;
 				this.startFallKick = true;
@@ -1377,29 +1389,45 @@ app.Android17 = (function(){
 				ctx.drawImage(this.fastFly,0,10);
 			} else if(this.cine == 3){
 				if(this.hit == true || this.hardHit == true){
+					this.hurtStun++;
 					ctx.drawImage(this.injuredHit,-5,0);
 					app.main.environment.powerUp = false;
 					this.hurtBlasting = false;
 					this.nukeCounter = 0;
 					this.hurtBTimer = 0;
-					if(this.stunCounter > 20 && this.hardHit == true){
-						this.hardHit = false;
-					} else if(this.stunCounter > 10 && this.hardHit == false){
-						this.hit = false;
+					if(this.hurtStun < 2 && this.hurtStun > 0 && this.hardHit == true && this.quickHurt == false){
+						app.main.sound.pauseVoice5();
+						app.main.sound.pauseEffect17();
+						app.main.sound.playTaunt5(Math.round(getRandom(9,11)));
+						this.quickHurt = true;
+						this.hurtBlasting = false;
 					}
-				} else if(this.hurtBlasting == true && (this.hit == false && this.hardHit == false)){
+					if(this.hurtStun > 20 && this.hardHit == true){
+						this.hit = false;
+						this.hardHit = false;
+						this.quickHurt = false;
+						this.hurtStun = 0;
+					} else if(this.hurtStun > 10 && this.hardHit == false){
+						this.hit = false;
+						this.quickHurt = false;
+						this.hurtStun = 0;
+					}
+				} else if(this.hurtBlasting == true){
 					this.hurtBTimer++;
 					//this.nukeCounter = 0;
 					if(this.hurtBTimer < 10){
 						if(this.hurtBTimer < 2){
 							app.main.sound.playIntro(8);
 						} else if(this.hurtBTimer < 5 && this.hurtBTimer > 3){
+							app.main.sound.pauseVoice5();
 							app.main.sound.playTaunt5(Math.round(getRandom(22,23)));
 						}
 						if(this.hurtBTimer < 8 && this.hurtBTimer > 6){
 							if((app.main.vegeta.exhausted == false && app.main.vegeta.attacking == false && app.main.vegeta.blocking == false && app.main.vegeta.superSpeed == false && app.main.vegeta.stun == false && app.main.vegeta.blasting == false) || (app.main.vegeta.blasting == true && app.main.powerMove == true && app.main.chance2 > .5 && app.main.vegeta.justTurned == false)){
-								app.main.sound.playTaunt6(Math.round(getRandom(49,50)));
-								app.main.vegeta.fast17 = true;
+								if(!(app.main.vegeta.farLeft == true && this.farLeft == true) && !(app.main.vegeta.farRight == true && this.farRight == true)){
+									app.main.sound.playTaunt6(Math.round(getRandom(49,50)));
+									app.main.vegeta.fast17 = true;
+								}
 							} else {
 								
 							}
@@ -1427,7 +1455,7 @@ app.Android17 = (function(){
 						}
 					} else if(this.hurtBTimer < 30){
 						if(this.hurtBTimer < 11){
-							app.main.sound.playEffect(27);
+							app.main.sound.playEffect3(27);
 						}
 						if((this.counter % 2) == 0){
 							ctx.drawImage(this.blastCharge1,30,34,10,14);
@@ -1462,7 +1490,7 @@ app.Android17 = (function(){
 					} else if(this.hurtBTimer < 31){
 						app.main.roundScore2 += (70 + Math.round(getRandom(0,80)));
 						app.main.environment.flash = true;
-						app.main.sound.playEffect(64);
+						app.main.sound.playEffect3(64);
 						
 						app.main.environment.shake = true;
 						app.main.environment.nuked = true;
@@ -1528,7 +1556,9 @@ app.Android17 = (function(){
 						ctx.save();
 						ctx.globalAlpha = .4;
 						ctx.scale(1.5,.8);
-						
+						if(this.hurtBTimer > 2 && this.hurtBTimer < 4){
+							app.main.sound.resumeBackground(1);
+						}
 						if(this.hurtBTimer > 32 && this.hurtBTimer < 34){
 							app.main.sound.playTaunt6(Math.round(getRandom(46,48)));
 						}
@@ -1572,6 +1602,7 @@ app.Android17 = (function(){
 						}
 						ctx.restore();
 					} else {
+						app.main.sound.pauseBackground();
 						app.main.environment.powerUp = false;
 						this.hurtBlasting = false;
 						this.nukeCounter = 0;
@@ -1620,7 +1651,6 @@ app.Android17 = (function(){
 					ctx.drawImage(this.flyUp,-5,0);
 				}
 			} else if(this.air == true && this.startFallKick == true) {
-				console.log("17 FALLLLLL FALLLLL ##########^^^^^^^^^^^ inside");
 				ctx.drawImage(this.fallKick2,-5,0);
 				this.fallingKick = true;
 				this.attacking = false;
@@ -1697,10 +1727,12 @@ app.Android17 = (function(){
 							} else {
 								app.main.vegeta.punched = false;
 							}
+							if(app.main.vegeta.air == true){
 							if(app.main.vegeta.right == true){
 								app.main.vegeta.velocity.x = this.velocity.x;
 							} else {
 								app.main.vegeta.velocity.x = this.velocity.x;
+							}
 							}
 							app.main.vegeta.decel = app.main.vegeta.velocity.clone();
 							if(app.main.vegeta.stamina > 64 && app.main.vegeta.exhausted == true){
@@ -2685,7 +2717,7 @@ app.Android17 = (function(){
 				if(this.stunCounter < 2 && app.main.battle != 3 && (this.voiceChance > .5 || this.blasted == true)){
 					app.main.sound.playTaunt5(Math.round(getRandom(12,14)));
 				} else if(this.stunCounter < 2 && app.main.battle == 3){
-					app.main.sound.playTaunt2(Math.round(getRandom(9,11)));
+					app.main.sound.playTaunt5(Math.round(getRandom(9,11)));
 				}
 				if(app.main.activeSupport == false){
 					if(app.main.vegeta.attacking == true){
@@ -2819,7 +2851,11 @@ app.Android17 = (function(){
 					}
 				}
 				if(this.speedCounter < 2){
-					ctx.drawImage(this.teleport,-40,-5);
+					if(this.velocity.x != 0){
+						ctx.drawImage(this.teleport,-40,-5);
+					} else {
+						ctx.drawImage(this.teleportThin,-30,-5);
+					}
 				} else if(this.speedCounter < 3){
 					//blink
 				} else {
@@ -2829,8 +2865,13 @@ app.Android17 = (function(){
 				this.stun = true;
 				this.vanish = true;
 				if(this.speedCounter < 2){
-					ctx.drawImage(this.teleport,-40,-5);
-					ctx.drawImage(this.teleport,-40,-2);
+					if(this.velocity.x != 0){
+						ctx.drawImage(this.teleport,-40,-5);
+						ctx.drawImage(this.teleport,-40,-2);
+					} else {
+						ctx.drawImage(this.teleport,-30,-5);
+						ctx.drawImage(this.teleport,-30,-2);
+					}
 				} else if(this.speedCounter < 3){
 					//blink
 				} else {
@@ -2857,8 +2898,8 @@ app.Android17 = (function(){
 				
 			} else if(this.counter < 12){
 				if(this.speedCounter < 2){
-					ctx.drawImage(this.teleport,-40,-5);
-					ctx.drawImage(this.teleport,-40,-2);
+					ctx.drawImage(this.teleportThin,-30,-5);
+					ctx.drawImage(this.teleportThin,-30,-2);
 				} else if(this.speedCounter < 3){
 					//blink
 				} else {
@@ -2870,7 +2911,7 @@ app.Android17 = (function(){
 				//this.jumpVelocity.y = 0;
 				this.vanish = false;
 				if(this.speedCounter < 2){
-					ctx.drawImage(this.teleport,-40,-5);
+					ctx.drawImage(this.teleportThin,-30,-5);
 				} else if(this.speedCounter < 3){
 					//blink
 				} else {

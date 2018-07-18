@@ -37,6 +37,8 @@ app.Energy = (function(){
 		
 		this.groundTrigger = false;
 		
+		this.flashBlasts = true;
+		
 		this.fix = false;
 		this.fix2 = false;
 		
@@ -484,9 +486,24 @@ app.Energy = (function(){
 		
 		
 		if(this.dirLeft == true && this.exploding == false){
+			
+			ctx.save();
+			
+			/* if(this.flashBlasts == true){
+				this.flashBlasts = false;
+				ctx.filter = "brightness(200%)";
+			} else if(this.flashBlasts == false){
+				this.flashBlasts = true;
+				ctx.filter = "brightness(90%)";
+			} */
+			
 			if(this.type == 0){
 				this.exhaust[0].minXspeed = 5;
 				this.exhaust[0].maxXspeed = 20;
+				/* this.exhaust[0].minYspeed = 5;
+				this.exhaust[0].maxYspeed = 20;
+				this.exhaust[0].downUpBlast = true; */
+				
 				ctx.save();
 				ctx.translate(this.position.x, this.position.y + 10);
 				if(this.lifetime > 1){
@@ -495,6 +512,13 @@ app.Energy = (function(){
 			
 				ctx.save();
 				ctx.scale(-2, 2);
+				if(this.flashBlasts == true){
+					this.flashBlasts = false;
+					ctx.filter = "brightness(200%)";
+				} else if(this.flashBlasts == false){
+					this.flashBlasts = true;
+					ctx.filter = "brightness(90%)";
+				}
 				ctx.drawImage(this.blast1,-10,-8);
 				ctx.restore();
 				this.position.x = this.position.x - 25;
@@ -536,6 +560,20 @@ app.Energy = (function(){
 				ctx.restore();
 			
 			} else if(this.type == 1){//Standard large beam
+				if(app.main.environment.lesserFlash == false){
+					app.main.environment.lesserFlash = true;
+				}
+				
+				ctx.save();
+				
+				if(this.flashBlasts == true){
+					this.flashBlasts = false;
+					ctx.filter = "brightness(200%)";
+				} else if(this.flashBlasts == false){
+					this.flashBlasts = true;
+					ctx.filter = "brightness(90%)";
+				}
+			
 				ctx.save();
 				ctx.translate(this.position.x + 160, this.position.y);
 				ctx.scale(-2, 2);
@@ -582,7 +620,22 @@ app.Energy = (function(){
 				if(this.limetime > 30) {
 					this.lifetime = 301;
 				}
+				
+				ctx.restore();
 			} else if(this.type == 2){//Finger beam
+				if(app.main.environment.lesserFlash == false){
+					app.main.environment.lesserFlash = true;
+				}
+			
+				ctx.save();
+				
+				if(this.flashBlasts == true){
+					this.flashBlasts = false;
+					ctx.filter = "brightness(200%)";
+				} else if(this.flashBlasts == false){
+					this.flashBlasts = true;
+					ctx.filter = "brightness(90%)";
+				}
 				ctx.save();
 				ctx.translate(this.position.x + 160, this.position.y);
 				ctx.scale(-2, 2);
@@ -620,7 +673,12 @@ app.Energy = (function(){
 				if(this.limetime > 30) {
 					this.lifetime = 301;
 				}
+				ctx.restore();
 			} else if(this.type == 3){
+				if(app.main.environment.lesserFlash == false){
+					app.main.environment.lesserFlash = true;
+				}
+				
 				ctx.save();
 				ctx.translate(this.position.x, this.position.y + 10);
 				if(this.lifetime > 1){
@@ -632,7 +690,15 @@ app.Energy = (function(){
 						this.exhaust[i].updateAndDraw(ctx, {x:0,y:(i*6)});
 					}
 				}
-			
+				ctx.save();
+				
+				if(this.flashBlasts == true){
+					this.flashBlasts = false;
+					ctx.filter = "brightness(200%)";
+				} else if(this.flashBlasts == false){
+					this.flashBlasts = true;
+					ctx.filter = "brightness(90%)";
+				}
 				ctx.save();
 				ctx.scale(-2, 2);
 				ctx.drawImage(this.ball1,-10,-8);
@@ -643,23 +709,28 @@ app.Energy = (function(){
 					//console.log("DISAPEAR");
 					this.lifetime = 301;
 				}
+				ctx.restore();
 			
 			} else if(this.type == 5){ //Piccolo ball
 				ctx.save();
-				ctx.translate(this.position.x, this.position.y + 10);
+				
+				if(this.flashBlasts == true){
+					this.flashBlasts = false;
+					ctx.filter = "brightness(200%)";
+				} else if(this.flashBlasts == false){
+					this.flashBlasts = true;
+					ctx.filter = "brightness(80%)";
+				}
+			
+				ctx.save();
+				ctx.translate(this.position.x + getRandom(0,4), this.position.y + getRandom(0,4) + 10);
 				ctx.save();
 				ctx.scale(-2, 2);
 				if(this.moving == false && this.triggerState == 0){
-					this.count++;
-					if(this.count < 2)
-					{
-						if(this.blastUser == 0 || this.blastUser == 6){
-							ctx.drawImage(this.ball2,-10,-8, 15, 15);
-						} else {
-							ctx.drawImage(this.ball1,-10,-8, 15, 15);
-						}
+					if(this.blastUser == 0 || this.blastUser == 6){
+						ctx.drawImage(this.ball2,-10,-8, 15, 15);
 					} else {
-						this.count = 0;
+						ctx.drawImage(this.ball1,-10,-8, 15, 15);
 					}
 				} else {
 					ctx.drawImage(this.ball1,-10,-8, 15, 15);
@@ -778,7 +849,22 @@ app.Energy = (function(){
 				} else if(this.lifetime > 100) {
 					this.exploding = true;
 				}
+				ctx.restore();
 			} else if(this.type == 6){//Special beam
+				if(app.main.environment.lesserFlash == false){
+					app.main.environment.lesserFlash = true;
+				}
+				
+				ctx.save();
+				
+				if(this.flashBlasts == true){
+					this.flashBlasts = false;
+					ctx.filter = "brightness(200%)";
+				} else if(this.flashBlasts == false){
+					this.flashBlasts = true;
+					ctx.filter = "brightness(90%)";
+				}
+				
 				this.position.x = this.position.x - 50;
 
 				ctx.save();
@@ -820,8 +906,21 @@ app.Energy = (function(){
 				if(this.limetime > 30) {
 					this.lifetime = 301;
 				}
+				ctx.restore();
 			} else if(this.type == 7){//Mesenko
-
+				if(app.main.environment.lesserFlash == false){
+					app.main.environment.lesserFlash = true;
+				}
+				
+				ctx.save();
+				
+				if(this.flashBlasts == true){
+					this.flashBlasts = false;
+					ctx.filter = "brightness(200%)";
+				} else if(this.flashBlasts == false){
+					this.flashBlasts = true;
+					ctx.filter = "brightness(90%)";
+				}
 			
 				if(this.trigger == true){
 					this.trigger = false;
@@ -951,7 +1050,23 @@ app.Energy = (function(){
 				if(this.limetime > 40) {
 					this.lifetime = 301;
 				}
+				
+				ctx.restore();
 			} else if(this.type == 8){
+				
+				if(app.main.environment.lesserFlashBlue == false){
+					app.main.environment.lesserFlashBlue = true;
+				}
+				
+				ctx.save();
+				
+				if(this.flashBlasts == true){
+					this.flashBlasts = false;
+					ctx.filter = "brightness(200%)";
+				} else if(this.flashBlasts == false){
+					this.flashBlasts = true;
+					ctx.filter = "brightness(90%)";
+				}
 				
 				ctx.save();
 				ctx.translate(this.position.x, this.position.y + 10);
@@ -1033,8 +1148,23 @@ app.Energy = (function(){
 				}
 				this.position.x = this.position.x - 25;
 				ctx.restore();
-			
+				ctx.restore();
 			} else if(this.type == 9){//TriBeam
+				if(app.main.environment.lesserFlash == false){
+					app.main.environment.lesserFlash = true;
+				}
+			
+			
+				ctx.save();
+				
+				if(this.flashBlasts == true){
+					this.flashBlasts = false;
+					ctx.filter = "brightness(200%)";
+				} else if(this.flashBlasts == false){
+					this.flashBlasts = true;
+					ctx.filter = "brightness(90%)";
+				}
+			
 				this.counter++;
 				ctx.save();
 				ctx.translate(this.position.x, this.position.y);
@@ -1051,7 +1181,19 @@ app.Energy = (function(){
 				if(this.lifetime > 20){
 					this.lifetime = 300;
 				}
+				ctx.restore();
 			} else if(this.type == 10){
+				
+				ctx.save();
+				
+				if(this.flashBlasts == true){
+					this.flashBlasts = false;
+					ctx.filter = "brightness(200%)";
+				} else if(this.flashBlasts == false){
+					this.flashBlasts = true;
+					ctx.filter = "brightness(90%)";
+				}
+				
 				ctx.save();
 				ctx.translate(this.position.x, this.position.y + 10);
 				ctx.save();
@@ -1092,8 +1234,31 @@ app.Energy = (function(){
 				ctx.restore();
 			
 			}
+			ctx.restore();
+			ctx.restore();
 		} else if(this.dirLeft == false && this.exploding == false){
+			ctx.save();
+			
+			/* if(this.flashBlasts == true){
+				this.flashBlasts = false;
+				ctx.filter = "brightness(200%)";
+			} else if(this.flashBlasts == false){
+				this.flashBlasts = true;
+				ctx.filter = "brightness(90%)";
+			} */
+			
 			if(this.type == 0){
+				
+				/* ctx.save();
+				
+				if(this.flashBlasts == true){
+					this.flashBlasts = false;
+					ctx.filter = "brightness(200%)";
+				} else if(this.flashBlasts == false){
+					this.flashBlasts = true;
+					ctx.filter = "brightness(90%)";
+				} */
+				
 				this.exhaust[0].minXspeed = -5;
 				this.exhaust[0].maxXspeed = -20;
 				ctx.save();
@@ -1103,6 +1268,13 @@ app.Energy = (function(){
 				}
 				ctx.save();
 				ctx.scale(2, 2);
+				if(this.flashBlasts == true){
+					this.flashBlasts = false;
+					ctx.filter = "brightness(200%)";
+				} else if(this.flashBlasts == false){
+					this.flashBlasts = true;
+					ctx.filter = "brightness(90%)";
+				}
 				ctx.drawImage(this.blast1,-10,-8);
 				ctx.restore();
 				this.position.x = this.position.x + 25;
@@ -1144,7 +1316,23 @@ app.Energy = (function(){
 				
 				this.position.x = this.position.x + 25;
 				ctx.restore();
+				//ctx.restore();
 			} else if(this.type == 1){//Standard large beam
+				if(app.main.environment.lesserFlash == false){
+					app.main.environment.lesserFlash = true;
+				}
+				
+			
+				ctx.save();
+				
+				if(this.flashBlasts == true){
+					this.flashBlasts = false;
+					ctx.filter = "brightness(200%)";
+				} else if(this.flashBlasts == false){
+					this.flashBlasts = true;
+					ctx.filter = "brightness(90%)";
+				}
+			
 				ctx.save();
 				ctx.translate(this.position.x - 360, this.position.y);
 				ctx.scale(2, 2);
@@ -1197,6 +1385,21 @@ app.Energy = (function(){
 					this.lifetime = 301;
 				}
 			} else if(this.type == 2){//Finger beam
+			
+				if(app.main.environment.lesserFlash == false){
+					app.main.environment.lesserFlash = true;
+				}
+			
+				ctx.save();
+				
+				if(this.flashBlasts == true){
+					this.flashBlasts = false;
+					ctx.filter = "brightness(200%)";
+				} else if(this.flashBlasts == false){
+					this.flashBlasts = true;
+					ctx.filter = "brightness(90%)";
+				}
+			
 				ctx.save();
 				ctx.translate(this.position.x - 160, this.position.y);
 				ctx.scale(2, 2);
@@ -1239,7 +1442,13 @@ app.Energy = (function(){
 				if(this.limetime > 30) {
 					this.lifetime = 301;
 				}
+				ctx.restore();
 			} if(this.type == 3){
+				
+				if(app.main.environment.lesserFlash == false){
+					app.main.environment.lesserFlash = true;
+				}
+				
 				ctx.save();
 				ctx.translate(this.position.x, this.position.y + 10);
 				if(this.lifetime > 1){
@@ -1252,27 +1461,42 @@ app.Energy = (function(){
 					}
 				}
 				ctx.save();
+				
+				if(this.flashBlasts == true){
+					this.flashBlasts = false;
+					ctx.filter = "brightness(200%)";
+				} else if(this.flashBlasts == false){
+					this.flashBlasts = true;
+					ctx.filter = "brightness(90%)";
+				}
+				ctx.save();
 				ctx.scale(2, 2);
 				ctx.drawImage(this.ball1,40,-8);
 				ctx.restore();
 				this.position.x = this.position.x + 50;
 				ctx.restore();
+				ctx.restore();
 			} else if(this.type == 5){ //Piccolo ball
+			
 				ctx.save();
-				ctx.translate(this.position.x, this.position.y + 10);
+				
+				if(this.flashBlasts == true){
+					this.flashBlasts = false;
+					ctx.filter = "brightness(200%)";
+				} else if(this.flashBlasts == false){
+					this.flashBlasts = true;
+					ctx.filter = "brightness(80%)";
+				}
+			
+				ctx.save();
+				ctx.translate(this.position.x + getRandom(0,4), this.position.y + getRandom(0,4) + 10);
 				ctx.save();
 				ctx.scale(2, 2);
 				if(this.moving == false && this.triggerState == 0){
-					this.count++;
-					if(this.count < 2)
-					{
-						if(this.blastUser == 0 || this.blastUser == 6){
-							ctx.drawImage(this.ball2,-10,-8, 15, 15);
-						} else {
-							ctx.drawImage(this.ball1,-10,-8, 15, 15);
-						}
+					if(this.blastUser == 0 || this.blastUser == 6){
+						ctx.drawImage(this.ball2,-10,-8, 15, 15);
 					} else {
-						this.count = 0;
+						ctx.drawImage(this.ball1,-10,-8, 15, 15);
 					}
 				} else {
 					ctx.drawImage(this.ball1,-10,-8, 15, 15);
@@ -1392,7 +1616,24 @@ app.Energy = (function(){
 				} else if(this.lifetime > 100) {
 					this.exploding = true;
 				}
+				
+				ctx.restore();
 			} else if(this.type == 6){//Special beam
+			
+				if(app.main.environment.lesserFlash == false){
+					app.main.environment.lesserFlash = true;
+				}
+			
+				ctx.save();
+				
+				if(this.flashBlasts == true){
+					this.flashBlasts = false;
+					ctx.filter = "brightness(200%)";
+				} else if(this.flashBlasts == false){
+					this.flashBlasts = true;
+					ctx.filter = "brightness(90%)";
+				}
+			
 				this.position.x = this.position.x + 50;
 				ctx.save();
 				this.replace = 0;
@@ -1436,7 +1677,22 @@ app.Energy = (function(){
 				if(this.limetime > 30) {
 					this.lifetime = 301;
 				}
+				ctx.restore();
 			} else if(this.type == 7){//Gohan masenko
+			
+				if(app.main.environment.lesserFlash == false){
+					app.main.environment.lesserFlash = true;
+				}
+			
+				ctx.save();
+				
+				if(this.flashBlasts == true){
+					this.flashBlasts = false;
+					ctx.filter = "brightness(200%)";
+				} else if(this.flashBlasts == false){
+					this.flashBlasts = true;
+					ctx.filter = "brightness(90%)";
+				}
 			
 				if(this.trigger == true){
 					this.trigger = false;
@@ -1555,7 +1811,24 @@ app.Energy = (function(){
 				if(this.limetime > 40) {
 					this.lifetime = 301;
 				}
+				
+				ctx.restore();
 			} else if(this.type == 8){
+				
+				if(app.main.environment.lesserFlashBlue == false){
+					app.main.environment.lesserFlashBlue = true;
+				}
+				
+				ctx.save();
+				
+				if(this.flashBlasts == true){
+					this.flashBlasts = false;
+					ctx.filter = "brightness(200%)";
+				} else if(this.flashBlasts == false){
+					this.flashBlasts = true;
+					ctx.filter = "brightness(90%)";
+				}
+				
 				ctx.save();
 				ctx.translate(this.position.x, this.position.y + 10);
 				
@@ -1639,7 +1912,23 @@ app.Energy = (function(){
 				
 				this.position.x = this.position.x + 25;
 				ctx.restore();
+				ctx.restore();
 			} else if(this.type == 9){//TriBeam
+			
+				if(app.main.environment.lesserFlash == false){
+					app.main.environment.lesserFlash = true;
+				}
+			
+				ctx.save();
+				
+				if(this.flashBlasts == true){
+					this.flashBlasts = false;
+					ctx.filter = "brightness(200%)";
+				} else if(this.flashBlasts == false){
+					this.flashBlasts = true;
+					ctx.filter = "brightness(90%)";
+				}
+			
 				this.counter++;
 				ctx.save();
 				ctx.translate(this.position.x, this.position.y);
@@ -1657,7 +1946,19 @@ app.Energy = (function(){
 				if(this.lifetime > 20){
 					this.lifetime = 300;
 				}
+				ctx.restore();
 			} else if(this.type == 10){
+				
+				ctx.save();
+				
+				if(this.flashBlasts == true){
+					this.flashBlasts = false;
+					ctx.filter = "brightness(200%)";
+				} else if(this.flashBlasts == false){
+					this.flashBlasts = true;
+					ctx.filter = "brightness(90%)";
+				}
+				
 				ctx.save();
 				ctx.translate(this.position.x, this.position.y + 10);
 				ctx.save();
@@ -1700,6 +2001,8 @@ app.Energy = (function(){
 				this.position.x = this.position.x + 25;
 				ctx.restore();
 			}
+			ctx.restore();
+			ctx.restore();
 		//DRAW EXPLOSION
 		} else if(this.exploding == true){
 			this.getAngle = getRandom(0,360);

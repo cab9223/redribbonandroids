@@ -185,6 +185,9 @@ app.sound = (function(){
 	"18C6.wav",			//84
 	"18C7.wav",			//85
 	"18C8.wav",			//86
+	"18CF1.wav",		//87
+	"18CF2.wav",		//88
+	"18TT1.wav",		//89
 	];
 	
 	var voiceSoundsPiccolo = [ //Piccolo
@@ -256,6 +259,12 @@ app.sound = (function(){
 	"17CN6.wav",		//37
 	"17LG1.wav",		//38
 	"17LG2.wav",		//39
+	"17CF1.wav",		//40
+	"17CF2.wav",		//41
+	"17CF3.wav",		//42
+	"17TT1.wav",		//43
+	"17TT2.wav",		//44
+	"17TT3.wav",		//45
 	];
 	
 	var voiceSoundsGohan = [ //Gohan
@@ -365,6 +374,7 @@ app.sound = (function(){
 	var backgroundSounds = [ //Background Sounds
 	"rain.wav",				//0
 	"panic.wav",			//1
+	"panicLoud.wav",		//2
 	];
 	
 	var voiceSoundsScenes = [ //Scenes
@@ -555,6 +565,12 @@ app.sound = (function(){
 		effectAudio[28].volume = 0.2;
 		effectAudio[29] = document.querySelector("#effectAudio29");
 		effectAudio[29].volume = 0.2;
+		effectAudio[30] = document.querySelector("#effectAudio30");
+		effectAudio[30].volume = 0.3;
+		effectAudio[31] = document.querySelector("#effectAudio31");
+		effectAudio[31].volume = 0.3;
+		effectAudio[32] = document.querySelector("#effectAudio32");
+		effectAudio[32].volume = 0.3;
 	}
 	
 	
@@ -573,6 +589,28 @@ app.sound = (function(){
 		effectAudio[1].currentTime = 0;
 		effectAudio[1].src = "media/" + effectSounds[num];
 		effectAudio[1].play();
+	}
+	
+	function playEffect2(num){
+		effectAudio[30].pause();
+		effectAudio[30].currentTime = 0;
+		effectAudio[30].src = "media/" + effectSounds[num];
+		effectAudio[30].play();
+	}
+	
+	function playEffect3(num){
+		effectAudio[31].pause();
+		effectAudio[31].currentTime = 0;
+		effectAudio[31].src = "media/" + effectSounds[num];
+		effectAudio[31].play();
+	}
+	
+	function playEffect4(num){
+		effectAudio[32].pause();
+		effectAudio[32].currentTime = 0;
+		effectAudio[32].volume = 0.4;
+		effectAudio[32].src = "media/" + effectSounds[num];
+		effectAudio[32].play();
 	}
 	
 	function playEffectLoud(num){
@@ -641,6 +679,7 @@ app.sound = (function(){
 		effectAudio[26].pause();
 		effectAudio[25].pause();
 		effectAudio[24].pause();
+		effectAudio[31].pause();
 	}
 	
 	function pauseEffect18(){
@@ -649,6 +688,7 @@ app.sound = (function(){
 		effectAudio[6].pause();
 		effectAudio[4].pause();
 		effectAudio[2].pause();
+		effectAudio[32].pause();
 	}
 	
 	function pauseEffectVegeta(){
@@ -657,6 +697,7 @@ app.sound = (function(){
 		effectAudio[7].pause();
 		effectAudio[5].pause();
 		effectAudio[3].pause();
+		effectAudio[30].pause();
 	}
 	
 	function resumeEffect(){
@@ -683,6 +724,10 @@ app.sound = (function(){
 		effectAudio[23].volume = 1;
 		effectAudio[23].src = "media/" + backgroundSounds[num];
 		effectAudio[23].play();
+	}
+	
+	function reduceBackground(){
+		effectAudio[23].volume -= .1;
 	}
 	
 	function stopEffect(){
@@ -812,52 +857,81 @@ app.sound = (function(){
 	}
 	
 	function playButton(num){
-		effectAudio[29].pause();
-		effectAudio[29].currentTime = 0;
-		effectAudio[29].src = "media/" + effectSounds[num];
-		effectAudio[29].play();
+		if(effectAudio[29].currentTime < effectAudio[29].duration && !effectAudio[29].paused){
+			
+		} else {
+			effectAudio[29].pause();
+			effectAudio[29].currentTime = 0;
+			effectAudio[29].src = "media/" + effectSounds[num];
+			effectAudio[29].play();
+		}
 	}
 	
 	function playTaunt1(num){
-		effectAudio[12].pause();
-		effectAudio[12].currentTime = 0;
-		effectAudio[12].src = "media/" + voiceSounds[num];
-		effectAudio[12].play();
+		if(effectAudio[12].currentTime < effectAudio[12].duration && !effectAudio[12].paused){
+			
+		} else {
+			effectAudio[12].pause();
+			effectAudio[12].currentTime = 0;
+			effectAudio[12].src = "media/" + voiceSounds[num];
+			effectAudio[12].play();
+		}
 	}
 	
 	function playTaunt2(num){
-		effectAudio[13].pause();
-		effectAudio[13].currentTime = 0;
-		effectAudio[13].src = "media/" + voiceSounds[num];
-		effectAudio[13].play();
+		if(effectAudio[13].currentTime < effectAudio[13].duration && !effectAudio[13].paused){
+			
+		} else {
+			effectAudio[13].pause();
+			effectAudio[13].currentTime = 0;
+			effectAudio[13].src = "media/" + voiceSounds[num];
+			effectAudio[13].play();
+		}
 	}
 	
 	function playTaunt3(num){
-		effectAudio[14].pause();
-		effectAudio[14].currentTime = 0;
-		effectAudio[14].src = "media/" + voiceSounds[num];
-		effectAudio[14].play();
+		if(effectAudio[14].currentTime < effectAudio[14].duration && !effectAudio[14].paused){
+			
+		} else {
+			effectAudio[14].pause();
+			effectAudio[14].currentTime = 0;
+			effectAudio[14].src = "media/" + voiceSounds[num];
+			effectAudio[14].play();
+		}
 	}
 	
 	function playTaunt4(num){
-		effectAudio[15].pause();
-		effectAudio[15].currentTime = 0;
-		effectAudio[15].src = "media/" + voiceSoundsPiccolo[num];
-		effectAudio[15].play();
+		if(effectAudio[15].currentTime < effectAudio[15].duration && !effectAudio[15].paused){
+			
+		} else {
+			effectAudio[15].pause();
+			effectAudio[15].currentTime = 0;
+			effectAudio[15].src = "media/" + voiceSoundsPiccolo[num];
+			effectAudio[15].play();
+		}
 	}
 	
 	function playTaunt5(num){
-		effectAudio[16].pause();
-		effectAudio[16].currentTime = 0;
-		effectAudio[16].src = "media/" + voiceSounds17[num];
-		effectAudio[16].play();
+		if(effectAudio[16].currentTime < effectAudio[16].duration && !effectAudio[16].paused){
+			
+		} else {
+			effectAudio[16].pause();
+			effectAudio[16].currentTime = 0;
+			effectAudio[16].src = "media/" + voiceSounds17[num];
+			effectAudio[16].play();
+		}
+		
 	}
 	
 	function playTaunt6(num){
-		effectAudio[17].pause();
-		effectAudio[17].currentTime = 0;
-		effectAudio[17].src = "media/" + voiceSoundsGohan[num];
-		effectAudio[17].play();
+		if(effectAudio[17].currentTime < effectAudio[17].duration && !effectAudio[17].paused){
+			
+		} else {
+			effectAudio[17].pause();
+			effectAudio[17].currentTime = 0;
+			effectAudio[17].src = "media/" + voiceSoundsGohan[num];
+			effectAudio[17].play();
+		}
 	}
 	
 	function playVoice1(num){
@@ -898,24 +972,36 @@ app.sound = (function(){
 	}
 	
 	function playTaunt7(num){
-		effectAudio[20].pause();
-		effectAudio[20].currentTime = 0;
-		effectAudio[20].src = "media/" + voiceSoundsTien[num];
-		effectAudio[20].play();
+		if(effectAudio[20].currentTime < effectAudio[20].duration && !effectAudio[20].paused){
+			
+		} else {
+			effectAudio[20].pause();
+			effectAudio[20].currentTime = 0;
+			effectAudio[20].src = "media/" + voiceSoundsTien[num];
+			effectAudio[20].play();
+		}
 	}
 	
 	function playTaunt8(num){
-		effectAudio[21].pause();
-		effectAudio[21].currentTime = 0;
-		effectAudio[21].src = "media/" + voiceSoundsKrillin[num];
-		effectAudio[21].play();
+		if(effectAudio[21].currentTime < effectAudio[21].duration && !effectAudio[21].paused){
+			
+		} else {
+			effectAudio[21].pause();
+			effectAudio[21].currentTime = 0;
+			effectAudio[21].src = "media/" + voiceSoundsKrillin[num];
+			effectAudio[21].play();
+		}
 	}
 	
 	function playTaunt9(num){
-		effectAudio[22].pause();
-		effectAudio[22].currentTime = 0;
-		effectAudio[22].src = "media/" + voiceSoundsOthers[num];
-		effectAudio[22].play();
+		if(effectAudio[22].currentTime < effectAudio[22].duration && !effectAudio[22].paused){
+			
+		} else {
+			effectAudio[22].pause();
+			effectAudio[22].currentTime = 0;
+			effectAudio[22].src = "media/" + voiceSoundsOthers[num];
+			effectAudio[22].play();
+		}
 	}
 	
 	
@@ -1111,6 +1197,9 @@ app.sound = (function(){
 		stopBGAudio: stopBGAudio,
 		playIntro: playIntro,
 		playEffect: playEffect,
+		playEffect2: playEffect2,
+		playEffect3: playEffect3,
+		playEffect4: playEffect4,
 		playEffectLoud: playEffectLoud,
 		rewindEffect: rewindEffect,
 		pauseEffect: pauseEffect,
@@ -1137,6 +1226,7 @@ app.sound = (function(){
 		playSpecialReaction3: playSpecialReaction3,
 		playButton: playButton,
 		playBackground: playBackground,
+		reduceBackground: reduceBackground,
 		playBackgroundLoud: playBackgroundLoud,
 		resumeBackground: resumeBackground,
 		pauseBackground: pauseBackground,

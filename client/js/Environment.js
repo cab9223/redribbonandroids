@@ -13,20 +13,32 @@ app.Environment = (function(){
 		this.movingSmoke3 = 6400;
 		this.moreSmoke = false;
 		this.alpha = 0;
-		this.fade = 80;
+		this.fade = 90;
 		this.fade2 = 100;
 		this.fade3 = 100;
 		this.fade4 = 0;
+		this.fade6 = 3;
 		this.fadeInSlow = false;
 		this.fadeInFast = false;
 		this.fadeOut = false;
+		this.lesserFlash = false;
+		this.lesserFlashBlue = false;
 		this.superFlash = false;
 		this.decay = false;
+		this.decay2 = false;
 		this.reverse = false;
 		this.reverse2 = false;
+		this.reverse3 = false;
 		this.flash = false;
 		this.reposition = false;
 		this.colorSky = false;
+		
+		//this.flashBlue = false;
+		
+		this.whenChange = Math.round(getRandom(200,400));
+		this.smokeSpeedActive = 15;
+		this.smokeSpeedChanging = 15;
+		this.changeSpeed = 0;
 		
 		this.supportActive = false;
 		
@@ -74,6 +86,10 @@ app.Environment = (function(){
 		this.smogAlpha = [];
 		this.smogAngle = [];
 		this.smogTarget = -1;
+		
+		this.init = [];
+		this.maxParts = 50;
+		this.particles = [];
 		
 		this.yajirobe = false;
 		this.yajirobeTimer = 0;
@@ -714,9 +730,20 @@ app.Environment = (function(){
 				this.alpha = this.alpha - 1;
 			}
 		} else if(app.main.gameState == app.main.GAME_STATE.DEFAULT){
-			this.movingSmoke = this.movingSmoke - 15;
+			this.changeSpeed++;
+			if(this.changeSpeed >= this.whenChange && app.main.scene == false){
+				this.whenChange = Math.round(getRandom(200,400));
+				this.smokeSpeedChanging = Math.round(getRandom(10,30));
+				this.changeSpeed = 0;
+			}
+			if(this.smokeSpeedChanging < this.smokeSpeedActive){
+				this.smokeSpeedActive--;
+			} else if(this.smokeSpeedChanging > this.smokeSpeedActive){
+				this.smokeSpeedActive++;
+			}
+			this.movingSmoke = this.movingSmoke - this.smokeSpeedActive;
 			this.movingSmoke2 = this.movingSmoke2 - 3;
-			this.movingSmoke3 = this.movingSmoke3 - 15;
+			this.movingSmoke3 = this.movingSmoke3 - this.smokeSpeedActive;
 			if(app.main.android17.city == false){
 				if(this.alpha > 45 && this.reverse == false){
 					this.reverse = true;
@@ -801,18 +828,29 @@ app.Environment = (function(){
 			//console.log("SHAKEN@#@#@#@#@#@#@#@");
 		}
 		
-		if(this.yajChance > .99){
+		if(this.yajChance > .95){
 			this.yajirobe = true;
 			this.yajChance = 0;
 		}
 		
 		
 		if(this.flash == false) {
-			this.fade = 80;
+			
 		} else {
 			this.fade = this.fade - 10;
 			if(this.fade <= 0){
+				this.fade = 90;
 				this.flash = false;
+			}
+		}
+		
+		if(this.flashBlue == false) {
+			
+		} else {
+			this.fade = this.fade - 10;
+			if(this.fade <= 0){
+				this.fade = 90;
+				this.flashBlue = false;
 			}
 		}
 		
@@ -833,6 +871,46 @@ app.Environment = (function(){
 			if(this.fade2 <= 0){
 				this.superFlash = false;
 				this.decay = false;
+			}
+		}
+		
+		if(this.lesserFlash == false) {
+			
+		} else if(this.decay2 == false){
+			if(this.reverse3 == false){
+				this.fade6 = 2;
+				this.reverse3 = true;
+			} else if(this.reverse3 == true){
+				this.fade6 = 3;
+				this.reverse3 = false
+			}
+		} else if(this.decay2 == true){
+			this.fade6 = 0;
+			if(this.fade6 <= 0){
+				this.fade6 = 3;
+				this.reverse3 = false;
+				this.lesserFlash = false;
+				this.decay2 = false;
+			}
+		}
+		
+		if(this.lesserFlashBlue == false) {
+			
+		} else if(this.decay2 == false){
+			if(this.reverse3 == false){
+				this.fade6 = 2;
+				this.reverse3 = true;
+			} else if(this.reverse3 == true){
+				this.fade6 = 3;
+				this.reverse3 = false
+			}
+		} else if(this.decay2 == true){
+			this.fade6 = 0;
+			if(this.fade6 <= 0){
+				this.lesserFlashBlue = false;
+				this.decay2 = false;
+				this.fade6 = 3;
+				this.reverse3 = false;
 			}
 		}
 		
@@ -889,7 +967,7 @@ app.Environment = (function(){
 				
 				ctx.save();
 				ctx.scale(-1,1);
-				ctx.drawImage(this.yajirobe1,(this.yajirobePosition + 685) * -1,this.yajirobePosition - 45);
+				ctx.drawImage(this.yajirobe1,(this.yajirobePosition + 385) * -1,this.yajirobePosition - 30);
 				ctx.restore();
 				
 				this.yajirobeTimer += 1;
@@ -1004,6 +1082,98 @@ app.Environment = (function(){
 			} else {
 				ctx.drawImage(this.cityForeground2,0,0);
 			}
+			
+	
+	
+	if(app.main.vegeta.gohan == true && app.main.vegeta.superForm == false && this.buildingActive == false && app.main.endingState == false && app.main.specialScene == false){
+	//app.main.sound.playIntro(56); //rain sound
+	ctx.save();	
+	ctx.strokeStyle = 'rgba(174,194,224,0.5)';
+    ctx.lineWidth = 2;
+    ctx.lineCap = 'round';
+    
+	this.maxParts = 25;
+    
+    for(var a = 0; a < this.maxParts; a++) {
+      this.init.push({
+        x: Math.random() * 1224,
+        y: Math.random() * 740,
+        l: Math.random() * 1,
+        xs: - (this.smokeSpeedActive) + Math.random() * 4 + 4,
+        ys: Math.random() * 10 + 75
+      })
+    }
+	
+    for(var b = 0; b < this.maxParts; b++) {
+      this.particles[b] = this.init[b];
+    }
+    
+    for(var c = 0; c < this.particles.length; c++) {
+		ctx.save();
+        var p = this.particles[c];
+        ctx.beginPath();
+        ctx.moveTo(p.x, p.y);
+        ctx.lineTo(p.x + p.l * p.xs, p.y + p.l * p.ys);
+        ctx.stroke();
+		ctx.restore();
+    }
+    
+      for(var b = 0; b < this.particles.length; b++) {
+        var p = this.particles[b];
+        p.x += p.xs;
+        p.y += p.ys;
+        if(p.x > 1224 || p.y > 740) {
+          p.x = Math.random() * 1224;
+          p.y = -15;
+        }
+      }
+    
+	ctx.restore();
+	} else if(app.main.vegeta.gohan == true && app.main.vegeta.superForm == true && app.main.endingState == false && app.main.specialScene == false){
+	//app.main.sound.playIntro(56); //rain sound
+	ctx.save();	
+	ctx.strokeStyle = 'rgba(174,194,224,0.5)';
+    ctx.lineWidth = 3;
+    ctx.lineCap = 'round';
+    
+	this.maxParts = 175;
+    
+    for(var a = 0; a < this.maxParts; a++) {
+      this.init.push({
+        x: Math.random() * 1224,
+        y: Math.random() * 740,
+        l: Math.random() * 1,
+        xs:-(this.smokeSpeedActive) + Math.random() * 6 + 5,
+        ys: Math.random() * 10 + 225
+      })
+    }
+	
+    for(var b = 0; b < this.maxParts; b++) {
+      this.particles[b] = this.init[b];
+    }
+    
+    for(var c = 0; c < this.particles.length; c++) {
+		ctx.save();
+        var p = this.particles[c];
+        ctx.beginPath();
+        ctx.moveTo(p.x, p.y);
+        ctx.lineTo(p.x + p.l * p.xs, p.y + p.l * p.ys);
+        ctx.stroke();
+		ctx.restore();
+    }
+    
+      for(var b = 0; b < this.particles.length; b++) {
+        var p = this.particles[b];
+        p.x += p.xs;
+        p.y += p.ys;
+        if(p.x > 1224 || p.y > 740) {
+          p.x = Math.random() * 1224;
+          p.y = -15;
+        }
+      }
+    
+	ctx.restore();
+	}
 			
 			
 			//BODY SHADOWS
@@ -1873,7 +2043,7 @@ app.Environment = (function(){
 			if(app.main.scene == false){
 			if(this.geroSpy == false){
 				this.spyChance = Math.random();
-				if(this.spyChance > .98){
+				if(this.spyChance > .99){
 					this.spyTimer = 0;
 					this.spyExit = false;
 					this.geroSpy = true;
@@ -1888,6 +2058,24 @@ app.Environment = (function(){
 			} else if(this.geroSpy == true){
 				if(this.spyExit == true){
 					this.spyTimer++;
+				}
+				
+				if(this.spyLeft == true){
+					this.spyLocation.x = (app.main.vegeta.position.x + 150);
+					if(this.spyExit == false){
+						this.spyLocation.y = ((app.main.vegeta.position.y)/2);
+					}
+					if(app.main.vegeta.right == true || app.main.vegeta.superSpeed == true){
+						this.spyExit = true;
+					}
+				} else if(this.spyRight == true){
+					this.spyLocation.x = (app.main.vegeta.position.x - 150);
+					if(this.spyExit == false){
+						this.spyLocation.y = ((app.main.vegeta.position.y)/2);
+					}
+					if(app.main.vegeta.left == true || app.main.vegeta.superSpeed == true){
+						this.spyExit = true;
+					}
 				}
 				
 				if(this.spyReverse == false){
@@ -1925,17 +2113,7 @@ app.Environment = (function(){
 					this.geroSpy = false;
 				}
 				
-				if(this.spyLeft == true){
-					this.spyLocation.x = (app.main.vegeta.position.x + 150);
-					if(app.main.vegeta.right == true || app.main.vegeta.superSpeed == true){
-						this.spyExit = true;
-					}
-				} else if(this.spyRight == true){
-					this.spyLocation.x = (app.main.vegeta.position.x - 150);
-					if(app.main.vegeta.left == true || app.main.vegeta.superSpeed == true){
-						this.spyExit = true;
-					}
-				}
+				
 				
 			}
 			}
@@ -2008,59 +2186,93 @@ app.Environment = (function(){
 				ctx.restore();
 			}
 		
-	if(app.main.vegeta.gohan == true && app.main.vegeta.superForm == true && app.main.endingState == false && app.main.specialScene == false){
+	if(app.main.vegeta.gohan == true && app.main.vegeta.superForm == false && this.buildingActive == false && app.main.endingState == false && app.main.specialScene == false){
 	//app.main.sound.playIntro(56); //rain sound
 	ctx.save();	
 	ctx.strokeStyle = 'rgba(174,194,224,0.5)';
     ctx.lineWidth = 2;
     ctx.lineCap = 'round';
     
+	this.maxParts = 25;
     
-    var init = [];
-    var maxParts = 1000;
-    for(var a = 0; a < maxParts; a++) {
-      init.push({
-        x: Math.random() * 1024,
+    for(var a = 0; a < this.maxParts; a++) {
+      this.init.push({
+        x: Math.random() * 1224,
         y: Math.random() * 740,
         l: Math.random() * 1,
-        xs: -4 + Math.random() * 4 + 2,
-        ys: Math.random() * 10 + 10
+        xs:-(this.smokeSpeedActive) + Math.random() * 4 + 4,
+        ys: Math.random() * 10 + 75
       })
     }
-    
-    var particles = [];
-    for(var b = 0; b < maxParts; b++) {
-      particles[b] = init[b];
+	
+    for(var b = 0; b < this.maxParts; b++) {
+      this.particles[b] = this.init[b];
     }
     
-    function draw() {
-	
-      //ctx.clearRect(0, 0, 1024, 768);
-      for(var c = 0; c < particles.length; c++) {
+    for(var c = 0; c < this.particles.length; c++) {
 		ctx.save();
-        var p = particles[c];
+        var p = this.particles[c];
         ctx.beginPath();
         ctx.moveTo(p.x, p.y);
         ctx.lineTo(p.x + p.l * p.xs, p.y + p.l * p.ys);
         ctx.stroke();
 		ctx.restore();
-      }
-      move();
     }
     
-    function move() {
-      for(var b = 0; b < particles.length; b++) {
-        var p = particles[b];
+      for(var b = 0; b < this.particles.length; b++) {
+        var p = this.particles[b];
         p.x += p.xs;
         p.y += p.ys;
-        if(p.x > 1024 || p.y > 740) {
-          p.x = Math.random() * 1024;
-          p.y = -20;
+        if(p.x > 1224 || p.y > 740) {
+          p.x = Math.random() * 1224;
+          p.y = -15;
         }
       }
+    
+	ctx.restore();
+	} else if(app.main.vegeta.gohan == true && app.main.vegeta.superForm == true && app.main.endingState == false && app.main.specialScene == false){
+	//app.main.sound.playIntro(56); //rain sound
+	ctx.save();	
+	ctx.strokeStyle = 'rgba(174,194,224,0.5)';
+    ctx.lineWidth = 3;
+    ctx.lineCap = 'round';
+    
+	this.maxParts = 125;
+    
+    for(var a = 0; a < this.maxParts; a++) {
+      this.init.push({
+        x: Math.random() * 1224,
+        y: Math.random() * 740,
+        l: Math.random() * 1,
+        xs:-(this.smokeSpeedActive) + Math.random() * 4 + 5,
+        ys: Math.random() * 10 + 225
+      })
+    }
+	
+    for(var b = 0; b < this.maxParts; b++) {
+      this.particles[b] = this.init[b];
     }
     
-    draw();
+    for(var c = 0; c < this.particles.length; c++) {
+		ctx.save();
+        var p = this.particles[c];
+        ctx.beginPath();
+        ctx.moveTo(p.x, p.y);
+        ctx.lineTo(p.x + p.l * p.xs, p.y + p.l * p.ys);
+        ctx.stroke();
+		ctx.restore();
+    }
+    
+      for(var b = 0; b < this.particles.length; b++) {
+        var p = this.particles[b];
+        p.x += p.xs;
+        p.y += p.ys;
+        if(p.x > 1224 || p.y > 740) {
+          p.x = Math.random() * 1224;
+          p.y = -15;
+        }
+      }
+    
 	ctx.restore();
 	}
 			
@@ -2376,7 +2588,7 @@ app.Environment = (function(){
 			ctx.save();
 			ctx.globalAlpha = this.alpha/100;
 			ctx.fillStyle = "black";
-			ctx.fillRect(0,295,1024,300);
+			ctx.fillRect(0,310,1024,285);
 			ctx.restore();
 			/*
 			ctx.save();
@@ -2390,29 +2602,31 @@ app.Environment = (function(){
 		if(app.main.gameState == app.main.GAME_STATE.DEFAULT){
 			
 			ctx.save();
-			if(this.movingSmoke < -6800){
+			if(this.movingSmoke < -7000){
 				this.movingSmoke = 6400;
 			}
 			if(this.movingSmoke2 < -4000){
 				this.movingSmoke2 = 1200;
 			}
 			
-			if(this.movingSmoke3 < -6800){
+			if(this.movingSmoke3 < -7000){
 				this.movingSmoke3 = 6400;
 			}
-			if((app.main.android17.city == false && app.main.scene == false) || (app.main.vegeta.gohan == false && app.main.vegeta.superForm == false)){
+			if((app.main.android17.city == false && (app.main.scene == false || app.main.sceneNum == 1)) && (app.main.battle != 3 || app.main.vegeta.superForm == false)){
 				if(this.currentSmoke > 40){
 					this.currentSmoke--;
 				}
 				ctx.globalAlpha = (this.currentSmoke / 100);
 			} else {
-				if(this.currentSmoke < 55){
+				if(this.currentSmoke < 65 && app.main.battle == 3){
+					this.currentSmoke++;
+				} else if(this.currentSmoke < 55){
 					this.currentSmoke++;
 				}
 				ctx.globalAlpha = (this.currentSmoke / 100);
 			}
 			ctx.drawImage(this.smoke3,this.movingSmoke -150,-850, 6850, 1800);
-			ctx.drawImage(this.smoke3,this.movingSmoke3,-850, 6550, 1800);
+			ctx.drawImage(this.smoke3,this.movingSmoke3,-850, 7050, 1800);
 			ctx.restore();
 		}
 		
@@ -2579,6 +2793,7 @@ app.Environment = (function(){
 		}
 		
 		if(this.flash == true){
+			this.decay2 = true;
 			ctx2.save();
 			ctx2.globalAlpha = this.fade/100;
 			//ctx2.fillStyle = "White";
@@ -2587,10 +2802,36 @@ app.Environment = (function(){
 			ctx2.restore();
 		}
 		
+		if(this.flashBlue == true){
+			this.decay2 = true;
+			ctx2.save();
+			ctx2.globalAlpha = this.fade/100;
+			//ctx2.fillStyle = "White";
+			ctx2.fillStyle = "#8C8CEC";
+			ctx2.fillRect(0,0,1024,768);
+			ctx2.restore();
+		}
+		
 		if(this.superFlash == true){
 			ctx2.save();
 			ctx2.globalAlpha = this.fade2/100;
 			ctx2.fillStyle = "#FFFF99";
+			ctx2.fillRect(0,0,1024,768);
+			ctx2.restore();
+		}
+		
+		if(this.lesserFlash == true){
+			ctx2.save();
+			ctx2.globalAlpha = this.fade6/100;
+			ctx2.fillStyle = "#FFFF99";
+			ctx2.fillRect(0,0,1024,768);
+			ctx2.restore();
+		}
+		
+		if(this.lesserFlashBlue == true){
+			ctx2.save();
+			ctx2.globalAlpha = this.fade6/100;
+			ctx2.fillStyle = "#8C8CEC";
 			ctx2.fillRect(0,0,1024,768);
 			ctx2.restore();
 		}

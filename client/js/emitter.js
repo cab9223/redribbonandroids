@@ -2,20 +2,19 @@
 "use strict";
 var app = app || {};
 
-app.Emitter=function(){
+app.Emitter = function(){
 
 	function Emitter(){
-		// public
 		this.numParticles = 25;
 		this.useCircles = true;
 		this.useCircles2 = false;
 		this.useSquares = false;
 		this.xRange = 4;
 		this.yRange = 4;
-		this.minXspeed = 5;
-		this.maxXspeed = 20;
-		this.minYspeed = -1;
-		this.maxYspeed = 1;
+		this.minXspeed = 0;
+		this.maxXspeed = 0;
+		this.minYspeed = 0;
+		this.maxYspeed = 0;
 		this.startRadius = 8;
 		this.expansionRate = 0.1;
 		this.decayRate = 4.5;
@@ -23,8 +22,7 @@ app.Emitter=function(){
 		this.red = 0;
 		this.green = 0;
 		this.blue = 0;
-		
-		// private
+		this.downUpBlast = false;
 		this._particles = undefined;
 	};
 	
@@ -77,7 +75,11 @@ app.Emitter=function(){
 					this.blue + "," + alpha + ")"; 
 			
 					ctx.beginPath();
-					ctx.arc(p.x, 0, p.r, Math.PI * 2, false);
+					if(this.downUpBlast == false){
+						ctx.arc(p.x, 0, p.r, Math.PI * 2, false);
+					} else {
+						ctx.arc(0, p.y, p.r, Math.PI * 2, false);
+					}
 					ctx.closePath();
 					ctx.fill();
 				}
