@@ -439,6 +439,7 @@ app.images16 = Object.freeze({
 	smog14: "images/smog14.png",
 	smog15: "images/smog15.png",
 	smog16: "images/smog16.png",
+	detect1: "images/Detect1.png",
  });
  
  //UI IMAGES
@@ -663,6 +664,7 @@ window.onload = function(){
 	 {id: "smog14", src:app.environment.smog14},
 	 {id: "smog15", src:app.environment.smog15},
 	 {id: "smog16", src:app.environment.smog16},
+	 {id: "detect1", src:app.environment.detect1},
 	 
 	
 	 //Interface LOADING

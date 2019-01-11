@@ -627,6 +627,71 @@ app.Android18 = (function(){
 			this.blastRelease = false;
 		}
 		
+		//Checks for behind
+		if(this.left == true && app.main.vegeta.left == true && this.position.x > app.main.vegeta.position.x){
+			this.behind = true;
+		} else if(this.left == false && app.main.vegeta.left == false && this.position.x < app.main.vegeta.position.x){
+			this.behind = true;
+		} else {
+			this.behind = false;
+		}
+		
+		//Tracking
+		if(this.position.x + 250 > app.main.vegeta.position.x && this.position.x - 250 < app.main.vegeta.position.x && this.position.y + 150 > app.main.vegeta.position.y && this.position.y - 150 < app.main.vegeta.position.y && app.main.vegeta.position.x > app.main.vegeta.LEFTWALL.x && app.main.vegeta.position.x < app.main.vegeta.RIGHTWALL.x){
+		
+		if((this.basic == true) && this.blasting == false && this.stun == false && this.end == false){
+			if(this.right == true){
+				this.velocity.x += 15;
+				this.decel.x += 15;
+			} else if(this.left == true){
+				this.velocity.x -= 15;
+				this.decel.x -= 15;
+			}
+			if(this.air == true){
+			if(this.position.y < app.main.vegeta.position.y){
+				this.position.y += 25;
+			} else if(this.position.y > app.main.vegeta.position.y){
+				this.position.y -= 25;
+			}
+			}
+		}
+		
+		if((this.punching == true || this.kicking == true) && this.air == false && this.blasting == false && this.stun == false && this.end == false){
+			if(this.right == true){
+				this.velocity.x += 4;
+				this.decel.x += 4;
+			} else if(this.left == true){
+				this.velocity.x -= 4;
+				this.decel.x -= 4;
+			}
+		} else if((this.air == true && this.kicking == true) && this.blasting == false && this.stun == false && this.end == false){
+			if(this.right == true){
+				this.velocity.x += 10;
+				this.decel.x += 10;
+			} else if(this.left == true){
+				this.velocity.x -= 10;
+				this.decel.x -= 10;
+			}
+		}
+		
+		}
+		
+		
+		if(this.powerMove == true && this.blastRelease == false && app.main.vegeta.superSpeed == false && this.behind == false && this.position.y + 150 > app.main.vegeta.position.y && this.position.y - 150 < app.main.vegeta.position.y){
+			if(this.air == true && this.position.y < this.GROUND.y - 10 && this.position.y > this.SKYTOP.y + 10){
+			//this.down = false;
+			this.hover = false;
+			if(this.position.y < app.main.vegeta.position.y - 15){
+				this.position.y += 10;
+				//this.down = true;
+			} else if(this.position.y > app.main.vegeta.position.y + 15){
+				this.position.y -= 10;
+			}
+			}
+		}
+		
+		
+		
 		if(this.landed == true){
 		  this.slow = false;
 		  this.fast = false;
@@ -663,19 +728,10 @@ app.Android18 = (function(){
 		}
 		
 		
-		//Checks for behind
-		if(this.left == true && app.main.vegeta.left == true && this.position.x > app.main.vegeta.position.x){
-			this.behind = true;
-		} else if(this.left == false && app.main.vegeta.left == false && this.position.x < app.main.vegeta.position.x){
-			this.behind = true;
-		} else {
-			this.behind = false;
-		}
-		
 		
 		//HOVER
 		if(app.main.scene == false || app.main.gameState == app.main.GAME_STATE.TUTORIAL){
-		if(this.air == true && this.down == false && this.position.y > this.SKYTOP.y && this.up == false && this.hit == false && this.hardHit == false && this.end == false && app.main.vegeta.end == false && ((hardAttackHitTest(app.main.android18,app.main.vegeta) && this.hardHit == false) || this.blasting == true || this.powerMove == true || this.taunting == true || (this.superSpeed == true && hardAttackHitTest(app.main.android18,app.main.vegeta)) || this.blocking == true || this.attacking == true)){ //Hover
+		if(this.air == true && this.down == false && this.position.y > this.SKYTOP.y && this.up == false && this.hit == false && this.hardHit == false && this.end == false && app.main.vegeta.end == false && ((hardAttackHitTest(app.main.android18,app.main.vegeta) && this.hardHit == false && this.powerMove == false) || this.blasting == true || this.taunting == true || (this.superSpeed == true && hardAttackHitTest(app.main.android18,app.main.vegeta)) || this.blocking == true || this.attacking == true)){ //Hover
 			this.hover = true;
 			this.hoverTimer = 10;
 		} else {
@@ -714,7 +770,7 @@ app.Android18 = (function(){
 		}
 		
 		
-		if((this.hover == true || this.hoverTimer > 0) && this.up == false && this.down == false){
+		if((this.hover == true || this.hoverTimer > 0) && this.up == false && this.down == false && this.powerMove == false){
 			this.hoverCounter++;
 			this.hoverTimer--;
 			if((hardAttackHitTest(app.main.android18,app.main.vegeta)) && this.down == false){

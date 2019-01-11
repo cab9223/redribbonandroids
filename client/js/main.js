@@ -1760,6 +1760,7 @@ app.main = {
 					//HIT Android18
 					if(this.blasts[i].exploding == false && (attackHitTestBlast(this.blasts[i], this.android18) == true || (((((hardAttackHitTest(this.vegeta, this.android18) == true  && this.blasts[i].type != 5)&& this.android18.behind == false) && this.blasts[i].blastUser != 0 && this.blasts[i].blastUser != 4 && this.blasts[i].blastUser != 5 && this.blasts[i].blastUser != 6) || (hardAttackHitTest(this.android17, this.android18) == true && this.blasts[i].blastUser == 6)) && this.blasts[i].lifetime < 2 && (this.blasts[i].type != 5 || (this.blasts[i].moving == true && this.blasts[i].triggerState == 0)))) && this.blasts[i].activated == true && this.android18.superSpeed == false && this.blasts[i].blastUser != 0 && (this.blasts[i].blastUser != 6 || this.DD == false) && (this.blasts[i].blastUser != 6 || this.together == false || this.blasts[i].lifetime > 3)){
 						if(this.blasts[i].type == 0 && (this.blasts[i].lifetime > 1 || this.android18.behind == false)){
+							if(this.android18.attacking == false || this.android18.blasting == true){
 							if((hardAttackHitTest(this.vegeta, this.android18) == true && this.blasts[i].lifetime < 2 && this.blasts[i].blastUser != 0) && this.android18.behind == false){
 								this.pointBlank = true;
 								this.blasts[i].position.x = this.android18.position.x;
@@ -1804,6 +1805,19 @@ app.main = {
 							}
 
 							
+							}
+							} else {
+								this.blasts[i].blastUser = 0;
+								this.blasts[i].lifetime = 0;
+								this.blasts[i].moving = true;
+								this.sound.playIntro(80);
+								if(this.blasts[i].dirLeft == true){
+									this.blasts[i].dirLeft = false;
+								} else {
+									this.blasts[i].dirLeft = true;
+								}
+								
+								
 							}
 						} else if(this.blasts[i].type == 1){
 							if(hardAttackHitTest(this.vegeta, this.android18) == true && this.android18.behind == false){
@@ -1951,6 +1965,7 @@ app.main = {
 							}
 							this.environment.flash = true;
 						} else if(this.blasts[i].type == 5 && this.blasts[i].blastUser != 6){
+							if(this.android18.attacking == false || this.android18.blasting == true){
 							if(this.android18.fieldOn == false){
 							this.android18.punched = false;
 							if(this.IB == true && this.android18.blocking == true){
@@ -1989,6 +2004,19 @@ app.main = {
 								this.blasts[i].exploding = true;
 							} else {
 								this.blasts[i].exploding = true;
+							}
+							} else {
+								this.blasts[i].blastUser = 0;
+								this.blasts[i].lifetime = 0;
+								this.blasts[i].moving = true;
+								this.sound.playIntro(80);
+								if(this.blasts[i].dirLeft == true){
+									this.blasts[i].dirLeft = false;
+								} else {
+									this.blasts[i].dirLeft = true;
+								}
+								
+								
 							}
 							//this.environment.flash = true;
 						} else if(this.blasts[i].type == 6 && this.android18.behind == false){
@@ -8524,8 +8552,8 @@ app.main = {
 				this.android17.encounter = true;
 				this.aiChoice4 = .96;
 				this.android17.decisionTimer = 0; */
-				//this.vegeta.endurance = 1;
-				//this.vegeta.health = 1;
+				this.vegeta.endurance = 1;
+				this.vegeta.health = 1;
 				/* if(this.battle != 2){
 					this.android17.hurtBlasting = true;
 				} else {

@@ -168,3 +168,25 @@ function attackHitTestSmog(attackPosition, attackSize){
 	}
 }
 
+//Enemy SMOG EFFECT
+function hitTestSmog(attackPosition, attackSize){
+	/* app.main.ctx.save();
+	app.main.ctx.translate(obj1.attackPosition.x,obj1.attackPosition.y);
+	app.main.ctx.fillStyle = "Red";
+	app.main.ctx.fillRect(0,0,obj1.attackSize.x, obj1.attackSize.y);
+	app.main.ctx.restore();   */
+	for (var i = 0; i < app.main.environment.smogCount;i++){
+		if (attackPosition.x + 35 < app.main.environment.smogPos[i].x + app.main.environment.smogSize[i].x &&
+			attackPosition.x + 35 + attackSize.x - 70 > app.main.environment.smogPos[i].x &&
+			attackPosition.y + 35 < app.main.environment.smogPos[i].y + app.main.environment.smogSize[i].y &&
+			attackSize.y - 70 + attackPosition.y + 35 > app.main.environment.smogPos[i].y) {
+				//app.main.environment.smogTarget = i;
+				if(app.main.environment.smogAlpha[i] > .8){
+					return true;
+				} else {
+					return false;
+				}
+		}
+	}
+}
+

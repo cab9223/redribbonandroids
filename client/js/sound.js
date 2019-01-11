@@ -96,6 +96,7 @@ app.sound = (function(){
 	"newBlastFire1.wav",	//77
 	"swoophit.wav",			//78
 	"Electronic.wav",		//79
+	"reflect.wav",			//80
 	];
 	var voiceSounds = [ //Vegeta and Android 18
 	"I1.wav", 			//0
@@ -552,7 +553,7 @@ app.sound = (function(){
 		effectAudio[22] = document.querySelector("#effectAudio22");
 		effectAudio[22].volume = 0.7;
 		effectAudio[23] = document.querySelector("#effectAudio23");
-		effectAudio[23].volume = 0.8;
+		effectAudio[23].volume = 0.9;
 		effectAudio[24] = document.querySelector("#effectAudio24");
 		effectAudio[24].volume = 0.2;
 		effectAudio[25] = document.querySelector("#effectAudio25");

@@ -2814,6 +2814,7 @@ app.Vegeta = (function(){
 		
 		if(this.vanish == false && this.vegeta == true){
 		//NON MOVING DRAWS
+		
 		ctx.save();
 		ctx.scale(1,.9);
 		if(this.cinematic == true){

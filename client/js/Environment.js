@@ -124,6 +124,15 @@ app.Environment = (function(){
 		this.characterCounter = 0;
 		this.tele16 = false;
 		
+		this.detector = true;
+		this.detectorCount = 0;
+		this.detectorRotate = 0;
+		this.detectorAlpha = 1;
+		this.detectorChange = false;
+		this.detectorRandom1 = getRandom(50,100);
+		this.detectorRandom2 = getRandom(100,150);
+		this.detectorPosition = new Victor(0,0);
+		
 		this.buildingActive = false;
 		this.fallingBuilding = 0;
 		
@@ -462,6 +471,10 @@ app.Environment = (function(){
 		image = new Image();
 		image.src =  app.environment.smog16;
 		this.smog16 = image;
+		
+		image = new Image();
+		image.src =  app.environment.detect1;
+		this.detect1 = image;
 		
 		image = new Image();
 		image.src =  app.images17.stance;
@@ -2789,6 +2802,51 @@ app.Environment = (function(){
 			} else {
 				this.darkCount = 0;
 				this.dark = false;
+			}
+		}
+		
+		if(this.detector == true && attackHitTest(app.main.vegeta, app.main.android18) != true && app.main.android18.dead == false && app.main.targetHidden == false && app.main.vegeta.superSpeed == false && app.main.vegeta.vanish == false && app.main.vegeta.end == false){
+			if(hitTestSmog(app.main.vegeta.position, app.main.vegeta.size) != true){
+	
+			this.detectorPosition.x = app.main.vegeta.position.x - 50;
+			this.detectorPosition.y = app.main.vegeta.position.y - 10;
+			
+			this.detectorCount += 1;
+			
+			if(this.detectorAlpha > 60 && this.detectorChange == false){
+				this.detectorChange = true;
+			} else if(this.detectorAlpha < 15 && this.detectorChange == true){
+				this.detectorChange = false;
+			}
+			
+			if(this.detectorChange == false){
+				this.detectorAlpha += 3;
+			} else {
+				this.detectorAlpha -= 3;
+			}
+			
+			if(this.detectorCount < this.detectorRandom1){
+				this.detectorRotate += 20;
+			} else if(this.detectorCount > (this.detectorRandom1 -1) && this.detectorCount < this.detectorRandom2){
+				this.detectorRotate -= 20;
+			} else {
+				this.detectorCount = 0;
+				this.detectorRandom1 = getRandom(50,100);
+				this.detectorRandom2 = getRandom(100,150);
+			}
+			
+			
+			ctx2.save();
+			ctx2.translate(this.detectorPosition.x,this.detectorPosition.y);
+			ctx2.save();
+			ctx2.globalAlpha = this.detectorAlpha/100;
+			ctx2.translate(73,70);
+			ctx2.rotate(this.detectorRotate *(Math.PI/180));
+			ctx2.drawImage(this.detect1,-73,-70, 138, 128);
+				
+			ctx2.restore();
+			ctx2.restore();
+			
 			}
 		}
 		

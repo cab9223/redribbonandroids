@@ -3578,6 +3578,67 @@ app.Android18 = function () {
 			this.blastRelease = false;
 		}
 
+		//Checks for behind
+		if (this.left == true && app.main.vegeta.left == true && this.position.x > app.main.vegeta.position.x) {
+			this.behind = true;
+		} else if (this.left == false && app.main.vegeta.left == false && this.position.x < app.main.vegeta.position.x) {
+			this.behind = true;
+		} else {
+			this.behind = false;
+		}
+
+		//Tracking
+		if (this.position.x + 250 > app.main.vegeta.position.x && this.position.x - 250 < app.main.vegeta.position.x && this.position.y + 150 > app.main.vegeta.position.y && this.position.y - 150 < app.main.vegeta.position.y && app.main.vegeta.position.x > app.main.vegeta.LEFTWALL.x && app.main.vegeta.position.x < app.main.vegeta.RIGHTWALL.x) {
+
+			if (this.basic == true && this.blasting == false && this.stun == false && this.end == false) {
+				if (this.right == true) {
+					this.velocity.x += 15;
+					this.decel.x += 15;
+				} else if (this.left == true) {
+					this.velocity.x -= 15;
+					this.decel.x -= 15;
+				}
+				if (this.air == true) {
+					if (this.position.y < app.main.vegeta.position.y) {
+						this.position.y += 25;
+					} else if (this.position.y > app.main.vegeta.position.y) {
+						this.position.y -= 25;
+					}
+				}
+			}
+
+			if ((this.punching == true || this.kicking == true) && this.air == false && this.blasting == false && this.stun == false && this.end == false) {
+				if (this.right == true) {
+					this.velocity.x += 4;
+					this.decel.x += 4;
+				} else if (this.left == true) {
+					this.velocity.x -= 4;
+					this.decel.x -= 4;
+				}
+			} else if (this.air == true && this.kicking == true && this.blasting == false && this.stun == false && this.end == false) {
+				if (this.right == true) {
+					this.velocity.x += 10;
+					this.decel.x += 10;
+				} else if (this.left == true) {
+					this.velocity.x -= 10;
+					this.decel.x -= 10;
+				}
+			}
+		}
+
+		if (this.powerMove == true && this.blastRelease == false && app.main.vegeta.superSpeed == false && this.behind == false && this.position.y + 150 > app.main.vegeta.position.y && this.position.y - 150 < app.main.vegeta.position.y) {
+			if (this.air == true && this.position.y < this.GROUND.y - 10 && this.position.y > this.SKYTOP.y + 10) {
+				//this.down = false;
+				this.hover = false;
+				if (this.position.y < app.main.vegeta.position.y - 15) {
+					this.position.y += 10;
+					//this.down = true;
+				} else if (this.position.y > app.main.vegeta.position.y + 15) {
+					this.position.y -= 10;
+				}
+			}
+		}
+
 		if (this.landed == true) {
 			this.slow = false;
 			this.fast = false;
@@ -3612,18 +3673,9 @@ app.Android18 = function () {
 			this.alertStart = false;
 		}
 
-		//Checks for behind
-		if (this.left == true && app.main.vegeta.left == true && this.position.x > app.main.vegeta.position.x) {
-			this.behind = true;
-		} else if (this.left == false && app.main.vegeta.left == false && this.position.x < app.main.vegeta.position.x) {
-			this.behind = true;
-		} else {
-			this.behind = false;
-		}
-
 		//HOVER
 		if (app.main.scene == false || app.main.gameState == app.main.GAME_STATE.TUTORIAL) {
-			if (this.air == true && this.down == false && this.position.y > this.SKYTOP.y && this.up == false && this.hit == false && this.hardHit == false && this.end == false && app.main.vegeta.end == false && (hardAttackHitTest(app.main.android18, app.main.vegeta) && this.hardHit == false || this.blasting == true || this.powerMove == true || this.taunting == true || this.superSpeed == true && hardAttackHitTest(app.main.android18, app.main.vegeta) || this.blocking == true || this.attacking == true)) {
+			if (this.air == true && this.down == false && this.position.y > this.SKYTOP.y && this.up == false && this.hit == false && this.hardHit == false && this.end == false && app.main.vegeta.end == false && (hardAttackHitTest(app.main.android18, app.main.vegeta) && this.hardHit == false && this.powerMove == false || this.blasting == true || this.taunting == true || this.superSpeed == true && hardAttackHitTest(app.main.android18, app.main.vegeta) || this.blocking == true || this.attacking == true)) {
 				//Hover
 				this.hover = true;
 				this.hoverTimer = 10;
@@ -3661,7 +3713,7 @@ app.Android18 = function () {
 			this.hoverTimer = 0;
 		}
 
-		if ((this.hover == true || this.hoverTimer > 0) && this.up == false && this.down == false) {
+		if ((this.hover == true || this.hoverTimer > 0) && this.up == false && this.down == false && this.powerMove == false) {
 			this.hoverCounter++;
 			this.hoverTimer--;
 			if (hardAttackHitTest(app.main.android18, app.main.vegeta) && this.down == false) {
@@ -9333,6 +9385,15 @@ app.Environment = function () {
 		this.characterCounter = 0;
 		this.tele16 = false;
 
+		this.detector = true;
+		this.detectorCount = 0;
+		this.detectorRotate = 0;
+		this.detectorAlpha = 1;
+		this.detectorChange = false;
+		this.detectorRandom1 = getRandom(50, 100);
+		this.detectorRandom2 = getRandom(100, 150);
+		this.detectorPosition = new Victor(0, 0);
+
 		this.buildingActive = false;
 		this.fallingBuilding = 0;
 
@@ -9670,6 +9731,10 @@ app.Environment = function () {
 		image = new Image();
 		image.src = app.environment.smog16;
 		this.smog16 = image;
+
+		image = new Image();
+		image.src = app.environment.detect1;
+		this.detect1 = image;
 
 		image = new Image();
 		image.src = app.images17.stance;
@@ -11932,6 +11997,49 @@ app.Environment = function () {
 			}
 		}
 
+		if (this.detector == true && attackHitTest(app.main.vegeta, app.main.android18) != true && app.main.android18.dead == false && app.main.targetHidden == false && app.main.vegeta.superSpeed == false && app.main.vegeta.vanish == false && app.main.vegeta.end == false) {
+			if (hitTestSmog(app.main.vegeta.position, app.main.vegeta.size) != true) {
+
+				this.detectorPosition.x = app.main.vegeta.position.x - 50;
+				this.detectorPosition.y = app.main.vegeta.position.y - 10;
+
+				this.detectorCount += 1;
+
+				if (this.detectorAlpha > 60 && this.detectorChange == false) {
+					this.detectorChange = true;
+				} else if (this.detectorAlpha < 15 && this.detectorChange == true) {
+					this.detectorChange = false;
+				}
+
+				if (this.detectorChange == false) {
+					this.detectorAlpha += 3;
+				} else {
+					this.detectorAlpha -= 3;
+				}
+
+				if (this.detectorCount < this.detectorRandom1) {
+					this.detectorRotate += 20;
+				} else if (this.detectorCount > this.detectorRandom1 - 1 && this.detectorCount < this.detectorRandom2) {
+					this.detectorRotate -= 20;
+				} else {
+					this.detectorCount = 0;
+					this.detectorRandom1 = getRandom(50, 100);
+					this.detectorRandom2 = getRandom(100, 150);
+				}
+
+				ctx2.save();
+				ctx2.translate(this.detectorPosition.x, this.detectorPosition.y);
+				ctx2.save();
+				ctx2.globalAlpha = this.detectorAlpha / 100;
+				ctx2.translate(73, 70);
+				ctx2.rotate(this.detectorRotate * (Math.PI / 180));
+				ctx2.drawImage(this.detect1, -73, -70, 138, 128);
+
+				ctx2.restore();
+				ctx2.restore();
+			}
+		}
+
 		if (this.flash == true) {
 			this.decay2 = true;
 			ctx2.save();
@@ -13840,7 +13948,8 @@ app.environment = Object.freeze({
 			smog13: "images/smog13.png",
 			smog14: "images/smog14.png",
 			smog15: "images/smog15.png",
-			smog16: "images/smog16.png"
+			smog16: "images/smog16.png",
+			detect1: "images/Detect1.png"
 });
 
 //UI IMAGES
@@ -14003,7 +14112,7 @@ window.onload = function () {
 
 			app.queue.loadManifest([
 			//Environment LOADING
-			{ id: "background", src: app.environment.city }, { id: "backgroundTop", src: app.environment.cityTop }, { id: "foreground1", src: app.environment.cityForeground1 }, { id: "foreground2", src: app.environment.cityForeground2 }, { id: "cityDamage1", src: app.environment.cityDamage1 }, { id: "titleBar", src: app.environment.titleBar }, { id: "digitalBackground", src: app.environment.digitalBackground }, { id: "deadPiccolo", src: app.environment.deadPiccolo }, { id: "deadPiccolo2", src: app.environment.deadPiccolo2 }, { id: "deadVegeta2", src: app.environment.deadVegeta2 }, { id: "deadVegeta3", src: app.environment.deadVegeta3 }, { id: "deadVegeta4", src: app.environment.deadVegeta4 }, { id: "building1", src: app.environment.building1 }, { id: "lab1", src: app.environment.lab1 }, { id: "remote2", src: app.environment.remote2 }, { id: "a19Head", src: app.environment.a19Head }, { id: "smoke1", src: app.environment.smoke1 }, { id: "smoke2", src: app.environment.smoke2 }, { id: "smoke3", src: app.environment.smoke3 }, { id: "cape1", src: app.environment.cape1 }, { id: "cape2", src: app.environment.cape2 }, { id: "cape3", src: app.environment.cape3 }, { id: "cape4", src: app.environment.cape4 }, { id: "yamcha1", src: app.environment.yamcha1 }, { id: "yamcha2", src: app.environment.yamcha2 }, { id: "yamcha3", src: app.environment.yamcha3 }, { id: "yamcha4", src: app.environment.yamcha4 }, { id: "yamcha5", src: app.environment.yamcha5 }, { id: "chaotzu1", src: app.environment.chaotzu1 }, { id: "chaotzu2", src: app.environment.chaotzu2 }, { id: "chaotzu3", src: app.environment.chaotzu3 }, { id: "chaotzu4", src: app.environment.chaotzu4 }, { id: "yajirobe1", src: app.environment.yajirobe1 }, { id: "groundDustA1", src: app.environment.groundDustA1 }, { id: "groundDustA2", src: app.environment.groundDustA2 }, { id: "groundDustA3", src: app.environment.groundDustA3 }, { id: "groundDustA4", src: app.environment.groundDustA4 }, { id: "groundDustB1", src: app.environment.groundDustB1 }, { id: "groundDustB2", src: app.environment.groundDustB2 }, { id: "groundDustB3", src: app.environment.groundDustB3 }, { id: "groundDustB4", src: app.environment.groundDustB4 }, { id: "groundDustC1", src: app.environment.groundDustC1 }, { id: "groundDustC2", src: app.environment.groundDustC2 }, { id: "groundDustC3", src: app.environment.groundDustC3 }, { id: "groundDustC4", src: app.environment.groundDustC4 }, { id: "gerosSpy1", src: app.environment.gerosSpy1 }, { id: "smog1", src: app.environment.smog1 }, { id: "smog2", src: app.environment.smog2 }, { id: "smog3", src: app.environment.smog3 }, { id: "smog4", src: app.environment.smog4 }, { id: "smog5", src: app.environment.smog5 }, { id: "smog6", src: app.environment.smog6 }, { id: "smog7", src: app.environment.smog7 }, { id: "smog8", src: app.environment.smog8 }, { id: "smog9", src: app.environment.smog9 }, { id: "smog10", src: app.environment.smog10 }, { id: "smog11", src: app.environment.smog11 }, { id: "smog12", src: app.environment.smog12 }, { id: "smog13", src: app.environment.smog13 }, { id: "smog14", src: app.environment.smog14 }, { id: "smog15", src: app.environment.smog15 }, { id: "smog16", src: app.environment.smog16 },
+			{ id: "background", src: app.environment.city }, { id: "backgroundTop", src: app.environment.cityTop }, { id: "foreground1", src: app.environment.cityForeground1 }, { id: "foreground2", src: app.environment.cityForeground2 }, { id: "cityDamage1", src: app.environment.cityDamage1 }, { id: "titleBar", src: app.environment.titleBar }, { id: "digitalBackground", src: app.environment.digitalBackground }, { id: "deadPiccolo", src: app.environment.deadPiccolo }, { id: "deadPiccolo2", src: app.environment.deadPiccolo2 }, { id: "deadVegeta2", src: app.environment.deadVegeta2 }, { id: "deadVegeta3", src: app.environment.deadVegeta3 }, { id: "deadVegeta4", src: app.environment.deadVegeta4 }, { id: "building1", src: app.environment.building1 }, { id: "lab1", src: app.environment.lab1 }, { id: "remote2", src: app.environment.remote2 }, { id: "a19Head", src: app.environment.a19Head }, { id: "smoke1", src: app.environment.smoke1 }, { id: "smoke2", src: app.environment.smoke2 }, { id: "smoke3", src: app.environment.smoke3 }, { id: "cape1", src: app.environment.cape1 }, { id: "cape2", src: app.environment.cape2 }, { id: "cape3", src: app.environment.cape3 }, { id: "cape4", src: app.environment.cape4 }, { id: "yamcha1", src: app.environment.yamcha1 }, { id: "yamcha2", src: app.environment.yamcha2 }, { id: "yamcha3", src: app.environment.yamcha3 }, { id: "yamcha4", src: app.environment.yamcha4 }, { id: "yamcha5", src: app.environment.yamcha5 }, { id: "chaotzu1", src: app.environment.chaotzu1 }, { id: "chaotzu2", src: app.environment.chaotzu2 }, { id: "chaotzu3", src: app.environment.chaotzu3 }, { id: "chaotzu4", src: app.environment.chaotzu4 }, { id: "yajirobe1", src: app.environment.yajirobe1 }, { id: "groundDustA1", src: app.environment.groundDustA1 }, { id: "groundDustA2", src: app.environment.groundDustA2 }, { id: "groundDustA3", src: app.environment.groundDustA3 }, { id: "groundDustA4", src: app.environment.groundDustA4 }, { id: "groundDustB1", src: app.environment.groundDustB1 }, { id: "groundDustB2", src: app.environment.groundDustB2 }, { id: "groundDustB3", src: app.environment.groundDustB3 }, { id: "groundDustB4", src: app.environment.groundDustB4 }, { id: "groundDustC1", src: app.environment.groundDustC1 }, { id: "groundDustC2", src: app.environment.groundDustC2 }, { id: "groundDustC3", src: app.environment.groundDustC3 }, { id: "groundDustC4", src: app.environment.groundDustC4 }, { id: "gerosSpy1", src: app.environment.gerosSpy1 }, { id: "smog1", src: app.environment.smog1 }, { id: "smog2", src: app.environment.smog2 }, { id: "smog3", src: app.environment.smog3 }, { id: "smog4", src: app.environment.smog4 }, { id: "smog5", src: app.environment.smog5 }, { id: "smog6", src: app.environment.smog6 }, { id: "smog7", src: app.environment.smog7 }, { id: "smog8", src: app.environment.smog8 }, { id: "smog9", src: app.environment.smog9 }, { id: "smog10", src: app.environment.smog10 }, { id: "smog11", src: app.environment.smog11 }, { id: "smog12", src: app.environment.smog12 }, { id: "smog13", src: app.environment.smog13 }, { id: "smog14", src: app.environment.smog14 }, { id: "smog15", src: app.environment.smog15 }, { id: "smog16", src: app.environment.smog16 }, { id: "detect1", src: app.environment.detect1 },
 
 			//Interface LOADING
 			{ id: "iBorder", src: app.gameUI.iBorder }, { id: "iBackground", src: app.gameUI.iBackground }, { id: "iBigBar", src: app.gameUI.iBigBar }, { id: "iBigBar2", src: app.gameUI.iBigBar2 }, { id: "iSmallBar", src: app.gameUI.iSmallBar }, { id: "redRibbon", src: app.gameUI.redRibbon }, { id: "redRibbonRust", src: app.gameUI.redRibbonRust }, { id: "redRibbonBronze", src: app.gameUI.redRibbonBronze }, { id: "redRibbonSilver", src: app.gameUI.redRibbonSilver }, { id: "redRibbonGold", src: app.gameUI.redRibbonGold }, { id: "warning", src: app.gameUI.warning },
@@ -15655,47 +15764,59 @@ app.main = (_app$main = {
 				//HIT Android18
 				if (this.blasts[i].exploding == false && (attackHitTestBlast(this.blasts[i], this.android18) == true || (hardAttackHitTest(this.vegeta, this.android18) == true && this.blasts[i].type != 5 && this.android18.behind == false && this.blasts[i].blastUser != 0 && this.blasts[i].blastUser != 4 && this.blasts[i].blastUser != 5 && this.blasts[i].blastUser != 6 || hardAttackHitTest(this.android17, this.android18) == true && this.blasts[i].blastUser == 6) && this.blasts[i].lifetime < 2 && (this.blasts[i].type != 5 || this.blasts[i].moving == true && this.blasts[i].triggerState == 0)) && this.blasts[i].activated == true && this.android18.superSpeed == false && this.blasts[i].blastUser != 0 && (this.blasts[i].blastUser != 6 || this.DD == false) && (this.blasts[i].blastUser != 6 || this.together == false || this.blasts[i].lifetime > 3)) {
 					if (this.blasts[i].type == 0 && (this.blasts[i].lifetime > 1 || this.android18.behind == false)) {
-						if (hardAttackHitTest(this.vegeta, this.android18) == true && this.blasts[i].lifetime < 2 && this.blasts[i].blastUser != 0 && this.android18.behind == false) {
-							this.pointBlank = true;
-							this.blasts[i].position.x = this.android18.position.x;
-							this.blasts[i].exploding = true;
-						} else {
-							this.blasts[i].exploding = true;
-						}
-						this.sound.playEnergyReaction2(6);
-						if (this.android18.fieldOn == false) {
-
-							if (this.IB == true && this.android18.blocking == true) {
-								//this.android18.stamina += 7;
+						if (this.android18.attacking == false || this.android18.blasting == true) {
+							if (hardAttackHitTest(this.vegeta, this.android18) == true && this.blasts[i].lifetime < 2 && this.blasts[i].blastUser != 0 && this.android18.behind == false) {
+								this.pointBlank = true;
+								this.blasts[i].position.x = this.android18.position.x;
+								this.blasts[i].exploding = true;
 							} else {
-								this.android18.hit = true;
-								this.android18.stun = true;
-								this.vegeta.smallBlasted = true;
-								if (this.ER == true) {
-									this.android18.blastBurnLength = 3;
-									this.android18.blastBurn = true;
+								this.blasts[i].exploding = true;
+							}
+							this.sound.playEnergyReaction2(6);
+							if (this.android18.fieldOn == false) {
+
+								if (this.IB == true && this.android18.blocking == true) {
+									//this.android18.stamina += 7;
 								} else {
-									this.android18.blastBurnLength = 10;
-									this.android18.blastBurn = true;
+									this.android18.hit = true;
+									this.android18.stun = true;
+									this.vegeta.smallBlasted = true;
+									if (this.ER == true) {
+										this.android18.blastBurnLength = 3;
+										this.android18.blastBurn = true;
+									} else {
+										this.android18.blastBurnLength = 10;
+										this.android18.blastBurn = true;
+									}
+									this.roundScore -= 25;
 								}
-								this.roundScore -= 25;
-							}
 
+								if (this.blasts[i].dirLeft == true) {
+									this.android18.velocity.x -= 8;
+								} else if (this.blasts[i].dirLeft == false) {
+									this.android18.velocity.x += 8;
+								}
+								this.android18.decel = this.android18.velocity.clone();
+
+								if (this.IB == true && this.android18.blocking == true) {
+									this.android18.stamina += 8;
+								} else {
+									if (this.android18.endurance > 14) {
+										this.android18.endurance = this.android18.endurance - (3 + getRandom(0, 2));
+									} else if (this.android18.endurance < 15) {
+										this.android18.health = this.android18.health - (3 + getRandom(0, 2));
+									}
+								}
+							}
+						} else {
+							this.blasts[i].blastUser = 0;
+							this.blasts[i].lifetime = 0;
+							this.blasts[i].moving = true;
+							this.sound.playIntro(80);
 							if (this.blasts[i].dirLeft == true) {
-								this.android18.velocity.x -= 8;
-							} else if (this.blasts[i].dirLeft == false) {
-								this.android18.velocity.x += 8;
-							}
-							this.android18.decel = this.android18.velocity.clone();
-
-							if (this.IB == true && this.android18.blocking == true) {
-								this.android18.stamina += 8;
+								this.blasts[i].dirLeft = false;
 							} else {
-								if (this.android18.endurance > 14) {
-									this.android18.endurance = this.android18.endurance - (3 + getRandom(0, 2));
-								} else if (this.android18.endurance < 15) {
-									this.android18.health = this.android18.health - (3 + getRandom(0, 2));
-								}
+								this.blasts[i].dirLeft = true;
 							}
 						}
 					} else if (this.blasts[i].type == 1) {
@@ -15843,44 +15964,56 @@ app.main = (_app$main = {
 						}
 						this.environment.flash = true;
 					} else if (this.blasts[i].type == 5 && this.blasts[i].blastUser != 6) {
-						if (this.android18.fieldOn == false) {
-							this.android18.punched = false;
-							if (this.IB == true && this.android18.blocking == true) {
-								this.android18.stamina += 8;
-							} else {
-								this.android18.hit = true;
-								this.android18.stun = true;
-								this.android18.blasted = true;
-								//this.android18.hardHit = true;
-								if (this.ER == true) {
-									this.android18.blastBurnLength = 7;
-									this.android18.blastBurn = true;
+						if (this.android18.attacking == false || this.android18.blasting == true) {
+							if (this.android18.fieldOn == false) {
+								this.android18.punched = false;
+								if (this.IB == true && this.android18.blocking == true) {
+									this.android18.stamina += 8;
 								} else {
-									this.android18.blastBurnLength = 20;
-									this.android18.blastBurn = true;
+									this.android18.hit = true;
+									this.android18.stun = true;
+									this.android18.blasted = true;
+									//this.android18.hardHit = true;
+									if (this.ER == true) {
+										this.android18.blastBurnLength = 7;
+										this.android18.blastBurn = true;
+									} else {
+										this.android18.blastBurnLength = 20;
+										this.android18.blastBurn = true;
+									}
+									this.roundScore -= 50;
+									if (this.android18.endurance > 14) {
+										this.android18.endurance = this.android18.endurance - (5 + getRandom(0, 5));
+									} else if (this.android18.endurance < 15) {
+										this.android18.health = this.android18.health - (5 + getRandom(0, 5));
+									}
 								}
-								this.roundScore -= 50;
-								if (this.android18.endurance > 14) {
-									this.android18.endurance = this.android18.endurance - (5 + getRandom(0, 5));
-								} else if (this.android18.endurance < 15) {
-									this.android18.health = this.android18.health - (5 + getRandom(0, 5));
-								}
-							}
 
-							if (this.blasts[i].dirLeft == true) {
-								this.android18.velocity.x = -8;
-							} else if (this.blasts[i].dirLeft == false) {
-								this.android18.velocity.x = 8;
+								if (this.blasts[i].dirLeft == true) {
+									this.android18.velocity.x = -8;
+								} else if (this.blasts[i].dirLeft == false) {
+									this.android18.velocity.x = 8;
+								}
+								this.android18.decel = this.android18.velocity.clone();
 							}
-							this.android18.decel = this.android18.velocity.clone();
-						}
-						this.sound.playEnergyReaction2(6);
-						if (hardAttackHitTest(this.vegeta, this.android18) == true && (this.android18.behind == false || this.blasts[i].moving == false)) {
-							this.pointBlank = true;
-							this.blasts[i].position.x = this.android18.position.x;
-							this.blasts[i].exploding = true;
+							this.sound.playEnergyReaction2(6);
+							if (hardAttackHitTest(this.vegeta, this.android18) == true && (this.android18.behind == false || this.blasts[i].moving == false)) {
+								this.pointBlank = true;
+								this.blasts[i].position.x = this.android18.position.x;
+								this.blasts[i].exploding = true;
+							} else {
+								this.blasts[i].exploding = true;
+							}
 						} else {
-							this.blasts[i].exploding = true;
+							this.blasts[i].blastUser = 0;
+							this.blasts[i].lifetime = 0;
+							this.blasts[i].moving = true;
+							this.sound.playIntro(80);
+							if (this.blasts[i].dirLeft == true) {
+								this.blasts[i].dirLeft = false;
+							} else {
+								this.blasts[i].dirLeft = true;
+							}
 						}
 						//this.environment.flash = true;
 					} else if (this.blasts[i].type == 6 && this.android18.behind == false) {
@@ -22274,7 +22407,8 @@ app.main = (_app$main = {
 					this.toggle2 = false;
 				}
 			}
-			if (myKeys.keydown[myKeys.KEYBOARD.KEY_J] == true) {//CHEAT CODE
+			if (myKeys.keydown[myKeys.KEYBOARD.KEY_J] == true) {
+				//CHEAT CODE
 				//this.environment.shake = true;
 				//this.environment.remote = true;
 				/* this.android17.decision= .5;
@@ -22284,8 +22418,8 @@ app.main = (_app$main = {
     this.android17.encounter = true;
     this.aiChoice4 = .96;
     this.android17.decisionTimer = 0; */
-				//this.vegeta.endurance = 1;
-				//this.vegeta.health = 1;
+				this.vegeta.endurance = 1;
+				this.vegeta.health = 1;
 				/* if(this.battle != 2){
     	this.android17.hurtBlasting = true;
     } else {
@@ -22327,7 +22461,6 @@ app.main = (_app$main = {
 				//this.android17.fight = true;
 				//this.vegeta.charging = true;
 				//this.support[1].triggerBlast = true;
-
 			}
 			if (myKeys.keydown[myKeys.KEYBOARD.KEY_J] != true) {//CHEAT CODE
 				//this.environment.shake = true;
@@ -25011,7 +25144,8 @@ app.sound = function () {
 	"chargeBlastNew2.wav", //76
 	"newBlastFire1.wav", //77
 	"swoophit.wav", //78
-	"Electronic.wav"];
+	"Electronic.wav", //79
+	"reflect.wav"];
 	var voiceSounds = [//Vegeta and Android 18
 	"I1.wav", //0
 	"I2.wav", //1
@@ -25457,7 +25591,7 @@ app.sound = function () {
 		effectAudio[22] = document.querySelector("#effectAudio22");
 		effectAudio[22].volume = 0.7;
 		effectAudio[23] = document.querySelector("#effectAudio23");
-		effectAudio[23].volume = 0.8;
+		effectAudio[23].volume = 0.9;
 		effectAudio[24] = document.querySelector("#effectAudio24");
 		effectAudio[24].volume = 0.2;
 		effectAudio[25] = document.querySelector("#effectAudio25");
@@ -26295,6 +26429,25 @@ function attackHitTestSmog(attackPosition, attackSize) {
 		if (attackPosition.x + 35 < app.main.environment.smogPos[i].x + app.main.environment.smogSize[i].x && attackPosition.x + 35 + attackSize.x - 70 > app.main.environment.smogPos[i].x && attackPosition.y + 35 < app.main.environment.smogPos[i].y + app.main.environment.smogSize[i].y && attackSize.y - 70 + attackPosition.y + 35 > app.main.environment.smogPos[i].y) {
 			app.main.environment.smogTarget = i;
 			return true;
+		}
+	}
+}
+
+//Enemy SMOG EFFECT
+function hitTestSmog(attackPosition, attackSize) {
+	/* app.main.ctx.save();
+ app.main.ctx.translate(obj1.attackPosition.x,obj1.attackPosition.y);
+ app.main.ctx.fillStyle = "Red";
+ app.main.ctx.fillRect(0,0,obj1.attackSize.x, obj1.attackSize.y);
+ app.main.ctx.restore();   */
+	for (var i = 0; i < app.main.environment.smogCount; i++) {
+		if (attackPosition.x + 35 < app.main.environment.smogPos[i].x + app.main.environment.smogSize[i].x && attackPosition.x + 35 + attackSize.x - 70 > app.main.environment.smogPos[i].x && attackPosition.y + 35 < app.main.environment.smogPos[i].y + app.main.environment.smogSize[i].y && attackSize.y - 70 + attackPosition.y + 35 > app.main.environment.smogPos[i].y) {
+			//app.main.environment.smogTarget = i;
+			if (app.main.environment.smogAlpha[i] > .8) {
+				return true;
+			} else {
+				return false;
+			}
 		}
 	}
 }
@@ -29080,6 +29233,7 @@ app.Vegeta = function () {
 
 		if (this.vanish == false && this.vegeta == true) {
 			//NON MOVING DRAWS
+
 			ctx.save();
 			ctx.scale(1, .9);
 			if (this.cinematic == true) {
