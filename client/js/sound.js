@@ -97,6 +97,12 @@ app.sound = (function(){
 	"swoophit.wav",			//78
 	"Electronic.wav",		//79
 	"reflect.wav",			//80
+	"FullPowerNormal.wav",	//81
+	"FullPowerFull.wav",	//82
+	"clash1.wav",			//83
+	"clash2.wav",			//84
+	"clash3.wav",			//85
+	"clash4.wav",			//86
 	];
 	var voiceSounds = [ //Vegeta and Android 18
 	"I1.wav", 			//0
@@ -189,6 +195,21 @@ app.sound = (function(){
 	"18CF1.wav",		//87
 	"18CF2.wav",		//88
 	"18TT1.wav",		//89
+	"VBD1.wav",			//90
+	"VBD2.wav",			//91
+	"VBD3.wav",			//92
+	"GER4.wav",			//93
+	"GER5.wav",			//94
+	"GER6.wav",			//95
+	"GER7.wav",			//96
+	"GERT1.wav",		//97
+	"GERT2.wav",		//98
+	"GERT3.wav",		//99
+	"rush1.wav",		//100
+	"rush2.wav",		//101
+	"rush3.wav",		//102
+	"rush4.wav",		//103
+	"rush5.wav",		//104
 	];
 	
 	var voiceSoundsPiccolo = [ //Piccolo
@@ -217,6 +238,9 @@ app.sound = (function(){
 	"PHI3.wav",			//22
 	"PG1.wav",			//23
 	"PG2.wav",			//24
+	"PBD1.wav",			//25
+	"PBD2.wav",			//26
+	"PBD3.wav",			//27
 	];
 	
 	var voiceSounds17 = [ //Android 17
@@ -266,6 +290,9 @@ app.sound = (function(){
 	"17TT1.wav",		//43
 	"17TT2.wav",		//44
 	"17TT3.wav",		//45
+	"17exb1.wav",		//46
+	"17exb2.wav",		//47
+	"17exb3.wav",		//48
 	];
 	
 	var voiceSoundsGohan = [ //Gohan
@@ -320,6 +347,10 @@ app.sound = (function(){
 	"GNO3.wav",			//48
 	"GSAVE1.wav",		//49
 	"GSAVE2.wav",		//50
+	"GBD1.wav",			//51
+	"GBD2.wav",			//52
+	"GBD3.wav",			//53
+	"GBD4.wav",			//54
 	];
 	
 	var voiceSoundsTien = [ //Tien
@@ -547,11 +578,11 @@ app.sound = (function(){
 		effectAudio[19] = document.querySelector("#effectAudio19");
 		effectAudio[19].volume = 0.7;
 		effectAudio[20] = document.querySelector("#effectAudio20");
-		effectAudio[20].volume = 0.7;
+		effectAudio[20].volume = 1;
 		effectAudio[21] = document.querySelector("#effectAudio21");
-		effectAudio[21].volume = 0.7;
+		effectAudio[21].volume = 1;
 		effectAudio[22] = document.querySelector("#effectAudio22");
-		effectAudio[22].volume = 0.7;
+		effectAudio[22].volume = 1;
 		effectAudio[23] = document.querySelector("#effectAudio23");
 		effectAudio[23].volume = 0.9;
 		effectAudio[24] = document.querySelector("#effectAudio24");

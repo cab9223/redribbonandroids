@@ -429,12 +429,16 @@ var StatsList = function StatsList(props) {
 				//Decide the account status
 				if (stats.hsTotalT3 > 0) {
 						progressType = "/assets/images/RedRibbonGold.png";
+						app.main.playerRank = 4;
 				} else if (stats.hsTotalT2 > 0) {
 						progressType = "/assets/images/RedRibbonSilver.png";
+						app.main.playerRank = 3;
 				} else if (stats.hsTotalT1 > 0) {
 						progressType = "/assets/images/RedRibbonBronze.png";
+						app.main.playerRank = 2;
 				} else if (stats.hsTotal > 0) {
 						progressType = "/assets/images/RedRibbonRust.png";
+						app.main.playerRank = 1;
 				}
 
 				//send data to game
@@ -2893,7 +2897,7 @@ var displayInfo = function displayInfo(type) {
    if (info === "AI") {
       $("#nameData").text("After Image");
       $("#contentData").text("UNIT 18 -- Create a false image while in super speed state that can be a distraction.");
-      $("#contentData2").text("UNIT 17 -- Fire 2 Power Blitz attacks in quick succession with same energy use.");
+      $("#contentData2").text("UNIT 17 -- Fire 2 Power Blitz attacks in quick succession.");
    }
    if (info === "ER") {
       $("#nameData").text("Energy Resilience");

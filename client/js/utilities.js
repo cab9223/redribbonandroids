@@ -125,11 +125,46 @@ function attackHitTestBlast(obj1, obj2){
 	app.main.ctx.translate(obj1.attackPosition.x,obj1.attackPosition.y);
 	app.main.ctx.fillStyle = "Red";
 	app.main.ctx.fillRect(0,0,obj1.attackSize.x, obj1.attackSize.y);
-	app.main.ctx.restore();   */
+	app.main.ctx.restore();  */
+	/* if((obj1.type == 7 && obj1.turnTrigger == true) || obj1.type == 1){
+	app.main.ctx.save();
+	app.main.ctx.translate(obj1.attackPosition2.x,obj1.attackPosition2.y);
+	app.main.ctx.fillStyle = "Blue";
+	app.main.ctx.fillRect(0,0,obj1.attackSize2.x, obj1.attackSize2.y);
+	app.main.ctx.restore(); 	
+	} */
 	if (obj1.attackPosition.x < obj2.position.x + obj2.size.x &&
 		obj1.attackPosition.x + obj1.attackSize.x > obj2.position.x &&
 		obj1.attackPosition.y < obj2.position.y + obj2.size.y &&
 		obj1.attackSize.y + obj1.attackPosition.y > obj2.position.y) {
+			return true;
+	}
+	if(obj1.type == 7){
+	if (obj1.attackPosition2.x < obj2.position.x + obj2.size.x &&
+		obj1.attackPosition2.x + obj1.attackSize2.x > obj2.position.x &&
+		obj1.attackPosition2.y < obj2.position.y + obj2.size.y &&
+		obj1.attackSize2.y + obj1.attackPosition2.y > obj2.position.y) {
+			return true;
+	}
+	}
+}
+
+//BLAST ATTACK HIT CHECK SPECIAL
+function attackHitTestBlastSpecial(obj1, obj2){
+	/* app.main.ctx.save();
+	app.main.ctx.translate(obj1.attackPosition.x,obj1.attackPosition.y);
+	app.main.ctx.fillStyle = "Red";
+	app.main.ctx.fillRect(0,0,obj1.attackSize.x, obj1.attackSize.y);
+	app.main.ctx.restore(); */
+	/* app.main.ctx.save();
+	app.main.ctx.translate(obj1.attackPosition2.x,obj1.attackPosition2.y);
+	app.main.ctx.fillStyle = "Blue";
+	app.main.ctx.fillRect(0,0,obj1.attackSize2.x, obj1.attackSize2.y);
+	app.main.ctx.restore();  */	
+	if (obj1.attackPosition2.x < obj2.position.x + obj2.size.x &&
+		obj1.attackPosition2.x + obj1.attackSize2.x > obj2.position.x &&
+		obj1.attackPosition2.y < obj2.position.y + obj2.size.y &&
+		obj1.attackSize2.y + obj1.attackPosition2.y > obj2.position.y) {
 			return true;
 	}
 }
@@ -158,9 +193,9 @@ function attackHitTestSmog(attackPosition, attackSize){
 	app.main.ctx.fillRect(0,0,obj1.attackSize.x, obj1.attackSize.y);
 	app.main.ctx.restore();   */
 	for (var i = 0; i < app.main.environment.smogCount;i++){
-		if (attackPosition.x + 35 < app.main.environment.smogPos[i].x + app.main.environment.smogSize[i].x &&
+		if (attackPosition.x + 35 < app.main.environment.smogPos[i].x + app.main.environment.smogSize[i].x - 10 &&
 			attackPosition.x + 35 + attackSize.x - 70 > app.main.environment.smogPos[i].x &&
-			attackPosition.y + 35 < app.main.environment.smogPos[i].y + app.main.environment.smogSize[i].y &&
+			attackPosition.y + 35 < app.main.environment.smogPos[i].y + app.main.environment.smogSize[i].y - 10 &&
 			attackSize.y - 70 + attackPosition.y + 35 > app.main.environment.smogPos[i].y) {
 				app.main.environment.smogTarget = i;
 				return true;

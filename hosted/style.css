@@ -15,6 +15,7 @@ html, body {
 }
 
 
+
 #logo {
     height: 40px;
     width: 40%;
@@ -98,7 +99,27 @@ nav {
 	pointer-events: none;
 }
 
+#loginBorder2 {
+	z-index: -1;
+	position: fixed;
+	left: 43%;
+	top: 63.5%;
+    width: 300px;
+    height: 250px;
+	opacity: 0.6;
+    background-color: rgb(0,34,7);
+	pointer-events: none;
+}
+
 #border2 {
+	z-index: -1;
+	position: fixed;
+	left: 43% !important;
+	top: 63.5% !important;
+	pointer-events: none;
+}
+
+#border2b {
 	z-index: -1;
 	position: fixed;
 	left: 43% !important;
@@ -248,6 +269,8 @@ nav {
 }
 
 #tiny {
+	color: #AAAAAA;
+	background-color: transparent;
 	position:fixed;
 	top:3.2%;
 	margin-left: 23.3%;
@@ -283,19 +306,47 @@ nav:nth-child(1) {
 }
 
 #stat {
+	padding-bottom: 18px;
+	color: green;
     font-size: 1.4em;
+}
+
+#stat:hover { 
+  transition: background-color .6s ease;
+  background-color: darkgreen;
 }
 
 #scoreButton {
+	padding-bottom: 18px;
+	color: green;
     font-size: 1.35em;
 }
 
+#scoreButton:hover { 
+  transition: background-color .6s ease;
+  background-color: darkgreen;
+}
+
 #modsButton {
+	padding-bottom: 18px;
+	color: green;
     font-size: 1.4em;
 }
 
+#modsButton:hover { 
+  transition: background-color .6s ease;
+  background-color: darkgreen;
+}
+
 #passwordButton {
+	padding-bottom: 18px;
+	color: green;
     font-size: 1.4em;
+}
+
+#passwordButton:hover { 
+  transition: background-color .6s ease;
+  background-color: darkgreen;
 }
 
 .navlink a, .navlink a:link, .navlink a:visited, .navlink a:hover, .navlink a:active {
@@ -354,6 +405,7 @@ nav:nth-child(1) {
     text-align: right;
     font-size: 1.2em;
 }
+
 
 .formSubmit {
 	z-index: 3;
@@ -477,9 +529,33 @@ nav:nth-child(1) {
 	width: 220px;
 }
 
+.mainMessage2 {
+	position: fixed;
+	top: 63.7%;
+	left: 45%;
+	text-align: center;
+    font-size: 1.6em;
+    font-weight: bold;
+    color: #c7c7a1;
+    font-style: italic;
+	width: 220px;
+}
+
 #errorMessage {
 	position: fixed;
 	top: 87.5%;
+	left: 45%;
+	text-align: center;
+    font-size: 1.2em;
+    font-weight: bold;
+    color: Yellow;
+    font-style: italic;
+	width: 220px;
+}
+
+.errorMessage2 {
+	position: fixed;
+	top: 82.5% !important;
 	left: 45%;
 	text-align: center;
     font-size: 1.2em;
@@ -685,13 +761,20 @@ h3.emptyStats {
 }
 
 #gameButton {
+	color: green;
 	font-size: 2em !important;
 	top: -15px;
 	left: -10px;
 	outline: none !important;
 }
 
+#gameButton:hover { 
+  transition: background-color .6s ease;
+  background-color: darkgreen;
+}
+
 #loginButton {
+	color: green;
 	position: fixed;
 	top: -.5% !important;
 	left: 28.5% !important;
@@ -699,17 +782,32 @@ h3.emptyStats {
 	outline: none !important;
 }
 
+#loginButton:hover { 
+  transition: background-color .6s ease;
+  background-color: darkgreen;
+}
+
 #signupButton {
+	color: green;
 	position: fixed;
 	top: -.5% !important;
 	left: 63.5% !important;
 	font-size: 2em !important;
 }
 
+#signupButton:hover { 
+  transition: background-color .6s ease;
+  background-color: darkgreen;
+}
+
 #moreContent {
 	position: fixed !important;
 	top: 10% !important;
 	left: 40% !important;
+}
+
+#tiny:hover { 
+  color: red;
 }
 
 .disabledLink {
@@ -741,11 +839,11 @@ h3.emptyStats {
 }
 
 .highlightLink {
-	color: Yellow !important;
+	color: White !important;
 }
 
 .highlightButton {
-	color: Yellow !important;
+	color: White !important;
 }
 
 #body17T1 {
@@ -1024,6 +1122,12 @@ h3.emptyStats {
 	top: 56% !important;
 	left: 44.7% !important;
 }
+
+#structureButton:hover { 
+  transition: background-color .6s ease;
+  background-color: darkgreen;
+}
+
 #divider1 {
 	width: 450px;
 	position: fixed !important;
@@ -1081,94 +1185,97 @@ h3.emptyStats {
 		#videoPos {
 			position: absolute;
 			margin: auto;
-			left: calc(25% + 1px);
-			top: 10%;
+			left: calc(25% - 1px);
+			top: calc(10% + 85px);
 			z-index: 2;
 		}
 		#videoPos2 {
 			position: absolute;
 			margin: auto;
 			left: calc(25% + 1px);
-			top: 10%;
+			top: calc(10% + 85px);
 			z-index: -2;
 		}
 		#videoPos3 {
 			position: absolute;
 			margin: auto;
 			left: calc(25% + 330px);
-			top: calc(10% + 275px);
+			top: calc(10% + 360px);
 			z-index: -2;
 		}
 		#videoPos4 {
 			position: absolute;
 			margin: auto;
 			left: calc(25% + 1px);
-			top: 10%;
+			top: calc(10% + 85px);
 			z-index: -2;
 		}
 		#videoPos5 {
 			position: absolute;
 			margin: auto;
 			left: calc(25% + 1px);
-			top: 10%;
+			top: calc(10% + 85px);
 			z-index: -2;
 		}
 		#border {
 			position: absolute;
 			margin: auto;
 			left: 25%;
-			top: calc(10% + 310px);
+			top: calc(10% + 395px);
 			z-index: 5;
 		}
 		#bigBorder {
 			position: absolute;
 			margin: auto;
 			left: calc(25% - 5px);
-			top: 10%;
+			top: calc(10% - 26px);
 			z-index: 7;
 		}
 		#smallBar1 {
 			position: absolute;
 			margin: auto;
 			left: calc(25% + 690px);
-			top: calc(10% + 314px);
+			top: calc(10% + 399px);
 			z-index: 3;
 		}
 		#smallBar2 {
 			position: absolute;
 			margin: auto;
 			left: calc(25% + 325px);
-			top: calc(10% + 314px);
+			top: calc(10% + 399px);
 			z-index: 3;
 		}
 		#bar {
 			position: absolute;
 			margin: auto;
-			top: 10%;
+			top: calc(10% + 85px);
 			left: calc(25% + 1px);
 			z-index: -2;
 		}
 		#trueTop {
 			position: absolute;
 			margin: auto;
-			top: 10%;
+			top: calc(10% - 15px);
 			left: 25%;
 			z-index: 7;
 		}
 		#top {
 			position: absolute;
 			margin: auto;
-			top: 10%;
+			top: calc(10% - 43px);
 			left: 25%;
 			z-index: 6;
 		}
 		#main {
 			position: absolute;
 			margin: auto;
-			top: 10%;
+			top: calc(10% + 85px);
 			left: 25%;
 			z-index: 1;
 		}
+		
+		canvas { border: 0px none black; }
+		
 		#canvas1 {
 			position:absolute;
 			z-index: 1;

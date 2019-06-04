@@ -161,6 +161,7 @@ app.images18 = Object.freeze({
 	injured2: "images/17Injured2.png",
 	injuredHit: "images/17InjuredHit.png",
 	injuredBlast: "images/17InjuredBlast.png",
+	injuredBlast2: "images/17InjuredBlast2.png",
 	field1: "images/17Field1.png",
 	special1: "images/17Special1.png",
 	special2: "images/17Special2.png"
@@ -185,7 +186,11 @@ app.images18 = Object.freeze({
 	kickPrep: "images/GeroKickPrep.png",
 	hitHard: "images/GeroHitHard.png",
 	injured: "images/GeroInjured.png",
-	fallSide: "images/GeroFallSide.png"
+	fallSide: "images/GeroFallSide.png",
+	geroStill1: "images/GeroStill1.png",
+	geroStill2: "images/GeroStill2.png",
+	geroStill3: "images/GeroStill3.png",
+	geroStill4: "images/GeroStill4.png"
  });
  
  //PICCOLO IMAGES
@@ -440,12 +445,18 @@ app.images16 = Object.freeze({
 	smog15: "images/smog15.png",
 	smog16: "images/smog16.png",
 	detect1: "images/Detect1.png",
+	clash1: "images/clash1.png",
+	clash2: "images/clash2.png",
+	clash3: "images/clash3.png",
  });
  
  //UI IMAGES
   app.gameUI = Object.freeze({
     iBorder: "images/InterfaceBorder.png",
 	iBackground: "images/InterfaceBackground.png",
+	iBackground130: "images/InterfaceBackground130.png",
+	iBackground140: "images/InterfaceBackground140.png",
+	iBackground160: "images/InterfaceBackground160.png",
 	iBigBar: "images/InterfaceBigBar.png",
 	iBigBar2: "images/InterfaceBigBar2.png",
 	iSmallBar: "images/InterfaceSmallBar.png",
@@ -469,8 +480,6 @@ app.images16 = Object.freeze({
 	 tele2Thin: "images/Tele2Thin.png",
 	 tele3Thin: "images/Tele3Thin.png",
 	 tele4Thin: "images/Tele4Thin.png",
-	 tele5Thin: "images/Tele5Thin.png",
-	 tele6Thin: "images/Tele6Thin.png",
 	 blast1: "images/blast1.png",
 	 explosion1: "images/explosion1.png",
 	 explosion2: "images/explosion2.png",
@@ -665,11 +674,17 @@ window.onload = function(){
 	 {id: "smog15", src:app.environment.smog15},
 	 {id: "smog16", src:app.environment.smog16},
 	 {id: "detect1", src:app.environment.detect1},
+	 {id: "clash1", src:app.environment.clash1},
+	 {id: "clash2", src:app.environment.clash2},
+	 {id: "clash3", src:app.environment.clash3},
 	 
 	
 	 //Interface LOADING
 	 {id: "iBorder", src:app.gameUI.iBorder},
      {id: "iBackground", src:app.gameUI.iBackground},
+	 {id: "iBackground130", src:app.gameUI.iBackground130},
+	 {id: "iBackground140", src:app.gameUI.iBackground140},
+	 {id: "iBackground160", src:app.gameUI.iBackground160},
      {id: "iBigBar", src:app.gameUI.iBigBar},
 	 {id: "iBigBar2", src:app.gameUI.iBigBar2},
 	 {id: "iSmallBar", src:app.gameUI.iSmallBar},
@@ -825,6 +840,7 @@ window.onload = function(){
 	 {id: "17Injured2", src:app.images17.injured2},
 	 {id: "17InjuredHit", src:app.images17.injuredHit},
 	 {id: "17InjuredBlast", src:app.images17.injuredBlast},
+	 {id: "17InjuredBlast2", src:app.images17.injuredBlast2},
 	 {id: "17Field1", src:app.images17.field1},
 	 {id: "17Special1", src:app.images17.special1},
 	 {id: "17Special2", src:app.images17.special2},
@@ -848,6 +864,11 @@ window.onload = function(){
 	 {id: "geroFallDown", src:app.imagesGero.fallDown},
 	 {id: "geroInjured", src:app.imagesGero.injured},
 	 {id: "geroHitHard", src:app.imagesGero.hitHard},
+	 {id: "geroStill1", src:app.imagesGero.geroStill1},
+	 {id: "geroStill2", src:app.imagesGero.geroStill2},
+	 {id: "geroStill3", src:app.imagesGero.geroStill3},
+	 {id: "geroStill4", src:app.imagesGero.geroStill4},
+	 
 	 
 	 //Piccolo LOADING
 	 {id: "piccoloStance", src:app.imagesPiccolo.stance},
@@ -1035,8 +1056,6 @@ window.onload = function(){
 	 {id: "tele2Thin", src:app.attack.tele2Thin},
 	 {id: "tele3Thin", src:app.attack.tele3Thin},
 	 {id: "tele4Thin", src:app.attack.tele4Thin},
-	 {id: "tele5Thin", src:app.attack.tele5Thin},
-	 {id: "tele6Thin", src:app.attack.tele6Thin},
 	 {id: "blast1", src:app.attack.blast1},
 	 {id: "explosion1", src:app.attack.explosion1},
 	 {id: "explosion2", src:app.attack.explosion2},

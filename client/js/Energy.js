@@ -15,6 +15,7 @@ app.Energy = (function(){
 		this.replace2 = 0;
 		this.copy = 0;
 		this.exhaust = [];
+		this.init = new Victor(initX, initY);
 		this.dirLeft = left;
 		this.type = attackType;
 		this.blastUser = user;
@@ -42,6 +43,12 @@ app.Energy = (function(){
 		this.fix = false;
 		this.fix2 = false;
 		
+		this.released = false;
+		this.special = false;
+		
+		this.totalMovement = 0;
+		this.totalMovement2 = 0;
+		
 		this.getAngle = getRandom(0,360);
 		
 		//this.position = new Victor(initX,initY);
@@ -57,23 +64,27 @@ app.Energy = (function(){
 				this.attackSize = new Victor(100,60);
 				this.position = new Victor(initX - 200,initY + 10);
 				this.attackPosition = new Victor(initX - 200,initY + 10);
+				this.attackSize2 = new Victor(100,60);
+				this.attackPosition2 = new Victor(initX - 200,initY + 10);
 			} else {
 				this.size = new Victor(100,60);
 				this.attackSize = new Victor(100,60);
 				this.position = new Victor(initX,initY + 10);
 				this.attackPosition = new Victor(initX,initY + 10);
+				this.attackSize2 = new Victor(100,60);
+				this.attackPosition2 = new Victor(initX,initY + 10);
 			}
 		} else if(this.type == 2){
 			if(this.dirLeft == true) {
-				this.size = new Victor(300,20);
-				this.attackSize = new Victor(300,20);
+				this.size = new Victor(280,20);
+				this.attackSize = new Victor(280,20);
 				this.position = new Victor(initX - 200,initY + 10);
 				this.attackPosition = new Victor(initX - 200,initY + 10);
 			} else {
-				this.size = new Victor(300,20);
+				this.size = new Victor(200,20);
 				this.attackSize = new Victor(300,20);
 				this.position = new Victor(initX - 200,initY + 10);
-				this.attackPosition = new Victor(initX - 200,initY + 10);
+				this.attackPosition = new Victor(initX,initY + 10);
 			}
 		} else if(this.type == 3){
 			if(this.dirLeft == true) {
@@ -101,27 +112,33 @@ app.Energy = (function(){
 			}
 		} else if(this.type == 6){
 			if(this.dirLeft == true) {
-				this.size = new Victor(400,15);
-				this.attackSize = new Victor(400,15);
+				this.size = new Victor(50,15);
+				this.attackSize = new Victor(50,15);
 				this.position = new Victor(initX - 140,initY + 10);
 				this.attackPosition = new Victor(initX - 140,initY + 10);
 			} else {
-				this.size = new Victor(400,15);
-				this.attackSize = new Victor(400,15);
+				this.size = new Victor(50,15);
+				this.attackSize = new Victor(50,15);
 				this.position = new Victor(initX - 350,initY + 10);
-				this.attackPosition = new Victor(initX - 350,initY + 10);
+				this.attackPosition = new Victor(initX,initY + 10);
 			}
 		} else if(this.type == 7){
 			if(this.dirLeft == true) {
 				this.size = new Victor(120,40);
+				this.size2 = new Victor(120,40);
 				this.attackSize = new Victor(120,40);
+				this.attackSize2 = new Victor(120,40);
 				this.position = new Victor(initX - 200,initY + 10);
 				this.attackPosition = new Victor(initX - 200,initY + 10);
+				this.attackPosition2 = new Victor(initX - 200,initY + 10);
 			} else {
 				this.size = new Victor(120,40);
+				this.size2 = new Victor(120,40);
 				this.attackSize = new Victor(120,40);
+				this.attackSize2 = new Victor(120,40);
 				this.position = new Victor(initX,initY + 10);
 				this.attackPosition = new Victor(initX,initY + 10);
+				this.attackPosition2 = new Victor(initX,initY + 10);
 			}
 		} else if(this.type == 8){
 			this.size = new Victor(60,35);
@@ -376,16 +393,38 @@ app.Energy = (function(){
 			if(this.dirLeft == true){
 				this.attackPosition.x = this.position.x + 20;
 				this.attackPosition.y = this.position.y - 30;
+				this.attackSize = new Victor(100 + this.totalMovement,60);
+				this.attackPosition2.x = this.position.x + 20;
+				this.attackPosition2.y = this.position.y - 30;
+				this.attackSize2 = new Victor(100,60);
 			} else {
-				this.attackPosition.x = this.position.x + 140;
+				this.attackPosition.x = this.position.x + 110 - this.totalMovement;
 				this.attackPosition.y = this.position.y - 30;
+				this.attackSize = new Victor(130 + this.totalMovement,60);
+				this.attackPosition2.x = this.position.x + 110;
+				this.attackPosition2.y = this.position.y - 30;
+				this.attackSize2 = new Victor(130,60);
 			}
 		} else if(this.type == 2){
 			if(this.dirLeft == true){
+				if(this.lifetime < 11){
+					this.attackSize = new Victor(280 + this.totalMovement,20);
+				} else {
+					this.attackSize = new Victor(100 + this.totalMovement,20);
+				}
 				this.attackPosition.x = this.position.x - 20;
 				this.attackPosition.y = this.position.y - 10;
 			} else {
-				this.attackPosition.x = this.position.x + 145;
+				if(this.lifetime < 11){
+					this.attackSize = new Victor(280 + this.totalMovement,20);
+				} else {
+					this.attackSize = new Victor(100 + this.totalMovement,20);
+				}
+				if(this.lifetime < 11){
+					this.attackPosition.x = this.position.x + 165 - this.totalMovement;
+				} else {
+					this.attackPosition.x = this.position.x + 345 - this.totalMovement;
+				}
 				this.attackPosition.y = this.position.y - 10;
 			}
 		} else if(this.type == 3){
@@ -414,47 +453,67 @@ app.Energy = (function(){
 			}
 		} else if(this.type == 6){
 			if(this.dirLeft == true){
+				this.attackSize = new Victor(50 + this.totalMovement,15);
 				this.attackPosition.x = this.position.x;
 				this.attackPosition.y = this.position.y - 10;
 			} else {
-				this.attackPosition.x = this.position.x + 135;
+				this.attackSize = new Victor(50 + this.totalMovement,15);
+				this.attackPosition.x = this.position.x + 435 - this.totalMovement;
 				this.attackPosition.y = this.position.y - 10;
 			}
 		} else if(this.type == 7){
 			if(this.dirLeft == true) {
 				if(this.turnTrigger == true && this.fix == true && this.turnDown == false){
-					this.size = new Victor(65,80);
-					this.attackSize = new Victor(65,80);
-					this.attackPosition.x = this.position.x + 152;
-					this.attackPosition.y = this.position.y - 165;
+					this.size2 = new Victor(65,this.totalMovement2 + 80);
+					this.attackSize2 = new Victor(65,this.totalMovement2 + 130);
+					this.attackPosition2.x = this.position.x + 152;
+					this.attackPosition2.y = this.position.y - 175;
+					this.size = new Victor(this.totalMovement + 80,65);
+					this.attackSize = new Victor(this.totalMovement + 80,65);
+					this.attackPosition.x = this.position.x + 200;
+					this.attackPosition.y = this.position.y - 35 + this.totalMovement2;
 				} else if(this.turnTrigger == true && this.fix == true && this.turnDown == true){
-					this.size = new Victor(65,80);
-					this.attackSize = new Victor(65,80);
-					this.attackPosition.x = this.position.x + 152;
-					this.attackPosition.y = this.position.y + 85;
+					this.size2 = new Victor(65,this.totalMovement2 + 80);
+					this.attackSize2 = new Victor(65,this.totalMovement2 + 130);
+					this.attackPosition2.x = this.position.x + 152;
+					this.attackPosition2.y = this.position.y + 35 - this.totalMovement2;
+					this.size = new Victor(this.totalMovement + 80,65);
+					this.attackSize = new Victor(this.totalMovement + 80,65);
+					this.attackPosition.x = this.position.x + 200;
+					this.attackPosition.y = this.position.y - 35 - this.totalMovement2;
 				} else {
-					this.size = new Victor(80,65);
-					this.attackSize = new Victor(80,65);
+					this.size = new Victor(this.totalMovement + 80,65);
+					this.attackSize = new Victor(this.totalMovement + 80,65);
 					this.attackPosition.x = this.position.x;
 					this.attackPosition.y = this.position.y - 35;
 				}
+				
 			} else {
 				if(this.turnTrigger == true && this.turnDown == false){
-					this.size = new Victor(65,80);
-					this.attackSize = new Victor(65,80);
-					this.attackPosition.x = this.position.x + 140;
-					this.attackPosition.y = this.position.y - 65;
+					this.size2 = new Victor(65,this.totalMovement2 + 80);
+					this.attackSize2 = new Victor(65,this.totalMovement2 + 80);
+					this.attackPosition2.x = this.position.x + 140;
+					this.attackPosition2.y = this.position.y - 45;
+					this.size = new Victor(this.totalMovement + 80 - 50,65);
+					this.attackSize = new Victor(this.totalMovement + 80 - 50,65);
+					this.attackPosition.x = this.position.x + 155 - this.totalMovement;
+					this.attackPosition.y = this.position.y + 15 + this.totalMovement2;
 				} else if(this.turnTrigger == true && this.turnDown == true){
-					this.size = new Victor(65,80);
-					this.attackSize = new Victor(65,80);
-					this.attackPosition.x = this.position.x + 140;
-					this.attackPosition.y = this.position.y - 15;
+					this.size2 = new Victor(65,this.totalMovement2 + 80);
+					this.attackSize2 = new Victor(65,this.totalMovement2 + 80);
+					this.attackPosition2.x = this.position.x + 140;
+					this.attackPosition2.y = this.position.y - 25 - this.totalMovement2;
+					this.size = new Victor(this.totalMovement + 80,65);
+					this.attackSize = new Victor(this.totalMovement + 80,65);
+					this.attackPosition.x = this.position.x + 155 - this.totalMovement;
+					this.attackPosition.y = this.position.y - 75 - this.totalMovement2;
 				} else {
-					this.size = new Victor(80,65);
-					this.attackSize = new Victor(80,65);
-					this.attackPosition.x = this.position.x + 155;
+					this.size = new Victor(this.totalMovement + 80,65);
+					this.attackSize = new Victor(this.totalMovement + 130,65);
+					this.attackPosition.x = this.position.x + 105 - this.totalMovement;
 					this.attackPosition.y = this.position.y - 35;
 				}
+				
 			}
 		} else if(this.type == 8){
 			if(this.dirLeft == true){
@@ -566,9 +625,15 @@ app.Energy = (function(){
 				
 				ctx.save();
 				
+				//console.log(this.special + " SPECIAL");
+				
 				if(this.flashBlasts == true){
 					this.flashBlasts = false;
-					ctx.filter = "brightness(200%)";
+					if(app.main.vegeta.stuckInBlast == true){
+						ctx.filter = "brightness(300%)";
+					} else {
+						ctx.filter = "brightness(200%)";
+					}
 				} else if(this.flashBlasts == false){
 					this.flashBlasts = true;
 					ctx.filter = "brightness(90%)";
@@ -579,10 +644,14 @@ app.Energy = (function(){
 				ctx.scale(-2, 2);
 				ctx.drawImage(this.beamB1,22,-16.5, 50, 35);
 				this.position.x = this.position.x - 50;
+				if(this.lifetime < 10){
+					this.totalMovement += 50;
+				}
 				ctx.restore();
 				ctx.save();
 				this.replace = 0;
 				if(this.lifetime > 10){
+					this.released = true;
 					ctx.translate(this.position.x + 660, this.position.y);
 				} else {
 					this.copy = this.copy + 1;
@@ -645,8 +714,10 @@ app.Energy = (function(){
 				ctx.save();
 				this.replace = 0;
 				if(this.lifetime > 10){
+					this.released = true;
 					ctx.translate(this.position.x + 660, this.position.y);
 				} else {
+					this.totalMovement += 50;
 					this.copy = this.copy + 1;
 					ctx.translate(this.local.x - 40, this.local.y + 10);
 				}
@@ -762,6 +833,11 @@ app.Energy = (function(){
 					}
 				}
 				
+				if((this.blastUser == 0 || this.blastUser == 6) && app.main.HZ == false){
+					this.moving = true;
+					this.position.x = this.position.x - 50;
+				}
+				
 				if(this.triggerState == 1 && this.turnTrigger == false){
 						
 						if(this.tracking.x < this.position.x){
@@ -870,8 +946,10 @@ app.Energy = (function(){
 				ctx.save();
 				this.replace = 0;
 				if(this.lifetime > 10){
+					this.released = true;
 					ctx.translate(this.position.x + 600, this.position.y);
 				} else {
+					this.totalMovement += 50;
 					this.copy = this.copy + 1;
 					ctx.translate(this.local.x - 40, this.local.y + 10);
 				}
@@ -942,15 +1020,22 @@ app.Energy = (function(){
 					ctx.scale(-2, 2);
 					ctx.drawImage(this.beamB3,22,-16.5, 50, 32);
 					this.position.x = this.position.x - 50;
+					if(this.turnTrigger == false){
+						this.totalMovement += 50;
+					}
+					/* this.size.x += 50;
+					this.attackSize.x += 50; */
 				} else {
 					if(this.turnDown == false){
 						ctx.scale(-2, -2);
 						ctx.drawImage(this.beamB4,-28,33.5, 32, 50);
 						this.position.y = this.position.y - 50;
+						this.totalMovement2 += 50;
 					} else {
 						ctx.scale(-2, 2);
 						ctx.drawImage(this.beamB4,-28,33.5, 32, 50);
 						this.position.y = this.position.y + 50;
+						this.totalMovement2 += 50;
 					}
 				}
 				ctx.restore();
@@ -958,6 +1043,7 @@ app.Energy = (function(){
 				this.replace = 0;
 				this.replace2 = 0;
 				if(this.lifetime > 30){
+					this.released = true;
 					ctx.translate(this.position.x + 660, this.position.y);
 				} else {
 					this.copy = this.copy + 1;
@@ -1031,7 +1117,7 @@ app.Energy = (function(){
 				ctx.restore();
 				ctx.save();
 				
-				if(this.position.y > 725){
+				if(this.position.y > 700){
 					app.main.sound.playEnergyReaction(6);
 					this.groundTrigger = true;
 					app.main.environment.shake = true;
@@ -1047,7 +1133,8 @@ app.Energy = (function(){
 				}
 				
 				ctx.restore();
-				if(this.limetime > 40) {
+				if(this.limetime > 38) {
+					this.exploding = true;
 					this.lifetime = 301;
 				}
 				
@@ -1198,6 +1285,14 @@ app.Energy = (function(){
 				ctx.translate(this.position.x, this.position.y + 10);
 				ctx.save();
 				ctx.scale(-2, 2);
+				ctx.save();
+				ctx.globalAlpha = .3;
+				ctx.drawImage(this.disk2,-20,-8);
+				ctx.restore();
+				ctx.save();
+				ctx.globalAlpha = .1;
+				ctx.drawImage(this.disk2,-40,-8);
+				ctx.restore();
 				ctx.drawImage(this.disk2,-10,-8);
 				ctx.restore();
 				this.position.x = this.position.x - 25;
@@ -1321,13 +1416,17 @@ app.Energy = (function(){
 				if(app.main.environment.lesserFlash == false){
 					app.main.environment.lesserFlash = true;
 				}
-				
+				//console.log(this.special + " SPECIAL");
 			
 				ctx.save();
 				
 				if(this.flashBlasts == true){
 					this.flashBlasts = false;
-					ctx.filter = "brightness(200%)";
+					if(app.main.vegeta.stuckInBlast == true){
+						ctx.filter = "brightness(300%)";
+					} else {
+						ctx.filter = "brightness(200%)";
+					}
 				} else if(this.flashBlasts == false){
 					this.flashBlasts = true;
 					ctx.filter = "brightness(90%)";
@@ -1338,6 +1437,9 @@ app.Energy = (function(){
 				ctx.scale(2, 2);
 				ctx.drawImage(this.beamB1,250,-16.5, 50, 35);
 				this.position.x = this.position.x + 50;
+				if(this.lifetime < 10){
+					this.totalMovement += 50;
+				}
 				ctx.restore();
 				ctx.save();
 				this.replace = 0;
@@ -1352,6 +1454,7 @@ app.Energy = (function(){
 					this.replace = this.replace + 50;
 					
 					if(this.lifetime > 10 && i == 0){
+						this.released = true;
 						ctx.save();
 						ctx.scale(-1,1);
 						ctx.drawImage(this.beamT1,this.replace * -1 - 50,-8,60,20);
@@ -1409,8 +1512,10 @@ app.Energy = (function(){
 				ctx.save();
 				this.replace = 0;
 				if(this.lifetime > 10){
+					this.released = true;
 					ctx.translate(this.position.x - 260, this.position.y);
 				} else {
+					this.totalMovement += 50;
 					this.copy = this.copy + 1;
 					ctx.translate(this.local.x + 30, this.local.y + 10);
 				}
@@ -1529,6 +1634,12 @@ app.Energy = (function(){
 						this.position.x = this.position.x + 50;
 					}
 				}
+				
+				if((this.blastUser == 0 || this.blastUser == 6) && app.main.HZ == false){
+					this.moving = true;
+					this.position.x = this.position.x + 50;
+				}
+				
 				if(this.triggerState == 1 && this.turnTrigger == false){
 						
 						if(this.tracking.x < this.position.x){
@@ -1638,8 +1749,10 @@ app.Energy = (function(){
 				ctx.save();
 				this.replace = 0;
 				if(this.lifetime > 10){
+					this.released = true;
 					ctx.translate(this.position.x - 110, this.position.y);
 				} else {
+					this.totalMovement += 50;
 					this.copy = this.copy + 1;
 					ctx.translate(this.local.x + 30, this.local.y + 10);
 				}
@@ -1714,15 +1827,20 @@ app.Energy = (function(){
 					ctx.scale(2, 2);
 					ctx.drawImage(this.beamB3,250,-16.5, 50, 32);
 					this.position.x = this.position.x + 50;
+					this.totalMovement += 50;
+					/* this.size.x += 50;
+					this.attackSize.x += 50; */
 				} else {
 					if(this.turnDown == false){
 						ctx.scale(2, -2);
 						ctx.drawImage(this.beamB4,250,-16.5, 32, 50);
 						this.position.y = this.position.y - 50;
+						this.totalMovement2 += 50;
 					} else {
 						ctx.scale(2, 2);
 						ctx.drawImage(this.beamB4,250,-16.5, 32, 50);
 						this.position.y = this.position.y + 50;
+						this.totalMovement2 += 50;
 					}
 				}
 				ctx.restore();
@@ -1730,6 +1848,7 @@ app.Energy = (function(){
 				this.replace = 0;
 				this.replace2 = 0;
 				if(this.lifetime > 30){
+					this.released = true;
 					ctx.translate(this.position.x - 460, this.position.y);
 				} else {
 					this.copy = this.copy + 1;
@@ -1792,7 +1911,7 @@ app.Energy = (function(){
 				ctx.restore();
 				ctx.save();
 				
-				if(this.position.y > 725){
+				if(this.position.y > 700){
 					app.main.sound.playEnergyReaction(6);
 					app.main.environment.shake = true;
 					this.groundTrigger = true;
@@ -1808,7 +1927,8 @@ app.Energy = (function(){
 				}
 				
 				ctx.restore();
-				if(this.limetime > 40) {
+				if(this.limetime > 38) {
+					this.exploding = true;
 					this.lifetime = 301;
 				}
 				
@@ -1909,6 +2029,13 @@ app.Energy = (function(){
 					}
 				}
 				
+				/* if(app.main.vegeta.blasting == true && hardAttackHitTest(app.main.vegeta, app.main.android18)) {
+					if(app.main.vegeta.left == true){
+						
+					} else {
+						
+					}
+				} */
 				
 				this.position.x = this.position.x + 25;
 				ctx.restore();
@@ -1963,6 +2090,14 @@ app.Energy = (function(){
 				ctx.translate(this.position.x, this.position.y + 10);
 				ctx.save();
 				ctx.scale(2, 2);
+				ctx.save();
+				ctx.globalAlpha = .3;
+				ctx.drawImage(this.disk2,-20,-8);
+				ctx.restore();
+				ctx.save();
+				ctx.globalAlpha = .1;
+				ctx.drawImage(this.disk2,-40,-8);
+				ctx.restore();
 				ctx.drawImage(this.disk2,-10,-8);
 				ctx.restore();
 				this.position.x = this.position.x + 25;
@@ -2066,20 +2201,34 @@ app.Energy = (function(){
 				ctx.restore();
 			} else if(this.type == 1 || this.type == 6 || this.type == 10){
 				ctx.save();
+				//ctx.translate(this.attackPosition.x, this.attackPosition.y);
 				if(this.dirLeft == true){
-					ctx.translate(this.position.x - 5, this.position.y + 10);
+					ctx.translate(this.attackPosition.x - 5, this.attackPosition.y + 80);
+					this.attackPosition.x = this.position.x + 5;
+					this.attackPosition.y = this.position.y;
 				} else {
-					ctx.translate(this.position.x + 125, this.position.y + 10);
+					ctx.translate(this.attackPosition.x + 325, this.attackPosition.y + 80);
+					this.attackPosition.x = this.position.x + 30;
+					this.attackPosition.y = this.position.y;
 				}
 				ctx.scale(6, 6);
 				if(this.counter < 2){
+					/* if(this.dirLeft == true){
+					//ctx.translate(this.attackPosition.x - 5, this.attackPosition.y + 10);
+					this.attackPosition.x -= 5;
+					this.attackPosition.y += 10;
+				} else {
+					//ctx.translate(this.attackPosition.x + 350, this.attackPosition.y + 10);
+					this.attackPosition.x += 500;
+					this.attackPosition.y += 10;
+				} */
 					ctx.drawImage(this.explosion1,-10,-17);
 				} else if(this.counter < 3){
 					ctx.drawImage(this.explosion2,-10,-17);
 				} else if(this.counter < 4){
 					ctx.drawImage(this.explosion3,-10,-17);
 				} else if(this.counter < 5){
-					if(attackHitTestSmog(this.attackPosition,this.size) != true){
+					if(attackHitTestSmog(this.attackPosition,this.attackSize) != true){
 						if(this.dirLeft == true){
 							app.main.environment.smogPos.push(new Victor(this.attackPosition.x - 77.5,this.attackPosition.y - 75));
 						} else {
@@ -2121,6 +2270,8 @@ app.Energy = (function(){
 				} else if(this.counter < 7){
 					ctx.drawImage(this.explosion6,-10,-17);
 				} else {
+					app.main.vegeta.stuckYell = false;
+					app.main.vegeta.stuckInBlast = false;
 					this.lifetime = 301;
 				}
 				ctx.restore();
@@ -2145,7 +2296,7 @@ app.Energy = (function(){
 						} else {
 							app.main.environment.smogPos.push(new Victor(this.attackPosition.x - 77.5,this.attackPosition.y - 90));
 						}
-						app.main.environment.smogSize.push(new Victor(225,225));
+						app.main.environment.smogSize.push(new Victor(250,250));
 						app.main.environment.smogAlpha.push(1.1);
 						app.main.environment.smogTimer.push(0);
 						app.main.environment.smogAngle.push(this.getAngle);
@@ -2203,7 +2354,7 @@ app.Energy = (function(){
 						} else {
 							app.main.environment.smogPos.push(new Victor(this.attackPosition.x + 45,this.attackPosition.y - 40));
 						}
-						app.main.environment.smogSize.push(new Victor(250,250));
+						app.main.environment.smogSize.push(new Victor(275,275));
 						app.main.environment.smogAlpha.push(1.1);
 						app.main.environment.smogTimer.push(0);
 						app.main.environment.smogAngle.push(this.getAngle);
@@ -2300,7 +2451,7 @@ app.Energy = (function(){
 				ctx.restore();
 			} else if(this.type == 7){
 				ctx.save();
-				if(this.dirLeft == true){ 
+				/* if(this.dirLeft == true){
 					if(this.groundTrigger == false && this.turnTrigger == false){
 						ctx.translate(this.position.x - 5, this.position.y + 10);
 					} else {
@@ -2312,8 +2463,48 @@ app.Energy = (function(){
 					} else {
 						ctx.translate(this.position.x + 125, this.position.y + 10);
 					}
+				} */
+				if(this.groundTrigger == false){
+					ctx.translate(this.position.x - 10, this.position.y + 45);
+					/* if(app.main.android18.blasted == true){
+						this.position = app.main.android18.position;
+					} else if(app.main.vegeta.blasted == true){
+						this.position = app.main.vegeta.position;
+					} else if(app.main.android17.blasted == true){
+						this.position = app.main.android17.position;
+					} */
+				} else {
+					if(this.dirLeft == false){
+						ctx.translate(this.position.x + 20, this.position.y + 5);
+						this.position.x = this.init.x + this.totalMovement + 15;
+					} else {
+						ctx.translate(this.position.x + 45, this.position.y + 45);
+						this.position.x = this.init.x - this.totalMovement - 150;
+					}
+					this.position.y = app.main.android18.GROUND.y;
+					if(app.main.vegeta.fast17 == true){
+						app.main.android17.hit = true;
+						app.main.android17.hardHit = true;
+					}
 				}
+				//ctx.save();
 				ctx.scale(6, 6);
+				/* if(this.groundTrigger == true){
+				if(this.dirLeft == true){
+					ctx.translate(this.position.x + 135, this.position.y + 10);
+				} else {
+					ctx.translate(this.position.x + 125, this.position.y + 10);
+				}
+				} */
+				/* if(this.counter < 2){
+					if(this.groundTrigger == true){
+					if(this.dirLeft == false){
+						this.position.x += 130;
+					} else {
+						this.position.x += 325;
+					}
+					}
+				} */
 				if(this.counter < 2){
 					ctx.drawImage(this.explosion1,-10,-17);
 				} else if(this.counter < 3){
@@ -2321,13 +2512,25 @@ app.Energy = (function(){
 				} else if(this.counter < 4){
 					ctx.drawImage(this.explosion3,-10,-17);
 				} else if(this.counter < 5){
-					if(attackHitTestSmog(this.attackPosition,this.size) != true){
+					if(attackHitTestSmog(this.position,this.size) != true){
+						if(this.groundTrigger == false){
 						if(this.dirLeft == true){
-							app.main.environment.smogPos.push(new Victor(this.attackPosition.x - 77.5,this.attackPosition.y - 75));
+							app.main.environment.smogPos.push(new Victor(this.position.x - 77.5,this.position.y - 75));
 						} else {
-							app.main.environment.smogPos.push(new Victor(this.attackPosition.x - 77.5,this.attackPosition.y - 75));
+							app.main.environment.smogPos.push(new Victor(this.position.x - 77.5,this.position.y - 75));
 						}
-						app.main.environment.smogSize.push(new Victor(225,225));
+						} else {
+							if(this.dirLeft == true){
+								app.main.environment.smogPos.push(new Victor(this.position.x - 77.5,this.position.y - 75));
+							} else {
+								app.main.environment.smogPos.push(new Victor(this.position.x - 77.5,this.position.y - 75));
+							}
+						}
+						if(app.main.vegeta.superForm == true){
+							app.main.environment.smogSize.push(new Victor(325,325));
+						} else {
+							app.main.environment.smogSize.push(new Victor(225,225));
+						}
 						app.main.environment.smogAlpha.push(1.1);
 						app.main.environment.smogTimer.push(0);
 						app.main.environment.smogAngle.push(this.getAngle);
@@ -2341,12 +2544,23 @@ app.Energy = (function(){
 						}
 						if(app.main.environment.smogAlpha[app.main.environment.smogTarget] < 1.3){
 						if(app.main.environment.smogAlpha[app.main.environment.smogTarget] < .25){
-							if(this.dirLeft == true){
-							app.main.environment.smogPos.push(new Victor(this.attackPosition.x - 77.5,this.attackPosition.y - 75));
+						if(this.groundTrigger == false){
+						if(this.dirLeft == true){
+							app.main.environment.smogPos.push(new Victor(this.position.x - 77.5,this.position.y - 75));
 						} else {
-							app.main.environment.smogPos.push(new Victor(this.attackPosition.x - 77.5,this.attackPosition.y - 75));
+							app.main.environment.smogPos.push(new Victor(this.position.x - 77.5,this.position.y - 75));
 						}
-							app.main.environment.smogSize.push(new Victor(225,225));
+						} else {
+							if(this.dirLeft == true){
+								app.main.environment.smogPos.push(new Victor(this.position.x - 77.5,this.position.y - 75));
+							} else {
+								app.main.environment.smogPos.push(new Victor(this.position.x - 77.5,this.position.y - 75));
+							}
+						}	if(app.main.vegeta.superForm == true){
+								app.main.environment.smogSize.push(new Victor(325,325));
+							} else {
+								app.main.environment.smogSize.push(new Victor(225,225));
+							}
 							app.main.environment.smogAlpha.push(1.1);
 							app.main.environment.smogTimer.push(0);
 							app.main.environment.smogAngle.push(this.getAngle);
@@ -2366,6 +2580,7 @@ app.Energy = (function(){
 					this.lifetime = 301;
 					this.groundTrigger = false;
 				}
+				//ctx.restore();
 				ctx.restore();
 			} else if(this.type == 8){
 				ctx.save();

@@ -139,6 +139,8 @@ app.main = {
 	
 	downsized : false,
 	
+	playerRank : 0,
+	
 	//Random chance
 	chance : undefined,
 	chance2 : undefined,
@@ -229,6 +231,9 @@ app.main = {
 	creditsRoll : 0,
 	toggle1 : true,
 	toggle2 : true,
+	tutorialBlinker : true,
+	tutAdvance : false,
+	tutorialBTimer : 0,
 	
 	//Support CHARACTERS
 	support : undefined,
@@ -368,7 +373,7 @@ app.main = {
 		
 		this.canvas3 = document.querySelector('#canvas3');
 		this.canvas3.width = this.WIDTH;
-		this.canvas3.height = this.HEIGHT;
+		this.canvas3.height = this.HEIGHT + 50;
 		this.ctx3 = this.canvas3.getContext('2d');
 
 		//requestFullscreen(this.ctx);
@@ -420,6 +425,18 @@ app.main = {
 		image = new Image();
 		image.src =  app.gameUI.iBackground;
 		this.iBackground = image;
+		
+		image = new Image();
+		image.src =  app.gameUI.iBackground130;
+		this.iBackground130 = image;
+		
+		image = new Image();
+		image.src =  app.gameUI.iBackground140;
+		this.iBackground140 = image;
+		
+		image = new Image();
+		image.src =  app.gameUI.iBackground160;
+		this.iBackground160 = image;
 		
 		image = new Image();
 		image.src =  app.gameUI.iBigBar;
@@ -525,22 +542,22 @@ app.main = {
 		//this.controllerDetected = false;
 		
 		gamepad.on('connect', e => {
-			console.log(`controller ${e.index} connected!`);
+			//console.log(`controller ${e.index} connected!`);
 			this.controllerDetected = true;
 		});
 		
 		gamepad.on('disconnect', e => {
-			console.log(`controller ${e.index} disconnected!`);
+			//console.log(`controller ${e.index} disconnected!`);
 			this.controllerDetected = false;
 		});
 			
 
 		gamepad.on('hold', 'shoulder_top_left', () => {
-			console.log('shoulder_top_left was pressed!');
+			//console.log('shoulder_top_left was pressed!');
 			this.holdTime++;
 		});
 		gamepad.on('release', 'shoulder_top_left', () => {
-			console.log('shoulder_top_left was released!');
+			//console.log('shoulder_top_left was released!');
 			if(this.holdTime > 20 && this.android17.encounter == false){
 				myKeys.keydown[myKeys.KEYBOARD.KEY_D] = true;
 				myKeys.keydown[myKeys.KEYBOARD.KEY_E] = true;
@@ -550,77 +567,77 @@ app.main = {
 			this.holdTime = 0;
 		});
 		gamepad.on('hold', 'shoulder_top_right', () => {
-			console.log('shoulder_top_left was pressed!');
+			//console.log('shoulder_top_left was pressed!');
 			myKeys.keydown[myKeys.KEYBOARD.KEY_D] = true;
 			myKeys.keydown[myKeys.KEYBOARD.KEY_W] = true;
 		});
 		gamepad.on('release', 'shoulder_top_right', () => {
-			console.log('shoulder_top_left was released!');
+			//console.log('shoulder_top_left was released!');
 			myKeys.keydown[myKeys.KEYBOARD.KEY_D] = false; 
 			myKeys.keydown[myKeys.KEYBOARD.KEY_W] = false; 
 		});
 		gamepad.on('hold', 'shoulder_bottom_left', () => {
-			console.log('shoulder_bottom_left was pressed!');
+			//console.log('shoulder_bottom_left was pressed!');
 			myKeys.keydown[myKeys.KEYBOARD.KEY_W] = true;
 		});
 		gamepad.on('release', 'shoulder_bottom_left', () => {
-			console.log('shoulder_bottom_left was released!');
+			//console.log('shoulder_bottom_left was released!');
 			myKeys.keydown[myKeys.KEYBOARD.KEY_W] = false; 
 		});
 		gamepad.on('hold', 'shoulder_bottom_right', () => {
-			console.log('shoulder_bottom_left was pressed!');
+			//console.log('shoulder_bottom_left was pressed!');
 			myKeys.keydown[myKeys.KEYBOARD.KEY_Q] = true;
 		});
 		gamepad.on('release', 'shoulder_bottom_right', () => {
-			console.log('shoulder_bottom_left was released!');
+			//console.log('shoulder_bottom_left was released!');
 			myKeys.keydown[myKeys.KEYBOARD.KEY_Q] = false; 
 		});
 		gamepad.on('hold', 'button_1', () => {
-			console.log('button 1 was pressed!');
+			//console.log('button 1 was pressed!');
 			myKeys.keydown[myKeys.KEYBOARD.KEY_S] = true;
 		});
 		gamepad.on('release', 'button_1', () => {
-			console.log('button 1 was released!');
+			//console.log('button 1 was released!');
 			myKeys.keydown[myKeys.KEYBOARD.KEY_S] = false; 
 		});
 		gamepad.on('hold', 'button_2', () => {
-			console.log('button 2 was pressed!');
+			//console.log('button 2 was pressed!');
 			myKeys.keydown[myKeys.KEYBOARD.KEY_D] = true;
 			myKeys.keydown[myKeys.KEYBOARD.KEY_S] = true;
 		});
 		gamepad.on('release', 'button_2', () => {
-			console.log('button 2 was released!');
+			//console.log('button 2 was released!');
 			myKeys.keydown[myKeys.KEYBOARD.KEY_D] = false;
 			myKeys.keydown[myKeys.KEYBOARD.KEY_S] = false; 
 		});
 		gamepad.on('hold', 'button_3', () => {
-			console.log('button 3 was pressed!');
+			//console.log('button 3 was pressed!');
 			myKeys.keydown[myKeys.KEYBOARD.KEY_A] = true;
 		});
 		gamepad.on('release', 'button_3', () => {
-			console.log('button 3 was released!');
+			//console.log('button 3 was released!');
 			myKeys.keydown[myKeys.KEYBOARD.KEY_A] = false; 
 		});
 		gamepad.on('hold', 'button_4', () => {
-			console.log('button 4 was pressed!');
+			//console.log('button 4 was pressed!');
 			myKeys.keydown[myKeys.KEYBOARD.KEY_D] = true;
 			myKeys.keydown[myKeys.KEYBOARD.KEY_A] = true;
 		});
 		gamepad.on('release', 'button_4', () => {
-			console.log('button 4 was released!');
+			//console.log('button 4 was released!');
 			myKeys.keydown[myKeys.KEYBOARD.KEY_D] = false;
 			myKeys.keydown[myKeys.KEYBOARD.KEY_A] = false; 
 		});
 		gamepad.on('press', 'start', () => {
-			console.log('start was pressed!');
+			//console.log('start was pressed!');
 			myKeys.keydown[myKeys.KEYBOARD.KEY_ENTER] = true;
 		});
 		gamepad.on('release', 'start', () => {
-			console.log('start was released!');
+			//console.log('start was released!');
 			myKeys.keydown[myKeys.KEYBOARD.KEY_ENTER] = false;
 		});
 		gamepad.on('press', 'vendor', () => {
-			console.log('vendor was pressed!');
+			//console.log('vendor was pressed!');
 			myKeys.keydown[myKeys.KEYBOARD.KEY_P] = true;
 			if (app.main.paused || app.main.gameState == app.main.GAME_STATE.BEGIN){
 				app.main.resumeGame();
@@ -629,63 +646,63 @@ app.main = {
 			}
 		});
 		gamepad.on('release', 'vendor', () => {
-			console.log('vendor was released!');
+			//console.log('vendor was released!');
 			myKeys.keydown[myKeys.KEYBOARD.KEY_P] = false;
 		});
 		gamepad.on('press', 'stick_button_left', () => {
-			console.log('stick_button_left was pressed!');
+			//console.log('stick_button_left was pressed!');
 			myKeys.keydown[myKeys.KEYBOARD.KEY_SPACE] = true;
 		});
 		gamepad.on('release', 'stick_button_left', () => {
-			console.log('stick_button_left was released!');
+			//console.log('stick_button_left was released!');
 			myKeys.keydown[myKeys.KEYBOARD.KEY_SPACE] = false;
 		});
 		gamepad.on('press', 'stick_button_right', () => {
-			console.log('stick_button_left was pressed!');
+			//console.log('stick_button_left was pressed!');
 			myKeys.keydown[myKeys.KEYBOARD.KEY_T] = true;
 		});
 		gamepad.on('release', 'stick_button_right', () => {
-			console.log('stick_button_left was released!');
+			//console.log('stick_button_left was released!');
 			myKeys.keydown[myKeys.KEYBOARD.KEY_T] = false;
 		});
 		gamepad.on('press', 'select', () => {
-			console.log('select was pressed!');
+			//console.log('select was pressed!');
 			myKeys.keydown[myKeys.KEYBOARD.KEY_SPACE] = true;
 		});
 		gamepad.on('release', 'select', () => {
-			console.log('select was released!');
+			//console.log('select was released!');
 			myKeys.keydown[myKeys.KEYBOARD.KEY_SPACE] = false;
 		});
 		gamepad.on('hold', 'd_pad_up', () => {
-			console.log('d_pad_up was pressed!');
+			//console.log('d_pad_up was pressed!');
 			myKeys.keydown[myKeys.KEYBOARD.KEY_UP] = true;
 		});
 		gamepad.on('release', 'd_pad_up', () => {
-			console.log('d_pad_up was released!');
+			//console.log('d_pad_up was released!');
 			myKeys.keydown[myKeys.KEYBOARD.KEY_UP] = false;
 		});
 		gamepad.on('hold', 'd_pad_down', () => {
-			console.log('d_pad_up was pressed!');
+			//console.log('d_pad_up was pressed!');
 			myKeys.keydown[myKeys.KEYBOARD.KEY_DOWN] = true;
 		});
 		gamepad.on('release', 'd_pad_down', () => {
-			console.log('d_pad_down was released!');
+			//console.log('d_pad_down was released!');
 			myKeys.keydown[myKeys.KEYBOARD.KEY_DOWN] = false;
 		});
 		gamepad.on('hold', 'd_pad_left', () => {
-			console.log('d_pad_left was pressed!');
+			//console.log('d_pad_left was pressed!');
 			myKeys.keydown[myKeys.KEYBOARD.KEY_LEFT] = true;
 		});
 		gamepad.on('release', 'd_pad_left', () => {
-			console.log('d_pad_left was released!');
+			//console.log('d_pad_left was released!');
 			myKeys.keydown[myKeys.KEYBOARD.KEY_LEFT] = false;
 		});
 		gamepad.on('hold', 'd_pad_right', () => {
-			console.log('d_pad_right was pressed!');
+			//console.log('d_pad_right was pressed!');
 			myKeys.keydown[myKeys.KEYBOARD.KEY_RIGHT] = true;
 		});
 		gamepad.on('release', 'd_pad_right', () => {
-			console.log('d_pad_right was released!');
+			//console.log('d_pad_right was released!');
 			myKeys.keydown[myKeys.KEYBOARD.KEY_RIGHT] = false;
 		});
 		/* gamepad.on('hold', 'stick_axis_left', e => {
@@ -756,7 +773,7 @@ app.main = {
 		
 		this.canvas3 = document.querySelector('#canvas3');
 		this.canvas3.width = this.WIDTH;
-		this.canvas3.height = this.HEIGHT;
+		this.canvas3.height = this.HEIGHT + 50;
 		this.ctx3 = this.canvas3.getContext('2d');
 
 
@@ -771,12 +788,12 @@ app.main = {
 		// initialize properties
 		this.canvas4 = document.querySelector('#canvas4');
 		this.canvas4.width = this.WIDTH;
-		this.canvas4.height = this.HEIGHT;
+		this.canvas4.height = this.HEIGHT + 100;
 		this.ctx4 = this.canvas4.getContext('2d');
 		
 		this.ctx4.save();
 		this.ctx4.fillStyle = "black";
-		this.ctx4.fillRect(0,0,1024,768);
+		this.ctx4.fillRect(0,-100,1024,868);
 		this.ctx4.textAlign = "center";
 		this.ctx4.textBaseline = "middle";
 		this.fillText(this.ctx4,"...Systems Loading...", this.WIDTH/2, this.HEIGHT/2 - 60, "82pt heavy_data", "white");
@@ -808,6 +825,8 @@ app.main = {
 	
 	update: function(){
 		
+		document.getElementById("bigBorder").style.top="calc(10% - 45px)";
+		//document.getElementById("bigBorder").style.position="fixed";
 		// 1) LOOP
 		requestAnimationFrame(this.update.bind(this));
 	 	
@@ -836,14 +855,16 @@ app.main = {
 			}
 			 	
 			
-			console.log("mods");
+			/* console.log("mods");
 			console.log(this.modsT1);
 			console.log(this.modsT2);
 			console.log(this.modsT3);
 			console.log(this.modsT4);
 			console.log(this.modsT5);
-			console.log("MODS OWNED");
+			console.log("MODS OWNED"); */
 			//console.dir(this.modsOwned);
+			
+			//console.log(this.android18.aboveBuilding + " BLAST COUNT!!");
 			
 			if(this.changeText == false && this.allText > .95){
 				this.changeText = true;
@@ -1016,7 +1037,7 @@ app.main = {
 				this.environment.supportActive = false;
 			}
 			
-			console.log("Active supports: " + this.activeSupport + this.environment.supportActive);
+			//console.log("Active supports: " + this.activeSupport + this.environment.supportActive);
 			
 			//do actual drawing
 			this.ctx.save();
@@ -1090,7 +1111,8 @@ app.main = {
 			}
 			
 
-			
+			/* console.dir(this.support[0]);
+			console.dir(this.support[1]); */
 			
 			this.cooldownAndroid18++;
 			//console.log(this.android18.powerMove + " POWERMOVE");
@@ -1123,7 +1145,8 @@ app.main = {
 			
 			if(this.discHit == true && this.android18.health > 0 && this.krillinFirst == false && this.scene == false){
 				this.talkTimer++;
-				if(this.talkTimer < 2){
+				if(this.talkTimer < 4 && this.talkTimer > 2){
+					this.sound.pauseVoice8();
 					this.sound.playTaunt8(Math.round(getRandom(11,12)));
 				} else if(this.talkTimer < 49){
 					
@@ -1153,6 +1176,9 @@ app.main = {
 				//EXPIRE BLASTS
 				if(this.blasts[i].lifetime > 40){
 					this.environment.decay2 = true;
+					if(this.blasts[i].blastUser == 2 && this.blasts[i].type == 5){
+						this.vegeta.blastCount -= 1;
+					}
 					this.blasts.splice(i, 1);
 				} else {
 					//HIT BOTH
@@ -1228,7 +1254,7 @@ app.main = {
 						
 					}
 					//HIT VEGETA
-					if(this.blasts[i].exploding == false && (attackHitTestBlast(this.blasts[i], this.vegeta) == true || ((((hardAttackHitTest(this.android18, this.vegeta) == true && this.vegeta.behind == false) && this.blasts[i].blastUser == 0) || (hardAttackHitTest(this.android17, this.vegeta) == true && this.blasts[i].blastUser == 6)) && this.blasts[i].lifetime < 2 && (this.blasts[i].type != 5 || (this.blasts[i].moving == true && this.blasts[i].triggerState == 0)))) && this.blasts[i].activated == true && this.vegeta.superSpeed == false && this.vegeta.vanish == false && ((this.blasts[i].blastUser != 1 && this.blasts[i].blastUser != 2 && this.blasts[i].blastUser != 3) || this.vegeta.hardHit == true) && this.blasts[i].blastUser != 4 && this.blasts[i].blastUser != 5){
+				if(this.blasts[i].exploding == false && (attackHitTestBlast(this.blasts[i], this.vegeta) == true || ((((hardAttackHitTest(this.android18, this.vegeta) == true && this.vegeta.behind == false) && this.blasts[i].blastUser == 0) || (hardAttackHitTest(this.android17, this.vegeta) == true && this.blasts[i].blastUser == 6)) && ((this.blasts[i].lifetime < 2 || this.blasts[i].type == 1 || (this.blasts[i].type == 2 && this.blasts[i].released == false) || this.blasts[i].type == 7) && ((this.android18.behind == false && this.vegeta.focus17 == false) || (this.android17.behind == false && this.vegeta.focus17 == true)) && this.blasts[i].released == false) && (this.blasts[i].type != 5 || (this.blasts[i].moving == true && this.blasts[i].triggerState == 0)))) && this.blasts[i].activated == true && this.vegeta.superSpeed == false && this.vegeta.vanish == false && ((this.blasts[i].blastUser != 1 && this.blasts[i].blastUser != 2 && this.blasts[i].blastUser != 3) || this.vegeta.hardHit == true) && this.blasts[i].blastUser != 4 && this.blasts[i].blastUser != 5){
 						if(this.blasts[i].type == 0 && (this.blasts[i].lifetime > 1 || this.vegeta.behind == false)){
 							this.vegeta.hit = true;
 							this.vegeta.stun = true;
@@ -1283,11 +1309,19 @@ app.main = {
 							} else if(this.vegeta.endurance < 15){
 								this.vegeta.health = this.vegeta.health - (3 + getRandom(0, 2));
 							}
-						} else if(this.blasts[i].type == 1){
-							if((hardAttackHitTest(this.android18, this.vegeta) == true && this.blasts[i].blastUser == 0) || (hardAttackHitTest(this.android17, this.vegeta) == true && this.blasts[i].blastUser == 6) && this.vegeta.behind == false){
+						} else if(this.blasts[i].type == 1 && this.vegeta.behind == false){
+							if((hardAttackHitTest(this.android18, this.vegeta) == true && this.blasts[i].blastUser == 0) || (hardAttackHitTest(this.android17, this.vegeta) == true && this.blasts[i].blastUser == 6) && this.vegeta.behind == false && this.blasts[i].released == false){
 								//console.log("HARDHITTESTSETSET");
-								this.vegeta.position.x = this.blasts[i].position.x;
+								if(this.blasts[i].released == false && this.vegeta.behind == false){
+									//this.vegeta.position.x = this.blasts[i].position.x;
+									if(this.blasts[i].dirLeft == true){
+										this.vegeta.position.x -= 50;
+									} else {
+										this.vegeta.position.x += 50;
+									}
+								}
 							}
+							if(attackHitTestBlast(this.blasts[i], this.vegeta) == true){
 							this.vegeta.punched = false;
 							this.vegeta.hit = true;
 							this.vegeta.stun = true;
@@ -1307,10 +1341,32 @@ app.main = {
 							}
 							//this.vegeta.hardHit = true;
 							this.vegeta.jumpVelocity.y = 0;
+							if(attackHitTestBlastSpecial(this.blasts[i], this.vegeta) == true){
 							if(this.blasts[i].dirLeft == true){
+								if(this.vegeta.position.x > 300){
+									this.vegeta.stuckInBlast = true;
+									this.vegeta.stuckCooldown = 0;
+								}
 								this.vegeta.position.x = this.blasts[i].position.x;
 							} else {
+								if(this.vegeta.position.x < 700){
+									this.vegeta.stuckInBlast = true;
+									this.stuckCooldown = 0;
+								}
 								this.vegeta.position.x = this.blasts[i].position.x + 180;
+							}
+							} else {
+								
+								app.main.vegeta.stun = true;
+								app.main.vegeta.hit = true;
+								app.main.vegeta.hardHit = true;
+								if(this.blasts[i].dirLeft == true){
+									this.vegeta.velocity.x = -60;
+								} else {
+									this.vegeta.velocity.x = 60;
+								}
+								this.vegeta.decel = this.vegeta.velocity.clone();
+								
 							}
 							if(this.vegeta.endurance > 14){
 								this.vegeta.endurance = this.vegeta.endurance - 1;
@@ -1326,6 +1382,10 @@ app.main = {
 								}
 								this.vegeta.blastBurn = true;
 								this.environment.shake = true;
+								this.blasts[i].position.x = app.main.vegeta.position.x;
+								//this.blasts[i].attackPosition.x = app.main.vegeta.attackPosition.x;
+								this.blasts[i].position.y = app.main.vegeta.position.y;
+								//this.blasts[i].attackPosition.y = app.main.vegeta.attackPosition.y;
 								this.blasts[i].exploding = true;
 								this.environment.flash = true;
 								if(this.blasts[i].blastUser == 0){
@@ -1350,6 +1410,7 @@ app.main = {
 									this.vegeta.health = this.vegeta.health - (7 + getRandom(2, 5));
 								}
 							}
+							}
 						} else if(this.blasts[i].type == 2){
 							this.vegeta.punched = false;
 							this.vegeta.hit = true;
@@ -1369,6 +1430,7 @@ app.main = {
 									this.roundScore2 += 67;
 								}
 							}
+							this.vegeta.velocity.x = 0;
 							if(this.GI == true){
 								if(this.blasts[i].dirLeft == true){
 									this.vegeta.velocity.x -= 30;
@@ -1398,7 +1460,7 @@ app.main = {
 								this.vegeta.blastBurnLength = 20;
 							}
 							this.vegeta.blastBurn = true;
-							if((hardAttackHitTest(this.android18, this.vegeta) == true && this.blasts[i].blastUser == 0) || (hardAttackHitTest(this.android17, this.vegeta) == true && this.blasts[i].blastUser == 6) && this.vegeta.behind == false){
+							if((hardAttackHitTest(this.android18, this.vegeta) == true && this.blasts[i].blastUser == 0) || (hardAttackHitTest(this.android17, this.vegeta) == true && this.blasts[i].blastUser == 6) && this.vegeta.behind == false && this.blasts[i].released == false){
 								this.pointBlank = true;
 								if(this.vegeta.left == false){
 									this.blasts[i].position.x = this.vegeta.position.x;
@@ -1586,12 +1648,14 @@ app.main = {
 							
 							this.sound.playEnergyReaction2(6);
 
-							if(hardAttackHitTest(this.android17, this.vegeta) == true && this.blasts[i].lifetime < 2 && (this.android18.behind == false || this.blasts[i].moving == false)){
+							if(hardAttackHitTest(this.android17, this.vegeta) == true && (this.android18.behind == false || this.blasts[i].moving == false)){
 								this.pointBlank = true;
 								this.blasts[i].position.x = this.vegeta.position.x;
+								this.blasts[i].position.y = this.vegeta.position.y;
 								this.blasts[i].exploding = true;
 							} else {
-								//this.blasts[i].position.x = this.vegeta.position.x;
+								this.blasts[i].position.x = this.vegeta.position.x;
+								this.blasts[i].position.y = this.vegeta.position.y;
 								this.blasts[i].exploding = true;
 							}
 							this.environment.flash = true;
@@ -1758,7 +1822,7 @@ app.main = {
 						}	
 					}
 					//HIT Android18
-					if(this.blasts[i].exploding == false && (attackHitTestBlast(this.blasts[i], this.android18) == true || (((((hardAttackHitTest(this.vegeta, this.android18) == true  && this.blasts[i].type != 5)&& this.android18.behind == false) && this.blasts[i].blastUser != 0 && this.blasts[i].blastUser != 4 && this.blasts[i].blastUser != 5 && this.blasts[i].blastUser != 6) || (hardAttackHitTest(this.android17, this.android18) == true && this.blasts[i].blastUser == 6)) && this.blasts[i].lifetime < 2 && (this.blasts[i].type != 5 || (this.blasts[i].moving == true && this.blasts[i].triggerState == 0)))) && this.blasts[i].activated == true && this.android18.superSpeed == false && this.blasts[i].blastUser != 0 && (this.blasts[i].blastUser != 6 || this.DD == false) && (this.blasts[i].blastUser != 6 || this.together == false || this.blasts[i].lifetime > 3)){
+					if(this.blasts[i].exploding == false && (attackHitTestBlast(this.blasts[i], this.android18) == true || (((((hardAttackHitTest(this.vegeta, this.android18) == true  && this.blasts[i].type != 5)&& this.android18.behind == false) && this.blasts[i].blastUser != 0 && this.blasts[i].blastUser != 4 && this.blasts[i].blastUser != 5 && this.blasts[i].blastUser != 6) || (hardAttackHitTest(this.android17, this.android18) == true && this.blasts[i].blastUser == 6)) && ((this.blasts[i].lifetime < 2 || this.blasts[i].type == 1 || this.blasts[i].type == 2 || this.blasts[i].type == 6 || this.blasts[i].type == 7) && this.vegeta.behind == false && this.blasts[i].released == false) && (this.blasts[i].type != 5 || (this.blasts[i].moving == true && this.blasts[i].triggerState == 0)))) && this.blasts[i].activated == true && this.android18.superSpeed == false && this.blasts[i].blastUser != 0 && (this.blasts[i].blastUser != 6 || this.DD == false) && (this.blasts[i].blastUser != 6 || this.together == false)){
 						if(this.blasts[i].type == 0 && (this.blasts[i].lifetime > 1 || this.android18.behind == false)){
 							if(this.android18.attacking == false || this.android18.blasting == true){
 							if((hardAttackHitTest(this.vegeta, this.android18) == true && this.blasts[i].lifetime < 2 && this.blasts[i].blastUser != 0) && this.android18.behind == false){
@@ -1807,6 +1871,7 @@ app.main = {
 							
 							}
 							} else {
+								if(this.android18.hard == true && (this.android18.punching == true || this.android18.kicking == true)){
 								this.blasts[i].blastUser = 0;
 								this.blasts[i].lifetime = 0;
 								this.blasts[i].moving = true;
@@ -1815,6 +1880,7 @@ app.main = {
 									this.blasts[i].dirLeft = false;
 								} else {
 									this.blasts[i].dirLeft = true;
+								}
 								}
 								
 								
@@ -2006,14 +2072,16 @@ app.main = {
 								this.blasts[i].exploding = true;
 							}
 							} else {
+								if(this.android18.hard == true && (this.android18.punching == true || this.android18.kicking == true)){
 								this.blasts[i].blastUser = 0;
 								this.blasts[i].lifetime = 0;
 								this.blasts[i].moving = true;
 								this.sound.playIntro(80);
-								if(this.blasts[i].dirLeft == true){
-									this.blasts[i].dirLeft = false;
-								} else {
+								if(this.android18.left == true){
 									this.blasts[i].dirLeft = true;
+								} else {
+									this.blasts[i].dirLeft = false;
+								}
 								}
 								
 								
@@ -2036,9 +2104,9 @@ app.main = {
 							}
 							this.roundScore -= 5;
 							if(this.android18.endurance > 14){
-								this.android18.endurance = this.android18.endurance - 3.5;
+								this.android18.endurance = this.android18.endurance - 1.5;
 							} else if(this.android18.endurance < 15){
-								this.android18.health = this.android18.health - 3.5;
+								this.android18.health = this.android18.health - 1.5;
 							}
 							if(this.blasts[i].dirLeft == true){
 								this.android18.velocity.x = -4;
@@ -2098,12 +2166,18 @@ app.main = {
 							}
 							this.sound.playEnergyReaction2(6);
 
-							if(hardAttackHitTest(this.vegeta, this.android18) == true && this.blasts[i].lifetime < 2 && (this.android18.behind == false || this.blasts[i].moving == false)){
+							if(hardAttackHitTest(this.vegeta, this.android18) == true && (this.android18.behind == false || this.blasts[i].moving == false)){
 								this.pointBlank = true;
+								this.blasts[i].position.x = this.android18.position.x
+								this.blasts[i].position.y = this.android18.position.y;
+								this.blasts[i].exploding = true;
+							} else if(this.blasts[i].groundTrigger != true) {
 								this.blasts[i].position.x = this.android18.position.x;
+								this.blasts[i].position.y = this.android18.position.y;
 								this.blasts[i].exploding = true;
 							} else {
-								//this.blasts[i].position.x = this.android18.position.x;
+								this.blasts[i].position.x = this.android18.position.x;
+								this.blasts[i].position.y = this.android18.position.y;
 								this.blasts[i].exploding = true;
 							}
 							if(this.vegeta.superForm == true){
@@ -2302,7 +2376,7 @@ app.main = {
 						}
 					}
 					//HIT Android17
-					if(this.blasts[i].exploding == false && (attackHitTestBlast(this.blasts[i], this.android17) == true || (((((hardAttackHitTest(this.vegeta, this.android17) == true && this.blasts[i].type != 5)&& this.android17.behind == false) && this.blasts[i].blastUser != 0) || (hardAttackHitTest(this.android18, this.android17) == true && this.blasts[i].blastUser == 0) ) && this.blasts[i].lifetime < 2 && (this.blasts[i].type != 5 || (this.blasts[i].moving == true && this.blasts[i].triggerState == 0)))) && this.blasts[i].activated == true && this.android17.superSpeed == false && this.blasts[i].blastUser != 6 && this.android17.vanish == false && this.android17.city == false && (this.blasts[i].blastUser != 0 || this.together == false || this.blasts[i].lifetime > 3)){
+					if(this.blasts[i].exploding == false && (attackHitTestBlast(this.blasts[i], this.android17) == true || (((((hardAttackHitTest(this.vegeta, this.android17) == true && this.blasts[i].type != 5)&& this.android17.behind == false) && this.blasts[i].blastUser != 0) || (hardAttackHitTest(this.android18, this.android17) == true && this.blasts[i].blastUser == 0) ) && ((this.blasts[i].lifetime < 2 || this.blasts[i].type == 1 || this.blasts[i].type == 2 || this.blasts[i].type == 6 || this.blasts[i].type == 7) && this.vegeta.behind == false && this.blasts[i].released == false) && (this.blasts[i].type != 5 || (this.blasts[i].moving == true && this.blasts[i].triggerState == 0)))) && this.blasts[i].activated == true && this.android17.superSpeed == false && this.blasts[i].blastUser != 6 && this.android17.vanish == false && this.android17.city == false && (this.blasts[i].blastUser != 0 || this.together == false)){
 						if(this.blasts[i].type == 0 && (this.blasts[i].lifetime > 1 || this.android17.behind == false)){
 							if(this.android17.fieldOn == false){
 							if(this.IB == true && this.android17.blocking == true){
@@ -2354,8 +2428,16 @@ app.main = {
 						} else if(this.blasts[i].type == 1){
 							if(hardAttackHitTest(this.android18, this.android17) == true && this.android17.behind == false){
 								//console.log("HARDHITTESTSETSET");
-								this.android17.position.x = this.blasts[i].position.x;
+								if(this.blasts[i].released == false && this.android17.behind == false){
+									//this.android17.position.x = this.blasts[i].position.x;
+									if(this.blasts[i].dirLeft == true){
+										this.android17.position.x -= 50;
+									} else {
+										this.android17.position.x += 50;
+									}
+								}
 							}
+							if(attackHitTestBlast(this.blasts[i], this.android17) == true){
 							if(this.android17.fieldOn == false){
 							this.android17.punched = false;
 							this.android17.hit = true;
@@ -2366,6 +2448,7 @@ app.main = {
 							}
 							//this.android17.hardHit = true;
 							this.android17.jumpVelocity.y = 0;
+							if(attackHitTestBlastSpecial(this.blasts[i], this.android17) == true){
 							if(this.blasts[i].dirLeft == true){
 								this.android17.position.x = this.blasts[i].position.x;
 							} else {
@@ -2376,9 +2459,22 @@ app.main = {
 							} else if(this.android17.endurance < 15){
 								this.android17.health = this.android17.health - 1;
 							}
+							} else {
+								app.main.android17.stun = true;
+								app.main.android17.hit = true;
+								app.main.android17.hardHit = true;
+								if(this.blasts[i].dirLeft == true){
+									this.android17.velocity.x = -60;
+								} else {
+									this.android17.velocity.x = 60;
+								}
+								this.android17.decel = this.android17.velocity.clone();
+							}
 							if(this.android17.position.x < this.android17.LEFTWALL.x + 10 || this.android17.position.x > this.android17.RIGHTWALL.x - 10){
 								this.sound.playEnergyReaction(6);
 								this.environment.shake = true;
+								this.blasts[i].position.x = this.android17.position.x;
+								this.blasts[i].position.y = this.android17.position.y;
 								this.blasts[i].exploding = true;
 								this.environment.flash = true;
 								this.android17.hit = true;
@@ -2396,8 +2492,10 @@ app.main = {
 								this.sound.playEnergyReaction(6);
 								this.environment.shake = true;
 								this.blasts[i].position.x = this.android17.position.x;
+								this.blasts[i].position.y = this.android17.position.y;
 								this.blasts[i].exploding = true;
 								this.environment.flash = true;
+							}
 							}
 						} else if(this.blasts[i].type == 2){
 							if(this.android17.fieldOn == false){
@@ -2449,7 +2547,7 @@ app.main = {
 								if(this.android17.left == false){
 									this.blasts[i].position.x = this.android17.position.x;
 								} else {
-									this.blasts[i].position.x = this.android17.position.x;
+									this.blasts[i].position.x = this.android17.position.x + 100;
 								}
 								this.blasts[i].exploding = true;
 							}
@@ -2634,9 +2732,11 @@ app.main = {
 							if(hardAttackHitTest(this.vegeta, this.android17) == true && this.blasts[i].lifetime < 2 && (this.android17.behind == false || this.blasts[i].moving == false)){
 								this.pointBlank = true;
 								this.blasts[i].position.x = this.android17.position.x;
+								this.blasts[i].position.y = this.android17.position.y;
 								this.blasts[i].exploding = true;
 							} else {
-								//this.blasts[i].position.x = this.android17.position.x;
+								this.blasts[i].position.x = this.android17.position.x;
+								this.blasts[i].position.y = this.android17.position.y;
 								this.blasts[i].exploding = true;
 							}
 							if(this.vegeta.superForm == true){
@@ -2761,6 +2861,8 @@ app.main = {
 								this.support[x].blastBurnLength = 20;
 								this.support[x].blastBurn = true;
 								this.environment.shake = true;
+								this.blasts[i].position.x = this.support[x].position.x;
+								this.blasts[i].position.y = this.support[x].position.y;
 								this.blasts[i].exploding = true;
 								this.environment.flash = true;
 								this.support[x].hit = true;
@@ -2879,6 +2981,8 @@ app.main = {
 								this.blasts[i].exploding = true;
 							} else {
 								//this.blasts[i].position.x = this.support[x].position.x;
+								this.blasts[i].position.x = this.support[x].position.x;
+								this.blasts[i].position.y = this.support[x].position.y;
 								this.blasts[i].exploding = true;
 							}
 							//this.environment.flash = true;
@@ -3125,15 +3229,15 @@ app.main = {
 			
 			this.environment.drawTop(this.ctx3); // DRAW TOP
 			
-			if(this.activeSupport == true){
+			/* if(this.activeSupport == true){
 					console.dir(this.support[0]);
 					console.dir(this.support[1]);
-			}
+			} */
 			
 			for (var i = 0; i < this.blasts.length; i++){
 				for (var j = 0; j < this.blasts.length; j++){
 					if(this.blasts[i].exploding == false && blastHitTestBlast(this.blasts[i], this.blasts[j]) == true && (this.blasts[i].blastUser == 0 || this.blasts[i].blastUser == 6) && (this.blasts[j].blastUser != 0 && this.blasts[j].blastUser != 6 ) && this.blasts[j].exploding == false){
-						if(this.blasts[i].type != 0){
+						if(this.blasts[i].type != 0 && this.blasts[i].type != 5){
 							this.blasts[j].exploding = true;
 							if(this.blasts[j].type == 9){
 								this.blastExploded = true;
@@ -3151,7 +3255,8 @@ app.main = {
 			
 			this.ctx.restore(); //CAMERA
 			
-			console.dir(this.android17);
+			/* console.dir(this.android18);
+			console.dir(this.android17); */
 			
 			// ------ANDROID 17 AI CONTROL------
 			if(this.android17.stun == false && this.android17.powerMove == false && this.android17.blasting == false && this.android17.attacking == false && this.android17.superSpeed == false && this.android17.fieldOn == false && this.android17.startFallKick == false && this.android17.end == false && this.android17.gone == false && this.android17.vanish == false){
@@ -3185,7 +3290,7 @@ app.main = {
 				//ANDROID17 AGGRESSIVE STATE
 				if(this.android17.aggressive == true && this.android17.encounter == true && this.android17.evasion == false && this.vegeta.end == false){
 					//console.log("171717171717");
-					console.dir(this.android17);
+					//console.dir((this.android17);
 					/*
 					this.modeSwitch++;
 					//console.log("OFF -- AI2: " + this.aiChoice2);
@@ -3584,8 +3689,8 @@ app.main = {
 			//console.log("DEF: " + this.vegeta.defensive);
 			//console.log("REASON: " + this.aiReason);
 			//console.log("COUNTER: " + this.vegeta.counter);
-			console.dir(this.vegeta);
-			console.dir(this.android18);
+			//console.dir(this.vegeta);
+			//console.dir((this.android18);
 			//console.log("STUN: " + this.vegeta.stun + "Taunt: " + this.vegeta.taunting);
 			
 			// ------VEGETA AI CONTROL------
@@ -3896,7 +4001,7 @@ app.main = {
 					
 					
 					if(this.vegeta.vegeta == true){
-						console.log("working");
+						//console.log("working");
 					//VEGETA BLOCKING -- FOCUS 17
 					if(this.aiChoice3 < .6 && this.aiChoice3 > .35 && this.vegeta.startFallKick == false && this.vegeta.fight == false && this.vegeta.taunting == false && this.vegeta.exhausted == false && this.vegeta.end == false && hardAttackHitTest(this.android17, this.vegeta) == true  && this.vegeta.gero == false){
 						if(this.action == false){
@@ -4063,7 +4168,7 @@ app.main = {
 					//console.log("AICHOICE3 " + this.aiChoice3);
 					
 					if(this.vegeta.vegeta == true){
-						console.log("working");
+						//console.log("working");
 					//VEGETA BLOCKING -- FOCUS 17
 					if(this.aiChoice3 < .55 && this.aiChoice3 > .3 && this.vegeta.fight == false && this.vegeta.taunting == false && this.vegeta.exhausted == false && this.vegeta.end == false && hardAttackHitTest(this.android17, this.vegeta) == true  && this.vegeta.gero == false){
 						if(this.action == false){
@@ -4280,8 +4385,8 @@ app.main = {
 					
 					//VEGETA POWER ENERGY BLASTS
 					if((attackHitTest(this.vegeta,this.android18) != true && attackHitTest(this.vegeta,this.android17) != true) && this.aiChoice2 > .9 && this.aiChoice2 < 1 && this.vegeta.fallingKick == false && this.vegeta.blasting == false && this.vegeta.fight == false && this.vegeta.energy > 30 && this.vegeta.taunting == false && this.vegeta.gero == false && this.cooldownAI > 100){
-						if(this.action == false && (this.vegeta.piccolo == false || this.vegeta.blastCount > 10)){
-							this.vegeta.blastCount = 0;
+						if(this.action == false && (this.vegeta.piccolo == false || this.vegeta.blastCount > 6)){
+							//this.vegeta.blastCount = 0;
 							this.action = true;
 							app.main.aiChoice2 = 10;
 							this.vegeta.counter = 0;
@@ -4350,8 +4455,8 @@ app.main = {
 					
 					//VEGETA POWER ENERGY BLASTS
 					if((attackHitTest(this.vegeta,this.android18) != true && attackHitTest(this.vegeta,this.android17) != true) && this.aiChoice2 > .90 && this.aiChoice2 < 1 && this.vegeta.fallingKick == false && this.vegeta.blasting == false && this.vegeta.fight == false && this.vegeta.energy > 30 && this.vegeta.taunting == false && this.vegeta.gero == false && this.cooldownAI > 100){
-						if(this.action == false && (this.vegeta.piccolo == false || this.vegeta.blastCount > 10)){
-							this.vegeta.blastCount = 0;
+						if(this.action == false && (this.vegeta.piccolo == false || this.vegeta.blastCount > 6)){
+							//this.vegeta.blastCount = 0;
 							this.action = true;
 							app.main.aiChoice2 = 10;
 							this.vegeta.counter = 0;
@@ -4384,10 +4489,10 @@ app.main = {
 					
 					if(this.vegeta.piccolo == true && this.vegeta.startFallKick == false) {
 					//VEGETA POWER ENERGY BLASTS
-					if((attackHitTest(this.vegeta,this.android18) != true && attackHitTest(this.vegeta,this.android17) != true) && this.aiChoice2 > .9 && this.aiChoice2 < 1 && this.vegeta.fallingKick == false && this.vegeta.blasting == false && this.vegeta.fight == false && this.vegeta.energy > 30 && this.vegeta.taunting == false && this.vegeta.blastCount > 10 && this.vegeta.gero == false && this.cooldownAI > 100){
+					if((attackHitTest(this.vegeta,this.android18) != true && attackHitTest(this.vegeta,this.android17) != true) && this.aiChoice2 > .9 && this.aiChoice2 < 1 && this.vegeta.fallingKick == false && this.vegeta.blasting == false && this.vegeta.fight == false && this.vegeta.energy > 30 && this.vegeta.taunting == false && this.vegeta.blastCount > 6 && this.vegeta.gero == false && this.cooldownAI > 100){
 						if(this.action == false){
 							app.main.chance2 = .6;
-							this.vegeta.blastCount = 0;
+							//this.vegeta.blastCount = 0;
 							this.action = true;
 							app.main.aiChoice2 = 10;
 							this.vegeta.counter = 0;
@@ -4834,7 +4939,7 @@ app.main = {
 					
 					
 					if(this.vegeta.vegeta == true){
-						console.log("working");
+						//console.log("working");
 					//VEGETA BLOCKING -- FOCUS 17
 					if(this.aiChoice3 < .5 && this.aiChoice3 > .3 && this.vegeta.fight == false && this.vegeta.taunting == false && this.vegeta.exhausted == false && this.vegeta.end == false && hardAttackHitTest(this.android17, this.vegeta) == true  && this.vegeta.gero == false){
 						if(this.action == false){
@@ -5075,7 +5180,7 @@ app.main = {
 					} */
 					
 					if(this.vegeta.vegeta == true){
-						console.log("working");
+						//console.log("working");
 					//VEGETA BLOCKING -- FOCUS 17
 					if(this.aiChoice3 < .6 && this.aiChoice3 > .3 && this.vegeta.fight == false && this.vegeta.taunting == false && this.vegeta.exhausted == false && this.vegeta.end == false && hardAttackHitTest(this.android17, this.vegeta) == true  && this.vegeta.gero == false){
 						if(this.action == false){
@@ -5285,8 +5390,8 @@ app.main = {
 					
 					//VEGETA POWER ENERGY BLASTS
 					if((attackHitTest(this.vegeta,this.android18) != true && attackHitTest(this.vegeta,this.android17) != true) && this.aiChoice2 > .9 && this.aiChoice2 < 1 && this.vegeta.fallingKick == false && this.vegeta.blasting == false && this.vegeta.fight == false && this.vegeta.energy > 30 && this.vegeta.taunting == false && this.vegeta.gero == false && this.cooldownAI > 100){
-						if(this.action == false && (this.vegeta.piccolo == false || this.vegeta.blastCount > 10)){
-							this.vegeta.blastCount = 0;
+						if(this.action == false && (this.vegeta.piccolo == false || this.vegeta.blastCount > 6)){
+							//this.vegeta.blastCount = 0;
 							this.action = true;
 							app.main.aiChoice2 = 10;
 							this.cooldownAI = 0;
@@ -5355,8 +5460,8 @@ app.main = {
 					
 					//VEGETA POWER ENERGY BLASTS
 					if((attackHitTest(this.vegeta,this.android18) != true && attackHitTest(this.vegeta,this.android17) != true) && this.aiChoice2 > .9 && this.aiChoice2 < 1 && this.vegeta.fallingKick == false && this.vegeta.blasting == false && this.vegeta.fight == false && this.vegeta.energy > 30 && this.vegeta.taunting == false && this.vegeta.gero == false && this.cooldownAI > 100){
-						if(this.action == false && (this.vegeta.piccolo == false || this.vegeta.blastCount > 10)){
-							this.vegeta.blastCount = 0;
+						if(this.action == false && (this.vegeta.piccolo == false || this.vegeta.blastCount > 6)){
+							//this.vegeta.blastCount = 0;
 							this.action = true;
 							app.main.aiChoice2 = 10;
 							this.cooldownAI = 0;
@@ -5390,10 +5495,10 @@ app.main = {
 					
 					if(this.vegeta.piccolo == true){
 					//VEGETA POWER ENERGY BLASTS
-					if((attackHitTest(this.vegeta,this.android18) != true && attackHitTest(this.vegeta,this.android17) != true) && this.aiChoice2 > .9 && this.aiChoice2 < 1 && this.vegeta.fallingKick == false && this.vegeta.blasting == false && this.vegeta.fight == false && this.vegeta.energy > 30 && this.vegeta.taunting == false && this.vegeta.blastCount > 10 && this.vegeta.gero == false && this.cooldownAI > 100){
+					if((attackHitTest(this.vegeta,this.android18) != true && attackHitTest(this.vegeta,this.android17) != true) && this.aiChoice2 > .9 && this.aiChoice2 < 1 && this.vegeta.fallingKick == false && this.vegeta.blasting == false && this.vegeta.fight == false && this.vegeta.energy > 30 && this.vegeta.taunting == false && this.vegeta.blastCount > 6 && this.vegeta.gero == false && this.cooldownAI > 100){
 						if(this.action == false){
 							app.main.chance2 = .6;
-							this.vegeta.blastCount = 0;
+							//this.vegeta.blastCount = 0;
 							this.action = true;
 							app.main.aiChoice2 = 10;
 							this.cooldownAI = 0;
@@ -5479,7 +5584,7 @@ app.main = {
 				this.cooldownAI3++;
 				//VEGETA AGGRESSIVE STATE
 				if(this.support[x].aggressive == true){
-					console.dir(this.support[x]);
+					//console.dir(this.support[x]);
 					/*
 					if(this.support[x].energy < 45 && this.support[x].gero == false && this.modeSwitch > 40){
 						this.support[x].defensive = true;
@@ -5539,7 +5644,7 @@ app.main = {
 					//VEGETA FLIGHT
 					if(this.support[x].tien == true && this.support[x].dodge == false && this.support[x].blasting == false){
 					if(this.krillinDead == false){
-					if(this.support[x].hard == false && this.support[x].charging == false && this.support[x].taunting == false && this.support[x].dodge == false && this.support[x].hardHit == false && this.support[x].stun == false && this.support[x].end == false && this.support[x].aboveSky == false){
+					if(this.support[x].hard == false && this.support[x].charging == false && this.support[x].taunting == false && this.support[x].dodge == false && this.support[x].hardHit == false && this.support[x].stun == false && this.support[x].end == false){
 						if(this.support[x].attacking == false && this.support[x].taunting == false && this.support[x].charging == false && this.support[x].blasting == false && this.support[x].blocking == false){
 							this.support[x].up = true;
 						}
@@ -5709,7 +5814,7 @@ app.main = {
 					//VEGETA FLIGHT -- FOCUS 17
 					if(this.support[x].tien == true && this.support[x].dodge == false && this.support[x].blasting == false && this.support[x].dodge == false){
 					if(this.krillinDead == false){
-					if(this.support[x].hard == false && this.support[x].charging == false && this.support[x].taunting == false && this.support[x].dodge == false && this.support[x].hardHit == false && this.support[x].stun == false && this.support[x].end == false && this.support[x].aboveSky == false){
+					if(this.support[x].hard == false && this.support[x].charging == false && this.support[x].taunting == false && this.support[x].dodge == false && this.support[x].hardHit == false && this.support[x].stun == false && this.support[x].end == false){
 						if(this.support[x].attacking == false && this.support[x].taunting == false && this.support[x].charging == false && this.support[x].blasting == false && this.support[x].blocking == false){
 							this.support[x].up = true;
 						}
@@ -6619,8 +6724,8 @@ app.main = {
 			
 			
 			this.sceneCounter++;
-			console.log(this.sceneCounter + "SCENECOUNTER");
-			console.log(this.finished1);
+			//console.log(this.sceneCounter + "SCENECOUNTER");
+			//console.log(this.finished1);
 			//console.log(this.sceneCounter);
 			
 			//
@@ -6769,7 +6874,18 @@ app.main = {
 					this.sound.stopBGAudioTutorial();
 					this.sceneChange++;
 					this.scene = false;
-					this.environment.remote = true;
+					if(this.environment.remote == false){
+						this.environment.remote = true;
+						this.tutorialBlinker = false;
+						this.sound.playEnergyReaction(21);
+						this.environment.flash = true;
+						this.android18.cine = 5;
+						this.android18.cinematic = true;
+						if(this.vegeta.velocity.x != 0 || this.vegeta.attacking == true || this.vegeta.superSpeed == true){
+							this.vegeta.backOffGero = true;
+						}
+						
+					}
 					if(this.environment.remoteGround == true){
 							this.beginCounter++;
 							if(this.beginCounter < 15){
@@ -6802,6 +6918,7 @@ app.main = {
 								}
 					}
 					if(this.beginCounter > 20){
+						this.android18.cinematic = false;
 						this.beginCounter = 0;
 						this.environment.remote = false;
 						this.environment.remoteGround = false;
@@ -6823,7 +6940,7 @@ app.main = {
 						this.android17.stun = true;
 						this.vegeta = new app.Vegeta(500,1,this.android18);
 						this.vegeta.stun = true;
-						this.vegeta.end == true;
+						//this.vegeta.end == true;
 						this.changeDelay = 0;
 						//// TESTS STUFF
 						/* this.sceneNum = 3;
@@ -6939,8 +7056,12 @@ app.main = {
 				} else if(this.sceneTimer < 190){
 					
 				} else {
+					if(app.main.android18.inActive < 60){
+						this.vegeta.stun = false;
+					}
 					this.scene = false;
 					this.sceneTimer = 0;
+					this.vegeta.stillGero = true;
 					if(this.targetHidden == true){
 						this.targetHidden = false;
 						this.sound.playEffect(79);
@@ -7052,11 +7173,11 @@ app.main = {
 				} else if(this.sceneTimer < 461 && this.sceneTimer > 459){
 					this.android17.cinematic = true;
 					this.android17.cine = 9;
+					this.targetHidden = false;
+					this.sound.playEffect(79);
 				} else if(this.sceneTimer < 469 && this.sceneTimer > 467){
 					this.sound.playVoice2(9);
 				} else if(this.sceneTimer < 500 && this.sceneTimer > 498){
-					this.targetHidden = false;
-					this.sound.playEffect(79);
 				} else if(this.sceneTimer < 520 && this.sceneTimer > 518){
 					this.sound.playVoice1(10);
 				} else if(this.sceneTimer < 530){
@@ -7075,6 +7196,25 @@ app.main = {
 					this.vegeta.stun = false;
 				}
 				} //END SCENE 1
+				
+				//SCENE 1 SKIP
+				if(myKeys.keydown[myKeys.KEYBOARD.KEY_ENTER] == true && this.sceneTimer > 460 && this.sceneNum == 1 && this.battle == 0){
+					//this.vegeta.scenePlay = true;
+					this.android18.cinematic = false;
+					this.android17.cinematic = false;
+					app.main.sound.pauseSceneVoice();
+					app.main.sound.playTaunt2(Math.round(getRandom(100,104)));
+					//this.sound.playVoice1(10);
+					this.targetHidden = false;
+					this.android17.cinematic = false;
+					this.sound.stopBGAudioScene();
+					this.sound.playBGAudioScene(1);
+					this.scene = false;
+					this.sceneTimer = 0;
+					this.android18.stun = false;
+					this.android17.stun = false;
+					this.vegeta.stun = false;
+				}
 				
 				if(this.sceneNum == 2 && this.battle == 1){ //VEGETA ENCOUNTER
 				this.sceneTimer++;
@@ -7212,12 +7352,12 @@ app.main = {
 						this.environment.capeLocation.x += .4;
 					}
 					if(this.sceneTimer < 535 && this.sceneTimer > 533){
+						this.targetHidden = false;
+						this.sound.playEffect(79);
 						this.vegeta.cinematic = true;
 						this.vegeta.cine = 0;
 					}
 					if(this.sceneTimer < 560 && this.sceneTimer > 558){
-						this.targetHidden = false;
-						this.sound.playEffect(79);
 					}
 					if(this.sceneTimer < 586 && this.sceneTimer > 584){
 						this.android18.cinematic = false;
@@ -7244,6 +7384,40 @@ app.main = {
 					this.vegeta.stun = false;
 				}
 				} //END SCENE 2
+				
+				//SCENE 2 SKIP
+				if(myKeys.keydown[myKeys.KEYBOARD.KEY_ENTER] == true && this.sceneTimer > 535 && this.sceneNum == 2 && this.battle == 1){
+					this.vegeta.cinematic = false;
+					/* this.vegeta.scenePlay = true;
+					this.sound.playTaunt2(31); */
+					app.main.sound.pauseSceneVoice();
+					app.main.sound.playTaunt2(Math.round(getRandom(100,104)));
+					this.android17.decisionTimer = 0;
+					this.targetHidden = false;
+					//this.vegeta.appear = true; // REMOVE LATER
+					//this.vegeta.superSpeed = true; // REMOVE LATER
+					this.android18.cinematic = false;
+					this.android17.cinematic = false;
+					this.vegeta.cinematic = false;
+					//this.vegeta = new app.Vegeta(100,0,this.android18);
+					this.vegeta.counter = 0;
+					this.vegeta.fight = true;
+					if(this.android17.city == false){
+					this.android17.city = true;
+					this.android17.fight = true;
+					this.android17.superSpeed = true;
+					}
+					this.vegeta.appear = true;
+					this.vegeta.superSpeed = true;
+					this.sound.stopBGAudioScene();
+					this.sound.playBGAudio();
+					this.scene = false;
+					this.sceneTimer = 0;
+					this.vegeta.cinematic = false;
+					this.android18.stun = false;
+					this.android17.stun = false;
+					this.vegeta.stun = false;
+				}
 				
 				if(this.sceneNum == 3 && this.battle == 2){ // TRIPLE ENCOUNTER
 				this.sceneTimer++;
@@ -7359,8 +7533,8 @@ app.main = {
 						this.support[1].vanish = true;
 					}
 				} else if(this.sceneTimer < 280 && this.sceneTimer > 278){
-					this.android17.cine = 1;
-					this.android17.cinematic = true;
+					/* this.android17.cine = 1;
+					this.android17.cinematic = true; */
 					//this.sound.stopBGAudioScene();
 					//this.android17.gone = false;
 					this.android17.right = true;
@@ -7373,8 +7547,9 @@ app.main = {
 					this.android18.cinematic = false;
 				} else if(this.sceneTimer < 285 && this.sceneTimer > 283){
 					this.sound.playEffect(27);
-				} else if(this.sceneTimer < 285 && this.sceneTimer > 283){
-					//this.sound.playVoice2(22);
+				} else if(this.sceneTimer < 290 && this.sceneTimer > 288){
+					this.android17.cine = 1;
+					this.android17.cinematic = true;
 				} else if(this.sceneTimer < 295 && this.sceneTimer > 293){
 					this.sound.stopBGAudioScene();
 					this.sound.playVoice2(20); //take this
@@ -7437,14 +7612,19 @@ app.main = {
 					this.vegeta.superSpeed = true;
 					this.vegeta.vanish = false;
 					this.vegeta.air = true;
-				} else if(this.sceneTimer < 490 && this.sceneTimer > 488){
 					this.target = true;
+				} else if(this.sceneTimer < 490 && this.sceneTimer > 488){
 					this.sound.playEffect(67);
 					this.support[0].cinematic = false;
 					this.support[1].cinematic = false;
 					this.sound.playVoice1(29);
 					this.sound.stopBGAudioScene();
 					this.sound.playBGAudioScene(7);
+					this.targetHidden = false;
+					this.sound.playEffect(79);
+				} else if(this.sceneTimer < 495 && this.sceneTimer > 493){;
+					this.targetHidden = false;
+					this.sound.playEffect(79);
 				} else if(this.sceneTimer < 520 && this.sceneTimer > 518){
 					this.android18.cinematic = true;
 					this.android18.cine = 5;
@@ -7469,8 +7649,8 @@ app.main = {
 					this.vegeta.cinematic = true;
 					this.vegeta.cine = 2;
 				} else if(this.sceneTimer < 670 && this.sceneTimer > 668){
-					this.targetHidden = false;
-					this.sound.playEffect(79);
+					/* this.targetHidden = false;
+					this.sound.playEffect(79); */
 				} else if(this.sceneTimer < 678){
 					
 				} else {
@@ -7499,6 +7679,37 @@ app.main = {
 					this.support[1].stun = false;
 				}
 				} //END SCENE 3
+				
+				
+				//SCENE 3 SKIP
+				if(myKeys.keydown[myKeys.KEYBOARD.KEY_ENTER] == true && this.sceneTimer > 495 && this.sceneNum == 3 && this.battle == 2){
+					app.main.sound.pauseSceneVoice();
+					app.main.sound.playTaunt2(Math.round(getRandom(100,104)));
+					this.vegeta.appear = true;
+					this.vegeta.superSpeed = true;
+					this.support[0].appear = true;
+					this.support[0].superSpeed = true;
+					this.support[1].appear = true;
+					this.support[1].superSpeed = true;
+					this.target = true;
+					this.android17.cinematic = false;
+					this.android18.cinematic = false;
+					this.support[0].cinematic = false;
+					this.support[1].cinematic = false;
+					this.sound.stopBGAudioScene();
+					this.sound.playBGAudioScene(8);
+					this.scene = false;
+					this.sceneTimer = 0;
+					this.android17.decision = 1;
+					this.android17.evasion = true;
+					this.android17.wentEvasion = true;
+					this.android18.stun = false;
+					this.android17.stun = false;
+					this.vegeta.stun = false;
+					this.vegeta.cinematic = false;
+					this.support[0].stun = false;
+					this.support[1].stun = false;
+				}
 				
 				if(this.sceneNum == 4 && this.battle == 2 && this.trueEnding == false){ // Ending False
 				this.sceneTimer++;
@@ -7843,6 +8054,7 @@ app.main = {
 			    }
 				
 				if(this.sceneTimer < 2){
+					this.target = true;
 					this.gohanDead = false;
 					app.main.sound.pauseBackground();
 					this.environment.powerUp = false;
@@ -7946,13 +8158,21 @@ app.main = {
 					this.sound.playVoice2(56);
 				} else if(this.sceneTimer < 60 && this.sceneTimer > 58){
 					this.sound.playVoice1(57);
+				} else if(this.sceneTimer < 88 && this.sceneTimer > 86){
+					this.android17.cine = 12;
+					this.android17.cinematic = true;
+					this.android18.cine = 12;
+					this.android18.cinematic = true;
+				} else if(this.sceneTimer < 90 && this.sceneTimer > 88){
+					this.sound.playEffect(81);
 				} else if(this.sceneTimer < 100 && this.sceneTimer > 98){
 					this.sound.playVoice2(58);
 					this.vegeta.cine = 0;
 				} else if(this.sceneTimer < 110 && this.sceneTimer > 108){
 					this.vegeta.cinematic = false;
 					this.vegeta.charging = true;
-					this.sound.playEffect(28);
+					//this.sound.playEffect(81);
+					this.sound.playEnergyReaction(28);
 					//app.main.sound.playEffect(28);
 					this.environment.powerUp = true;
 				} else if(this.sceneTimer < 130 && this.sceneTimer > 128){
@@ -7960,6 +8180,7 @@ app.main = {
 				} else if(this.sceneTimer < 150 && this.sceneTimer > 148){
 					this.android17.cinematic = true;
 					this.android17.cine = 9;
+					this.android18.cine = 5;
 				} else if(this.sceneTimer < 155 && this.sceneTimer > 153){
 					this.sound.playVoice1(59);
 				} else if(this.sceneTimer < 160 && this.sceneTimer > 158){
@@ -7977,6 +8198,7 @@ app.main = {
 						this.sound.playVoice2(67);
 						app.main.sound.playEffect(43);
 						this.vegeta.almostSS = true;
+						this.android18.cinematic = false;
 					}
 				} else if(this.sceneTimer < 178 && this.sceneTimer > 176){
 					this.sound.playVoice2(69);
@@ -8051,6 +8273,9 @@ app.main = {
 					}
 					this.android17.cinematic = true;
 					this.android17.cine = 3;
+				} else if(this.sceneTimer < 265 && this.sceneTimer > 263){
+					this.targetHidden = false;
+					this.sound.playEffect(79);
 				} else if(this.sceneTimer < 290 && this.sceneTimer > 288){
 					this.sound.playVoice2(63);
 				} else if(this.sceneTimer < 330 && this.sceneTimer > 328){
@@ -8058,8 +8283,7 @@ app.main = {
 					this.android18.cinematic = true;
 					this.android18.cine = 8;
 				} else if(this.sceneTimer < 360 && this.sceneTimer > 358){
-					this.targetHidden = false;
-					this.sound.playEffect(79);
+					
 				} else if(this.sceneTimer < 385 && this.sceneTimer > 383){
 					this.sound.playVoice2(65);
 				} else if(this.sceneTimer < 390 && this.sceneTimer > 388){
@@ -8301,7 +8525,7 @@ app.main = {
 			
 			
 			// TEST FOR ACTIONS (KEY STROKES)
-			if (myKeys.keydown[myKeys.KEYBOARD.KEY_A] && this.android18.fight == false && this.android18.stun == false && this.android18.exhausted == false && this.android18.taunting == false && this.keyHeldA == false){
+			if (myKeys.keydown[myKeys.KEYBOARD.KEY_A] == true && myKeys.keydown[myKeys.KEYBOARD.KEY_S] != true && this.android18.fight == false && this.android18.stun == false && this.android18.exhausted == false && this.android18.taunting == false && this.keyHeldA == false){
 				this.keyHeldA = true;
 				this.chance = Math.random();
 				//console.log("Mine");
@@ -8350,7 +8574,7 @@ app.main = {
 		
 				}
 			}
-			if (myKeys.keydown[myKeys.KEYBOARD.KEY_S] && this.android18.fight == false && this.android18.stun == false && this.android18.energy > 32 && this.android18.down == false && this.android18.taunting == false && myKeys.keydown[myKeys.KEYBOARD.KEY_DOWN] != true && this.keyHeldS == false){
+			if (myKeys.keydown[myKeys.KEYBOARD.KEY_S] && this.android18.fight == false && (this.android18.stun == false) && this.android18.energy > 32 && this.android18.down == false && this.android18.taunting == false && myKeys.keydown[myKeys.KEYBOARD.KEY_DOWN] != true && this.keyHeldS == false){
 				this.chance = Math.random();
 				//AI TEST CODE
 				
@@ -8388,7 +8612,7 @@ app.main = {
 				this.sound.playEffectLoud(52);
 			}
 			
-			if (myKeys.keydown[myKeys.KEYBOARD.KEY_Q] == true && this.keyHeldW == false && this.keyHeldQ == false && (this.android18.fight == false) && this.android18.stun == false && this.android18.superSpeed == false && this.android18.fieldOn == false && this.android18.energy > 36 && myKeys.keydown[myKeys.KEYBOARD.KEY_RIGHT] != true && myKeys.keydown[myKeys.KEYBOARD.KEY_LEFT] != true){
+			if (myKeys.keydown[myKeys.KEYBOARD.KEY_Q] == true && this.keyHeldW == false && this.keyHeldQ == false && (this.android18.fight == false) && this.android18.stun == false && this.android18.superSpeed == false && this.android18.fieldOn == false && this.android18.stun == false && this.android18.energy > 36 && myKeys.keydown[myKeys.KEYBOARD.KEY_RIGHT] != true && myKeys.keydown[myKeys.KEYBOARD.KEY_LEFT] != true){
 				this.android18.appear = false;
 				this.android18.superSpeed = true;
 				this.keyHeldQ = true;
@@ -8552,14 +8776,33 @@ app.main = {
 				this.android17.encounter = true;
 				this.aiChoice4 = .96;
 				this.android17.decisionTimer = 0; */
-				this.vegeta.endurance = 1;
-				this.vegeta.health = 1;
+				//this.vegeta.superSpeed = true;
+				//app.main.vegeta.position = this.clashPosition;
+				/* app.main.vegeta.superSpeed = false;
+				app.main.vegeta.vanish = false;
+				app.main.vegeta.hit = true;
+				app.main.vegeta.hardHit = true;
+				app.main.vegeta.punched = true;
+				app.main.vegeta.stun = true;
+				app.main.vegeta.jumpVelocity.y = 60; */
+				//this.vegeta.endurance = 1;
+				//this.vegeta.health = 1;
+				/* this.vegeta.blasting = true;
+				this.vegeta.powerMove = true;
+				this.vegeta.attacking = true; */
 				/* if(this.battle != 2){
-					this.android17.hurtBlasting = true;
+					//this.android17.hurtBlasting = true;
+					//this.android17.fastBlast = true;
+					
+					if(this.vegeta.superSpeedExhaustion == false){
+						this.vegeta.superSpeed = true;
+					}
 				} else {
 					this.vegeta.endurance = 1;
 					this.vegeta.health = 1;
 				} */
+				/* this.vegeta.endurance = 1;
+				this.vegeta.health = 1; */
 				//this.roundScore += 500;
 				//this.sound.pauseVoice();
 				//this.vegeta.startFallKick = true;
@@ -8873,6 +9116,7 @@ app.main = {
 			//DRAW HUD
 			this.ctx.globalAlpha = 1.0;
 			this.drawHUD(this.ctx);
+			this.drawHUD2(this.ctx3);
 			this.itimer++;
 			if(this.increasing == true && this.iAlpha < 80) {
 				this.iAlpha++;
@@ -9079,11 +9323,11 @@ app.main = {
 			ctx.save();
 			ctx.globalAlpha = .1;
 			//ctx.drawImage(this.redRibbon,445,57);
-			this.fillText(this.ctx,"...SUSPENSION STATE...", this.WIDTH/2 - 10, this.HEIGHT/2 - 50, "43pt heavy_data", "black");
+			this.fillText(this.ctx,"...SUSPENSION STATE...", this.WIDTH/2 - 10, this.HEIGHT/2 - 130, "63pt heavy_data", "black");
 			ctx.restore();
 			ctx.save();
 			ctx.globalAlpha = .1;
-			ctx.drawImage(this.redRibbon,445,57);
+			//ctx.drawImage(this.redRibbon,445,57);
 			//this.fillText(this.ctx,"...SUSPENSION STATE...", this.WIDTH/2 - 10, this.HEIGHT/2 - 50, "43pt heavy_data", "darkred");
 			ctx.restore();
 			if(this.controllerDetected == false){
@@ -9099,10 +9343,11 @@ app.main = {
 			ctx.strokeStyle = "black";
 			ctx.strokeRect(200,360,600,220);
 			ctx.restore(); */
-			this.fillText(this.ctx,"...SUSPENSION STATE...", this.WIDTH/2 - 10, this.HEIGHT/2 + 40, "43pt heavy_data", "black");
+			this.fillText(this.ctx,"...SUSPENSION STATE...", this.WIDTH/2 - 10, this.HEIGHT/2 - 80, "63pt heavy_data", "black");
+			//this.fillText(this.ctx,"...SUSPENSION STATE...", this.WIDTH/2 - 10, this.HEIGHT/2 + 40, "43pt heavy_data", "black");
 			ctx.save();
 			ctx.globalAlpha = .1;
-			ctx.drawImage(this.redRibbon,445,57);
+			//ctx.drawImage(this.redRibbon,445,57);
 			//this.fillText(this.ctx,"...SUSPENSION STATE...", this.WIDTH/2 - 10, this.HEIGHT/2 + 40, "43pt heavy_data", "darkred");
 			ctx.restore();
 			if(this.controllerDetected == false){
@@ -9316,6 +9561,9 @@ app.main = {
 	
 	// RESETS THE GAME
 	reset: function(){
+		this.tutAdvance = false;
+		this.tutorialBlinker = false;
+		this.tutorialBTimer = 0;
 		this.activeSupport = false;
 		this.letsPlay = false;
 		this.vegeta.vanish = false;
@@ -9405,7 +9653,7 @@ app.main = {
 	drawHUD: function(ctx){
 	
 		if(this.gameState == this.GAME_STATE.DEFAULT || this.gameState == this.GAME_STATE.TUTORIAL){
-			this.pulsing++;
+			/* this.pulsing++;
 			this.warnings++;
 			ctx.save();
 			
@@ -9922,7 +10170,7 @@ app.main = {
 			}
 			ctx.drawImage(this.iSmallBar,-970,110);
 			ctx.restore();
-			ctx.restore(); //TEST
+			ctx.restore(); //TEST */
 			
 			//TUTORIAL
 			if(this.gameState == this.GAME_STATE.TUTORIAL){
@@ -9980,7 +10228,16 @@ app.main = {
 			ctx.save();
 			ctx.textAlign = "left";
 			if(this.controllerDetected == false){
-				this.fillText(ctx,"Enter to end this", this.WIDTH/2 + 400 - 100, 367, "16pt heavy_data", "darkRed");
+				if(this.tutorialBlinker == true){
+					this.tutorialBTimer++;
+					if((this.tutorialBTimer % 9 == 0 && this.tutAdvance == false) || (this.tutorialBTimer % 3 == 0 && this.tutAdvance == true)){
+						this.fillText(ctx,"Enter to end this", this.WIDTH/2 + 400 - 100, 367, "16pt heavy_data", "darkRed");
+					} else {
+						this.fillText(ctx,"Enter to end this", this.WIDTH/2 + 400 - 100, 367, "16pt heavy_data", "Red");
+					}
+				} else {
+					this.fillText(ctx,"Enter to end this", this.WIDTH/2 + 400 - 100, 367, "16pt heavy_data", "darkRed");
+				}
 				this.fillText(ctx,"'T': Toggle Tutorials", this.WIDTH/2 + 400 - 100, 390, "12pt heavy_data", "red");
 				this.fillText(ctx,"Controls", this.WIDTH/2 + 400 - 100, 335, "32pt heavy_data", "#c9be03");
 				this.fillText(ctx,"Controls", this.WIDTH/2 + 400 - 100, 335, "32pt heavy_data", "white");
@@ -10008,6 +10265,16 @@ app.main = {
 				this.fillText(ctx,"'P':", this.WIDTH/2 + 400 - 100, 590, "12pt heavy_data", "white");
 				this.fillText(ctx,"'Arrow Keys':", this.WIDTH/2 + 400 - 100, 610, "12pt heavy_data", "white");
 			} else {
+				if(this.tutorialBlinker == true){
+					this.tutorialBTimer++;
+					if((this.tutorialBTimer % 9 == 0 && this.tutAdvance == false) || (this.tutorialBTimer % 3 == 0 && this.tutAdvance == true)){
+						this.fillText(ctx,"'Start' to end this", this.WIDTH/2 + 400 - 100, 367, "16pt heavy_data", "darkRed");
+					} else {
+						this.fillText(ctx,"'Start' to end this", this.WIDTH/2 + 400 - 100, 367, "16pt heavy_data", "Red");
+					}
+				} else {
+					this.fillText(ctx,"'Start' to end this", this.WIDTH/2 + 400 - 100, 367, "16pt heavy_data", "darkRed");
+				}
 				this.fillText(ctx,"'Start' to end this", this.WIDTH/2 + 400 - 100, 367, "16pt heavy_data", "darkRed");
 				this.fillText(ctx,"'R3-RS': Toggle Tutorials", this.WIDTH/2 + 400 - 100, 390, "12pt heavy_data", "red");
 				this.fillText(ctx,"Controls", this.WIDTH/2 + 400 - 100, 335, "32pt heavy_data", "#c9be03");
@@ -10077,7 +10344,7 @@ app.main = {
 			} else if(this.instructions == 2){
 				this.fillText(ctx,"Look above for your targeting data", this.WIDTH/2, 430, "14pt heavy_data", "#c9be03");
 				this.fillText(ctx,"There are 4 bars on the battle interface", this.WIDTH/2, 460, "14pt heavy_data", "#c9be03");
-				ctx.save();
+				/* ctx.save();
 				ctx.globalAlpha = .3;
 				ctx.fillStyle = "Green";
 				ctx.fillRect(49,55, 375, 35);
@@ -10086,56 +10353,56 @@ app.main = {
 				ctx.fillRect(595,90, 375, 37);
 				ctx.fillRect(49,127, 246, 30);
 				ctx.fillRect(725,127, 246, 30);
-				ctx.restore();
+				ctx.restore(); */
 			} else if(this.instructions == 3){
 				this.fillText(ctx,"The top white bar is endurance", this.WIDTH/2, 430, "14pt heavy_data", "#c9be03");
 				this.fillText(ctx,"This reduces when hit but will regenerate over time", this.WIDTH/2, 460, "14pt heavy_data", "#c9be03");
-				ctx.save();
+				/* ctx.save();
 				ctx.globalAlpha = .3;
 				ctx.fillStyle = "Green";
 				ctx.fillRect(49,55, 375, 35);
 				ctx.fillRect(595,55, 375, 35);
-				ctx.restore();
+				ctx.restore(); */
 			} else if(this.instructions == 4){
 				this.fillText(ctx,"The lower grey bar is health", this.WIDTH/2, 430, "14pt heavy_data", "#c9be03");
 				this.fillText(ctx,"This reduces when hit but only when edurance is depleated", this.WIDTH/2, 460, "14pt heavy_data", "#c9be03");
 				this.fillText(ctx,"This bar will NOT regenerate", this.WIDTH/2, 490, "14pt heavy_data", "#c9be03");
-				ctx.save();
+				/* ctx.save();
 				ctx.globalAlpha = .3;
 				ctx.fillStyle = "Green";
 				ctx.fillRect(49,90, 375, 37);
 				ctx.fillRect(595,90, 375, 37);
-				ctx.restore();
+				ctx.restore(); */
 			} else if(this.instructions == 5){
 				this.fillText(ctx,"This generating dark red bar is a measure of fatigue", this.WIDTH/2, 430, "14pt heavy_data", "#c9be03");
 				this.fillText(ctx,"This will fill a bit with each physical attack", this.WIDTH/2, 460, "14pt heavy_data", "#c9be03");
 				this.fillText(ctx,"If this reaches max it will cause exhaustion", this.WIDTH/2, 490, "14pt heavy_data", "#c9be03");
-				ctx.save();
+				/* ctx.save();
 				ctx.globalAlpha = .3;
 				ctx.fillStyle = "Green";
 				ctx.fillRect(49,110, 246, 30);
 				ctx.fillRect(725,110, 246, 30);
-				ctx.restore();
+				ctx.restore(); */
 			} else if(this.instructions == 6){
 				this.fillText(ctx,"If exhaustion occurs the bar will blink bright red", this.WIDTH/2, 430, "14pt heavy_data", "#c9be03");
 				this.fillText(ctx,"This will prevent you from using physical attacks", this.WIDTH/2, 460, "14pt heavy_data", "#c9be03");
 				this.fillText(ctx,"Normalize by allowing it to depleat halfway or by taunting", this.WIDTH/2, 490, "14pt heavy_data", "#c9be03");
-				ctx.save();
+				/* ctx.save();
 				ctx.globalAlpha = .3;
 				ctx.fillStyle = "Green";
 				ctx.fillRect(49,110, 246, 30);
 				ctx.fillRect(725,110, 246, 30);
-				ctx.restore();
+				ctx.restore(); */
 			} else if(this.instructions == 7){
 				this.fillText(ctx,"The yellow bar is your energy meter", this.WIDTH/2, 430, "14pt heavy_data", "#c9be03");
 				this.fillText(ctx,"This will be used by energy attacks and activating Super Speed", this.WIDTH/2, 460, "14pt heavy_data", "#c9be03");
 				this.fillText(ctx,"I have designed your systems to forever regenerate energy!", this.WIDTH/2, 490, "14pt heavy_data", "#c9be03");
-				ctx.save();
+				/* ctx.save();
 				ctx.globalAlpha = .3;
 				ctx.fillStyle = "Green";
 				ctx.fillRect(49,133, 246, 24);
 				ctx.fillRect(725,133, 246, 24);
-				ctx.restore();
+				ctx.restore(); */
 			} else if(this.instructions == 8){
 				this.fillText(ctx,"Movement", this.WIDTH/2, 445, "48pt heavy_data", "darkred");
 			} else if(this.instructions == 9){
@@ -10160,8 +10427,8 @@ app.main = {
 				this.fillText(ctx,"Blocking stops all damage but will increase fatigue when hit", this.WIDTH/2, 460, "14pt heavy_data", "#c9be03");
 				this.fillText(ctx,"You cannot block if your exhausted", this.WIDTH/2, 490, "14pt heavy_data", "#c9be03");
 			} else if(this.instructions == 15){
+				this.fillText(ctx,"This will use energy but avoid most damage until it ends", this.WIDTH/2, 460, "14pt heavy_data", "#c9be03");
 				this.fillText(ctx,"'Q': Hold to Move at Super Speed 'teleport' until released", this.WIDTH/2, 430, "14pt heavy_data", "#c9be03");
-				this.fillText(ctx,"This will use energy but avoid all damage until it ends", this.WIDTH/2, 460, "14pt heavy_data", "#c9be03");
 				this.fillText(ctx,"You'll appear behind your enemy or in a direction your holding", this.WIDTH/2, 490, "14pt heavy_data", "#c9be03");
 			} else if(this.instructions == 16){
 				this.fillText(ctx,"'E' will cause you to taunt your opponent", this.WIDTH/2, 430, "14pt heavy_data", "#c9be03");
@@ -10188,9 +10455,10 @@ app.main = {
 				this.fillText(ctx,"Energy attack hits will cause burns that halt endurance regen", this.WIDTH/2, 430, "14pt heavy_data", "#c9be03");
 				this.fillText(ctx,"The length of this halt depends on the intersity of the attack", this.WIDTH/2, 460, "14pt heavy_data", "#c9be03");
 			} else if(this.instructions == 23){
-				this.fillText(ctx,"Flying behind the battle interface will cause it to fade", this.WIDTH/2, 430, "14pt heavy_data", "#c9be03");
-				this.fillText(ctx,"Keep this in mind when fighting at high altitudes", this.WIDTH/2, 460, "14pt heavy_data", "#c9be03");
+				this.fillText(ctx,"If you and the enemy are both at super speed, clashing occurs", this.WIDTH/2, 430, "14pt heavy_data", "#c9be03");
+				this.fillText(ctx,"Clashes damage all involved and can knock one to the ground", this.WIDTH/2, 460, "14pt heavy_data", "#c9be03");
 			} else if(this.instructions == 24){
+				this.tutAdvance = true;
 				this.fillText(ctx,"That is all I need to explain for now my androids", this.WIDTH/2, 425, "18pt heavy_data", "#c9be03");
 				this.fillText(ctx,"Now prove your worth in a battle examination", this.WIDTH/2, 455, "18pt heavy_data", "#c9be03");
 				this.fillText(ctx,"Else I dismantle you both.. like android 19!", this.WIDTH/2, 485, "18pt heavy_data", "#c9be03");
@@ -10205,7 +10473,7 @@ app.main = {
 			} else if(this.instructions == 2){
 				this.fillText(ctx,"Look above for your targeting data", this.WIDTH/2, 430, "14pt heavy_data", "#c9be03");
 				this.fillText(ctx,"There are 4 bars on the battle interface", this.WIDTH/2, 460, "14pt heavy_data", "#c9be03");
-				ctx.save();
+				/* ctx.save();
 				ctx.globalAlpha = .3;
 				ctx.fillStyle = "Green";
 				ctx.fillRect(49,55, 375, 35);
@@ -10214,56 +10482,56 @@ app.main = {
 				ctx.fillRect(595,90, 375, 37);
 				ctx.fillRect(49,127, 246, 30);
 				ctx.fillRect(725,127, 246, 30);
-				ctx.restore();
+				ctx.restore(); */
 			} else if(this.instructions == 3){
 				this.fillText(ctx,"The top white bar is endurance", this.WIDTH/2, 430, "14pt heavy_data", "#c9be03");
 				this.fillText(ctx,"This reduces when hit but will regenerate over time", this.WIDTH/2, 460, "14pt heavy_data", "#c9be03");
-				ctx.save();
+				/* ctx.save();
 				ctx.globalAlpha = .3;
 				ctx.fillStyle = "Green";
 				ctx.fillRect(49,55, 375, 35);
 				ctx.fillRect(595,55, 375, 35);
-				ctx.restore();
+				ctx.restore(); */
 			} else if(this.instructions == 4){
 				this.fillText(ctx,"The lower grey bar is health", this.WIDTH/2, 430, "14pt heavy_data", "#c9be03");
 				this.fillText(ctx,"This reduces when hit but only when edurance is depleated", this.WIDTH/2, 460, "14pt heavy_data", "#c9be03");
 				this.fillText(ctx,"This bar will NOT regenerate", this.WIDTH/2, 490, "14pt heavy_data", "#c9be03");
-				ctx.save();
+				/* ctx.save();
 				ctx.globalAlpha = .3;
 				ctx.fillStyle = "Green";
 				ctx.fillRect(49,90, 375, 37);
 				ctx.fillRect(595,90, 375, 37);
-				ctx.restore();
+				ctx.restore(); */
 			} else if(this.instructions == 5){
 				this.fillText(ctx,"This generating dark red bar is a measure of fatigue", this.WIDTH/2, 430, "14pt heavy_data", "#c9be03");
 				this.fillText(ctx,"This will fill a bit with each physical attack", this.WIDTH/2, 460, "14pt heavy_data", "#c9be03");
 				this.fillText(ctx,"If this reaches max it will cause exhaustion", this.WIDTH/2, 490, "14pt heavy_data", "#c9be03");
-				ctx.save();
+				/* ctx.save();
 				ctx.globalAlpha = .3;
 				ctx.fillStyle = "Green";
 				ctx.fillRect(49,110, 246, 30);
 				ctx.fillRect(725,110, 246, 30);
-				ctx.restore();
+				ctx.restore(); */
 			} else if(this.instructions == 6){
 				this.fillText(ctx,"If exhaustion occurs the bar will blink bright red", this.WIDTH/2, 430, "14pt heavy_data", "#c9be03");
 				this.fillText(ctx,"This will prevent you from using physical attacks", this.WIDTH/2, 460, "14pt heavy_data", "#c9be03");
 				this.fillText(ctx,"Normalize by allowing it to depleat halfway or by taunting", this.WIDTH/2, 490, "14pt heavy_data", "#c9be03");
-				ctx.save();
+				/* ctx.save();
 				ctx.globalAlpha = .3;
 				ctx.fillStyle = "Green";
 				ctx.fillRect(49,110, 246, 30);
 				ctx.fillRect(725,110, 246, 30);
-				ctx.restore();
+				ctx.restore(); */
 			} else if(this.instructions == 7){
 				this.fillText(ctx,"The yellow bar is your energy meter", this.WIDTH/2, 430, "14pt heavy_data", "#c9be03");
 				this.fillText(ctx,"This will be used by energy attacks and activating Super Speed", this.WIDTH/2, 460, "14pt heavy_data", "#c9be03");
 				this.fillText(ctx,"I have designed your systems to forever regenerate energy!", this.WIDTH/2, 490, "14pt heavy_data", "#c9be03");
-				ctx.save();
+				/* ctx.save();
 				ctx.globalAlpha = .3;
 				ctx.fillStyle = "Green";
 				ctx.fillRect(49,133, 246, 24);
 				ctx.fillRect(725,133, 246, 24);
-				ctx.restore();
+				ctx.restore(); */
 			} else if(this.instructions == 8){
 				this.fillText(ctx,"Movement", this.WIDTH/2, 445, "48pt heavy_data", "darkred");
 			} else if(this.instructions == 9){
@@ -10316,9 +10584,11 @@ app.main = {
 				this.fillText(ctx,"Energy attack hits will cause burns that halt endurance regen", this.WIDTH/2, 430, "14pt heavy_data", "#c9be03");
 				this.fillText(ctx,"The length of this halt depends on the intersity of the attack", this.WIDTH/2, 460, "14pt heavy_data", "#c9be03");
 			} else if(this.instructions == 23){
-				this.fillText(ctx,"Flying behind the battle interface will cause it to fade", this.WIDTH/2, 430, "14pt heavy_data", "#c9be03");
-				this.fillText(ctx,"Keep this in mind when fighting at high altitudes", this.WIDTH/2, 460, "14pt heavy_data", "#c9be03");
+				this.fillText(ctx,"If you and the enemy are both at super speed, clashing occurs", this.WIDTH/2, 430, "14pt heavy_data", "#c9be03");
+				this.fillText(ctx,"Clashes damage all involved and can knock one to the ground", this.WIDTH/2, 460, "14pt heavy_data", "#c9be03");
 			} else if(this.instructions == 24){
+				//this.tutorialBlinker = true;
+				this.tutAdvance = true;
 				this.fillText(ctx,"That is all I need to explain for now my androids", this.WIDTH/2, 425, "18pt heavy_data", "#c9be03");
 				this.fillText(ctx,"Now prove your worth in a battle examination", this.WIDTH/2, 455, "18pt heavy_data", "#c9be03");
 				this.fillText(ctx,"Else I dismantle you both.. like android 19!", this.WIDTH/2, 485, "18pt heavy_data", "#c9be03");
@@ -10403,14 +10673,14 @@ app.main = {
 				//this.fillText(this.ctx,"R", 385 + 100, 150, "70pt heavy_data", "white");
 				ctx.save();
 				ctx.globalAlpha = .8;
-				this.fillTextConst(this.ctx,"ibbon", 530 + 100, 152, "72pt heavy_data", "black");
-				this.fillTextConst(this.ctx,"ibbon", 530 + 100, 150, "70pt heavy_data", "#bac6b3");
+				this.fillTextConst(this.ctx,"ibbon", 530 + 100, 157, "72pt heavy_data", "black");
+				this.fillTextConst(this.ctx,"ibbon", 530 + 100, 155, "70pt heavy_data", "#bac6b3");
 				ctx.restore();
 				ctx.save();
 				ctx.globalAlpha= .7;
 				this.fillTextConst(this.ctx,"The", this.WIDTH/2, 60, "70pt heavy_data", "#c9be03");
 				this.fillTextConst(this.ctx,"Androids", this.WIDTH/2 + 8, 240, "85pt heavy_data", "#c9be03");
-				this.fillText(this.ctx,"Ver 0.7.2", this.WIDTH/2 + 290, 272, "15pt heavy_data", "grey");
+				this.fillText(this.ctx,"Ver 0.8.0", this.WIDTH/2 + 290, 272, "15pt heavy_data", "grey");
 				if(this.firstTimeMode == true){
 					this.fillText(this.ctx,"First Time Mode: Preparing Systems", this.WIDTH/2, 700, "42pt heavy_data", "#c9be03");
 					this.fillText(this.ctx,"First Time Mode: Preparing Systems", this.WIDTH/2, 700, "42pt heavy_data", "white");
@@ -10563,8 +10833,8 @@ app.main = {
 				ctx.restore(); */
 				ctx.save();
 				ctx.globalAlpha = .65;
-				this.fillTextConst(this.ctx,"ibbon", 530 + 100, 152 + ((this.spacing * 11) + 4000) - this.creditsRoll, "72pt heavy_data", "black");
-				this.fillTextConst(this.ctx,"ibbon", 530 + 100, 150 + ((this.spacing * 11) + 4000) - this.creditsRoll, "70pt heavy_data", "#bac6b3");
+				this.fillTextConst(this.ctx,"ibbon", 530 + 100, 157 + ((this.spacing * 11) + 4000) - this.creditsRoll, "72pt heavy_data", "black");
+				this.fillTextConst(this.ctx,"ibbon", 530 + 100, 155 + ((this.spacing * 11) + 4000) - this.creditsRoll, "70pt heavy_data", "#bac6b3");
 				ctx.restore();
 				ctx.save();
 				ctx.globalAlpha= .7;
@@ -10713,8 +10983,8 @@ app.main = {
 			
 			
 			if(this.trueEnding == true){
-				this.fillText(this.ctx,"The Beginning?", this.WIDTH/2, this.HEIGHT/2 - 150, "75pt heavy_data", "#c9be03");
-				this.fillText(this.ctx,"The Beginning?", this.WIDTH/2, this.HEIGHT/2 - 150, "75pt heavy_data", "white");
+				this.fillText(this.ctx,"To be continued!", this.WIDTH/2, this.HEIGHT/2 - 150, "75pt heavy_data", "#c9be03");
+				this.fillText(this.ctx,"To be continued!", this.WIDTH/2, this.HEIGHT/2 - 150, "75pt heavy_data", "white");
 			} else {
 				this.fillText(this.ctx,"The End?", this.WIDTH/2, this.HEIGHT/2 - 150, "75pt heavy_data", "#c9be03");
 				this.fillText(this.ctx,"The End?", this.WIDTH/2, this.HEIGHT/2 - 150, "75pt heavy_data", "white");
@@ -10880,6 +11150,718 @@ app.main = {
 		ctx.restore();
 	},
 	
+	
+	drawHUD2: function(ctx3){
+	
+		if((this.gameState == this.GAME_STATE.DEFAULT || this.gameState == this.GAME_STATE.TUTORIAL) && this.introState == false && this.endingState == false){
+			ctx3.save();
+			//ctx3.translate(0, -50);
+			this.pulsing++;
+			this.warnings++;
+			ctx3.save();
+			
+			/* if((this.vegeta.aboveSky == true && this.vegeta.superSpeed == false) && ((this.android18.aboveSky == true && this.android18.superSpeed == false) || (this.android17.aboveSky == true && this.android17.superSpeed == false))) {
+				this.superFade = true;
+			} else {
+				this.superFade = false;
+			}
+			
+			if(((this.vegeta.aboveSky == true && this.vegeta.superSpeed == false) || (this.android18.aboveSky == true && this.android18.superSpeed == false)) && this.superFade == false) {
+				this.fade = true;
+			} else {
+				this.fade = false;
+			} */
+			
+			if(this.android18.superSpeed == false && this.android18.position.x > 222 && this.android18.position.x < 802 && this.android18.position.y > 295 && this.android18.position.y < 545) {
+				this.extraFade = true;
+			} else {
+				this.extraFade = false;
+			}
+			
+			if(this.android18.superSpeed == false && this.android18.position.x > 800 && this.android18.position.x < 1000 && this.android18.position.y > 245 && this.android18.position.y < 615) {
+				this.extraFade2 = true;
+			} else {
+				this.extraFade2 = false;
+			}
+			/* //Coat of darkness
+			ctx3.save();
+			ctx3.globalAlpha = .3;
+			ctx3.fillStyle = "black";
+			ctx3.fillRect(0,200, 1024, 568);
+			ctx3.restore(); */
+			ctx3.save();
+			ctx3.globalAlpha = 1;
+			ctx3.fillStyle = "black";
+			ctx3.fillRect(0,0, 1024, 160);
+			ctx3.restore();
+			ctx3.save();
+			ctx3.globalAlpha = (this.iAlpha/100) + .2;
+			ctx3.drawImage(this.iBackground160,0,0);
+			ctx3.restore();
+			ctx3.save();
+			if(this.fade == true){ //FADE
+				ctx3.globalAlpha = .5;
+			} else if(this.superFade == true){ //FADE
+				ctx3.globalAlpha = .4;
+			} else {
+				ctx3.globalAlpha = .9;
+			}
+			ctx3.fillStyle = "rgb(0,34,7)";
+			ctx3.fillRect(0,0, 1024, 160);
+			ctx3.strokeStyle = "rgb(0,0,0)";
+			ctx3.lineWidth = 5;
+			ctx3.strokeRect(0,0, 1024, 160);
+			ctx3.restore();
+			
+			if(this.android18.energy < 28){
+				this.android18.energy = 28;
+			}
+			if(this.android18.stamina > 100){
+				this.android18.exhausted = true;
+				this.android18.stamina = 100;
+			} 
+			if(this.android18.stamina < 28) {
+				this.android18.stamina = 28;
+			} else if(this.android18.stamina < 64){
+				this.android18.exhausted = false;
+			}
+			if(this.android18.energy > 99){
+				this.android18.energy = 100;
+			}
+			if(this.android18.endurance > 99){
+				this.android18.endurance = 100;
+			}
+		
+			if(this.vegeta.energy < 28){
+				this.vegeta.energy = 28;
+			}
+			if(this.vegeta.stamina > 100){
+				this.vegeta.exhausted = true;
+				this.vegeta.stamina = 100;
+			} 
+			if(this.vegeta.stamina < 28) {
+				this.vegeta.stamina = 28;
+			} else if(this.vegeta.stamina < 64){
+				this.vegeta.exhausted = false;
+			}
+			if(this.vegeta.energy > 99){
+				this.vegeta.energy = 100;
+			}
+			if(this.vegeta.endurance > 99){
+				this.vegeta.endurance = 100;
+			}
+			ctx3.save();
+			if(this.moved == true) {
+				ctx3.translate(0,570);
+			} else {
+				//Nothing
+			}
+			ctx3.save();
+			//ctx3.globalAlpha = (this.iAlpha/100);
+			//ctx3.drawImage(this.iBackground,0,0);
+			ctx3.restore();
+			
+			ctx3.save();
+			if(this.fade == true){ //FADE
+				ctx3.globalAlpha = .1;
+			} else if(this.superFade == true){ //SUPERFADE
+				//console.log("SUPERFADE");
+				ctx3.globalAlpha = .05;
+			} else {
+				ctx3.globalAlpha = .6;
+			}
+			ctx3.save();
+			/* if(this.fade == false && this.superFade == false){
+				ctx3.globalAlpha = .7;
+			} */
+			if(this.letsPlay == false){
+				ctx3.globalAlpha = .7;
+			} else {
+				ctx3.globalAlpha = .4;
+			}
+			ctx3.drawImage(this.redRibbon,445,27);
+			ctx3.restore();
+			ctx3.save();
+			ctx3.translate(-50,-5);
+			if(this.targetHidden == false){
+			if(this.targetDead == true){
+				this.fillText(ctx3,"Terminated", 130, 40, "20pt heavy_data", "darkRed");
+			} else if(this.vegeta.vegeta == true && this.vegeta.vanish == false && this.target == true){
+				this.fillText(ctx3,"Target: Vegeta", 130, 40, "20pt heavy_data", "#c9be03");
+			} else if(this.vegeta.gero == true){
+				this.fillText(ctx3,"Target: Dr. Gero", 130, 40, "20pt heavy_data", "#c9be03");
+			} else if(this.vegeta.piccolo == true && this.target == true){
+				this.fillText(ctx3,"Target: Piccolo", 130, 40, "20pt heavy_data", "#c9be03");
+			} else if(this.vegeta.gohan == true && this.vegeta.vanish == false && this.battle != 3 && this.target == true){
+				this.fillText(ctx3,"Target: Gohan", 130, 40, "20pt heavy_data", "#c9be03");
+			} else if(this.vegeta.gohan == true && this.vegeta.vanish == false && this.target == true){
+				this.fillText(ctx3,"Target: Gohan!!", 130, 40, "20pt heavy_data", "#c9be03");
+			} else if(this.target == false){
+				this.fillText(ctx3,"Target: Humans", 130, 40, "20pt heavy_data", "#c9be03");
+			} else {
+				this.fillText(ctx3,"Target: Unknown", 130, 40, "20pt heavy_data", "#c9be03");
+			}
+			this.fillText(ctx3,"Target:", 130, 40, "20pt heavy_data", "white");
+			} else {
+				
+			//ctx3.drawImage(this.iBorder,0,0);
+			ctx3.restore();
+			ctx3.save();
+			ctx3.translate(-47,-10);
+			if(this.fade == true){ //FADE
+				ctx3.globalAlpha = 0;
+			} else if(this.superFade == true){ //SUPERFADE
+				ctx3.globalAlpha = 0;
+			} else {
+				ctx3.globalAlpha = .15 + (app.main.environment.alpha / 100);
+			}
+			ctx3.fillStyle = "darkred";
+			ctx3.fillRect(50,55, 375, 70);
+			ctx3.restore();
+			/* ctx3.save();
+			//ctx3.translate(50,0);
+			ctx3.fillStyle = "darkred";
+			if(this.android18.health != 100 || this.android18.endurance !=100){
+				ctx3.fillRect(596,55, 375, 70);
+			}
+			ctx3.restore(); */
+			
+			ctx3.save();
+			ctx3.translate(-47,-10); // first
+			
+			ctx3.textAlign = "center";
+			ctx3.textBaseline = "middle";
+			
+			ctx3.drawImage(this.iBigBar2,50,55);
+			
+			if(this.targetDead == true){
+				this.fillText(ctx3,"Terminated", 235, 90, "30pt heavy_data", "black");
+			} else if(this.vegeta.vegeta == true && this.vegeta.vanish == false && this.target == true){
+				this.fillText(ctx3,"Target: Vegeta", 235, 90, "30pt heavy_data", "#FF0000");
+			} else if(this.vegeta.gero == true){
+				this.fillText(ctx3,"Target: Dr. Gero", 235, 90, "30pt heavy_data", "#FF0000");
+			} else  if(this.vegeta.piccolo == true && this.target == true){
+				this.fillText(ctx3,"Target: Piccolo", 235, 90, "30pt heavy_data", "#FF0000");
+			} else  if(this.vegeta.gohan == true && this.vegeta.vanish == false && this.battle != 3 && this.target == true){
+				this.fillText(ctx3,"Target: Gohan", 235, 90, "30pt heavy_data", "#FF0000");
+			} else  if(this.vegeta.gohan == true && this.vegeta.vanish == false && this.target == true){
+				this.fillText(ctx3,"Target: Gohan!!", 235, 90, "30pt heavy_data", "#FF0000");
+			} else if(this.target == false){
+				this.fillText(ctx3,"Target: Humans", 235, 90, "30pt heavy_data", "#FF0000");
+			} else {
+				this.fillText(ctx3,"Target: Unknown", 235, 90, "30pt heavy_data", "#FF0000");
+			}
+			//this.fillText(ctx3,"Target:", 80, 100, "30pt heavy_data", "white");
+			}
+			ctx3.restore();
+			ctx3.save();
+			ctx3.translate(50,-5);
+			ctx3.textAlign = "left";
+			ctx3.textBaseline = "alphabetic";
+			
+			this.fillText(ctx3,"Unit: Android 18", 690, 40, "20pt heavy_data", "#c9be03");
+			this.fillText(ctx3,"Unit:", 690, 40, "20pt heavy_data", "white");
+			//this.fillText(ctx3,"Android 18", 690, 40, "20pt heavy_data", "#c9be03");
+			ctx3.restore();
+			ctx3.save();
+			ctx3.translate(0,25);
+			ctx3.textAlign = "center";
+			ctx3.textBaseline = "middle";
+			if(this.letsPlay == true){
+				var gradient=ctx3.createLinearGradient(0,0,1024,0);
+				if(this.roundScore > this.roundScore2){
+					gradient.addColorStop("0","green");
+				} else {
+					gradient.addColorStop("0","red");
+				}
+				if(this.roundScore > this.roundScore2){
+					gradient.addColorStop("0.39","green");
+				} else {
+					gradient.addColorStop("0.39","darkred");
+				}
+				gradient.addColorStop("0.5","white");
+				if(this.roundScore < this.roundScore2){
+					gradient.addColorStop("0.6","green");
+				} else {
+					gradient.addColorStop("0.6","darkred");
+				}
+				if(this.roundScore < this.roundScore2){
+					gradient.addColorStop("1.0","green");
+				} else {
+					gradient.addColorStop("1.0","red");
+				}
+				//this.fillText(ctx3,"18..." + (this.roundScore) + "...18", 509, 40, "20pt heavy_data", "#c9be03");
+				//this.fillText(ctx3," 17..." + (this.roundScore2) + "...17", 507, 140, "20pt heavy_data", "#c9be03");
+				if(this.roundScore < 1){
+					this.roundScore = 0;
+				}
+				if(this.roundScore2 < 1){
+					this.roundScore2 = 0;
+				}
+				this.fillText(ctx3,(this.roundScore) + ":18" + ".VS." + "17:" + (this.roundScore2), 508, 40, "20pt heavy_data", gradient);	
+				//this.fillText(ctx3,(this.roundScore) + ":18" + "...." + "17:" + (this.roundScore2), 504, 40, "20pt heavy_data", "darkred");
+				//this.fillText(ctx3,"18..." + (this.roundScore) + "...18", 509, 40, "20pt heavy_data", "white");
+				//this.fillText(ctx3," 17..." + (this.roundScore2) + "...17", 507, 140, "20pt heavy_data", "white");
+			}
+			ctx3.restore();
+			ctx3.save();
+			ctx3.textAlign = "center";
+			ctx3.textBaseline = "middle";
+			ctx3.translate(0,-30);
+			this.fillText(ctx3,"Unit: Android 17", 510, 145, "20pt heavy_data", "#c9be03");
+			this.fillText(ctx3,"Unit:", 440, 145, "20pt heavy_data", "white");
+			ctx3.restore();
+			ctx3.save();
+			ctx3.textAlign = "center";
+			ctx3.textBaseline = "middle";
+			ctx3.translate(-26,-30);
+			this.fillText(ctx3,"Analysis: ", 480, 172, "15pt heavy_data", "white");
+			this.blinker++;
+			if(this.blinker < 40){
+			if(this.android17.encounter == true && this.scene == false){
+				if(this.android17.mood > .7){
+					this.fillText(ctx3,"Thrilled", 580, 172, "15pt heavy_data", "Green");
+				} else if(this.android17.mood <= .7 && this.android17.mood > .3){
+					this.fillText(ctx3,"Amused", 570, 172, "15pt heavy_data", "Green");
+				} else {
+					this.fillText(ctx3,"Engaged", 580, 172, "15pt heavy_data", "Green");
+				}
+			} else if(this.android17.city == true){
+				if(this.android17.mood > .7){
+					this.fillText(ctx3,"Ruthless", 580, 172, "15pt heavy_data", "Red");
+				} else if(this.android17.mood <= .7 && this.android17.mood > .3){
+					this.fillText(ctx3,"Deadly", 560, 172, "15pt heavy_data", "Red");
+				} else {
+					this.fillText(ctx3,"Sadistic", 570, 172, "15pt heavy_data", "Red");
+				}
+			} else if(this.android17.evasion == true && this.scene == false){
+				if(this.android17.mood > .7){
+					this.fillText(ctx3,"Observing", 580, 172, "15pt heavy_data", "yellow");
+				} else if(this.android17.mood <= .7 && this.android17.mood > .3){
+					this.fillText(ctx3,"Bored", 560, 172, "15pt heavy_data", "yellow");
+				} else {
+					this.fillText(ctx3,"Smug", 560, 172, "15pt heavy_data", "yellow");
+				}
+			} else {
+				if((this.scene == 0 || this.gameState == this.GAME_STATE.TUTORIAL) && this.battle < 1){
+					this.fillText(ctx3,"Determined", 585, 172, "15pt heavy_data", "grey");
+				} else if(this.sceneNum == 1){
+					this.fillText(ctx3,"Arrogant", 575, 172, "15pt heavy_data", "grey");
+				} else if(this.sceneNum == 2){
+					this.fillText(ctx3,"Curious", 565, 172, "15pt heavy_data", "grey");
+				} else if(this.sceneNum == 3){
+					this.fillText(ctx3,"Murderous", 580, 172, "15pt heavy_data", "Red");
+				} else if(this.sceneNum == 4 && this.trueEnding == false){
+					this.fillText(ctx3,"Disgusted", 580, 172, "15pt heavy_data", "grey");
+				} else if((this.sceneNum == 4 || this.battle == 3) && this.trueEnding == true && (this.gohanDead == false || this.target == true)){
+					if(this.vegeta.superForm == false){
+						this.fillText(ctx3,"Homicidal", 580, 172, "15pt heavy_data", "red");
+					} else {
+						this.fillText(ctx3,"Damaged?", 570, 172, "15pt heavy_data", "darkRed");
+					}
+				} else if(this.gohanDead == true && this.target == false){
+					this.fillText(ctx3,"Bloodthirsty", 590, 172, "15pt heavy_data", "black");
+				} else {
+					this.fillText(ctx3,"Unpredicable", 590, 172, "15pt heavy_data", "Grey");
+				}
+			}
+			} else if(this.blinker < 43){
+				
+			} else {
+				this.blinker = 0;
+			}
+			ctx3.restore();
+			ctx3.restore();
+			ctx3.restore();
+			//ctx3.drawImage(this.iBorder,0,0);
+			
+			if(this.targetHidden == false){
+				
+			ctx3.save();
+			ctx3.translate(-5,0);
+			
+			ctx3.save();
+			ctx3.translate(-42,-10);
+			if(this.fade == true){ //FADE
+				ctx3.globalAlpha = 0;
+			} else if(this.superFade == true){ //SUPERFADE
+				ctx3.globalAlpha = 0;
+			} else {
+				ctx3.globalAlpha = .15 + (app.main.environment.alpha / 100);
+			}
+			ctx3.fillStyle = "darkred";
+			if(this.vegeta.health != 100 || this.vegeta.endurance != 100){
+				ctx3.fillRect(49,55, 375, 70);
+			}
+			ctx3.save();
+			ctx3.translate(95,0);
+			ctx3.fillStyle = "darkred";
+			if(this.android18.health != 100 || this.android18.endurance != 100){
+				ctx3.fillRect(600,55, 375, 70);
+			}
+			ctx3.restore();
+			ctx3.restore();
+			
+			ctx3.save(); 
+			ctx3.translate(-42,-10);
+			if(this.fade == true){ //FADE
+				ctx3.globalAlpha = .1;
+			} else if(this.superFade == true){ //SUPERFADE
+				ctx3.globalAlpha = .05;
+			} else {
+				ctx3.globalAlpha = .7;
+			}
+			if(this.vegeta.hit == true || this.vegeta.hardHit == true) {
+				ctx3.fillStyle = "#B20000";
+			} else if(this.vegeta.blastBurn == true){
+				ctx3.fillStyle = "#110000";
+			} else {
+				ctx3.fillStyle = "white";
+			}
+			if (this.vegeta.endurance < 6){
+				ctx3.fillRect(50,55,6,35);
+			}
+			else {
+				ctx3.fillRect(50,55, (this.vegeta.endurance * 4) - 30, 35);
+			}
+			if(this.vegeta.hit == true || this.vegeta.hardHit == true) {
+				ctx3.fillStyle = "#B20000";
+			} else if(this.vegeta.blastBurn == true){
+				ctx3.fillStyle = "#110000";
+			} else {
+				ctx3.fillStyle = "grey";
+			}
+			if(this.vegeta.health < 10){
+				ctx3.fillRect(50,90,0,25);
+			} else {
+				ctx3.fillRect(50,90, (this.vegeta.health * 4) - 30, 25);
+			}
+			if(this.vegeta.hardHit == true) {
+				ctx3.save();
+				ctx3.scale(.14,.14);
+				if(this.warnings < 3){
+					ctx3.drawImage(this.iWarning,1100,470);
+					ctx3.drawImage(this.iWarning,750,470);
+					ctx3.drawImage(this.iWarning,1800,470);
+					ctx3.drawImage(this.iWarning,2150,470);
+					ctx3.drawImage(this.iWarning,1450,470);
+				} else {
+					this.warnings = 0;
+				}
+				ctx3.restore();
+			}
+			ctx3.restore();
+			
+			ctx3.save();
+			ctx3.translate(-42,-10);
+			if(this.fade == true){ //FADE
+				ctx3.globalAlpha = .2;
+			} else if(this.superFade == true){ //SUPERFADE
+				ctx3.globalAlpha = .05;
+			} else {
+				ctx3.globalAlpha = .8;
+			}
+			ctx3.drawImage(this.iBigBar,50,55);
+			ctx3.restore();
+		
+			ctx3.save();
+			ctx3.translate(-42,-10);
+			if(this.fade == true){ //FADE
+				ctx3.globalAlpha = .2;
+			} else if(this.superFade == true){ //SUPERFADE
+				ctx3.globalAlpha = .15;
+			} else {
+				ctx3.globalAlpha = .6;
+			}
+			if(this.vegeta.exhausted == true){
+				if(this.pulsing < 3){
+					ctx3.fillStyle = "Red";
+				} else if(this.pulsing < 4){
+					ctx3.fillStyle = "#a92424";
+					//ctx3.fillStyle = "#7ec0ee";
+				} else {
+					this.pulsing = 0;
+					ctx3.fillStyle = "#a92424";
+					//ctx3.fillStyle = "#7ec0ee";
+				}
+			} else {
+				ctx3.fillStyle = "#a92424";
+				//ctx3.fillStyle = "#7ec0ee";
+			}
+			ctx3.save();
+			ctx3.translate(-42,-10);
+			if(this.fade == true){ //FADE
+				ctx3.globalAlpha = .05;
+			} else if(this.superFade == true){ //SUPERFADE
+				ctx3.globalAlpha = .01;
+			} else {
+				ctx3.globalAlpha = .2;
+			}
+			ctx3.fillStyle = "Green";
+			ctx3.fillRect(89,137, 246, 20);
+			ctx3.restore();
+			
+			ctx3.fillRect(50,125, (this.vegeta.stamina * 3) - 70, 10);
+			ctx3.fillStyle = "yellow";
+			//ctx3.fillStyle = "#c9be03";
+			ctx3.fillRect(50,140, (this.vegeta.energy * 3) - 70, 15);
+			ctx3.restore();
+			
+			ctx3.save();
+			ctx3.translate(-42,-10);
+			if(this.fade == true){ //FADE
+				ctx3.globalAlpha = .2;
+			} else if(this.superFade == true){ //SUPERFADE
+				ctx3.globalAlpha = .05;
+			} else {
+				ctx3.globalAlpha = .8;
+			}
+			ctx3.drawImage(this.iSmallBar,50,110);
+			ctx3.restore();
+			ctx3.restore();
+			}
+			
+			ctx3.save();
+			ctx3.scale(-1, 1);
+			ctx3.save();
+			ctx3.translate(-50,-10); //second
+			if(this.fade == true){ //FADE
+				ctx3.globalAlpha = .1;
+			} else if(this.superFade == true){ //SUPERFADE
+				ctx3.globalAlpha = .05;
+			} else {
+				ctx3.globalAlpha = .7;
+			}
+			
+			
+			if(this.android18.hit == true || this.android18.hardHit == true) {
+				ctx3.fillStyle = "#B20000";
+			} else if(this.android18.blastBurn == true){
+				ctx3.fillStyle = "#110000";
+			} else {
+				ctx3.fillStyle = "white";
+			}
+			if (this.android18.endurance < 6){
+				ctx3.fillRect(-970,55,6,35);
+			}
+			else {
+				ctx3.fillRect(-970,55, (this.android18.endurance * 4) - 30, 35);
+			}
+			if(this.android18.hit == true || this.android18.hardHit == true) {
+				ctx3.fillStyle = "#B20000";
+			} else if(this.android18.blastBurn == true){
+				ctx3.fillStyle = "#110000";
+			} else {
+				ctx3.fillStyle = "grey";
+			}
+			if (this.android18.health < 10){
+				ctx3.fillRect(-970,90,0,25);
+			}
+			else {
+				ctx3.fillRect(-970,90, (this.android18.health * 4) - 30, 25);
+			}
+			if(this.android18.hardHit == true) {
+				ctx3.save();
+				ctx3.scale(.14,.14);
+				if(this.warnings < 3){
+					ctx3.drawImage(this.iWarning,-5800,470);
+					ctx3.drawImage(this.iWarning,-5450,470);
+					ctx3.drawImage(this.iWarning,-5100,470);
+					ctx3.drawImage(this.iWarning,-6150,470);
+					ctx3.drawImage(this.iWarning,-6500,470);
+				} else {
+					this.warnings = 0;
+				}
+				ctx3.restore();
+			}
+			ctx3.restore();
+			
+			ctx3.save();
+			ctx3.translate(-50,-10);
+			if(this.fade == true){ //FADE
+				ctx3.globalAlpha = .2;
+			} else if(this.superFade == true){ //SUPERFADE
+				ctx3.globalAlpha = .05;
+			} else {
+				ctx3.globalAlpha = .8;
+			}
+			ctx3.drawImage(this.iBigBar,-970,55);
+			ctx3.restore();
+			
+			ctx3.save();
+			ctx3.translate(-50,-10);
+			if(this.fade == true){ //FADE
+				ctx3.globalAlpha = .2;
+			} else if(this.superFade == true){ //SUPERFADE
+				ctx3.globalAlpha = .15;
+			} else {
+				ctx3.globalAlpha = .6;
+			}
+			if(this.android18.exhausted == true){
+				if(this.pulsing < 3){
+					ctx3.fillStyle = "Red";
+				} else if(this.pulsing < 4){
+					ctx3.fillStyle = "#a92424";
+					//ctx3.fillStyle = "#7ec0ee";
+				} else {
+					this.pulsing = 0;
+					ctx3.fillStyle = "#a92424";
+					//ctx3.fillStyle = "#7ec0ee";
+				}
+			} else {
+				ctx3.fillStyle = "#a92424";
+				//ctx3.fillStyle = "#7ec0ee";
+			}
+			ctx3.save();
+			ctx3.translate(-50,-10);
+			if(this.fade == true){ //FADE
+				ctx3.globalAlpha = .05;
+			} else if(this.superFade == true){ //SUPERFADE
+				ctx3.globalAlpha = .01;
+			} else {
+				ctx3.globalAlpha = .2;
+			}
+			ctx3.fillStyle = "#FF0000";
+			ctx3.fillRect(600,55, 375, 70);
+			ctx3.fillStyle = "Green";
+			ctx3.fillRect(-930,137, 246, 20);
+			ctx3.restore();
+			ctx3.fillRect(-970,125, (this.android18.stamina * 3) - 70, 10);
+			ctx3.fillStyle = "yellow";
+			//ctx3.fillStyle = "#c9be03";
+			ctx3.fillRect(-970,140, (this.android18.energy * 3) - 70, 15);
+			ctx3.restore();
+			ctx3.save();
+			ctx3.translate(-50,-10);
+			if(this.fade == true){ //FADE
+				ctx3.globalAlpha = .2;
+			} else if(this.superFade == true){ //SUPERFADE
+				ctx3.globalAlpha = .05;
+			} else {
+				ctx3.globalAlpha = .8;
+			}
+			ctx3.drawImage(this.iSmallBar,-970,110);
+			ctx3.restore();
+			ctx3.restore(); //TEST
+			ctx3.restore();
+		} else {
+			/* ctx3.save();
+			ctx.globalAlpha = 1;
+			ctx3.fillStyle = "black";
+			ctx3.fillRect(0,0, 1024, 140);
+			ctx3.restore(); */
+			ctx3.save();
+			if(this.fade == true){ //FADE
+				ctx3.globalAlpha = .5;
+			} else if(this.superFade == true){ //FADE
+				ctx3.globalAlpha = .4;
+			} else {
+				ctx3.globalAlpha = .8;
+			}
+				
+			if(this.introState == true || this.endingState == true || this.specialScene == true || this.specialScene == true || this.gameState == this.GAME_STATE.DEFEAT){
+				ctx3.save();
+				ctx3.globalAlpha = 1;
+				ctx3.fillStyle = "black";
+				ctx3.fillRect(0,0, 1024, 160);
+				ctx3.restore();
+				ctx3.save();
+				ctx3.globalAlpha = (this.iAlpha/100) + .2;
+				ctx3.drawImage(this.iBackground160,0,0);
+				ctx3.restore();
+				ctx3.globalAlpha = .8;
+				ctx3.fillStyle = "rgb(0,34,7)";
+				ctx3.fillRect(0,0, 1024, 160);
+				ctx3.strokeStyle = "rgb(0,0,0)";
+				ctx3.lineWidth = 5;
+				ctx3.strokeRect(0,0, 1024, 160);
+				ctx3.restore();
+				ctx3.save();
+				/* if(this.fade == false && this.superFade == false){
+					ctx3.globalAlpha = .7;
+				} */
+				ctx3.globalAlpha = .9;
+				if(this.playerRank == 1){
+					ctx3.drawImage(this.redRibbonRust,415,30);
+				} else if(this.playerRank == 2){
+					ctx3.drawImage(this.redRibbonBronze,415,30);
+				} else if(this.playerRank == 3){
+					ctx3.drawImage(this.redRibbonSilver,415,30);
+				} else if(this.playerRank > 3){
+					ctx3.drawImage(this.redRibbonGold,415,30);
+				} else {
+					ctx3.drawImage(this.redRibbonRust,415,30);
+					/* ctx3.scale(1.5,1.5);
+					ctx3.drawImage(this.redRibbon,272,10); */
+				}
+				ctx3.restore();
+				ctx3.globalAlpha = .7;
+				//ctx3.scale(1.5,1.5);
+				ctx3.drawImage(this.redRibbon,-63,45);
+				ctx3.drawImage(this.redRibbon,187,45);
+				ctx3.restore();
+				ctx3.save();
+				/* if(this.fade == false && this.superFade == false){
+					ctx3.globalAlpha = .7;
+				} */
+				ctx3.globalAlpha = .7;
+				//ctx3.scale(1.5,1.5);
+				ctx3.drawImage(this.redRibbon,700,45);
+				ctx3.drawImage(this.redRibbon,950,45);
+				ctx3.restore();
+				ctx3.save();
+				ctx3.globalAlpha = (this.iAlpha/200) + .5;
+				ctx3.fillStyle = "black";
+				ctx3.fillRect(0,0, 1024, 160);
+				ctx3.restore();
+			} else {
+				ctx3.save();
+				ctx3.globalAlpha = (this.iAlpha/100) + .2;
+				ctx3.drawImage(this.iBackground130,0,0);
+				ctx3.restore();
+				ctx3.fillStyle = "rgb(0,34,7)";
+				ctx3.fillRect(0,0, 1024, 130);
+				ctx3.strokeStyle = "rgb(0,0,0)";
+				ctx3.lineWidth = 5;
+				ctx3.strokeRect(0,0, 1024, 130);
+				ctx3.restore();
+				ctx3.save();
+				/* if(this.fade == false && this.superFade == false){
+					ctx3.globalAlpha = .7;
+				} */
+				ctx3.globalAlpha = .9;
+				if(this.playerRank == 1){
+					ctx3.drawImage(this.redRibbonRust,415,10);
+				} else if(this.playerRank == 2){
+					ctx3.drawImage(this.redRibbonBronze,415,10);
+				} else if(this.playerRank == 3){
+					ctx3.drawImage(this.redRibbonSilver,415,10);
+				} else if(this.playerRank > 3){
+					ctx3.drawImage(this.redRibbonGold,415,10);
+				} else {
+					ctx3.drawImage(this.redRibbonRust,415,10);
+					/* ctx3.scale(1.5,1.5);
+					ctx3.drawImage(this.redRibbon,272,10); */
+				}
+				ctx3.restore();
+				ctx3.globalAlpha = .7;
+				//ctx3.scale(1.5,1.5);
+				ctx3.drawImage(this.redRibbon,187,30);
+				ctx3.drawImage(this.redRibbon,-63,30);
+				ctx3.restore();
+				ctx3.save();
+				/* if(this.fade == false && this.superFade == false){
+					ctx3.globalAlpha = .7;
+				} */
+				ctx3.globalAlpha = .7;
+				//ctx3.scale(1.5,1.5);
+				ctx3.drawImage(this.redRibbon,700,30);
+				ctx3.drawImage(this.redRibbon,950,30);
+				ctx3.restore();
+			}
+		}
+	},
+	
 	//FUNCTION TO PAUSE THE GAME
 	pausedGame: function(){
 		this.paused = true;
@@ -10959,7 +11941,9 @@ app.main = {
 		
 		this.sound.pauseBGAudioPause();
 		if(this.endingState == false){
-			this.sound.resumeVoice();
+			if(this.scene == true){
+				this.sound.resumeVoice();
+			}
 			this.sound.resumeEffect();
 			this.sound.resumeVoiceTalk();
 		}

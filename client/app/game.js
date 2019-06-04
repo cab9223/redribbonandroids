@@ -473,12 +473,16 @@ const StatsList = function(props) {
 	//Decide the account status
 	if(stats.hsTotalT3 > 0){
 		progressType = "/assets/images/RedRibbonGold.png"
+		app.main.playerRank = 4;
 	} else if(stats.hsTotalT2 > 0){
 		progressType = "/assets/images/RedRibbonSilver.png"
+		app.main.playerRank = 3;
 	} else if(stats.hsTotalT1 > 0){
 		progressType = "/assets/images/RedRibbonBronze.png"
+		app.main.playerRank = 2;
 	} else if(stats.hsTotal > 0){
 		progressType = "/assets/images/RedRibbonRust.png"
+		app.main.playerRank = 1;
 	}
 	
 	

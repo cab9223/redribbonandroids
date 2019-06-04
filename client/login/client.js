@@ -1,7 +1,6 @@
 // checks and posts login data to server
 const handleLogin = (e) => {
   e.preventDefault();
-  
   if($("#user").val() == '' || $("#pass").val() == '') {
     handleError("Username or password is empty");
 	return false;
@@ -22,7 +21,7 @@ const handleSignup = (e) => {
   }
   
   if($("#pass").val() !== $("#pass2").val()) {
-    handleError("RAWR: Passwords do not match");
+    handleError("Passwords do not match");
 	return false;
   } 
 
