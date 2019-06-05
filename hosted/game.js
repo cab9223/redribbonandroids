@@ -7781,10 +7781,12 @@ app.Energy = function () {
 				ctx.scale(-2, 2);
 				if (this.flashBlasts == true) {
 					this.flashBlasts = false;
-					ctx.filter = "brightness(200%)";
+					//ctx.filter = "brightness(200%)";
+					ctx.globalAlpha = 1;
 				} else if (this.flashBlasts == false) {
 					this.flashBlasts = true;
-					ctx.filter = "brightness(90%)";
+					ctx.globalAlpha = .9;
+					//ctx.filter = "brightness(90%)";
 				}
 				ctx.drawImage(this.blast1, -10, -8);
 				ctx.restore();
@@ -7836,14 +7838,12 @@ app.Energy = function () {
 
 				if (this.flashBlasts == true) {
 					this.flashBlasts = false;
-					if (app.main.vegeta.stuckInBlast == true) {
-						ctx.filter = "brightness(300%)";
-					} else {
-						ctx.filter = "brightness(200%)";
-					}
+					//ctx.filter = "brightness(200%)";
+					ctx.globalAlpha = 1;
 				} else if (this.flashBlasts == false) {
 					this.flashBlasts = true;
-					ctx.filter = "brightness(90%)";
+					ctx.globalAlpha = .95;
+					//ctx.filter = "brightness(90%)";
 				}
 
 				ctx.save();
@@ -7908,10 +7908,12 @@ app.Energy = function () {
 
 				if (this.flashBlasts == true) {
 					this.flashBlasts = false;
-					ctx.filter = "brightness(200%)";
+					//ctx.filter = "brightness(200%)";
+					ctx.globalAlpha = 1;
 				} else if (this.flashBlasts == false) {
 					this.flashBlasts = true;
-					ctx.filter = "brightness(90%)";
+					ctx.globalAlpha = .95;
+					//ctx.filter = "brightness(90%)";
 				}
 				ctx.save();
 				ctx.translate(this.position.x + 160, this.position.y);
@@ -7973,10 +7975,12 @@ app.Energy = function () {
 
 				if (this.flashBlasts == true) {
 					this.flashBlasts = false;
-					ctx.filter = "brightness(200%)";
+					//ctx.filter = "brightness(200%)";
+					ctx.globalAlpha = 1;
 				} else if (this.flashBlasts == false) {
 					this.flashBlasts = true;
-					ctx.filter = "brightness(90%)";
+					ctx.globalAlpha = .9;
+					//ctx.filter = "brightness(90%)";
 				}
 				ctx.save();
 				ctx.scale(-2, 2);
@@ -7995,10 +7999,12 @@ app.Energy = function () {
 
 				if (this.flashBlasts == true) {
 					this.flashBlasts = false;
-					ctx.filter = "brightness(200%)";
+					//ctx.filter = "brightness(200%)";
+					ctx.globalAlpha = 1;
 				} else if (this.flashBlasts == false) {
 					this.flashBlasts = true;
-					ctx.filter = "brightness(80%)";
+					ctx.globalAlpha = .8;
+					//ctx.filter = "brightness(90%)";
 				}
 
 				ctx.save();
@@ -8144,10 +8150,12 @@ app.Energy = function () {
 
 				if (this.flashBlasts == true) {
 					this.flashBlasts = false;
-					ctx.filter = "brightness(200%)";
+					//ctx.filter = "brightness(200%)";
+					ctx.globalAlpha = 1;
 				} else if (this.flashBlasts == false) {
 					this.flashBlasts = true;
-					ctx.filter = "brightness(90%)";
+					ctx.globalAlpha = .95;
+					//ctx.filter = "brightness(90%)";
 				}
 
 				this.position.x = this.position.x - 50;
@@ -8204,10 +8212,12 @@ app.Energy = function () {
 
 				if (this.flashBlasts == true) {
 					this.flashBlasts = false;
-					ctx.filter = "brightness(200%)";
+					//ctx.filter = "brightness(200%)";
+					ctx.globalAlpha = 1;
 				} else if (this.flashBlasts == false) {
 					this.flashBlasts = true;
-					ctx.filter = "brightness(90%)";
+					ctx.globalAlpha = .95;
+					//ctx.filter = "brightness(90%)";
 				}
 
 				if (this.trigger == true) {
@@ -8357,10 +8367,12 @@ app.Energy = function () {
 
 				if (this.flashBlasts == true) {
 					this.flashBlasts = false;
-					ctx.filter = "brightness(200%)";
+					//ctx.filter = "brightness(200%)";
+					ctx.globalAlpha = 1;
 				} else if (this.flashBlasts == false) {
 					this.flashBlasts = true;
-					ctx.filter = "brightness(90%)";
+					ctx.globalAlpha = .9;
+					//ctx.filter = "brightness(90%)";
 				}
 
 				ctx.save();
@@ -8453,10 +8465,12 @@ app.Energy = function () {
 
 				if (this.flashBlasts == true) {
 					this.flashBlasts = false;
-					ctx.filter = "brightness(200%)";
+					//ctx.filter = "brightness(200%)";
+					ctx.globalAlpha = 1;
 				} else if (this.flashBlasts == false) {
 					this.flashBlasts = true;
-					ctx.filter = "brightness(90%)";
+					ctx.globalAlpha = .9;
+					//ctx.filter = "brightness(90%)";
 				}
 
 				this.counter++;
@@ -8482,10 +8496,12 @@ app.Energy = function () {
 
 				if (this.flashBlasts == true) {
 					this.flashBlasts = false;
-					ctx.filter = "brightness(200%)";
+					//ctx.filter = "brightness(200%)";
+					ctx.globalAlpha = 1;
 				} else if (this.flashBlasts == false) {
 					this.flashBlasts = true;
-					ctx.filter = "brightness(90%)";
+					ctx.globalAlpha = .9;
+					//ctx.filter = "brightness(90%)";
 				}
 
 				ctx.save();
@@ -8549,15 +8565,17 @@ app.Energy = function () {
 
 			if (this.type == 0) {
 
-				/* ctx.save();
-    
-    if(this.flashBlasts == true){
-    	this.flashBlasts = false;
-    	ctx.filter = "brightness(200%)";
-    } else if(this.flashBlasts == false){
-    	this.flashBlasts = true;
-    	ctx.filter = "brightness(90%)";
-    } */
+				ctx.save();
+
+				if (this.flashBlasts == true) {
+					this.flashBlasts = false;
+					//ctx.filter = "brightness(200%)";
+					ctx.globalAlpha = 1;
+				} else if (this.flashBlasts == false) {
+					this.flashBlasts = true;
+					ctx.globalAlpha = .95;
+					//ctx.filter = "brightness(90%)";
+				}
 
 				this.exhaust[0].minXspeed = -5;
 				this.exhaust[0].maxXspeed = -20;
@@ -8626,14 +8644,12 @@ app.Energy = function () {
 
 				if (this.flashBlasts == true) {
 					this.flashBlasts = false;
-					if (app.main.vegeta.stuckInBlast == true) {
-						ctx.filter = "brightness(300%)";
-					} else {
-						ctx.filter = "brightness(200%)";
-					}
+					//ctx.filter = "brightness(200%)";
+					ctx.globalAlpha = 1;
 				} else if (this.flashBlasts == false) {
 					this.flashBlasts = true;
-					ctx.filter = "brightness(90%)";
+					ctx.globalAlpha = .95;
+					//ctx.filter = "brightness(90%)";
 				}
 
 				ctx.save();
@@ -8702,10 +8718,12 @@ app.Energy = function () {
 
 				if (this.flashBlasts == true) {
 					this.flashBlasts = false;
-					ctx.filter = "brightness(200%)";
+					//ctx.filter = "brightness(200%)";
+					ctx.globalAlpha = 1;
 				} else if (this.flashBlasts == false) {
 					this.flashBlasts = true;
-					ctx.filter = "brightness(90%)";
+					ctx.globalAlpha = .95;
+					//ctx.filter = "brightness(90%)";
 				}
 
 				ctx.save();
@@ -8774,10 +8792,12 @@ app.Energy = function () {
 
 				if (this.flashBlasts == true) {
 					this.flashBlasts = false;
-					ctx.filter = "brightness(200%)";
+					//ctx.filter = "brightness(200%)";
+					ctx.globalAlpha = 1;
 				} else if (this.flashBlasts == false) {
 					this.flashBlasts = true;
-					ctx.filter = "brightness(90%)";
+					ctx.globalAlpha = .95;
+					//ctx.filter = "brightness(90%)";
 				}
 				ctx.save();
 				ctx.scale(2, 2);
@@ -8793,10 +8813,12 @@ app.Energy = function () {
 
 				if (this.flashBlasts == true) {
 					this.flashBlasts = false;
-					ctx.filter = "brightness(200%)";
+					//ctx.filter = "brightness(200%)";
+					ctx.globalAlpha = 1;
 				} else if (this.flashBlasts == false) {
 					this.flashBlasts = true;
-					ctx.filter = "brightness(80%)";
+					ctx.globalAlpha = .8;
+					//ctx.filter = "brightness(90%)";
 				}
 
 				ctx.save();
@@ -8946,10 +8968,12 @@ app.Energy = function () {
 
 				if (this.flashBlasts == true) {
 					this.flashBlasts = false;
-					ctx.filter = "brightness(200%)";
+					//ctx.filter = "brightness(200%)";
+					ctx.globalAlpha = 1;
 				} else if (this.flashBlasts == false) {
 					this.flashBlasts = true;
-					ctx.filter = "brightness(90%)";
+					ctx.globalAlpha = .95;
+					//ctx.filter = "brightness(90%)";
 				}
 
 				this.position.x = this.position.x + 50;
@@ -9009,10 +9033,12 @@ app.Energy = function () {
 
 				if (this.flashBlasts == true) {
 					this.flashBlasts = false;
-					ctx.filter = "brightness(200%)";
+					//ctx.filter = "brightness(200%)";
+					ctx.globalAlpha = 1;
 				} else if (this.flashBlasts == false) {
 					this.flashBlasts = true;
-					ctx.filter = "brightness(90%)";
+					ctx.globalAlpha = .95;
+					//ctx.filter = "brightness(90%)";
 				}
 
 				if (this.trigger == true) {
@@ -9150,10 +9176,12 @@ app.Energy = function () {
 
 				if (this.flashBlasts == true) {
 					this.flashBlasts = false;
-					ctx.filter = "brightness(200%)";
+					//ctx.filter = "brightness(200%)";
+					ctx.globalAlpha = 1;
 				} else if (this.flashBlasts == false) {
 					this.flashBlasts = true;
-					ctx.filter = "brightness(90%)";
+					ctx.globalAlpha = .9;
+					//ctx.filter = "brightness(90%)";
 				}
 
 				ctx.save();
@@ -9257,10 +9285,12 @@ app.Energy = function () {
 
 				if (this.flashBlasts == true) {
 					this.flashBlasts = false;
-					ctx.filter = "brightness(200%)";
+					//ctx.filter = "brightness(200%)";
+					ctx.globalAlpha = 1;
 				} else if (this.flashBlasts == false) {
 					this.flashBlasts = true;
-					ctx.filter = "brightness(90%)";
+					ctx.globalAlpha = .9;
+					//ctx.filter = "brightness(90%)";
 				}
 
 				this.counter++;
@@ -9287,10 +9317,12 @@ app.Energy = function () {
 
 				if (this.flashBlasts == true) {
 					this.flashBlasts = false;
-					ctx.filter = "brightness(200%)";
+					//ctx.filter = "brightness(200%)";
+					ctx.globalAlpha = 1;
 				} else if (this.flashBlasts == false) {
 					this.flashBlasts = true;
-					ctx.filter = "brightness(90%)";
+					ctx.globalAlpha = .9;
+					//ctx.filter = "brightness(90%)";
 				}
 
 				ctx.save();
@@ -9482,9 +9514,9 @@ app.Energy = function () {
 			} else if (this.type == 2) {
 				ctx.save();
 				if (this.dirLeft == true) {
-					ctx.translate(this.position.x - 5, this.position.y + 10);
+					ctx.translate(this.position.x - 120, this.position.y + 20);
 				} else {
-					ctx.translate(this.position.x + 125, this.position.y + 10);
+					ctx.translate(this.position.x + 95, this.position.y + 20);
 				}
 				ctx.scale(2.5, 2.5);
 				if (this.counter < 2) {
@@ -9496,9 +9528,9 @@ app.Energy = function () {
 				} else if (this.counter < 5) {
 					if (attackHitTestSmog(this.attackPosition, this.size) != true) {
 						if (this.dirLeft == true) {
-							app.main.environment.smogPos.push(new Victor(this.attackPosition.x - 55, this.attackPosition.y - 90));
+							app.main.environment.smogPos.push(new Victor(this.position.x - 170, this.attackPosition.y - 90));
 						} else {
-							app.main.environment.smogPos.push(new Victor(this.attackPosition.x - 77.5, this.attackPosition.y - 90));
+							app.main.environment.smogPos.push(new Victor(this.position.x + 60.5, this.attackPosition.y - 90));
 						}
 						app.main.environment.smogSize.push(new Victor(250, 250));
 						app.main.environment.smogAlpha.push(1.1);
@@ -9515,9 +9547,9 @@ app.Energy = function () {
 						if (app.main.environment.smogAlpha[app.main.environment.smogTarget] < 1.3) {
 							if (app.main.environment.smogAlpha[app.main.environment.smogTarget] < .25) {
 								if (this.dirLeft == true) {
-									app.main.environment.smogPos.push(new Victor(this.attackPosition.x - 55, this.attackPosition.y - 90));
+									app.main.environment.smogPos.push(new Victor(this.position.x - 170, this.attackPosition.y - 90));
 								} else {
-									app.main.environment.smogPos.push(new Victor(this.attackPosition.x - 77.5, this.attackPosition.y - 90));
+									app.main.environment.smogPos.push(new Victor(this.position.x + 60.5, this.attackPosition.y - 90));
 								}
 								app.main.environment.smogSize.push(new Victor(225, 225));
 								app.main.environment.smogAlpha.push(1.1);
@@ -15231,7 +15263,7 @@ if(this.blasts[i].released==false&&this.vegeta.behind==false){//this.vegeta.posi
 if(this.blasts[i].dirLeft==true){this.vegeta.position.x-=50;}else{this.vegeta.position.x+=50;}}}if(attackHitTestBlast(this.blasts[i],this.vegeta)==true){this.vegeta.punched=false;this.vegeta.hit=true;this.vegeta.stun=true;this.vegeta.blasted=true;if(this.blasts[i].blastUser==0){if(this.CP==true){this.roundScore+=11;}else{this.roundScore+=7;}}else{if(this.CP==true){this.roundScore2+=11;}else{this.roundScore2+=7;}}//this.vegeta.hardHit = true;
 this.vegeta.jumpVelocity.y=0;if(attackHitTestBlastSpecial(this.blasts[i],this.vegeta)==true){if(this.blasts[i].dirLeft==true){if(this.vegeta.position.x>300){this.vegeta.stuckInBlast=true;this.vegeta.stuckCooldown=0;}this.vegeta.position.x=this.blasts[i].position.x;}else{if(this.vegeta.position.x<700){this.vegeta.stuckInBlast=true;this.stuckCooldown=0;}this.vegeta.position.x=this.blasts[i].position.x+180;}}else{app.main.vegeta.stun=true;app.main.vegeta.hit=true;app.main.vegeta.hardHit=true;if(this.blasts[i].dirLeft==true){this.vegeta.velocity.x=-60;}else{this.vegeta.velocity.x=60;}this.vegeta.decel=this.vegeta.velocity.clone();}if(this.vegeta.endurance>14){this.vegeta.endurance=this.vegeta.endurance-1;}else if(this.vegeta.endurance<15){this.vegeta.health=this.vegeta.health-1;}if(this.vegeta.position.x<this.vegeta.LEFTWALL.x+10||this.vegeta.position.x>this.vegeta.RIGHTWALL.x-10){this.sound.playEnergyReaction(6);if(this.SB==true){this.vegeta.blastBurnLength=40;}else{this.vegeta.blastBurnLength=20;}this.vegeta.blastBurn=true;this.environment.shake=true;this.blasts[i].position.x=app.main.vegeta.position.x;//this.blasts[i].attackPosition.x = app.main.vegeta.attackPosition.x;
 this.blasts[i].position.y=app.main.vegeta.position.y;//this.blasts[i].attackPosition.y = app.main.vegeta.attackPosition.y;
-this.blasts[i].exploding=true;this.environment.flash=true;if(this.blasts[i].blastUser==0){if(this.CP==true){this.roundScore+=22;}else{this.roundScore+=14;}}else{if(this.CP==true){this.roundScore2+=22;}else{this.roundScore2+=14;}}this.vegeta.hit=true;this.vegeta.stun=true;this.vegeta.hardHit=true;if(this.vegeta.endurance>14){this.vegeta.endurance=this.vegeta.endurance-(7+getRandom(2,5));}else if(this.vegeta.endurance<15){this.vegeta.health=this.vegeta.health-(7+getRandom(2,5));}}}}else if(this.blasts[i].type==2){this.vegeta.punched=false;this.vegeta.hit=true;this.vegeta.stun=true;this.vegeta.hardHit=true;this.vegeta.blasted=true;if(this.blasts[i].blastUser==0){if(this.CP==true){this.roundScore+=101;}else{this.roundScore+=67;}}else{if(this.CP==true){this.roundScore2+=101;}else{this.roundScore2+=67;}}this.vegeta.velocity.x=0;if(this.GI==true){if(this.blasts[i].dirLeft==true){this.vegeta.velocity.x-=30;}else if(this.blasts[i].dirLeft==false){this.vegeta.velocity.x+=30;}}else{if(this.blasts[i].dirLeft==true){this.vegeta.velocity.x-=15;}else if(this.blasts[i].dirLeft==false){this.vegeta.velocity.x+=15;}}this.vegeta.jumpVelocity.y=0;this.vegeta.decel=this.vegeta.velocity.clone();if(this.vegeta.endurance>14){this.vegeta.endurance=this.vegeta.endurance-(10+getRandom(2,6));}else if(this.vegeta.endurance<15){this.vegeta.health=this.vegeta.health-(10+getRandom(2,6));}this.sound.playEnergyReaction(6);this.environment.flash=true;this.environment.shake=true;if(this.SB==true){this.vegeta.blastBurnLength=40;}else{this.vegeta.blastBurnLength=20;}this.vegeta.blastBurn=true;if(hardAttackHitTest(this.android18,this.vegeta)==true&&this.blasts[i].blastUser==0||hardAttackHitTest(this.android17,this.vegeta)==true&&this.blasts[i].blastUser==6&&this.vegeta.behind==false&&this.blasts[i].released==false){this.pointBlank=true;if(this.vegeta.left==false){this.blasts[i].position.x=this.vegeta.position.x;}else{this.blasts[i].position.x=this.vegeta.position.x-100;}this.blasts[i].exploding=true;}else{if(this.vegeta.left==false){this.blasts[i].position.x=this.vegeta.position.x;}else{this.blasts[i].position.x=this.vegeta.position.x-100;}this.blasts[i].exploding=true;}}else if(this.blasts[i].type==3&&this.vegeta.behind==false){this.vegeta.punched=false;this.vegeta.hit=true;this.vegeta.stun=true;this.vegeta.hardHit=true;this.vegeta.blasted=true;if(this.blasts[i].blastUser==0){if(this.CP==true){this.roundScore+=101;}else{this.roundScore+=67;}}else{if(this.CP==true){this.roundScore2+=101;}else{this.roundScore2+=67;}}if(this.vegeta.endurance>14){this.vegeta.endurance=this.vegeta.endurance-(10+getRandom(2,4));}else if(this.vegeta.endurance<15){this.vegeta.health=this.vegeta.health-(10+getRandom(2,4));}if(this.GI==true){if(this.blasts[i].dirLeft==true){this.vegeta.velocity.x-=80;}else if(this.blasts[i].dirLeft==false){this.vegeta.velocity.x+=80;}}else{if(this.blasts[i].dirLeft==true){this.vegeta.velocity.x-=60;}else if(this.blasts[i].dirLeft==false){this.vegeta.velocity.x+=60;}}this.vegeta.decel=this.vegeta.velocity.clone();this.sound.playEnergyReaction(6);if(this.SB==true){this.vegeta.blastBurnLength=60;}else{this.vegeta.blastBurnLength=40;}this.vegeta.blastBurn=true;this.blasts[i].exploding=true;this.environment.shake=true;this.environment.flash=true;}else if(this.blasts[i].type==5){this.vegeta.punched=false;this.vegeta.hit=true;this.vegeta.stun=true;this.vegeta.blasted=true;if(this.blasts[i].blastUser==0){if(this.CP==true){this.roundScore+=22;}else{this.roundScore+=14;}}else{if(this.CP==true){this.roundScore2+=22;}else{this.roundScore2+=14;}}//this.android18.hardHit = true;
+this.blasts[i].exploding=true;this.environment.flash=true;if(this.blasts[i].blastUser==0){if(this.CP==true){this.roundScore+=22;}else{this.roundScore+=14;}}else{if(this.CP==true){this.roundScore2+=22;}else{this.roundScore2+=14;}}this.vegeta.hit=true;this.vegeta.stun=true;this.vegeta.hardHit=true;if(this.vegeta.endurance>14){this.vegeta.endurance=this.vegeta.endurance-(7+getRandom(2,5));}else if(this.vegeta.endurance<15){this.vegeta.health=this.vegeta.health-(7+getRandom(2,5));}}}}else if(this.blasts[i].type==2){this.vegeta.punched=false;this.vegeta.hit=true;this.vegeta.stun=true;this.vegeta.hardHit=true;this.vegeta.blasted=true;if(this.blasts[i].blastUser==0){if(this.CP==true){this.roundScore+=101;}else{this.roundScore+=67;}}else{if(this.CP==true){this.roundScore2+=101;}else{this.roundScore2+=67;}}this.vegeta.velocity.x=0;if(this.GI==true){if(this.blasts[i].dirLeft==true){this.vegeta.velocity.x-=30;}else if(this.blasts[i].dirLeft==false){this.vegeta.velocity.x+=30;}}else{if(this.blasts[i].dirLeft==true){this.vegeta.velocity.x-=15;}else if(this.blasts[i].dirLeft==false){this.vegeta.velocity.x+=15;}}this.vegeta.jumpVelocity.y=0;this.vegeta.decel=this.vegeta.velocity.clone();if(this.vegeta.endurance>14){this.vegeta.endurance=this.vegeta.endurance-(10+getRandom(2,6));}else if(this.vegeta.endurance<15){this.vegeta.health=this.vegeta.health-(10+getRandom(2,6));}this.sound.playEnergyReaction(6);this.environment.flash=true;this.environment.shake=true;if(this.SB==true){this.vegeta.blastBurnLength=40;}else{this.vegeta.blastBurnLength=20;}this.vegeta.blastBurn=true;if(hardAttackHitTest(this.android18,this.vegeta)==true&&this.blasts[i].blastUser==0||hardAttackHitTest(this.android17,this.vegeta)==true&&this.blasts[i].blastUser==6&&this.vegeta.behind==false&&this.blasts[i].released==false){this.pointBlank=true;if(this.blasts[i].dirLeft==true){this.blasts[i].position.x=this.vegeta.position.x+100;}else{this.blasts[i].position.x=this.vegeta.position.x-100;}this.blasts[i].exploding=true;}else{if(this.blasts[i].dirLeft==true){this.blasts[i].position.x=this.vegeta.position.x+100;}else{this.blasts[i].position.x=this.vegeta.position.x-100;}this.blasts[i].exploding=true;}}else if(this.blasts[i].type==3&&this.vegeta.behind==false){this.vegeta.punched=false;this.vegeta.hit=true;this.vegeta.stun=true;this.vegeta.hardHit=true;this.vegeta.blasted=true;if(this.blasts[i].blastUser==0){if(this.CP==true){this.roundScore+=101;}else{this.roundScore+=67;}}else{if(this.CP==true){this.roundScore2+=101;}else{this.roundScore2+=67;}}if(this.vegeta.endurance>14){this.vegeta.endurance=this.vegeta.endurance-(10+getRandom(2,4));}else if(this.vegeta.endurance<15){this.vegeta.health=this.vegeta.health-(10+getRandom(2,4));}if(this.GI==true){if(this.blasts[i].dirLeft==true){this.vegeta.velocity.x-=80;}else if(this.blasts[i].dirLeft==false){this.vegeta.velocity.x+=80;}}else{if(this.blasts[i].dirLeft==true){this.vegeta.velocity.x-=60;}else if(this.blasts[i].dirLeft==false){this.vegeta.velocity.x+=60;}}this.vegeta.decel=this.vegeta.velocity.clone();this.sound.playEnergyReaction(6);if(this.SB==true){this.vegeta.blastBurnLength=60;}else{this.vegeta.blastBurnLength=40;}this.vegeta.blastBurn=true;this.blasts[i].exploding=true;this.environment.shake=true;this.environment.flash=true;}else if(this.blasts[i].type==5){this.vegeta.punched=false;this.vegeta.hit=true;this.vegeta.stun=true;this.vegeta.blasted=true;if(this.blasts[i].blastUser==0){if(this.CP==true){this.roundScore+=22;}else{this.roundScore+=14;}}else{if(this.CP==true){this.roundScore2+=22;}else{this.roundScore2+=14;}}//this.android18.hardHit = true;
 if(this.SB==true){this.vegeta.blastBurnLength=30;}else{this.vegeta.blastBurnLength=20;}this.vegeta.blastBurn=true;if(this.vegeta.endurance>14){this.vegeta.endurance=this.vegeta.endurance-(5+getRandom(0,5));}else if(this.vegeta.endurance<15){this.vegeta.health=this.vegeta.health-(5+getRandom(0,5));}if(this.GI==true){if(this.blasts[i].dirLeft==true){this.vegeta.velocity.x-=20;}else if(this.blasts[i].dirLeft==false){this.vegeta.velocity.x+=20;}}else{if(this.blasts[i].dirLeft==true){this.vegeta.velocity.x-=8;}else if(this.blasts[i].dirLeft==false){this.vegeta.velocity.x+=8;}}this.vegeta.decel=this.vegeta.velocity.clone();this.sound.playEnergyReaction(6);if(hardAttackHitTest(this.android18,this.vegeta)==true){this.blasts[i].position.x=this.vegeta.position.x;this.blasts[i].exploding=true;}else{this.blasts[i].exploding=true;}//this.environment.flash = true;
 }else if(this.blasts[i].type==7&&this.vegeta.behind==false){this.vegeta.punched=false;this.vegeta.hit=true;this.vegeta.stun=true;this.vegeta.hardHit=true;this.vegeta.blasted=true;if(this.blasts[i].blastUser==0){if(this.CP==true){this.roundScore+=101;}else{this.roundScore+=67;}}else{if(this.CP==true){this.roundScore2+=101;}else{this.roundScore2+=67;}}if(this.SB==true){this.vegeta.blastBurnLength=45;}else{this.vegeta.blastBurnLength=30;}this.vegeta.blastBurn=true;if(this.vegeta.superForm==false){if(this.vegeta.endurance>14){this.vegeta.endurance=this.vegeta.endurance-(10+getRandom(0,4));}else if(this.vegeta.endurance<15){this.vegeta.health=this.vegeta.health-(10+getRandom(0,4));}}else{if(this.vegeta.endurance>14){this.vegeta.endurance=this.vegeta.endurance-(15+getRandom(0,6));}else if(this.vegeta.endurance<15){this.vegeta.health=this.vegeta.health-(15+getRandom(0,6));}}if(this.blasts[i].trigger==false){if(this.GI==true){if(this.blasts[i].dirLeft==true){this.vegeta.velocity.x-=25;}else if(this.blasts[i].dirLeft==false){this.vegeta.velocity.x+=25;}}else{if(this.blasts[i].dirLeft==true){this.vegeta.velocity.x-=8;}else if(this.blasts[i].dirLeft==false){this.vegeta.velocity.x+=8;}}}else{if(this.GI==true){if(this.blasts[i].dirLeft==true){this.vegeta.velocity.x-=50;}else if(this.blasts[i].dirLeft==false){this.vegeta.velocity.x+=50;}}else{if(this.blasts[i].dirLeft==true){this.vegeta.velocity.x-=15;}else if(this.blasts[i].dirLeft==false){this.vegeta.velocity.x+=15;}}}this.vegeta.decel=this.vegeta.velocity.clone();this.sound.playEnergyReaction2(6);if(hardAttackHitTest(this.android17,this.vegeta)==true&&(this.android18.behind==false||this.blasts[i].moving==false)){this.pointBlank=true;this.blasts[i].position.x=this.vegeta.position.x;this.blasts[i].position.y=this.vegeta.position.y;this.blasts[i].exploding=true;}else{this.blasts[i].position.x=this.vegeta.position.x;this.blasts[i].position.y=this.vegeta.position.y;this.blasts[i].exploding=true;}this.environment.flash=true;}else if(this.blasts[i].type==8&&this.vegeta.behind==false){this.vegeta.punched=false;this.vegeta.hit=true;this.vegeta.stun=true;this.vegeta.hardHit=true;this.vegeta.blasted=true;if(this.blasts[i].blastUser==0){if(this.CP==true){this.roundScore+=101;}else{this.roundScore+=67;}}else{if(this.CP==true){this.roundScore2+=101;}else{this.roundScore2+=67;}}if(this.GI==true){if(this.blasts[i].dirLeft==true){if(this.BB==true){this.android18.velocity.x-=45;}else{this.android18.velocity.x-=30;}}else if(this.blasts[i].dirLeft==false){if(this.BB==true){this.android18.velocity.x+=45;}else{this.android18.velocity.x+=30;}}}else{if(this.blasts[i].dirLeft==true){if(this.BB==true){this.android18.velocity.x-=30;}else{this.android18.velocity.x-=15;}}else if(this.blasts[i].dirLeft==false){if(this.BB==true){this.android18.velocity.x+=30;}else{this.android18.velocity.x+=15;}}}this.vegeta.jumpVelocity.y=0;this.vegeta.decel=this.vegeta.velocity.clone();if(this.blasts[i].lifetime<3){if(this.BB==true){if(this.vegeta.endurance>14){this.vegeta.endurance=this.vegeta.endurance-(12+getRandom(2,5));}else if(this.vegeta.endurance<15){this.vegeta.health=this.vegeta.health-(12+getRandom(2,5));}}else{if(this.vegeta.endurance>14){this.vegeta.endurance=this.vegeta.endurance-(7+getRandom(2,5));}else if(this.vegeta.endurance<15){this.vegeta.health=this.vegeta.health-(7+getRandom(2,5));}}}else if(this.blasts[i].lifetime<10){if(this.BB==true){if(this.vegeta.endurance>14){this.vegeta.endurance=this.vegeta.endurance-(15+getRandom(2,6));}else if(this.vegeta.endurance<15){this.vegeta.health=this.vegeta.health-(15+getRandom(2,6));}}else{if(this.vegeta.endurance>14){this.vegeta.endurance=this.vegeta.endurance-(10+getRandom(2,6));}else if(this.vegeta.endurance<15){this.vegeta.health=this.vegeta.health-(10+getRandom(2,6));}}}else{if(this.BB==true){if(this.vegeta.endurance>14){this.vegeta.endurance=this.vegeta.endurance-(20+getRandom(1,8));}else if(this.vegeta.endurance<15){this.vegeta.health=this.vegeta.health-(20+getRandom(1,8));}}else{if(this.vegeta.endurance>14){this.vegeta.endurance=this.vegeta.endurance-(15+getRandom(1,8));}else if(this.vegeta.endurance<15){this.vegeta.health=this.vegeta.health-(15+getRandom(1,8));}}}this.sound.playEnergyReaction(6);this.environment.flashBlue=true;this.environment.shake=true;if(this.blasts[i].lifetime<10){if(this.SB==true){this.vegeta.blastBurnLength=40;}else{this.vegeta.blastBurnLength=20;}}else{if(this.SB==true){this.vegeta.blastBurnLength=60;}else{this.vegeta.blastBurnLength=40;}}this.vegeta.blastBurn=true;if(hardAttackHitTest(this.android18,this.vegeta)==true&&this.blasts[i].blastUser==0||hardAttackHitTest(this.android17,this.vegeta)==true&&this.blasts[i].blastUser==6&&this.vegeta.behind==false){this.pointBlank=true;if(this.vegeta.left==false){this.blasts[i].position.x=this.vegeta.position.x;}else{this.blasts[i].position.x=this.vegeta.position.x-100;}this.blasts[i].exploding=true;}else{if(this.vegeta.left==false){this.blasts[i].position.x=this.vegeta.position.x;}else{this.blasts[i].position.x=this.vegeta.position.x-100;}this.blasts[i].exploding=true;}}else if(this.blasts[i].type==10){this.vegeta.punched=false;this.vegeta.hit=true;this.vegeta.stun=true;this.vegeta.hardHit=true;this.vegeta.blasted=true;if(this.blasts[i].blastUser==0){if(this.CP==true){this.roundScore+=414;}else{this.roundScore+=247;}}else{if(this.CP==true){this.roundScore2+=414;}else{this.roundScore2+=247;}}if(this.vegeta.endurance>14){this.vegeta.endurance=this.vegeta.endurance-50;}else if(this.vegeta.endurance<15){this.vegeta.health=this.vegeta.health-50;}/* if(this.blasts[i].dirLeft == true){
 								this.android18.velocity.x = -40;
@@ -15242,12 +15274,12 @@ if(this.SB==true){this.vegeta.blastBurnLength=30;}else{this.vegeta.blastBurnLeng
 if(this.blasts[i].exploding==false&&(attackHitTestBlast(this.blasts[i],this.android18)==true||(hardAttackHitTest(this.vegeta,this.android18)==true&&this.blasts[i].type!=5&&this.android18.behind==false&&this.blasts[i].blastUser!=0&&this.blasts[i].blastUser!=4&&this.blasts[i].blastUser!=5&&this.blasts[i].blastUser!=6||hardAttackHitTest(this.android17,this.android18)==true&&this.blasts[i].blastUser==6)&&(this.blasts[i].lifetime<2||this.blasts[i].type==1||this.blasts[i].type==2||this.blasts[i].type==6||this.blasts[i].type==7)&&this.vegeta.behind==false&&this.blasts[i].released==false&&(this.blasts[i].type!=5||this.blasts[i].moving==true&&this.blasts[i].triggerState==0))&&this.blasts[i].activated==true&&this.android18.superSpeed==false&&this.blasts[i].blastUser!=0&&(this.blasts[i].blastUser!=6||this.DD==false)&&(this.blasts[i].blastUser!=6||this.together==false)){if(this.blasts[i].type==0&&(this.blasts[i].lifetime>1||this.android18.behind==false)){if(this.android18.attacking==false||this.android18.blasting==true){if(hardAttackHitTest(this.vegeta,this.android18)==true&&this.blasts[i].lifetime<2&&this.blasts[i].blastUser!=0&&this.android18.behind==false){this.pointBlank=true;this.blasts[i].position.x=this.android18.position.x;this.blasts[i].exploding=true;}else{this.blasts[i].exploding=true;}this.sound.playEnergyReaction2(6);if(this.android18.fieldOn==false){if(this.IB==true&&this.android18.blocking==true){//this.android18.stamina += 7;
 }else{this.android18.hit=true;this.android18.stun=true;this.vegeta.smallBlasted=true;if(this.ER==true){this.android18.blastBurnLength=3;this.android18.blastBurn=true;}else{this.android18.blastBurnLength=10;this.android18.blastBurn=true;}this.roundScore-=25;}if(this.blasts[i].dirLeft==true){this.android18.velocity.x-=8;}else if(this.blasts[i].dirLeft==false){this.android18.velocity.x+=8;}this.android18.decel=this.android18.velocity.clone();if(this.IB==true&&this.android18.blocking==true){this.android18.stamina+=8;}else{if(this.android18.endurance>14){this.android18.endurance=this.android18.endurance-(3+getRandom(0,2));}else if(this.android18.endurance<15){this.android18.health=this.android18.health-(3+getRandom(0,2));}}}}else{if(this.android18.hard==true&&(this.android18.punching==true||this.android18.kicking==true)){this.blasts[i].blastUser=0;this.blasts[i].lifetime=0;this.blasts[i].moving=true;this.sound.playIntro(80);if(this.blasts[i].dirLeft==true){this.blasts[i].dirLeft=false;}else{this.blasts[i].dirLeft=true;}}}}else if(this.blasts[i].type==1){if(hardAttackHitTest(this.vegeta,this.android18)==true&&this.android18.behind==false){//console.log("HARDHITTESTSETSET");
 this.android18.position.x=this.blasts[i].position.x;}if(this.android18.fieldOn==false){this.android18.punched=false;this.android18.hit=true;this.android18.stun=true;this.android18.blasted=true;this.roundScore-=50;//this.android18.hardHit = true;
-this.android18.jumpVelocity.y=0;if(this.blasts[i].dirLeft==true){this.android18.position.x=this.blasts[i].position.x;}else{this.android18.position.x=this.blasts[i].position.x+180;}if(this.android18.endurance>14){this.android18.endurance=this.android18.endurance-1;}else if(this.android18.endurance<15){this.android18.health=this.android18.health-1;}if(this.android18.position.x<this.android18.LEFTWALL.x+10||this.android18.position.x>this.android18.RIGHTWALL.x-10){this.sound.playEnergyReaction(6);this.environment.shake=true;this.blasts[i].exploding=true;this.environment.flash=true;this.android18.hit=true;this.android18.stun=true;this.android18.hardHit=true;if(this.ER==true){this.android18.blastBurnLength=7;this.android18.blastBurn=true;}else{this.android18.blastBurnLength=20;this.android18.blastBurn=true;}if(this.android18.endurance>14){this.android18.endurance=this.android18.endurance-(7+getRandom(2,5));}else if(this.android18.endurance<15){this.android18.health=this.android18.health-(7+getRandom(2,5));}}}else{this.sound.playEnergyReaction(6);this.environment.shake=true;this.blasts[i].position.x=this.android18.position.x;this.blasts[i].exploding=true;this.environment.flash=true;}}else if(this.blasts[i].type==2){if(this.android18.fieldOn==false){this.android18.punched=false;this.android18.hit=true;this.android18.stun=true;this.android18.hardHit=true;this.android18.blasted=true;this.roundScore-=50;if(this.vegeta.left==true){this.android18.velocity.x-=15;}else if(this.vegeta.right==true){this.android18.velocity.x+=15;}this.android18.jumpVelocity.y=0;this.android18.decel=this.android18.velocity.clone();if(this.android18.endurance>14){this.android18.endurance=this.android18.endurance-(10+getRandom(2,6));}else if(this.android18.endurance<15){this.android18.health=this.android18.health-(10+getRandom(2,6));}if(this.ER==true){this.android18.blastBurnLength=7;this.android18.blastBurn=true;}else{this.android18.blastBurnLength=20;this.android18.blastBurn=true;}}this.sound.playEnergyReaction(6);this.environment.flash=true;this.environment.shake=true;if(hardAttackHitTest(this.android17,this.android18)==true){this.pointBlank=true;if(this.android18.left==false){this.blasts[i].position.x=this.android18.position.x;}else{this.blasts[i].position.x=this.android18.position.x-100;}this.blasts[i].exploding=true;}else{if(this.android18.left==false){this.blasts[i].position.x=this.android18.position.x;}else{this.blasts[i].position.x=this.android18.position.x-100;}this.blasts[i].exploding=true;}}else if(this.blasts[i].type==3&&this.android18.behind==false){if(this.android18.fieldOn==false){this.android18.punched=false;this.android18.hit=true;this.android18.stun=true;this.android18.hardHit=true;this.android18.blasted=true;this.roundScore-=50;if(this.android18.endurance>14){this.android18.endurance=this.android18.endurance-(10+getRandom(2,4));}else if(this.android18.endurance<15){this.android18.health=this.android18.health-(10+getRandom(2,4));}if(this.blasts[i].dirLeft==true){this.android18.velocity.x=-60;}else if(this.blasts[i].dirLeft==false){this.android18.velocity.x=60;}this.android18.decel=this.android18.velocity.clone();if(this.ER==true){this.android18.blastBurnLength=13;this.android18.blastBurn=true;}else{this.android18.blastBurnLength=40;this.android18.blastBurn=true;}}this.environment.shake=true;this.sound.playEnergyReaction2(6);if(hardAttackHitTest(this.vegeta,this.android18)==true&&this.android18.behind==false){if(this.android18.left==false){this.blasts[i].position.x=this.android18.position.x-100;}else{this.blasts[i].position.x=this.android18.position.x-100;}//this.android18.position.x = this.blasts[i].position.x;
-this.blasts[i].exploding=true;}else{if(this.android18.left==false){this.blasts[i].position.x=this.android18.position.x-50;}else{this.blasts[i].position.x=this.android18.position.x-100;}this.blasts[i].exploding=true;}this.environment.flash=true;}else if(this.blasts[i].type==5&&this.blasts[i].blastUser!=6){if(this.android18.attacking==false||this.android18.blasting==true){if(this.android18.fieldOn==false){this.android18.punched=false;if(this.IB==true&&this.android18.blocking==true){this.android18.stamina+=8;}else{this.android18.hit=true;this.android18.stun=true;this.android18.blasted=true;//this.android18.hardHit = true;
+this.android18.jumpVelocity.y=0;if(this.blasts[i].dirLeft==true){this.android18.position.x=this.blasts[i].position.x;}else{this.android18.position.x=this.blasts[i].position.x+180;}if(this.android18.endurance>14){this.android18.endurance=this.android18.endurance-1;}else if(this.android18.endurance<15){this.android18.health=this.android18.health-1;}if(this.android18.position.x<this.android18.LEFTWALL.x+10||this.android18.position.x>this.android18.RIGHTWALL.x-10){this.sound.playEnergyReaction(6);this.environment.shake=true;this.blasts[i].exploding=true;this.environment.flash=true;this.android18.hit=true;this.android18.stun=true;this.android18.hardHit=true;if(this.ER==true){this.android18.blastBurnLength=7;this.android18.blastBurn=true;}else{this.android18.blastBurnLength=20;this.android18.blastBurn=true;}if(this.android18.endurance>14){this.android18.endurance=this.android18.endurance-(7+getRandom(2,5));}else if(this.android18.endurance<15){this.android18.health=this.android18.health-(7+getRandom(2,5));}}}else{this.sound.playEnergyReaction(6);this.environment.shake=true;this.blasts[i].position.x=this.android18.position.x;this.blasts[i].exploding=true;this.environment.flash=true;}}else if(this.blasts[i].type==2){if(this.android18.fieldOn==false){this.android18.punched=false;this.android18.hit=true;this.android18.stun=true;this.android18.hardHit=true;this.android18.blasted=true;this.roundScore-=50;if(this.vegeta.left==true){this.android18.velocity.x-=15;}else if(this.vegeta.right==true){this.android18.velocity.x+=15;}this.android18.jumpVelocity.y=0;this.android18.decel=this.android18.velocity.clone();if(this.android18.endurance>14){this.android18.endurance=this.android18.endurance-(10+getRandom(2,6));}else if(this.android18.endurance<15){this.android18.health=this.android18.health-(10+getRandom(2,6));}if(this.ER==true){this.android18.blastBurnLength=7;this.android18.blastBurn=true;}else{this.android18.blastBurnLength=20;this.android18.blastBurn=true;}}this.sound.playEnergyReaction(6);this.environment.flash=true;this.environment.shake=true;if(hardAttackHitTest(this.android17,this.android18)==true){this.pointBlank=true;if(this.blasts[i].dirLeft==true){this.blasts[i].position.x=this.android18.position.x+100;}else{this.blasts[i].position.x=this.android18.position.x-100;}this.blasts[i].exploding=true;}else{if(this.blasts[i].dirLeft==true){this.blasts[i].position.x=this.android18.position.x+100;}else{this.blasts[i].position.x=this.android18.position.x-100;}this.blasts[i].exploding=true;}}else if(this.blasts[i].type==3&&this.android18.behind==false){if(this.android18.fieldOn==false){this.android18.punched=false;this.android18.hit=true;this.android18.stun=true;this.android18.hardHit=true;this.android18.blasted=true;this.roundScore-=50;if(this.android18.endurance>14){this.android18.endurance=this.android18.endurance-(10+getRandom(2,4));}else if(this.android18.endurance<15){this.android18.health=this.android18.health-(10+getRandom(2,4));}if(this.blasts[i].dirLeft==true){this.android18.velocity.x=-60;}else if(this.blasts[i].dirLeft==false){this.android18.velocity.x=60;}this.android18.decel=this.android18.velocity.clone();if(this.ER==true){this.android18.blastBurnLength=13;this.android18.blastBurn=true;}else{this.android18.blastBurnLength=40;this.android18.blastBurn=true;}}this.environment.shake=true;this.sound.playEnergyReaction2(6);if(hardAttackHitTest(this.vegeta,this.android18)==true&&this.android18.behind==false){if(this.blasts[i].dirLeft==true){this.blasts[i].position.x=this.android18.position.x-100;}else{this.blasts[i].position.x=this.android18.position.x-100;}//this.android18.position.x = this.blasts[i].position.x;
+this.blasts[i].exploding=true;}else{if(this.blasts[i].dirLeft==true){this.blasts[i].position.x=this.android18.position.x-50;}else{this.blasts[i].position.x=this.android18.position.x-100;}this.blasts[i].exploding=true;}this.environment.flash=true;}else if(this.blasts[i].type==5&&this.blasts[i].blastUser!=6){if(this.android18.attacking==false||this.android18.blasting==true){if(this.android18.fieldOn==false){this.android18.punched=false;if(this.IB==true&&this.android18.blocking==true){this.android18.stamina+=8;}else{this.android18.hit=true;this.android18.stun=true;this.android18.blasted=true;//this.android18.hardHit = true;
 if(this.ER==true){this.android18.blastBurnLength=7;this.android18.blastBurn=true;}else{this.android18.blastBurnLength=20;this.android18.blastBurn=true;}this.roundScore-=50;if(this.android18.endurance>14){this.android18.endurance=this.android18.endurance-(5+getRandom(0,5));}else if(this.android18.endurance<15){this.android18.health=this.android18.health-(5+getRandom(0,5));}}if(this.blasts[i].dirLeft==true){this.android18.velocity.x=-8;}else if(this.blasts[i].dirLeft==false){this.android18.velocity.x=8;}this.android18.decel=this.android18.velocity.clone();}this.sound.playEnergyReaction2(6);if(hardAttackHitTest(this.vegeta,this.android18)==true&&(this.android18.behind==false||this.blasts[i].moving==false)){this.pointBlank=true;this.blasts[i].position.x=this.android18.position.x;this.blasts[i].exploding=true;}else{this.blasts[i].exploding=true;}}else{if(this.android18.hard==true&&(this.android18.punching==true||this.android18.kicking==true)){this.blasts[i].blastUser=0;this.blasts[i].lifetime=0;this.blasts[i].moving=true;this.sound.playIntro(80);if(this.android18.left==true){this.blasts[i].dirLeft=true;}else{this.blasts[i].dirLeft=false;}}}//this.environment.flash = true;
 }else if(this.blasts[i].type==6&&this.android18.behind==false){if(this.android18.fieldOn==false){this.android18.punched=false;this.android18.hit=true;this.android18.stun=true;this.android18.blasted=true;this.android18.jumpVelocity.y=0;//this.android18.hardHit = true;
 if(this.ER==true){this.android18.blastBurnLength=13;this.android18.blastBurn=true;}else{this.android18.blastBurnLength=40;this.android18.blastBurn=true;}this.roundScore-=5;if(this.android18.endurance>14){this.android18.endurance=this.android18.endurance-1.5;}else if(this.android18.endurance<15){this.android18.health=this.android18.health-1.5;}if(this.blasts[i].dirLeft==true){this.android18.velocity.x=-4;}else if(this.blasts[i].dirLeft==false){this.android18.velocity.x=4;}this.android18.decel=this.android18.velocity.clone();}else{this.sound.playEnergyReaction(6);this.blasts[i].position.x=this.android18.position.x;this.blasts[i].exploding=true;this.environment.flash=true;}}else if(this.blasts[i].type==7&&this.android18.behind==false){if(this.android18.fieldOn==false){this.android18.punched=false;this.android18.hit=true;this.android18.stun=true;this.android18.hardHit=true;this.android18.blasted=true;if(this.ER==true){this.android18.blastBurnLength=10;this.android18.blastBurn=true;}else{this.android18.blastBurnLength=30;this.android18.blastBurn=true;}this.roundScore-=50;if(this.vegeta.superForm==false){if(this.android18.endurance>14){this.android18.endurance=this.android18.endurance-(10+getRandom(0,4));}else if(this.android18.endurance<15){this.android18.health=this.android18.health-(10+getRandom(0,4));}}else{if(this.android18.endurance>14){this.android18.endurance=this.android18.endurance-(15+getRandom(0,6));}else if(this.android18.endurance<15){this.android18.health=this.android18.health-(15+getRandom(0,6));}}if(this.blasts[i].trigger==false){if(this.blasts[i].dirLeft==true){this.android18.velocity.x=-8;}else if(this.blasts[i].dirLeft==false){this.android18.velocity.x=8;}}else{if(this.blasts[i].turnDown==true){this.android18.jumpVelocity.y=15;}else if(this.blasts[i].turnDown==false){this.android18.jumpVelocity.y=-15;}}this.android18.decel=this.android18.velocity.clone();}this.sound.playEnergyReaction2(6);if(hardAttackHitTest(this.vegeta,this.android18)==true&&(this.android18.behind==false||this.blasts[i].moving==false)){this.pointBlank=true;this.blasts[i].position.x=this.android18.position.x;this.blasts[i].position.y=this.android18.position.y;this.blasts[i].exploding=true;}else if(this.blasts[i].groundTrigger!=true){this.blasts[i].position.x=this.android18.position.x;this.blasts[i].position.y=this.android18.position.y;this.blasts[i].exploding=true;}else{this.blasts[i].position.x=this.android18.position.x;this.blasts[i].position.y=this.android18.position.y;this.blasts[i].exploding=true;}if(this.vegeta.superForm==true){this.environment.flash=true;}//this.environment.flash = true;
-}else if(this.blasts[i].type==8&&this.android18.behind==false){this.android18.punched=false;this.android18.hit=true;this.android18.stun=true;this.android18.hardHit=true;this.android18.blasted=true;this.roundScore-=50;if(this.GI==true){if(this.blasts[i].dirLeft==true){if(this.BB==true){this.android18.velocity.x-=45;}else{this.android18.velocity.x-=30;}}else if(this.blasts[i].dirLeft==false){if(this.BB==true){this.android18.velocity.x+=45;}else{this.android18.velocity.x+=30;}}}else{if(this.blasts[i].dirLeft==true){if(this.BB==true){this.android18.velocity.x-=30;}else{this.android18.velocity.x-=15;}}else if(this.blasts[i].dirLeft==false){if(this.BB==true){this.android18.velocity.x+=30;}else{this.android18.velocity.x+=15;}}}this.android18.jumpVelocity.y=0;this.android18.decel=this.android18.velocity.clone();if(this.blasts[i].lifetime<3){if(this.BB==true){if(this.android18.endurance>14){this.android18.endurance=this.android18.endurance-(12+getRandom(2,5));}else if(this.android18.endurance<15){this.android18.health=this.android18.health-(12+getRandom(2,5));}}else{if(this.android18.endurance>14){this.android18.endurance=this.android18.endurance-(7+getRandom(2,5));}else if(this.android18.endurance<15){this.android18.health=this.android18.health-(7+getRandom(2,5));}}}else if(this.blasts[i].lifetime<10){if(this.BB==true){if(this.android18.endurance>14){this.android18.endurance=this.android18.endurance-(15+getRandom(2,6));}else if(this.android18.endurance<15){this.android18.health=this.android18.health-(15+getRandom(2,6));}}else{if(this.android18.endurance>14){this.android18.endurance=this.android18.endurance-(10+getRandom(2,6));}else if(this.android18.endurance<15){this.android18.health=this.android18.health-(10+getRandom(2,6));}}}else{if(this.BB==true){if(this.android18.endurance>14){this.android18.endurance=this.android18.endurance-(20+getRandom(1,8));}else if(this.android18.endurance<15){this.android18.health=this.android18.health-(20+getRandom(1,8));}}else{if(this.android18.endurance>14){this.android18.endurance=this.android18.endurance-(15+getRandom(1,8));}else if(this.android18.endurance<15){this.android18.health=this.android18.health-(15+getRandom(1,8));}}}this.sound.playEnergyReaction(6);this.environment.flashBlue=true;this.environment.shake=true;if(this.blasts[i].lifetime<10){if(this.SB==true){this.android18.blastBurnLength=40;}else{this.android18.blastBurnLength=20;}}else{if(this.SB==true){this.android18.blastBurnLength=60;}else{this.android18.blastBurnLength=40;}}this.android18.blastBurn=true;if(hardAttackHitTest(this.android17,this.android18)==true&&this.blasts[i].blastUser==6&&this.android18.behind==false){this.pointBlank=true;if(this.android18.left==false){this.blasts[i].position.x=this.android18.position.x;}else{this.blasts[i].position.x=this.android18.position.x-100;}this.blasts[i].exploding=true;}else{if(this.android18.left==false){this.blasts[i].position.x=this.android18.position.x;}else{this.blasts[i].position.x=this.android18.position.x-100;}this.blasts[i].exploding=true;}}else if(this.blasts[i].type==9){if(this.android18.fieldOn==false){this.android18.punched=false;this.android18.hit=true;this.android18.stun=true;//this.android18.hardHit = true;
+}else if(this.blasts[i].type==8&&this.android18.behind==false){this.android18.punched=false;this.android18.hit=true;this.android18.stun=true;this.android18.hardHit=true;this.android18.blasted=true;this.roundScore-=50;if(this.GI==true){if(this.blasts[i].dirLeft==true){if(this.BB==true){this.android18.velocity.x-=45;}else{this.android18.velocity.x-=30;}}else if(this.blasts[i].dirLeft==false){if(this.BB==true){this.android18.velocity.x+=45;}else{this.android18.velocity.x+=30;}}}else{if(this.blasts[i].dirLeft==true){if(this.BB==true){this.android18.velocity.x-=30;}else{this.android18.velocity.x-=15;}}else if(this.blasts[i].dirLeft==false){if(this.BB==true){this.android18.velocity.x+=30;}else{this.android18.velocity.x+=15;}}}this.android18.jumpVelocity.y=0;this.android18.decel=this.android18.velocity.clone();if(this.blasts[i].lifetime<3){if(this.BB==true){if(this.android18.endurance>14){this.android18.endurance=this.android18.endurance-(12+getRandom(2,5));}else if(this.android18.endurance<15){this.android18.health=this.android18.health-(12+getRandom(2,5));}}else{if(this.android18.endurance>14){this.android18.endurance=this.android18.endurance-(7+getRandom(2,5));}else if(this.android18.endurance<15){this.android18.health=this.android18.health-(7+getRandom(2,5));}}}else if(this.blasts[i].lifetime<10){if(this.BB==true){if(this.android18.endurance>14){this.android18.endurance=this.android18.endurance-(15+getRandom(2,6));}else if(this.android18.endurance<15){this.android18.health=this.android18.health-(15+getRandom(2,6));}}else{if(this.android18.endurance>14){this.android18.endurance=this.android18.endurance-(10+getRandom(2,6));}else if(this.android18.endurance<15){this.android18.health=this.android18.health-(10+getRandom(2,6));}}}else{if(this.BB==true){if(this.android18.endurance>14){this.android18.endurance=this.android18.endurance-(20+getRandom(1,8));}else if(this.android18.endurance<15){this.android18.health=this.android18.health-(20+getRandom(1,8));}}else{if(this.android18.endurance>14){this.android18.endurance=this.android18.endurance-(15+getRandom(1,8));}else if(this.android18.endurance<15){this.android18.health=this.android18.health-(15+getRandom(1,8));}}}this.sound.playEnergyReaction(6);this.environment.flashBlue=true;this.environment.shake=true;if(this.blasts[i].lifetime<10){if(this.SB==true){this.android18.blastBurnLength=40;}else{this.android18.blastBurnLength=20;}}else{if(this.SB==true){this.android18.blastBurnLength=60;}else{this.android18.blastBurnLength=40;}}this.android18.blastBurn=true;if(hardAttackHitTest(this.android17,this.android18)==true&&this.blasts[i].blastUser==6&&this.android18.behind==false){this.pointBlank=true;if(this.blasts[i].dirLeft==true){this.blasts[i].position.x=this.android18.position.x;}else{this.blasts[i].position.x=this.android18.position.x-100;}this.blasts[i].exploding=true;}else{if(this.blasts[i].dirLeft==true){this.blasts[i].position.x=this.android18.position.x;}else{this.blasts[i].position.x=this.android18.position.x-100;}this.blasts[i].exploding=true;}}else if(this.blasts[i].type==9){if(this.android18.fieldOn==false){this.android18.punched=false;this.android18.hit=true;this.android18.stun=true;//this.android18.hardHit = true;
 if(this.ER==true){this.android18.blastBurnLength=15;this.android18.blastBurn=true;}else{this.android18.blastBurnLength=40;this.android18.blastBurn=true;}this.roundScore-=5;if(this.krillinDead==false){if(this.android18.endurance>14){this.android18.endurance=this.android18.endurance-.3;}else if(this.android18.endurance<15){this.android18.health=this.android18.health-.3;}}else{if(this.android18.endurance>14){this.android18.endurance=this.android18.endurance-.45;}else if(this.android18.endurance<15){this.android18.health=this.android18.health-.45;}}if(this.android18.position.x>this.android18.RIGHTWALL.x-50||this.android18.position.x<this.android18.LEFTWALL.x+50||hitTest(this.android18,this.vegeta)){//Nothing
 }else{if(this.blasts[i].dirLeft==true){this.android18.velocity.x=-40;}else if(this.blasts[i].dirLeft==false){this.android18.velocity.x=40;}this.android18.decel=this.android18.velocity.clone();}}}else if(this.blasts[i].type==10){if(this.android18.fieldOn==false){this.android18.punched=false;this.android18.hit=true;this.android18.stun=true;this.android18.hardHit=true;this.android18.blasted=true;if(this.ER==true){this.android18.blastBurnLength=20;this.android18.blastBurn=true;}else{this.android18.blastBurnLength=60;this.android18.blastBurn=true;}this.roundScore-=100;if(this.krillinFirst==false){this.discHit=true;}if(this.android18.endurance>14){this.android18.endurance=this.android18.endurance-50;}else if(this.android18.endurance<15){this.android18.health=this.android18.health-50;}/* if(this.blasts[i].dirLeft == true){
 								this.android18.velocity.x = -40;
@@ -15259,8 +15291,8 @@ if(this.blasts[i].exploding==false&&(attackHitTestBlast(this.blasts[i],this.andr
 }else{this.android17.hit=true;this.android17.stun=true;this.vegeta.smallBlasted=true;if(this.battle!=3){this.roundScore2-=25;}this.android17.blastBurnLength=10;this.android17.blastBurn=true;}if(this.android17.decision!=-1){if(this.ER==true){if(this.blasts[i].dirLeft==true){this.android17.velocity.x-=2;}else if(this.blasts[i].dirLeft==false){this.android17.velocity.x+=2;}}else{if(this.blasts[i].dirLeft==true){this.android17.velocity.x-=8;}else if(this.blasts[i].dirLeft==false){this.android17.velocity.x+=8;}}this.android17.decel=this.android17.velocity.clone();}if(this.IB==true&&this.android17.blocking==true){this.android17.stamina+=8;}else{if(this.android17.endurance>14){this.android17.endurance=this.android17.endurance-(3+getRandom(0,2));}else if(this.android17.endurance<15){this.android17.health=this.android17.health-(3+getRandom(0,2));}}}if(hardAttackHitTest(this.vegeta,this.android17)==true&&this.blasts[i].blastUser!=0&&this.blasts[i].blastUser!=6&&this.android17.behind==false){this.blasts[i].position.x=this.android17.position.x;this.blasts[i].exploding=true;}else{this.blasts[i].exploding=true;}this.sound.playEnergyReaction2(6);}else if(this.blasts[i].type==1){if(hardAttackHitTest(this.android18,this.android17)==true&&this.android17.behind==false){//console.log("HARDHITTESTSETSET");
 if(this.blasts[i].released==false&&this.android17.behind==false){//this.android17.position.x = this.blasts[i].position.x;
 if(this.blasts[i].dirLeft==true){this.android17.position.x-=50;}else{this.android17.position.x+=50;}}}if(attackHitTestBlast(this.blasts[i],this.android17)==true){if(this.android17.fieldOn==false){this.android17.punched=false;this.android17.hit=true;this.android17.stun=true;this.android17.blasted=true;if(this.battle!=3){this.roundScore2-=50;}//this.android17.hardHit = true;
-this.android17.jumpVelocity.y=0;if(attackHitTestBlastSpecial(this.blasts[i],this.android17)==true){if(this.blasts[i].dirLeft==true){this.android17.position.x=this.blasts[i].position.x;}else{this.android17.position.x=this.blasts[i].position.x+180;}if(this.android17.endurance>14){this.android17.endurance=this.android17.endurance-1;}else if(this.android17.endurance<15){this.android17.health=this.android17.health-1;}}else{app.main.android17.stun=true;app.main.android17.hit=true;app.main.android17.hardHit=true;if(this.blasts[i].dirLeft==true){this.android17.velocity.x=-60;}else{this.android17.velocity.x=60;}this.android17.decel=this.android17.velocity.clone();}if(this.android17.position.x<this.android17.LEFTWALL.x+10||this.android17.position.x>this.android17.RIGHTWALL.x-10){this.sound.playEnergyReaction(6);this.environment.shake=true;this.blasts[i].position.x=this.android17.position.x;this.blasts[i].position.y=this.android17.position.y;this.blasts[i].exploding=true;this.environment.flash=true;this.android17.hit=true;this.android17.stun=true;this.android17.hardHit=true;this.android17.blastBurnLength=10;this.android17.blastBurn=true;if(this.android17.endurance>14){this.android17.endurance=this.android17.endurance-(7+getRandom(2,5));}else if(this.android17.endurance<15){this.android17.health=this.android17.health-(7+getRandom(2,5));}}}else{this.sound.playEnergyReaction(6);this.environment.shake=true;this.blasts[i].position.x=this.android17.position.x;this.blasts[i].position.y=this.android17.position.y;this.blasts[i].exploding=true;this.environment.flash=true;}}}else if(this.blasts[i].type==2){if(this.android17.fieldOn==false){this.android17.punched=false;this.android17.hit=true;this.android17.stun=true;this.android17.hardHit=true;this.android17.blasted=true;if(this.battle!=3){this.roundScore2-=50;}if(this.android17.decision!=-1){if(this.ER==true){if(this.blasts[i].dirLeft==true){this.android17.velocity.x-=5;}else if(this.blasts[i].dirLeft==false){this.android17.velocity.x+=5;}}else{if(this.blasts[i].dirLeft==true){this.android17.velocity.x-=15;}else if(this.blasts[i].dirLeft==false){this.android17.velocity.x+=15;}}this.android17.jumpVelocity.y=0;this.android17.decel=this.android17.velocity.clone();}if(this.android17.endurance>14){this.android17.endurance=this.android17.endurance-(10+getRandom(2,6));}else if(this.android17.endurance<15){this.android17.health=this.android17.health-(10+getRandom(2,6));}this.sound.playEnergyReaction(6);this.environment.flash=true;this.environment.shake=true;this.android17.blastBurnLength=20;this.android17.blastBurn=true;}if(hardAttackHitTest(this.android18,this.android17)==true&&this.android17.behind==false){this.pointBlank=true;if(this.android17.left==false){this.blasts[i].position.x=this.android17.position.x;}else{this.blasts[i].position.x=this.android17.position.x-100;}this.blasts[i].exploding=true;}else{if(this.android17.left==false){this.blasts[i].position.x=this.android17.position.x;}else{this.blasts[i].position.x=this.android17.position.x+100;}this.blasts[i].exploding=true;}}else if(this.blasts[i].type==3){if(this.android17.fieldOn==false){this.android17.punched=false;this.android17.hit=true;this.android17.stun=true;this.android17.hardHit=true;this.android17.blasted=true;this.roundScore2-=50;if(this.android17.endurance>14){this.android17.endurance=this.android17.endurance-(10+getRandom(2,4));}else if(this.android17.endurance<15){this.android17.health=this.android17.health-(10+getRandom(2,4));}if(this.ER==true){if(this.blasts[i].dirLeft==true){this.android17.velocity.x-=15;}else if(this.blasts[i].dirLeft==false){this.android17.velocity.x+=15;}}else{if(this.blasts[i].dirLeft==true){this.android17.velocity.x-=60;}else if(this.blasts[i].dirLeft==false){this.android17.velocity.x+=60;}}this.android17.decel=this.android17.velocity.clone();}this.environment.shake=true;this.android17.blastBurnLength=40;this.android17.blastBurn=true;this.sound.playEnergyReaction2(6);if(hardAttackHitTest(this.vegeta,this.android17)==true&&this.android17.behind==false){if(this.android17.left==false){this.blasts[i].position.x=this.android17.position.x-100;}else{this.blasts[i].position.x=this.android17.position.x-100;}//this.android17.position.x = this.blasts[i].position.x;
-this.blasts[i].exploding=true;}else{if(this.android17.left==false){this.blasts[i].position.x=this.android17.position.x-50;}else{this.blasts[i].position.x=this.android17.position.x-100;}this.blasts[i].exploding=true;}this.environment.flash=true;}else if(this.blasts[i].type==5&&this.blasts[i].blastUser!=0){if(this.android17.fieldOn==false){this.android17.punched=false;if(this.IB==true&&this.android17.blocking==true){this.android17.stamina+=8;}else{this.android17.hit=true;this.android17.stun=true;this.android17.blasted=true;//this.android17.hardHit = true;
+this.android17.jumpVelocity.y=0;if(attackHitTestBlastSpecial(this.blasts[i],this.android17)==true){if(this.blasts[i].dirLeft==true){this.android17.position.x=this.blasts[i].position.x;}else{this.android17.position.x=this.blasts[i].position.x+180;}if(this.android17.endurance>14){this.android17.endurance=this.android17.endurance-1;}else if(this.android17.endurance<15){this.android17.health=this.android17.health-1;}}else{app.main.android17.stun=true;app.main.android17.hit=true;app.main.android17.hardHit=true;if(this.blasts[i].dirLeft==true){this.android17.velocity.x=-60;}else{this.android17.velocity.x=60;}this.android17.decel=this.android17.velocity.clone();}if(this.android17.position.x<this.android17.LEFTWALL.x+10||this.android17.position.x>this.android17.RIGHTWALL.x-10){this.sound.playEnergyReaction(6);this.environment.shake=true;this.blasts[i].position.x=this.android17.position.x;this.blasts[i].position.y=this.android17.position.y;this.blasts[i].exploding=true;this.environment.flash=true;this.android17.hit=true;this.android17.stun=true;this.android17.hardHit=true;this.android17.blastBurnLength=10;this.android17.blastBurn=true;if(this.android17.endurance>14){this.android17.endurance=this.android17.endurance-(7+getRandom(2,5));}else if(this.android17.endurance<15){this.android17.health=this.android17.health-(7+getRandom(2,5));}}}else{this.sound.playEnergyReaction(6);this.environment.shake=true;this.blasts[i].position.x=this.android17.position.x;this.blasts[i].position.y=this.android17.position.y;this.blasts[i].exploding=true;this.environment.flash=true;}}}else if(this.blasts[i].type==2){if(this.android17.fieldOn==false){this.android17.punched=false;this.android17.hit=true;this.android17.stun=true;this.android17.hardHit=true;this.android17.blasted=true;if(this.battle!=3){this.roundScore2-=50;}if(this.android17.decision!=-1){if(this.ER==true){if(this.blasts[i].dirLeft==true){this.android17.velocity.x-=5;}else if(this.blasts[i].dirLeft==false){this.android17.velocity.x+=5;}}else{if(this.blasts[i].dirLeft==true){this.android17.velocity.x-=15;}else if(this.blasts[i].dirLeft==false){this.android17.velocity.x+=15;}}this.android17.jumpVelocity.y=0;this.android17.decel=this.android17.velocity.clone();}if(this.android17.endurance>14){this.android17.endurance=this.android17.endurance-(10+getRandom(2,6));}else if(this.android17.endurance<15){this.android17.health=this.android17.health-(10+getRandom(2,6));}this.sound.playEnergyReaction(6);this.environment.flash=true;this.environment.shake=true;this.android17.blastBurnLength=20;this.android17.blastBurn=true;}if(hardAttackHitTest(this.android18,this.android17)==true&&this.android17.behind==false){this.pointBlank=true;if(this.blasts[i].dirLeft==true){this.blasts[i].position.x=this.android17.position.x+100;}else{this.blasts[i].position.x=this.android17.position.x-100;}this.blasts[i].exploding=true;}else{if(this.blasts[i].dirLeft==true){this.blasts[i].position.x=this.android17.position.x+100;}else{this.blasts[i].position.x=this.android17.position.x-100;}this.blasts[i].exploding=true;}}else if(this.blasts[i].type==3){if(this.android17.fieldOn==false){this.android17.punched=false;this.android17.hit=true;this.android17.stun=true;this.android17.hardHit=true;this.android17.blasted=true;this.roundScore2-=50;if(this.android17.endurance>14){this.android17.endurance=this.android17.endurance-(10+getRandom(2,4));}else if(this.android17.endurance<15){this.android17.health=this.android17.health-(10+getRandom(2,4));}if(this.ER==true){if(this.blasts[i].dirLeft==true){this.android17.velocity.x-=15;}else if(this.blasts[i].dirLeft==false){this.android17.velocity.x+=15;}}else{if(this.blasts[i].dirLeft==true){this.android17.velocity.x-=60;}else if(this.blasts[i].dirLeft==false){this.android17.velocity.x+=60;}}this.android17.decel=this.android17.velocity.clone();}this.environment.shake=true;this.android17.blastBurnLength=40;this.android17.blastBurn=true;this.sound.playEnergyReaction2(6);if(hardAttackHitTest(this.vegeta,this.android17)==true&&this.android17.behind==false){if(this.blasts[i].dirLeft==true){this.blasts[i].position.x=this.android17.position.x-100;}else{this.blasts[i].position.x=this.android17.position.x-100;}//this.android17.position.x = this.blasts[i].position.x;
+this.blasts[i].exploding=true;}else{if(this.blasts[i].dirLeft==true){this.blasts[i].position.x=this.android17.position.x-50;}else{this.blasts[i].position.x=this.android17.position.x-100;}this.blasts[i].exploding=true;}this.environment.flash=true;}else if(this.blasts[i].type==5&&this.blasts[i].blastUser!=0){if(this.android17.fieldOn==false){this.android17.punched=false;if(this.IB==true&&this.android17.blocking==true){this.android17.stamina+=8;}else{this.android17.hit=true;this.android17.stun=true;this.android17.blasted=true;//this.android17.hardHit = true;
 this.android17.blastBurnLength=20;this.android17.blastBurn=true;this.roundScore2-=25;if(this.android17.endurance>14){this.android17.endurance=this.android17.endurance-(5+getRandom(0,5));}else if(this.android17.endurance<15){this.android17.health=this.android17.health-(5+getRandom(0,5));}}if(this.ER==true){if(this.blasts[i].dirLeft==true){this.android17.velocity.x-=2;}else if(this.blasts[i].dirLeft==false){this.android17.velocity.x+=2;}}else{if(this.blasts[i].dirLeft==true){this.android17.velocity.x-=8;}else if(this.blasts[i].dirLeft==false){this.android17.velocity.x+=8;}}this.android17.decel=this.android17.velocity.clone();}this.sound.playEnergyReaction2(6);if(hardAttackHitTest(this.vegeta,this.android17)==true&&(this.android17.behind==false||this.blasts[i].moving==false)){this.pointBlank=true;this.blasts[i].position.x=this.android17.position.x;this.blasts[i].exploding=true;}else{this.blasts[i].exploding=true;}//this.environment.flash = true;
 }else if(this.blasts[i].type==6&&this.android17.behind==false){if(this.android17.fieldOn==false){this.android17.punched=false;this.android17.hit=true;this.android17.stun=true;this.android17.blasted=true;this.android17.jumpVelocity.y=0;//this.android17.hardHit = true;
 this.android17.blastBurnLength=40;this.android17.blastBurn=true;this.roundScore2-=5;if(this.android17.endurance>14){this.android17.endurance=this.android17.endurance-2.5;}else if(this.android17.endurance<15){this.android17.health=this.android17.health-2.5;}if(this.android17.decision!=-1){if(this.ER==true){if(this.blasts[i].dirLeft==true){this.android17.velocity.x-=2;}else if(this.blasts[i].dirLeft==false){this.android17.velocity.x+=2;}}else{if(this.blasts[i].dirLeft==true){this.android17.velocity.x-=4;}else if(this.blasts[i].dirLeft==false){this.android17.velocity.x+=4;}}this.android17.decel=this.android17.velocity.clone();}}else{this.sound.playEnergyReaction(6);this.blasts[i].position.x=this.android17.position.x;this.blasts[i].exploding=true;this.environment.flash=true;}}else if(this.blasts[i].type==7&&this.android17.behind==false){if(this.android17.fieldOn==false){this.android17.punched=false;this.android17.hit=true;this.android17.stun=true;this.android17.hardHit=true;this.android17.blastBurnLength=30;this.android17.blastBurn=true;this.android17.blasted=true;this.roundScore2-=50;if(this.android17.endurance>14){this.android17.endurance=this.android17.endurance-(10+getRandom(0,4));}else if(this.android17.endurance<15){this.android17.health=this.android17.health-(10+getRandom(0,4));}if(this.blasts[i].trigger==false){if(this.ER==true){if(this.blasts[i].dirLeft==true){this.android17.velocity.x-=4;}else if(this.blasts[i].dirLeft==false){this.android17.velocity.x+=4;}}else{if(this.blasts[i].dirLeft==true){this.android17.velocity.x-=8;}else if(this.blasts[i].dirLeft==false){this.android17.velocity.x+=8;}}}else{if(this.ER==true){if(this.blasts[i].turnDown==true){this.android17.jumpVelocity.y=5;}else if(this.blasts[i].turnDown==false){this.android17.jumpVelocity.y=-5;}}else{if(this.blasts[i].turnDown==true){this.android17.jumpVelocity.y=15;}else if(this.blasts[i].turnDown==false){this.android17.jumpVelocity.y=-15;}}}this.android17.decel=this.android17.velocity.clone();}this.sound.playEnergyReaction2(6);if(hardAttackHitTest(this.vegeta,this.android17)==true&&this.blasts[i].lifetime<2&&(this.android17.behind==false||this.blasts[i].moving==false)){this.pointBlank=true;this.blasts[i].position.x=this.android17.position.x;this.blasts[i].position.y=this.android17.position.y;this.blasts[i].exploding=true;}else{this.blasts[i].position.x=this.android17.position.x;this.blasts[i].position.y=this.android17.position.y;this.blasts[i].exploding=true;}if(this.vegeta.superForm==true){this.environment.flash=true;}//this.environment.flash = true;
@@ -15285,9 +15317,9 @@ this.android17.blastBurnLength=30;this.android17.blastBurn=true;this.roundScore2
 }else{this.sound.playEnergyReaction(6);this.blasts[i].position.x=this.android17.position.x;this.blasts[i].exploding=true;this.environment.flash=true;}}}//HIT SUPPORTS
 if(this.activeSupport==true){for(var x=0;x<2;x++){if(this.blasts[i].exploding==false&&(attackHitTestBlast(this.blasts[i],this.support[x])==true||hardAttackHitTest(this.android18,this.support[x])==true&&this.blasts[i].lifetime<2&&(this.blasts[i].type!=5||this.blasts[i].moving==true&&this.blasts[i].triggerState==0))&&this.blasts[i].activated==true&&this.support[x].superSpeed==false&&this.support[x].vanish==false&&this.support[x].end==false&&this.support[x].dead==false&&(this.blasts[i].blastUser!=1&&this.blasts[i].blastUser!=2||this.support[x].hardHit==true)&&this.blasts[i].blastUser!=4&&this.blasts[i].blastUser!=5){if(this.blasts[i].type==0){this.support[x].hit=true;this.support[x].stun=true;this.support[x].blastBurnLength=10;this.support[x].blastBurn=true;if(hardAttackHitTest(this.android18,this.support[x])==true&&this.support[x].behind==false){this.pointBlank=true;this.blasts[i].position.x=this.support[x].position.x;this.blasts[i].exploding=true;}else{this.blasts[i].exploding=true;}this.sound.playEnergyReaction(6);if(this.blasts[i].dirLeft==true){this.support[x].velocity.x-=8;}else if(this.blasts[i].dirLeft==false){this.support[x].velocity.x+=8;}this.support[x].decel=this.support[x].velocity.clone();if(this.support[x].endurance>14){this.support[x].endurance=this.support[x].endurance-(3+getRandom(0,2));}else if(this.support[x].endurance<15){this.support[x].health=this.support[x].health-(3+getRandom(0,2));}}else if(this.blasts[i].type==1){if(hardAttackHitTest(this.android18,this.support[x])==true&&this.support[x].behind==false){//console.log("HARDHITTESTSETSET");
 this.support[x].position.x=this.blasts[i].position.x;}this.support[x].punched=false;this.support[x].hit=true;this.support[x].stun=true;//this.support[x].hardHit = true;
-this.support[x].jumpVelocity.y=0;if(this.blasts[i].dirLeft==true){this.support[x].position.x=this.blasts[i].position.x;}else{this.support[x].position.x=this.blasts[i].position.x+180;}if(this.support[x].endurance>14){this.support[x].endurance=this.support[x].endurance-1;}else if(this.support[x].endurance<15){this.support[x].health=this.support[x].health-1;}if(this.support[x].position.x<this.support[x].LEFTWALL.x+10||this.support[x].position.x>this.support[x].RIGHTWALL.x-10){this.sound.playEnergyReaction(6);this.support[x].blastBurnLength=20;this.support[x].blastBurn=true;this.environment.shake=true;this.blasts[i].position.x=this.support[x].position.x;this.blasts[i].position.y=this.support[x].position.y;this.blasts[i].exploding=true;this.environment.flash=true;this.support[x].hit=true;this.support[x].stun=true;this.support[x].hardHit=true;if(this.support[x].endurance>14){this.support[x].endurance=this.support[x].endurance-(5+getRandom(2,4));}else if(this.support[x].endurance<15){this.support[x].health=this.support[x].health-(5+getRandom(2,4));}}}else if(this.blasts[i].type==2){this.support[x].punched=false;this.support[x].hit=true;this.support[x].stun=true;this.support[x].hardHit=true;this.support[x].blasted=true;if(this.android18.left==true){this.support[x].velocity.x-=15;}else if(this.android18.right==true){this.support[x].velocity.x+=15;}this.support[x].jumpVelocity.y=0;this.support[x].decel=this.support[x].velocity.clone();if(this.support[x].endurance>14){this.support[x].endurance=this.support[x].endurance-(10+getRandom(2,6));}else if(this.support[x].endurance<15){this.support[x].health=this.support[x].health-(10+getRandom(2,6));}this.sound.playEnergyReaction(6);this.environment.flash=true;this.environment.shake=true;this.support[x].blastBurnLength=20;this.support[x].blastBurn=true;if(hardAttackHitTest(this.android18,this.support[x])==true&&this.support[x].behind==false){this.pointBlank=true;if(this.support[x].left==false){this.blasts[i].position.x=this.support[x].position.x;}else{this.blasts[i].position.x=this.support[x].position.x-100;}this.blasts[i].exploding=true;}else{if(this.support[x].left==false){this.blasts[i].position.x=this.support[x].position.x;}else{this.blasts[i].position.x=this.support[x].position.x-100;}this.blasts[i].exploding=true;}}else if(this.blasts[i].type==3){this.support[x].punched=false;this.support[x].hit=true;this.support[x].stun=true;this.support[x].hardHit=true;if(this.support[x].endurance>14){this.support[x].endurance=this.support[x].endurance-(10+getRandom(0,4));}else if(this.support[x].endurance<15){this.support[x].health=this.support[x].health-(10+getRandom(0,4));}if(this.blasts[i].dirLeft==true){this.support[x].velocity.x=-60;}else if(this.blasts[i].dirLeft==false){this.support[x].velocity.x=60;}this.support[x].decel=this.support[x].velocity.clone();this.sound.playEnergyReaction(6);this.support[x].blastBurnLength=40;this.support[x].blastBurn=true;this.blasts[i].exploding=true;this.environment.shake=true;this.environment.flash=true;}else if(this.blasts[i].type==5){this.support[x].punched=false;this.support[x].hit=true;this.support[x].stun=true;//this.android18.hardHit = true;
-this.support[x].blastBurnLength=20;this.support[x].blastBurn=true;if(this.support[x].endurance>14){this.support[x].endurance=this.support[x].endurance-(5+getRandom(0,4));}else if(this.support[x].endurance<15){this.support[x].health=this.support[x].health-(5+getRandom(0,4));}if(this.blasts[i].dirLeft==true){this.support[x].velocity.x=-8;}else if(this.blasts[i].dirLeft==false){this.support[x].velocity.x=8;}this.support[x].decel=this.support[x].velocity.clone();this.sound.playEnergyReaction(6);if(hardAttackHitTest(this.android18,this.support[x])==true){this.blasts[i].position.x=this.support[x].position.x;this.blasts[i].exploding=true;}else{this.blasts[i].exploding=true;}//this.environment.flash = true;
-}else if(this.blasts[i].type==7&&this.support[x].behind==false){this.support[x].punched=false;this.support[x].hit=true;this.support[x].stun=true;this.support[x].hardHit=true;if(this.blasts[i].dirLeft==true){this.support[x].velocity.x=-8;}else if(this.blasts[i].dirLeft==false){this.support[x].velocity.x=8;}this.support[x].decel=this.support[x].velocity.clone();this.sound.playEnergyReaction2(6);if(hardAttackHitTest(this.vegeta,this.support[x])==true&&this.blasts[i].lifetime<2&&(this.support[x].behind==false||this.blasts[i].moving==false)){this.pointBlank=true;this.blasts[i].position.x=this.support[x].position.x;this.blasts[i].exploding=true;}else{//this.blasts[i].position.x = this.support[x].position.x;
+this.support[x].jumpVelocity.y=0;if(this.blasts[i].dirLeft==true){this.support[x].position.x=this.blasts[i].position.x;}else{this.support[x].position.x=this.blasts[i].position.x+180;}if(this.support[x].endurance>14){this.support[x].endurance=this.support[x].endurance-1;}else if(this.support[x].endurance<15){this.support[x].health=this.support[x].health-1;}if(this.support[x].position.x<this.support[x].LEFTWALL.x+10||this.support[x].position.x>this.support[x].RIGHTWALL.x-10){this.sound.playEnergyReaction(6);this.support[x].blastBurnLength=20;this.support[x].blastBurn=true;this.environment.shake=true;this.blasts[i].position.x=this.support[x].position.x;this.blasts[i].position.y=this.support[x].position.y;this.blasts[i].exploding=true;this.environment.flash=true;this.support[x].hit=true;this.support[x].stun=true;this.support[x].hardHit=true;if(this.support[x].endurance>14){this.support[x].endurance=this.support[x].endurance-(5+getRandom(2,4));}else if(this.support[x].endurance<15){this.support[x].health=this.support[x].health-(5+getRandom(2,4));}}}else if(this.blasts[i].type==2){this.support[x].punched=false;this.support[x].hit=true;this.support[x].stun=true;this.support[x].hardHit=true;this.support[x].blasted=true;if(this.android18.left==true){this.support[x].velocity.x-=15;}else if(this.android18.right==true){this.support[x].velocity.x+=15;}this.support[x].jumpVelocity.y=0;this.support[x].decel=this.support[x].velocity.clone();if(this.support[x].endurance>14){this.support[x].endurance=this.support[x].endurance-(10+getRandom(2,6));}else if(this.support[x].endurance<15){this.support[x].health=this.support[x].health-(10+getRandom(2,6));}this.sound.playEnergyReaction(6);this.environment.flash=true;this.environment.shake=true;this.support[x].blastBurnLength=20;this.support[x].blastBurn=true;if(hardAttackHitTest(this.android18,this.support[x])==true&&this.support[x].behind==false){this.pointBlank=true;if(this.blasts[i].dirLeft==true){this.blasts[i].position.x=this.support[x].position.x+100;}else{this.blasts[i].position.x=this.support[x].position.x-100;}this.blasts[i].exploding=true;}else{if(this.blasts[i].dirLeft==true){this.blasts[i].position.x=this.support[x].position.x+100;}else{this.blasts[i].position.x=this.support[x].position.x-100;}this.blasts[i].exploding=true;}}else if(this.blasts[i].type==3){this.support[x].punched=false;this.support[x].hit=true;this.support[x].stun=true;this.support[x].hardHit=true;if(this.support[x].endurance>14){this.support[x].endurance=this.support[x].endurance-(10+getRandom(0,4));}else if(this.support[x].endurance<15){this.support[x].health=this.support[x].health-(10+getRandom(0,4));}if(this.blasts[i].dirLeft==true){this.support[x].velocity.x=-60;}else if(this.blasts[i].dirLeft==false){this.support[x].velocity.x=60;}this.support[x].decel=this.support[x].velocity.clone();this.sound.playEnergyReaction(6);this.support[x].blastBurnLength=40;this.support[x].blastBurn=true;this.blasts[i].exploding=true;this.environment.shake=true;this.environment.flash=true;}else if(this.blasts[i].type==5){this.support[x].punched=false;this.support[x].hit=true;this.support[x].stun=true;//this.android18.hardHit = true;
+this.support[x].blastBurnLength=20;this.support[x].blastBurn=true;if(this.support[x].endurance>14){this.support[x].endurance=this.support[x].endurance-(5+getRandom(0,4));}else if(this.support[x].endurance<15){this.support[x].health=this.support[x].health-(5+getRandom(0,4));}if(this.blasts[i].dirLeft==true){this.support[x].velocity.x=-8;}else if(this.blasts[i].dirLeft==false){this.support[x].velocity.x=8;}this.support[x].decel=this.support[x].velocity.clone();this.sound.playEnergyReaction(6);if(hardAttackHitTest(this.android18,this.support[x])==true){if(this.blasts[i].dirLeft==true){this.blasts[i].position.x=this.support[x].position.x-100;}else{this.blasts[i].position.x=this.support[x].position.x-100;}this.blasts[i].exploding=true;}else{if(this.blasts[i].dirLeft==true){this.blasts[i].position.x=this.support[x].position.x-100;}else{this.blasts[i].position.x=this.support[x].position.x-100;}this.blasts[i].exploding=true;}//this.environment.flash = true;
+}else if(this.blasts[i].type==7&&this.support[x].behind==false){this.support[x].punched=false;this.support[x].hit=true;this.support[x].stun=true;this.support[x].hardHit=true;if(this.blasts[i].dirLeft==true){this.support[x].velocity.x=-8;}else if(this.blasts[i].dirLeft==false){this.support[x].velocity.x=8;}this.support[x].decel=this.support[x].velocity.clone();this.sound.playEnergyReaction2(6);if(hardAttackHitTest(this.vegeta,this.support[x])==true&&this.blasts[i].lifetime<2&&(this.support[x].behind==false||this.blasts[i].moving==false)){this.pointBlank=true;this.blasts[i].position.x=this.support[x].position.x;this.blasts[i].position.y=this.support[x].position.y;this.blasts[i].exploding=true;}else{//this.blasts[i].position.x = this.support[x].position.x;
 this.blasts[i].position.x=this.support[x].position.x;this.blasts[i].position.y=this.support[x].position.y;this.blasts[i].exploding=true;}//this.environment.flash = true;
 }else if(this.blasts[i].type==8){this.support[x].punched=false;this.support[x].hit=true;this.support[x].stun=true;this.support[x].hardHit=true;this.support[x].blasted=true;/* if(this.blasts[i].blastUser == 0){
 								if(this.CP == true){
@@ -15458,7 +15490,7 @@ if((this.vegeta.powerMove==false&&this.vegeta.blasting==false||this.vegeta.veget
 }//this.vegeta.down = true;
 }}else if(this.vegeta.exhausted==true){this.vegeta.flying=false;}}}if(this.vegeta.powerMove==false&&this.scene==false&&this.vegeta.startFallKick==false){if(this.dodgeChance>.5){//VEGETA FLIGHT DODGE
 if(this.android18.blasting==true&&this.android18.counter>0&&this.android18.position.y-100<this.vegeta.position.y&&this.vegeta.hard==false&&this.vegeta.charging==false&&this.vegeta.taunting==false&&this.vegeta.stun==false&&this.vegeta.aboveSky==false&&this.vegeta.blasting==false&&this.vegeta.end==false){this.vegeta.dodge=true;this.vegeta.flying=true;this.vegeta.jump();}else if(this.android18.blasting==true&&this.android18.counter>0&&this.android18.position.y+100>this.vegeta.position.y&&this.vegeta.hard==false&&this.vegeta.charging==false&&this.vegeta.taunting==false&&this.vegeta.stun==false&&this.vegeta.aboveSky==true&&this.vegeta.end==false){this.vegeta.hover=false;this.vegeta.dodge=true;this.vegeta.flying=false;this.vegeta.up=false;//this.vegeta.down = true;
-}else{this.vegeta.dodge=false;}}else if(this.dodgeChance<.5&&this.dodgeChance>.2&&this.vegeta.superSpeed==false){if(this.android18.powerMove==true&&this.vegeta.hard==false&&this.vegeta.charging==false&&this.vegeta.taunting==false&&this.vegeta.stun==false&&this.vegeta.dodge==false&&this.vegeta.energy>33){this.dodgeChance=0;this.vegeta.counter=0;this.vegeta.dodge=true;this.vegeta.superSpeed=true;}}}//VEGETA BLOCKING
+}else{this.vegeta.dodge=false;}}else if(this.dodgeChance<.5&&this.dodgeChance>.2&&this.vegeta.superSpeed==false&&this.vegeta.superSpeedExhaustion==false){if(this.android18.powerMove==true&&this.vegeta.hard==false&&this.vegeta.charging==false&&this.vegeta.taunting==false&&this.vegeta.stun==false&&this.vegeta.dodge==false&&this.vegeta.energy>33){this.dodgeChance=0;this.vegeta.counter=0;this.vegeta.dodge=true;this.vegeta.superSpeed=true;}}}//VEGETA BLOCKING
 if(this.aiChoice3<.5&&this.aiChoice3>.2&&this.vegeta.fight==false&&this.vegeta.taunting==false&&this.vegeta.exhausted==false&&this.vegeta.end==false&&hardAttackHitTest(this.android18,this.vegeta)==true&&this.vegeta.gero==false){if(this.action==false){this.action=true;this.aiChoice3=10;this.vegeta.blocking=true;if(attackHitTest(this.android18,this.vegeta)==true&&(this.android18.basic==true||this.android18.punching==true||this.android18.kicking==true)&&this.android18.attacking==true){this.vegeta.stamina+=1;}if(this.android18.attacking==false||hardAttackHitTest(this.android18,this.vegeta)!=true){this.vegeta.blocking=false;}}}if(this.vegeta.vegeta==true){//console.log("working");
 //VEGETA BLOCKING -- FOCUS 17
 if(this.aiChoice3<.6&&this.aiChoice3>.35&&this.vegeta.startFallKick==false&&this.vegeta.fight==false&&this.vegeta.taunting==false&&this.vegeta.exhausted==false&&this.vegeta.end==false&&hardAttackHitTest(this.android17,this.vegeta)==true&&this.vegeta.gero==false){if(this.action==false){this.action=true;this.vegeta.counter=0;this.aiChoice3=10;this.vegeta.blocking=true;if(attackHitTest(this.android17,this.vegeta)==true&&(this.android17.basic==true||this.android17.punching==true||this.android17.kicking==true)&&this.android17.attacking==true){this.vegeta.stamina+=1;}if(this.android17.attacking==false||hardAttackHitTest(this.android17,this.vegeta)!=true){this.vegeta.blocking=false;}}}//VEGETA DEFENDING SUPER SPEED (TELEPORT)
@@ -15472,7 +15504,7 @@ if((this.vegeta.powerMove==false&&this.vegeta.blasting==false||this.vegeta.veget
 }}//VEGETA MOVEMENT -- FOCUS 17
 if(hitTest(this.android18,this.vegeta)!=true&&this.vegeta.powerMove==false&&this.vegeta.hard==false&&this.vegeta.charging==false&&this.vegeta.taunting==false&&app.main.vegeta.test==false){if(this.vegeta.right==true&&this.vegeta.position.x<this.android17.position.x-60){this.vegeta.moveRight();}else if(this.vegeta.left==true&&this.vegeta.position.x<this.android17.position.x-60){this.vegeta.moveLeft();}}if(this.vegeta.powerMove==false&&this.vegeta.startFallKick==false&&this.scene==false){if(this.dodgeChance>.5){//VEGETA FLIGHT DODGE -- FOCUS 17
 if(this.android17.blasting==true&&this.android17.counter>0&&this.android17.position.y-100<this.vegeta.position.y&&this.vegeta.hard==false&&this.vegeta.charging==false&&this.vegeta.taunting==false&&this.vegeta.stun==false&&this.vegeta.aboveSky==false&&this.vegeta.blasting==false&&this.vegeta.end==false){this.vegeta.dodge=true;this.vegeta.flying=true;this.vegeta.jump();}else if(this.android17.blasting==true&&this.android17.counter>0&&this.android17.position.y+100>this.vegeta.position.y&&this.vegeta.hard==false&&this.vegeta.charging==false&&this.vegeta.taunting==false&&this.vegeta.stun==false&&this.vegeta.aboveSky==true&&this.vegeta.end==false){this.vegeta.hover=false;this.vegeta.up=false;this.vegeta.dodge=true;this.vegeta.flying=false;//this.vegeta.down = true;
-}else{this.vegeta.dodge=false;}}else if(this.dodgeChance<.5&&this.dodgeChance>.2&&this.vegeta.superSpeed==false){if(this.android17.powerMove==true&&this.vegeta.hard==false&&this.vegeta.charging==false&&this.vegeta.taunting==false&&this.vegeta.stun==false&&this.vegeta.dodge==false&&this.vegeta.energy>33){this.vegeta.counter=0;this.dodgeChance=0;this.vegeta.dodge=true;this.vegeta.superSpeed=true;}}}//console.log("AICHOICE3 " + this.aiChoice3);
+}else{this.vegeta.dodge=false;}}else if(this.dodgeChance<.5&&this.dodgeChance>.2&&this.vegeta.superSpeed==false&&this.vegeta.superSpeedExhaustion==false){if(this.android17.powerMove==true&&this.vegeta.hard==false&&this.vegeta.charging==false&&this.vegeta.taunting==false&&this.vegeta.stun==false&&this.vegeta.dodge==false&&this.vegeta.energy>33){this.vegeta.counter=0;this.dodgeChance=0;this.vegeta.dodge=true;this.vegeta.superSpeed=true;}}}//console.log("AICHOICE3 " + this.aiChoice3);
 if(this.vegeta.vegeta==true){//console.log("working");
 //VEGETA BLOCKING -- FOCUS 17
 if(this.aiChoice3<.55&&this.aiChoice3>.3&&this.vegeta.fight==false&&this.vegeta.taunting==false&&this.vegeta.exhausted==false&&this.vegeta.end==false&&hardAttackHitTest(this.android17,this.vegeta)==true&&this.vegeta.gero==false){if(this.action==false){this.action=true;this.vegeta.counter=0;this.aiChoice3=10;this.vegeta.blocking=true;if(attackHitTest(this.android17,this.vegeta)==true&&(this.android17.basic==true||this.android17.punching==true||this.android17.kicking==true)&&this.android17.attacking==true){this.vegeta.stamina+=1;}if(this.android17.attacking==false||hardAttackHitTest(this.android17,this.vegeta)!=true){this.vegeta.blocking=false;}}}//VEGETA DEFENDING SUPER SPEED (TELEPORT)
@@ -15581,7 +15613,7 @@ if(this.vegeta.exhausted==false){this.vegeta.counter=0;this.vegeta.attacking=tru
 if((hardAttackHitTest(this.vegeta,this.android17)==true&&(this.vegeta.air==false||this.chance2<=.5)||attackHitTest(this.vegeta,this.android17)==true&&this.vegeta.air==true&&this.chance2>.5||app.main.vegeta.test==true&&(app.main.android17.punching==true||app.main.android17.kicking==true)&&app.main.android17.blasting==false)&&this.aiChoice2<.4&&this.aiChoice2>.05&&this.vegeta.charging==false&&this.vegeta.taunting==false&&this.vegeta.blocking==false&&this.vegeta.startFallKick==false&&this.android17.behind==false&&this.vegeta.gero==false){if(this.action==false){//this.chance2 = Math.random();
 if(this.vegeta.exhausted==false){this.vegeta.counter=0;this.vegeta.attacking=true;this.vegeta.fight=true;this.vegeta.hard=true;this.vegeta.intensify=true;this.action=true;}}}}if(this.vegeta.powerMove==false&&this.scene==false){if(this.dodgeChance>.4){//VEGETA FLIGHT DODGE
 if((this.android18.blasting==true&&this.android18.counter>0&&this.android18.position.y-100<this.vegeta.position.y||this.android17.blasting==true&&this.android17.counter>0&&this.android17.position.y-100<this.vegeta.position.y)&&this.vegeta.hard==false&&this.vegeta.charging==false&&this.vegeta.taunting==false&&this.vegeta.stun==false&&this.vegeta.aboveSky==false&&this.vegeta.blasting==false&&this.vegeta.end==false){this.vegeta.dodge=true;this.vegeta.flying=true;this.vegeta.jump();}else if((this.android18.blasting==true&&this.android18.counter>0&&this.android18.position.y+100>this.vegeta.position.y||this.android17.blasting==true&&this.android17.counter>0&&this.android17.position.y+100>this.vegeta.position.y)&&this.vegeta.hard==false&&this.vegeta.charging==false&&this.vegeta.taunting==false&&this.vegeta.stun==false&&this.vegeta.aboveSky==true&&this.vegeta.end==false){this.vegeta.hover=false;this.vegeta.dodge=true;this.vegeta.flying=false;this.vegeta.up=false;//this.vegeta.down = true;
-}else{this.vegeta.dodge=false;}}else if(this.dodgeChance<.4&&this.dodgeChance>.2&&this.vegeta.superSpeed==false){if((this.android18.powerMove==true||this.android17.blasting==true)&&this.vegeta.hard==false&&this.vegeta.charging==false&&this.vegeta.taunting==false&&this.vegeta.stun==false&&this.vegeta.dodge==false&&this.vegeta.energy>33){this.dodgeChance=0;this.vegeta.counter=0;this.vegeta.dodge=true;this.vegeta.superSpeed=true;}}}}else{// 17 Version
+}else{this.vegeta.dodge=false;}}else if(this.dodgeChance<.4&&this.dodgeChance>.2&&this.vegeta.superSpeed==false&&this.vegeta.superSpeedExhaustion==false){if((this.android18.powerMove==true||this.android17.blasting==true)&&this.vegeta.hard==false&&this.vegeta.charging==false&&this.vegeta.taunting==false&&this.vegeta.stun==false&&this.vegeta.dodge==false&&this.vegeta.energy>33){this.dodgeChance=0;this.vegeta.counter=0;this.vegeta.dodge=true;this.vegeta.superSpeed=true;}}}}else{// 17 Version
 if(this.vegeta.powerMove==false&&this.scene==false){if(this.aiReason==3){//VEGETA FLIGHT -- Normal -- FOCUS17
 if(this.android17.position.y<=this.vegeta.position.y&&this.vegeta.hard==false&&this.vegeta.charging==false&&this.vegeta.taunting==false&&this.vegeta.dodge==false&&this.vegeta.hardHit==false&&this.vegeta.stun==false&&this.vegeta.end==false&&this.vegeta.position.y>this.vegeta.SKYTOP.y+6){//console.log("REASON 3");
 if(this.vegeta.attacking==false&&this.vegeta.taunting==false&&this.vegeta.charging==false&&this.vegeta.blasting==false&&this.vegeta.blocking==false){this.vegeta.up=true;}this.vegeta.flying=true;this.vegeta.jump();}else{this.vegeta.hover=false;this.vegeta.flying=false;if(this.android17.position.y-50>this.vegeta.position.y){this.vegeta.aboveBuilding=false;//this.vegeta.air = true;
@@ -15607,7 +15639,7 @@ if(this.aiChoice3<.2&&this.vegeta.blasting==false&&this.vegeta.startFallKick==fa
 if(this.aiChoice3<.6&&this.aiChoice3>.15&&this.vegeta.fight==false&&this.vegeta.taunting==false&&this.vegeta.exhausted==false&&this.vegeta.end==false&&hardAttackHitTest(this.android17,this.vegeta)==true&&this.vegeta.gero==false){if(this.action==false){this.action=true;this.vegeta.counter=0;this.aiChoice3=10;this.vegeta.blocking=true;if(attackHitTest(this.android17,this.vegeta)==true&&(this.android17.basic==true||this.android17.punching==true||this.android17.kicking==true)&&this.android17.attacking==true){this.vegeta.stamina+=1;}if(this.android17.attacking==false||hardAttackHitTest(this.android17,this.vegeta)!=true){this.vegeta.blocking=false;}}}//VEGETA DEFENDING SUPER SPEED (TELEPORT)
 if(this.aiChoice3<.15&&this.vegeta.blasting==false&&this.vegeta.startFallKick==false&&this.vegeta.superSpeed==false&&this.vegeta.end==false&&this.vegeta.superSpeedExhaustion==false&&this.vegeta.energy>40){if(this.action==false){this.aiChoice3=10;this.vegeta.counter=0;this.action=true;if(this.vegeta.aboveBuilding==false){this.vegeta.teleUp=true;}else{this.vegeta.teleDown=true;}this.vegeta.superSpeed=true;this.vegeta.fight=true;}}else if(this.aiChoice3<.15){this.aiChoice3=10;}}if(this.vegeta.powerMove==false&&this.scene==false){if(this.dodgeChance>.4){//VEGETA FLIGHT DODGE
 if(this.vegeta.powerMove==false){if((this.android17.blasting==true&&this.android17.counter>0&&this.android17.position.y-100<this.vegeta.position.y||this.android17.blasting==true&&this.android17.counter>0&&this.android17.position.y-100<this.vegeta.position.y)&&this.vegeta.hard==false&&this.vegeta.charging==false&&this.vegeta.taunting==false&&this.vegeta.stun==false&&this.vegeta.aboveSky==false&&this.vegeta.blasting==false&&this.vegeta.end==false){this.vegeta.dodge=true;this.vegeta.flying=true;this.vegeta.jump();}else if((this.android17.blasting==true&&this.android17.counter>0&&this.android17.position.y+100>this.vegeta.position.y||this.android17.blasting==true&&this.android17.counter>0&&this.android17.position.y+100>this.vegeta.position.y)&&this.vegeta.hard==false&&this.vegeta.charging==false&&this.vegeta.taunting==false&&this.vegeta.stun==false&&this.vegeta.aboveSky==true&&this.vegeta.end==false){this.vegeta.hover=false;this.vegeta.dodge=true;this.vegeta.flying=false;this.vegeta.up=false;//this.vegeta.down = true;
-}else{this.vegeta.dodge=false;}}}else if(this.dodgeChance<.4&&this.dodgeChance>.2&&this.vegeta.superSpeed==false){if((this.android17.powerMove==true||this.android17.blasting==true)&&this.vegeta.hard==false&&this.vegeta.charging==false&&this.vegeta.taunting==false&&this.vegeta.stun==false&&this.vegeta.dodge==false&&this.vegeta.energy>33){this.dodgeChance=0;this.vegeta.counter=0;this.vegeta.dodge=true;this.vegeta.superSpeed=true;}}}//VEGETA BASIC ATTACKS -- FOCUS17
+}else{this.vegeta.dodge=false;}}}else if(this.dodgeChance<.4&&this.dodgeChance>.2&&this.vegeta.superSpeed==false&&this.vegeta.superSpeedExhaustion==false){if((this.android17.powerMove==true||this.android17.blasting==true)&&this.vegeta.hard==false&&this.vegeta.charging==false&&this.vegeta.taunting==false&&this.vegeta.stun==false&&this.vegeta.dodge==false&&this.vegeta.energy>33){this.dodgeChance=0;this.vegeta.counter=0;this.vegeta.dodge=true;this.vegeta.superSpeed=true;}}}//VEGETA BASIC ATTACKS -- FOCUS17
 if(hardAttackHitTest(this.vegeta,this.android17)==true&&app.main.android17.blasting==false&&this.aiChoice2<11&&this.aiChoice2>.45&&this.vegeta.charging==false&&this.vegeta.taunting==false&&this.vegeta.blocking==false&&this.vegeta.hardHit==false&&this.android17.behind==false){if(this.action==false){//this.chance2 = Math.random();
 //console.log("BASIC");
 if(this.vegeta.exhausted==false){this.vegeta.counter=0;this.vegeta.attacking=true;this.vegeta.fight=true;this.action=true;}}}//VEGETA HARD ATTACKS -- FOCUS17
@@ -15673,7 +15705,9 @@ if(this.android18.farLeft==true&&this.support[x].farLeft==false||this.android18.
 }if(this.vegeta.focus17==false){//IF FOCUSING 17 == FALSE
 //VEGETA MOVEMENT
 if(this.support[x].position.x>this.support[x].LEFTWALL.x+10&&this.support[x].position.x<this.support[x].RIGHTWALL.x-10&&this.support[x].powerMove==false&&this.support[x].hard==false&&this.support[x].charging==false&&this.support[x].taunting==false&&app.main.support[x].test==false){if(this.support[x].right==true){this.support[x].moveLeft();}else if(this.support[x].left==true){this.support[x].moveRight();}}//VEGETA FLIGHT
-if(this.support[x].tien==true&&this.support[x].dodge==false&&this.support[x].blasting==false){if(this.krillinDead==false){if(this.support[x].hard==false&&this.support[x].charging==false&&this.support[x].taunting==false&&this.support[x].dodge==false&&this.support[x].hardHit==false&&this.support[x].stun==false&&this.support[x].end==false){if(this.support[x].attacking==false&&this.support[x].taunting==false&&this.support[x].charging==false&&this.support[x].blasting==false&&this.support[x].blocking==false){this.support[x].up=true;}this.support[x].flying=true;this.support[x].jump();}else{this.support[x].hover=false;this.support[x].flying=false;this.support[x].up=false;if(this.android18.position.y-50>this.support[x].position.y){this.support[x].aboveBuilding=false;//this.support[x].air = true;
+if(this.support[x].tien==true&&this.support[x].dodge==false&&this.support[x].blasting==false){if(this.krillinDead==false){if((this.android18.position.y+20<this.support[x].position.y&&this.support[x].supportCounter%5!=0||this.android18.position.y>this.android18.GROUND.y-100&&this.support[x].aboveMid==false)&&this.support[x].hard==false&&this.support[x].charging==false&&this.support[x].taunting==false&&this.support[x].dodge==false&&this.support[x].hardHit==false&&this.support[x].stun==false&&this.support[x].end==false&&this.support[x].aboveSky==false||this.support[x].position.y>this.support[x].GROUND.y-150){if(this.support[x].attacking==false&&this.support[x].taunting==false&&this.support[x].charging==false&&this.support[x].blasting==false&&this.support[x].blocking==false){this.support[x].up=true;}this.support[x].flying=true;this.support[x].jump();/* if(this.support[x].jumpVelocity.y > 0){
+							this.support[x].jumpVelocity.y = -15;
+						} */this.support[x].hover=false;}else{this.support[x].hover=false;this.support[x].flying=false;this.support[x].up=false;if(this.android18.position.y-50>this.support[x].position.y){this.support[x].aboveBuilding=false;//this.support[x].air = true;
 }//this.support[x].down = true;
 }}else{if(this.support[x].hard==false&&this.support[x].charging==false&&this.support[x].taunting==false&&this.support[x].dodge==false&&this.support[x].hardHit==false&&this.support[x].stun==false&&this.support[x].end==false&&this.support[x].position.y>this.android18.position.y&&!(this.support[x].position.y<this.support[x].SKYTOP.y+10)){if(this.support[x].attacking==false&&this.support[x].taunting==false&&this.support[x].charging==false&&this.support[x].blasting==false&&this.support[x].blocking==false){this.support[x].up=true;}this.support[x].flying=true;this.support[x].jump();}else{this.support[x].hover=false;this.support[x].flying=false;this.support[x].up=false;if(this.android18.position.y-50>this.support[x].position.y){this.support[x].aboveBuilding=false;//this.support[x].air = true;
 }//this.support[x].down = true;
@@ -15683,7 +15717,7 @@ if(this.support[x].tien==true&&this.support[x].dodge==false&&this.support[x].bla
 }//this.support[x].down = true;
 }}else{if(this.android18.position.y<this.support[x].position.y&&this.support[x].hard==false&&this.support[x].charging==false&&this.support[x].taunting==false&&this.support[x].dodge==false&&this.support[x].hardHit==false&&this.support[x].stun==false&&this.support[x].end==false&&!(this.support[x].position.y<this.support[x].SKYTOP.y+10)){if(this.support[x].attacking==false&&this.support[x].taunting==false&&this.support[x].charging==false&&this.support[x].blasting==false&&this.support[x].blocking==false){this.support[x].up=true;}this.support[x].flying=true;this.support[x].jump();}else{this.support[x].hover=false;this.support[x].flying=false;this.support[x].up=false;if(this.android18.position.y-50>this.support[x].position.y){this.support[x].aboveBuilding=false;//this.support[x].air = true;
 }//this.support[x].down = true;
-}}}if(this.support[x].tien==true&&this.support[x].dodge==false&&this.support[x].blasting==true){if(this.krillinDead==false){if(this.android18.position.y<this.support[x].position.y&&this.support[x].hard==false&&this.support[x].charging==false&&this.support[x].taunting==false&&this.support[x].dodge==false&&this.support[x].hardHit==false&&this.support[x].stun==false&&this.support[x].end==false&&(this.support[x].position.y<this.support[x].GROUND.y+100||this.krillinDead==true)){if(this.support[x].attacking==false&&this.support[x].taunting==false&&this.support[x].charging==false&&this.support[x].blasting==false&&this.support[x].blocking==false){this.support[x].up=true;}this.support[x].flying=true;this.support[x].jump();}else{this.support[x].hover=false;this.support[x].flying=false;this.support[x].up=false;if(this.android18.position.y-50>this.support[x].position.y){this.support[x].aboveBuilding=false;//this.support[x].air = true;
+}}}if(this.support[x].tien==true&&this.support[x].dodge==false&&this.support[x].blasting==true){if(this.krillinDead==false){if(this.android18.position.y<this.support[x].position.y&&this.support[x].hard==false&&this.support[x].charging==false&&this.support[x].taunting==false&&this.support[x].dodge==false&&this.support[x].hardHit==false&&this.support[x].stun==false&&this.support[x].end==false&&(this.support[x].position.y<this.support[x].GROUND.y+100||this.krillinDead==true)){if(this.support[x].attacking==false&&this.support[x].taunting==false&&this.support[x].charging==false&&this.support[x].blasting==false&&this.support[x].blocking==false){this.support[x].up=true;}this.support[x].hover=false;this.support[x].flying=true;this.support[x].jump();}else{this.support[x].hover=false;this.support[x].flying=false;this.support[x].up=false;if(this.android18.position.y-50>this.support[x].position.y){this.support[x].aboveBuilding=false;//this.support[x].air = true;
 }//this.support[x].down = true;
 }}else{if(this.android18.position.y<this.support[x].position.y&&this.support[x].hard==false&&this.support[x].charging==false&&this.support[x].taunting==false&&this.support[x].dodge==false&&this.support[x].hardHit==false&&this.support[x].stun==false&&this.support[x].end==false&&!(this.support[x].position.y<this.support[x].SKYTOP.y+10)){if(this.support[x].attacking==false&&this.support[x].taunting==false&&this.support[x].charging==false&&this.support[x].blasting==false&&this.support[x].blocking==false){this.support[x].up=true;}this.support[x].flying=true;this.support[x].jump();}else{this.support[x].hover=false;this.support[x].flying=false;this.support[x].up=false;if(this.android18.position.y-50>this.support[x].position.y){this.support[x].aboveBuilding=false;//this.support[x].air = true;
 }//this.support[x].down = true;
@@ -15691,7 +15725,9 @@ if(this.support[x].tien==true&&this.support[x].dodge==false&&this.support[x].bla
 if(this.android18.blasting==true&&this.android18.counter>0&&this.android18.position.y-100<this.support[x].position.y&&this.support[x].hard==false&&this.support[x].charging==false&&this.support[x].taunting==false&&this.support[x].aboveSky==false&&this.support[x].blasting==false&&this.support[x].prepBlast==false&&this.support[x].end==false&&this.support[x].behind==false){this.support[x].dodge=true;this.support[x].flying=true;this.support[x].jump();}else if(this.android18.blasting==true&&this.android18.counter>0&&this.android18.position.y+100>this.support[x].position.y&&this.support[x].hard==false&&this.support[x].charging==false&&this.support[x].taunting==false&&this.support[x].blasting==false&&this.support[x].prepBlast==false&&this.support[x].aboveSky==true&&this.support[x].end==false&&this.support[x].behind==false){this.support[x].dodge=true;this.support[x].flying=false;this.support[x].up=false;//this.support[x].down = true;
 }else{this.support[x].dodge=false;}}else if(this.dodgeChance3<.5&&this.dodgeChance3>0&&this.support[x].position.y<this.android18.position.y+200&&this.support[x].position.y>this.android18.position.y-200&&this.support[x].blasting==false&&this.support[x].prepBlast==false&&this.support[x].focus17==false&&this.support[x].superSpeed==false&&this.support[x].exhausted==false&&this.support[x].behind==false){if(this.android18.blastRelease==true&&this.support[x].hard==false&&this.support[x].charging==false&&this.support[x].taunting==false&&this.support[x].dodge==false&&this.support[x].energy>33){this.dodgeChance3=0;this.support[x].dodge=true;this.support[x].superSpeed=true;if(this.support[x].position.y>400){this.support[x].jumpVelocity.y=-30;this.support[x].teleUp=true;this.support[x].teleDown=false;}else{this.support[x].jumpVelocity.y=30;this.support[x].teleDown=true;this.support[x].teleUp=false;}}}}else{//IF FOCUSING 17 == TRUE
 //VEGETA FLIGHT -- FOCUS 17
-if(this.support[x].tien==true&&this.support[x].dodge==false&&this.support[x].blasting==false&&this.support[x].dodge==false){if(this.krillinDead==false){if(this.support[x].hard==false&&this.support[x].charging==false&&this.support[x].taunting==false&&this.support[x].dodge==false&&this.support[x].hardHit==false&&this.support[x].stun==false&&this.support[x].end==false){if(this.support[x].attacking==false&&this.support[x].taunting==false&&this.support[x].charging==false&&this.support[x].blasting==false&&this.support[x].blocking==false){this.support[x].up=true;}this.support[x].flying=true;this.support[x].jump();}else{this.support[x].hover=false;this.support[x].flying=false;this.support[x].up=false;if(this.android17.position.y-50>this.support[x].position.y){this.support[x].aboveBuilding=false;//this.support[x].air = true;
+if(this.support[x].tien==true&&this.support[x].dodge==false&&this.support[x].blasting==false&&this.support[x].dodge==false){if(this.krillinDead==false){if((this.android17.position.y+20<this.support[x].position.y&&this.support[x].supportCounter%5!=0||this.android17.position.y>this.android17.GROUND.y-100&&this.support[x].aboveMid==false)&&this.support[x].hard==false&&this.support[x].charging==false&&this.support[x].taunting==false&&this.support[x].dodge==false&&this.support[x].hardHit==false&&this.support[x].stun==false&&this.support[x].end==false&&this.support[x].aboveSky==false||this.support[x].position.y>this.support[x].GROUND.y-150){if(this.support[x].attacking==false&&this.support[x].taunting==false&&this.support[x].charging==false&&this.support[x].blasting==false&&this.support[x].blocking==false){this.support[x].up=true;}/* if(this.support[x].jumpVelocity.y > 0){
+							this.support[x].jumpVelocity.y = -25;
+						} */this.support[x].hover=false;this.support[x].flying=true;this.support[x].jump();}else{this.support[x].hover=false;this.support[x].flying=false;this.support[x].up=false;if(this.android17.position.y-50>this.support[x].position.y){this.support[x].aboveBuilding=false;//this.support[x].air = true;
 }//this.support[x].down = true;
 }}else{if(this.support[x].hard==false&&this.support[x].charging==false&&this.support[x].taunting==false&&this.support[x].dodge==false&&this.support[x].hardHit==false&&this.support[x].stun==false&&this.support[x].end==false&&this.support[x].position.y>this.android17.position.y&&!(this.support[x].position.y<this.support[x].SKYTOP.y+10)){if(this.support[x].attacking==false&&this.support[x].taunting==false&&this.support[x].charging==false&&this.support[x].blasting==false&&this.support[x].blocking==false){this.support[x].up=true;}this.support[x].flying=true;this.support[x].jump();}else{this.support[x].hover=false;this.support[x].flying=false;this.support[x].up=false;if(this.android17.position.y-50>this.support[x].position.y){this.support[x].aboveBuilding=false;//this.support[x].air = true;
 }//this.support[x].down = true;
@@ -15972,7 +16008,7 @@ this.android18.blocking=true;this.android18.fieldOn=true;if(this.EE==true){this.
 this.keyHeldT=true;if(this.toggle1==false){this.toggle1=true;this.sound.playEffect(65);}else if(this.toggle2==false){this.toggle2=true;this.sound.playEffect(65);}else{this.sound.playEffect(65);this.toggle1=false;this.toggle2=false;}}if(myKeys.keydown[myKeys.KEYBOARD.KEY_J]==true){//CHEAT CODE
 //this.environment.shake = true;
 //this.environment.remote = true;
-/* this.android17.decision= .5;
+this.android18.health-=10;/* this.android17.decision= .5;
 				this.android17.city = false;
 				this.android17.gone = false;
 				this.android17.evasion = false;
@@ -16797,7 +16833,7 @@ ctx3.globalAlpha=.05;}else if(this.superFade==true){//SUPERFADE
 ctx3.globalAlpha=.01;}else{ctx3.globalAlpha=.2;}ctx3.fillStyle="Green";ctx3.fillRect(89,137,246,20);ctx3.restore();ctx3.fillRect(50,125,this.vegeta.stamina*3-70,10);ctx3.fillStyle="yellow";//ctx3.fillStyle = "#c9be03";
 ctx3.fillRect(50,140,this.vegeta.energy*3-70,15);ctx3.restore();ctx3.save();ctx3.translate(-42,-10);if(this.fade==true){//FADE
 ctx3.globalAlpha=.2;}else if(this.superFade==true){//SUPERFADE
-ctx3.globalAlpha=.05;}else{ctx3.globalAlpha=.8;}ctx3.drawImage(this.iSmallBar,50,110);ctx3.restore();ctx3.restore();}ctx3.save();ctx3.scale(-1,1);ctx3.save();ctx3.translate(-50,-10);//second
+ctx3.globalAlpha=.05;}else{ctx3.globalAlpha=.8;}ctx3.drawImage(this.iSmallBar,50,110);ctx3.restore();ctx3.restore();}if(this.targetHidden==true){ctx3.save();ctx3.globalAlpha=.15+app.main.environment.alpha/100;ctx3.translate(65,-10);ctx3.fillStyle="darkred";if(this.android18.health!=100||this.android18.endurance!=100){ctx3.fillRect(600,55,375,70);}ctx3.restore();}ctx3.save();ctx3.scale(-1,1);ctx3.save();ctx3.translate(-50,-10);//second
 if(this.fade==true){//FADE
 ctx3.globalAlpha=.1;}else if(this.superFade==true){//SUPERFADE
 ctx3.globalAlpha=.05;}else{ctx3.globalAlpha=.7;}if(this.android18.hit==true||this.android18.hardHit==true){ctx3.fillStyle="#B20000";}else if(this.android18.blastBurn==true){ctx3.fillStyle="#110000";}else{ctx3.fillStyle="white";}if(this.android18.endurance<6){ctx3.fillRect(-970,55,6,35);}else{ctx3.fillRect(-970,55,this.android18.endurance*4-30,35);}if(this.android18.hit==true||this.android18.hardHit==true){ctx3.fillStyle="#B20000";}else if(this.android18.blastBurn==true){ctx3.fillStyle="#110000";}else{ctx3.fillStyle="grey";}if(this.android18.health<10){ctx3.fillRect(-970,90,0,25);}else{ctx3.fillRect(-970,90,this.android18.health*4-30,25);}if(this.android18.hardHit==true){ctx3.save();ctx3.scale(.14,.14);if(this.warnings<3){ctx3.drawImage(this.iWarning,-5800,470);ctx3.drawImage(this.iWarning,-5450,470);ctx3.drawImage(this.iWarning,-5100,470);ctx3.drawImage(this.iWarning,-6150,470);ctx3.drawImage(this.iWarning,-6500,470);}else{this.warnings=0;}ctx3.restore();}ctx3.restore();ctx3.save();ctx3.translate(-50,-10);if(this.fade==true){//FADE
@@ -16840,9 +16876,9 @@ this.sound.playButton(66);app.main.sound.pauseBackground();this.sound.pauseScene
 cancelAnimationFrame(this.animationID);// call update() once so that our paused screen gets drawn
 this.update();}),_defineProperty(_app$main,'resumeGame',function resumeGame(){this.sound.pauseBGAudioPause();if(this.endingState==false){if(this.scene==true){this.sound.resumeVoice();}this.sound.resumeEffect();this.sound.resumeVoiceTalk();}// stop the animation loop, just in case it's running
 cancelAnimationFrame(this.animationID);this.paused=false;paused=false;//Site
-this.sound.playButton(67);if(this.introState==true){this.videos.start();}if(this.endingState==true&&this.specialScene==false){this.videos.startE();}if(this.titleScreen==true){this.videos.startO();}if(this.specialScene==true){this.videos.startS();}if(this.gameState==this.GAME_STATE.DEFAULT&&this.scene==false&&this.battle!=1){this.sound.resumeBGAudioScene();if(this.android17.city==true||this.vegeta.gohan==true&&this.vegeta.superForm==true){this.sound.resumeBackground();}//this.sound.playBGAudioScene(0);
-}else if(this.gameState==this.GAME_STATE.DEFAULT&&this.scene==false&&this.battle==1){this.sound.playBGAudio();if(this.android17.city==true||this.vegeta.gohan==true&&this.vegeta.superForm==true){this.sound.resumeBackground();}//this.sound.playBGAudioScene(0);
-}if(this.gameState==this.GAME_STATE.DEFAULT||this.gameState==this.GAME_STATE.TUTORIAL){this.sound.pauseBGAudioPause();}if(this.scene==true&&this.gameState!=this.GAME_STATE.TUTORIAL){this.sound.resumeBGAudioScene();if(this.vegeta.gohan==true&&this.vegeta.superForm==true){this.sound.resumeBackground();}}if(this.gameState==this.GAME_STATE.VICTORY&&this.endingState==false&&this.specialScene==false){this.sound.playBGAudioWin();}if(this.gameState==this.GAME_STATE.CREDITS||this.gameState==this.GAME_STATE.DEFEAT){this.sound.resumeBGAudioScene();}if(this.gameState==this.GAME_STATE.TUTORIAL&&this.introState==false){this.sound.playBGAudioTutorial();}// restart the loop
+this.sound.playButton(67);if(this.introState==true){this.videos.start();}if(this.endingState==true&&this.specialScene==false){this.videos.startE();}if(this.titleScreen==true){this.videos.startO();}if(this.specialScene==true){this.videos.startS();}if(this.gameState==this.GAME_STATE.DEFAULT&&this.scene==false&&this.vegeta.end==false&&this.battle!=1){this.sound.resumeBGAudioScene();if(this.android17.city==true||this.vegeta.gohan==true&&this.vegeta.superForm==true){this.sound.resumeBackground();}//this.sound.playBGAudioScene(0);
+}else if(this.gameState==this.GAME_STATE.DEFAULT&&this.scene==false&&this.vegeta.end==false&&this.battle==1){this.sound.playBGAudio();if(this.android17.city==true||this.vegeta.gohan==true&&this.vegeta.superForm==true){this.sound.resumeBackground();}//this.sound.playBGAudioScene(0);
+}if(this.gameState==this.GAME_STATE.DEFAULT||this.gameState==this.GAME_STATE.TUTORIAL){this.sound.pauseBGAudioPause();}if(this.scene==true&&this.gameState!=this.GAME_STATE.TUTORIAL){this.sound.resumeBGAudioScene();if(this.vegeta.gohan==true&&this.vegeta.superForm==true){this.sound.resumeBackground();}}if(this.gameState==this.GAME_STATE.VICTORY&&this.endingState==false&&this.specialScene==false){this.sound.playBGAudioWin();}if(this.gameState==this.GAME_STATE.CREDITS||this.gameState==this.GAME_STATE.DEFEAT){this.sound.resumeBGAudioScene();}if(this.gameState==this.GAME_STATE.TUTORIAL&&this.introState==false&&this.environment.remote!=true){this.sound.playBGAudioTutorial();}// restart the loop
 this.update();}),_defineProperty(_app$main,'setupTalents',function setupTalents(type){var info="";if(this.version>19){this.tiers[0]=5;}else if(this.version>14){this.tiers[0]=4;}else if(this.version>9){this.tiers[0]=3;}else if(this.version>4){this.tiers[0]=2;}else{this.tiers[0]=1;}/* for(var i = 1; i < 6; i++){
 	  this.tiers[i] = "";
   } */if(type==="T1"){info=this.modsT1;this.tiers[1]=this.modsT1;}else if(type==="T2"){info=this.modsT2;this.tiers[2]=this.modsT2;}else if(type==="T3"){info=this.modsT3;this.tiers[3]=this.modsT3;}else if(type==="T4"){info=this.modsT4;this.tiers[4]=this.modsT4;}else if(type==="T5"){info=this.modsT5;this.tiers[5]=this.modsT5;}if(info==="GI"){this.GI=true;//console.log("GI TRUE");
@@ -18405,6 +18441,8 @@ app.Vegeta = function () {
 
 		this.fallTimer = 0;
 
+		this.supportCounter = 0;
+
 		this.quickDodge = 0;
 		this.rollDodge = false;
 
@@ -18448,6 +18486,8 @@ app.Vegeta = function () {
 		this.teleUp = false;
 		this.teleDown = false;
 		this.teleFace = false;
+
+		this.aboveMid = false;
 
 		this.specMove = false;
 		this.specChance = 0;
@@ -19834,10 +19874,24 @@ app.Vegeta = function () {
 				app.main.sound.playSpecialReaction2(3);
 			}
 		}
-		if (this.position.y < this.SKY.y) {
-			this.aboveSky = true;
+		if (this.tien == false) {
+			if (this.position.y < this.SKY.y) {
+				this.aboveSky = true;
+			} else {
+				this.aboveSky = false;
+			}
 		} else {
-			this.aboveSky = false;
+			if (this.position.y < this.SKY.y - 50) {
+				this.aboveSky = true;
+			} else {
+				this.aboveSky = false;
+			}
+
+			if (this.position.y < this.SKY.y + 100) {
+				this.aboveMid = true;
+			} else {
+				this.aboveMid = false;
+			}
 		}
 		if (this.position.y < this.SKYTOP.y) {
 			this.position.copyY(this.SKYTOP);
@@ -20074,6 +20128,7 @@ app.Vegeta = function () {
 
 		if (this.krillin == true || this.tien == true) {
 			this.superSpeedExhaustion = false;
+			this.supportCounter++;
 		}
 
 		//Endurance recovery
@@ -25990,7 +26045,7 @@ app.Vegeta = function () {
          } else {
          	app.main.sound.playTaunt7(0);
          } */
-									app.main.blasts.push(new app.Energy(this.position.x, this.position.y + 27, this.left, 4, 9));
+									app.main.blasts.push(new app.Energy(this.position.x, this.position.y + 40, this.left, 4, 9));
 								} else {
 									/* if(app.main.blastExploded == true){
          	app.main.sound.playTaunt7(9);
@@ -25998,7 +26053,7 @@ app.Vegeta = function () {
          } else {
          	app.main.sound.playTaunt7(1);
          } */
-									app.main.blasts.push(new app.Energy(this.position.x + 60, this.position.y + 27, this.left, 4, 9));
+									app.main.blasts.push(new app.Energy(this.position.x + 60, this.position.y + 40, this.left, 4, 9));
 								}
 							} else {
 								this.blastRelease = false;

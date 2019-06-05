@@ -91,6 +91,8 @@ app.Vegeta = (function(){
 		
 		this.fallTimer = 0;
 		
+		this.supportCounter = 0;
+		
 		this.quickDodge = 0;
 		this.rollDodge = false;
 		
@@ -134,6 +136,8 @@ app.Vegeta = (function(){
 		this.teleUp = false;
 		this.teleDown = false;
 		this.teleFace = false;
+		
+		this.aboveMid = false;
 		
 		this.specMove = false;
 		this.specChance = 0;
@@ -1532,10 +1536,24 @@ app.Vegeta = (function(){
 				app.main.sound.playSpecialReaction2(3);
 			}
 		} 
+		if(this.tien == false){
 		if(this.position.y < this.SKY.y){
 			this.aboveSky = true;
 		} else {
 			this.aboveSky = false;
+		}
+		} else {
+			if(this.position.y < this.SKY.y - 50){
+				this.aboveSky = true;
+			} else {
+				this.aboveSky = false;
+			}
+			
+			if(this.position.y < this.SKY.y + 100){
+				this.aboveMid = true;
+			} else {
+				this.aboveMid = false;
+			}
 		}
 		if(this.position.y < this.SKYTOP.y){
 			this.position.copyY(this.SKYTOP);
@@ -1773,6 +1791,7 @@ app.Vegeta = (function(){
 		
 		if(this.krillin == true || this.tien == true){
 			this.superSpeedExhaustion = false;
+			this.supportCounter++;
 		}
 		
 		//Endurance recovery
@@ -7722,7 +7741,7 @@ app.Vegeta = (function(){
 							} else {
 								app.main.sound.playTaunt7(0);
 							} */
-							app.main.blasts.push(new app.Energy(this.position.x,this.position.y + 27,this.left, 4, 9));
+							app.main.blasts.push(new app.Energy(this.position.x,this.position.y + 40,this.left, 4, 9));
 						} else {
 							/* if(app.main.blastExploded == true){
 								app.main.sound.playTaunt7(9);
@@ -7730,7 +7749,7 @@ app.Vegeta = (function(){
 							} else {
 								app.main.sound.playTaunt7(1);
 							} */
-							app.main.blasts.push(new app.Energy(this.position.x + 60,this.position.y + 27,this.left, 4, 9));
+							app.main.blasts.push(new app.Energy(this.position.x + 60,this.position.y + 40,this.left, 4, 9));
 						}
 					} else {
 						this.blastRelease = false;

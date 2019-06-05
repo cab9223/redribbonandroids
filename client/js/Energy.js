@@ -573,10 +573,12 @@ app.Energy = (function(){
 				ctx.scale(-2, 2);
 				if(this.flashBlasts == true){
 					this.flashBlasts = false;
-					ctx.filter = "brightness(200%)";
+					//ctx.filter = "brightness(200%)";
+					ctx.globalAlpha = 1;
 				} else if(this.flashBlasts == false){
 					this.flashBlasts = true;
-					ctx.filter = "brightness(90%)";
+					ctx.globalAlpha = .9;
+					//ctx.filter = "brightness(90%)";
 				}
 				ctx.drawImage(this.blast1,-10,-8);
 				ctx.restore();
@@ -629,14 +631,12 @@ app.Energy = (function(){
 				
 				if(this.flashBlasts == true){
 					this.flashBlasts = false;
-					if(app.main.vegeta.stuckInBlast == true){
-						ctx.filter = "brightness(300%)";
-					} else {
-						ctx.filter = "brightness(200%)";
-					}
+					//ctx.filter = "brightness(200%)";
+					ctx.globalAlpha = 1;
 				} else if(this.flashBlasts == false){
 					this.flashBlasts = true;
-					ctx.filter = "brightness(90%)";
+					ctx.globalAlpha = .95;
+					//ctx.filter = "brightness(90%)";
 				}
 			
 				ctx.save();
@@ -700,10 +700,12 @@ app.Energy = (function(){
 				
 				if(this.flashBlasts == true){
 					this.flashBlasts = false;
-					ctx.filter = "brightness(200%)";
+					//ctx.filter = "brightness(200%)";
+					ctx.globalAlpha = 1;
 				} else if(this.flashBlasts == false){
 					this.flashBlasts = true;
-					ctx.filter = "brightness(90%)";
+					ctx.globalAlpha = .95;
+					//ctx.filter = "brightness(90%)";
 				}
 				ctx.save();
 				ctx.translate(this.position.x + 160, this.position.y);
@@ -765,10 +767,12 @@ app.Energy = (function(){
 				
 				if(this.flashBlasts == true){
 					this.flashBlasts = false;
-					ctx.filter = "brightness(200%)";
+					//ctx.filter = "brightness(200%)";
+					ctx.globalAlpha = 1;
 				} else if(this.flashBlasts == false){
 					this.flashBlasts = true;
-					ctx.filter = "brightness(90%)";
+					ctx.globalAlpha = .9;
+					//ctx.filter = "brightness(90%)";
 				}
 				ctx.save();
 				ctx.scale(-2, 2);
@@ -787,10 +791,12 @@ app.Energy = (function(){
 				
 				if(this.flashBlasts == true){
 					this.flashBlasts = false;
-					ctx.filter = "brightness(200%)";
+					//ctx.filter = "brightness(200%)";
+					ctx.globalAlpha = 1;
 				} else if(this.flashBlasts == false){
 					this.flashBlasts = true;
-					ctx.filter = "brightness(80%)";
+					ctx.globalAlpha = .8;
+					//ctx.filter = "brightness(90%)";
 				}
 			
 				ctx.save();
@@ -935,10 +941,12 @@ app.Energy = (function(){
 				
 				if(this.flashBlasts == true){
 					this.flashBlasts = false;
-					ctx.filter = "brightness(200%)";
+					//ctx.filter = "brightness(200%)";
+					ctx.globalAlpha = 1;
 				} else if(this.flashBlasts == false){
 					this.flashBlasts = true;
-					ctx.filter = "brightness(90%)";
+					ctx.globalAlpha = .95;
+					//ctx.filter = "brightness(90%)";
 				}
 				
 				this.position.x = this.position.x - 50;
@@ -994,10 +1002,12 @@ app.Energy = (function(){
 				
 				if(this.flashBlasts == true){
 					this.flashBlasts = false;
-					ctx.filter = "brightness(200%)";
+					//ctx.filter = "brightness(200%)";
+					ctx.globalAlpha = 1;
 				} else if(this.flashBlasts == false){
 					this.flashBlasts = true;
-					ctx.filter = "brightness(90%)";
+					ctx.globalAlpha = .95;
+					//ctx.filter = "brightness(90%)";
 				}
 			
 				if(this.trigger == true){
@@ -1149,10 +1159,12 @@ app.Energy = (function(){
 				
 				if(this.flashBlasts == true){
 					this.flashBlasts = false;
-					ctx.filter = "brightness(200%)";
+					//ctx.filter = "brightness(200%)";
+					ctx.globalAlpha = 1;
 				} else if(this.flashBlasts == false){
 					this.flashBlasts = true;
-					ctx.filter = "brightness(90%)";
+					ctx.globalAlpha = .9;
+					//ctx.filter = "brightness(90%)";
 				}
 				
 				ctx.save();
@@ -1246,10 +1258,12 @@ app.Energy = (function(){
 				
 				if(this.flashBlasts == true){
 					this.flashBlasts = false;
-					ctx.filter = "brightness(200%)";
+					//ctx.filter = "brightness(200%)";
+					ctx.globalAlpha = 1;
 				} else if(this.flashBlasts == false){
 					this.flashBlasts = true;
-					ctx.filter = "brightness(90%)";
+					ctx.globalAlpha = .9;
+					//ctx.filter = "brightness(90%)";
 				}
 			
 				this.counter++;
@@ -1275,10 +1289,12 @@ app.Energy = (function(){
 				
 				if(this.flashBlasts == true){
 					this.flashBlasts = false;
-					ctx.filter = "brightness(200%)";
+					//ctx.filter = "brightness(200%)";
+					ctx.globalAlpha = 1;
 				} else if(this.flashBlasts == false){
 					this.flashBlasts = true;
-					ctx.filter = "brightness(90%)";
+					ctx.globalAlpha = .9;
+					//ctx.filter = "brightness(90%)";
 				}
 				
 				ctx.save();
@@ -1344,15 +1360,17 @@ app.Energy = (function(){
 			
 			if(this.type == 0){
 				
-				/* ctx.save();
+				ctx.save();
 				
 				if(this.flashBlasts == true){
 					this.flashBlasts = false;
-					ctx.filter = "brightness(200%)";
+					//ctx.filter = "brightness(200%)";
+					ctx.globalAlpha = 1;
 				} else if(this.flashBlasts == false){
 					this.flashBlasts = true;
-					ctx.filter = "brightness(90%)";
-				} */
+					ctx.globalAlpha = .95;
+					//ctx.filter = "brightness(90%)";
+				}
 				
 				this.exhaust[0].minXspeed = -5;
 				this.exhaust[0].maxXspeed = -20;
@@ -1422,14 +1440,12 @@ app.Energy = (function(){
 				
 				if(this.flashBlasts == true){
 					this.flashBlasts = false;
-					if(app.main.vegeta.stuckInBlast == true){
-						ctx.filter = "brightness(300%)";
-					} else {
-						ctx.filter = "brightness(200%)";
-					}
+					//ctx.filter = "brightness(200%)";
+					ctx.globalAlpha = 1;
 				} else if(this.flashBlasts == false){
 					this.flashBlasts = true;
-					ctx.filter = "brightness(90%)";
+					ctx.globalAlpha = .95;
+					//ctx.filter = "brightness(90%)";
 				}
 			
 				ctx.save();
@@ -1497,10 +1513,12 @@ app.Energy = (function(){
 				
 				if(this.flashBlasts == true){
 					this.flashBlasts = false;
-					ctx.filter = "brightness(200%)";
+					//ctx.filter = "brightness(200%)";
+					ctx.globalAlpha = 1;
 				} else if(this.flashBlasts == false){
 					this.flashBlasts = true;
-					ctx.filter = "brightness(90%)";
+					ctx.globalAlpha = .95;
+					//ctx.filter = "brightness(90%)";
 				}
 			
 				ctx.save();
@@ -1569,10 +1587,12 @@ app.Energy = (function(){
 				
 				if(this.flashBlasts == true){
 					this.flashBlasts = false;
-					ctx.filter = "brightness(200%)";
+					//ctx.filter = "brightness(200%)";
+					ctx.globalAlpha = 1;
 				} else if(this.flashBlasts == false){
 					this.flashBlasts = true;
-					ctx.filter = "brightness(90%)";
+					ctx.globalAlpha = .95;
+					//ctx.filter = "brightness(90%)";
 				}
 				ctx.save();
 				ctx.scale(2, 2);
@@ -1587,10 +1607,12 @@ app.Energy = (function(){
 				
 				if(this.flashBlasts == true){
 					this.flashBlasts = false;
-					ctx.filter = "brightness(200%)";
+					//ctx.filter = "brightness(200%)";
+					ctx.globalAlpha = 1;
 				} else if(this.flashBlasts == false){
 					this.flashBlasts = true;
-					ctx.filter = "brightness(80%)";
+					ctx.globalAlpha = .8;
+					//ctx.filter = "brightness(90%)";
 				}
 			
 				ctx.save();
@@ -1739,10 +1761,12 @@ app.Energy = (function(){
 				
 				if(this.flashBlasts == true){
 					this.flashBlasts = false;
-					ctx.filter = "brightness(200%)";
+					//ctx.filter = "brightness(200%)";
+					ctx.globalAlpha = 1;
 				} else if(this.flashBlasts == false){
 					this.flashBlasts = true;
-					ctx.filter = "brightness(90%)";
+					ctx.globalAlpha = .95;
+					//ctx.filter = "brightness(90%)";
 				}
 			
 				this.position.x = this.position.x + 50;
@@ -1801,10 +1825,12 @@ app.Energy = (function(){
 				
 				if(this.flashBlasts == true){
 					this.flashBlasts = false;
-					ctx.filter = "brightness(200%)";
+					//ctx.filter = "brightness(200%)";
+					ctx.globalAlpha = 1;
 				} else if(this.flashBlasts == false){
 					this.flashBlasts = true;
-					ctx.filter = "brightness(90%)";
+					ctx.globalAlpha = .95;
+					//ctx.filter = "brightness(90%)";
 				}
 			
 				if(this.trigger == true){
@@ -1943,10 +1969,12 @@ app.Energy = (function(){
 				
 				if(this.flashBlasts == true){
 					this.flashBlasts = false;
-					ctx.filter = "brightness(200%)";
+					//ctx.filter = "brightness(200%)";
+					ctx.globalAlpha = 1;
 				} else if(this.flashBlasts == false){
 					this.flashBlasts = true;
-					ctx.filter = "brightness(90%)";
+					ctx.globalAlpha = .9;
+					//ctx.filter = "brightness(90%)";
 				}
 				
 				ctx.save();
@@ -2050,10 +2078,12 @@ app.Energy = (function(){
 				
 				if(this.flashBlasts == true){
 					this.flashBlasts = false;
-					ctx.filter = "brightness(200%)";
+					//ctx.filter = "brightness(200%)";
+					ctx.globalAlpha = 1;
 				} else if(this.flashBlasts == false){
 					this.flashBlasts = true;
-					ctx.filter = "brightness(90%)";
+					ctx.globalAlpha = .9;
+					//ctx.filter = "brightness(90%)";
 				}
 			
 				this.counter++;
@@ -2080,10 +2110,12 @@ app.Energy = (function(){
 				
 				if(this.flashBlasts == true){
 					this.flashBlasts = false;
-					ctx.filter = "brightness(200%)";
+					//ctx.filter = "brightness(200%)";
+					ctx.globalAlpha = 1;
 				} else if(this.flashBlasts == false){
 					this.flashBlasts = true;
-					ctx.filter = "brightness(90%)";
+					ctx.globalAlpha = .9;
+					//ctx.filter = "brightness(90%)";
 				}
 				
 				ctx.save();
@@ -2278,9 +2310,9 @@ app.Energy = (function(){
 			} else if(this.type == 2){
 				ctx.save();
 				if(this.dirLeft == true){
-					ctx.translate(this.position.x - 5, this.position.y + 10);
+					ctx.translate(this.position.x - 120, this.position.y + 20);
 				} else {
-					ctx.translate(this.position.x + 125, this.position.y + 10);
+					ctx.translate(this.position.x + 95, this.position.y + 20);
 				}
 				ctx.scale(2.5, 2.5);
 				if(this.counter < 2){
@@ -2292,9 +2324,9 @@ app.Energy = (function(){
 				} else if(this.counter < 5){
 					if(attackHitTestSmog(this.attackPosition,this.size) != true){
 						if(this.dirLeft == true){
-							app.main.environment.smogPos.push(new Victor(this.attackPosition.x - 55,this.attackPosition.y - 90));
+							app.main.environment.smogPos.push(new Victor(this.position.x - 170,this.attackPosition.y - 90));
 						} else {
-							app.main.environment.smogPos.push(new Victor(this.attackPosition.x - 77.5,this.attackPosition.y - 90));
+							app.main.environment.smogPos.push(new Victor(this.position.x + 60.5,this.attackPosition.y - 90));
 						}
 						app.main.environment.smogSize.push(new Victor(250,250));
 						app.main.environment.smogAlpha.push(1.1);
@@ -2311,9 +2343,9 @@ app.Energy = (function(){
 						if(app.main.environment.smogAlpha[app.main.environment.smogTarget] < 1.3){
 						if(app.main.environment.smogAlpha[app.main.environment.smogTarget] < .25){
 							if(this.dirLeft == true){
-							app.main.environment.smogPos.push(new Victor(this.attackPosition.x - 55,this.attackPosition.y - 90));
+							app.main.environment.smogPos.push(new Victor(this.position.x - 170,this.attackPosition.y - 90));
 						} else {
-							app.main.environment.smogPos.push(new Victor(this.attackPosition.x - 77.5,this.attackPosition.y - 90));
+							app.main.environment.smogPos.push(new Victor(this.position.x + 60.5,this.attackPosition.y - 90));
 						}
 							app.main.environment.smogSize.push(new Victor(225,225));
 							app.main.environment.smogAlpha.push(1.1);
