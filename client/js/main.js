@@ -8788,7 +8788,7 @@ app.main = {
 			if (myKeys.keydown[myKeys.KEYBOARD.KEY_J] == true){ //CHEAT CODE
 				//this.environment.shake = true;
 				//this.environment.remote = true;
-				this.android18.health -=10;
+				//this.android18.health -=10;
 				/* this.android17.decision= .5;
 				this.android17.city = false;
 				this.android17.gone = false;
