@@ -115,6 +115,14 @@ nav {
 	z-index: -1;
 	position: fixed;
 	left: 43% !important;
+	top: 59.5% !important;
+	pointer-events: none;
+}
+
+#border2c {
+	z-index: -1;
+	position: fixed;
+	left: 43% !important;
 	top: 63.5% !important;
 	pointer-events: none;
 }
