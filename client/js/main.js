@@ -5616,7 +5616,7 @@ app.main = {
 						this.aiChoiceSupport1 = Math.random();
 					}
 					
-					if((hardAttackHitTest(this.support[x],this.android18) == true || hitTest(this.support[x],this.android18) == true || hardAttackHitTest(this.support[x],this.android17) == true || hitTest(this.support[x],this.android17) == true) && this.support[x].blasting == false && this.support[x].superSpeed == false && app.main.support[x].test == false){
+					if((hardAttackHitTest(this.support[x],this.android18) == true || hitTest(this.support[x],this.android18) == true || hardAttackHitTest(this.support[x],this.android17) == true || hitTest(this.support[x],this.android17) == true) && this.support[x].blasting == false && this.support[x].superSpeed == false && this.support[x].stun == false && app.main.support[x].test == false){
 						//this.support[x].fight = true;
 						if((this.android18.farLeft == true && this.support[x].farLeft == false) || (this.android18.farRight == true && this.support[x].farRight == false)){
 							if(this.support[x].position.y < 400){
@@ -9343,7 +9343,7 @@ app.main = {
 			ctx.save();
 			ctx.globalAlpha = .1;
 			//ctx.drawImage(this.redRibbon,445,57);
-			this.fillText(this.ctx,"...SUSPENSION STATE...", this.WIDTH/2 - 10, this.HEIGHT/2 - 130, "63pt heavy_data", "black");
+			this.fillText(this.ctx,"...SUSPENSION STATE...", this.WIDTH/2 - 10, this.HEIGHT/2 - 80, "63pt heavy_data", "black");
 			ctx.restore();
 			ctx.save();
 			ctx.globalAlpha = .1;

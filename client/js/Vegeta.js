@@ -198,6 +198,8 @@ app.Vegeta = (function(){
 		this.striking = false;
 		this.energyUse = 0;
 		
+		this.fallHitSpecial = false;
+		
 		//Timers
 		this.counter = 0;
 		this.stunCounter = 0;
@@ -1647,9 +1649,9 @@ app.Vegeta = (function(){
 			this.smallBlasted = false;
 		}
 		
-		if(hitTest(app.main.vegeta, app.main.android18) == true && this.stun == false && this.end == false && ((this.farRight == true && app.main.android18.farRight == true) || (this.farLeft == true && app.main.android18.farLeft == true))){
+		/* if(hitTest(app.main.vegeta, app.main.android18) == true && this.stun == false && this.end == false && ((this.farRight == true && app.main.android18.farRight == true) || (this.farLeft == true && app.main.android18.farLeft == true))){
 			this.superSpeed = true;
-		}
+		} */
 		
 		if((this.powerMove == true || this.taunting == true || this.charging == true) && this.air == true){
 			this.hover = true;
@@ -2376,6 +2378,36 @@ app.Vegeta = (function(){
 				this.position.x += 10;
 			}
 		}
+		
+		//Falling Kick Support Damage
+		/* if(app.main.activeSupport == true){
+		if(((this.krillin == true && hitTest(app.main.android18, app.main.support[1]) == true ) || (this.tien == true && hitTest(app.main.android18, app.main.support[0]) == true )) && app.main.android18.fallingKick == true && this.fallHitSpecial == false){
+			this.punched = true;
+			this.hardHit = true;
+			this.hit = true;
+			app.main.sound.playSpecialReaction(16);
+			this.flying = false;
+			this.stun = true;
+			this.fallHitSpecial = true;
+			this.specialHealth -= 1;
+			this.jumpVelocity.y = 50;
+			if(this.ground == true){
+			app.main.android18.jumpVelocity.y = -50;
+			if(app.main.android18.right == true){
+				app.main.android18.velocity.x -= 30;
+				this.velocity.x += 25;
+			} else {
+				app.main.android18.velocity.x += 30;
+				this.velocity.x -= 25;
+			}
+			}
+		}
+		
+		} */
+		
+		/* if((this.krillin == true || this.tien == true) && this.superSpeed == true){
+			this.fallHitSpecial = false;
+		} */
 		
 		if(this.teleDelay == this.teleDelayTime){
 			this.delayingTele = false;

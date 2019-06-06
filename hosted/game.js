@@ -15700,7 +15700,7 @@ if(this.support[x].aggressive==true){//console.dir(this.support[x]);
 						this.aiReason = 3;
 					} 
 					*/if(hardAttackHitTest(this.support[x],this.android18)!=true&&hardAttackHitTest(this.support[x],this.android17)!=true&&app.main.support[x].test==false){//this.aiChoice1 = Math.random();
-this.aiChoiceSupport1=Math.random();}if((hardAttackHitTest(this.support[x],this.android18)==true||hitTest(this.support[x],this.android18)==true||hardAttackHitTest(this.support[x],this.android17)==true||hitTest(this.support[x],this.android17)==true)&&this.support[x].blasting==false&&this.support[x].superSpeed==false&&app.main.support[x].test==false){//this.support[x].fight = true;
+this.aiChoiceSupport1=Math.random();}if((hardAttackHitTest(this.support[x],this.android18)==true||hitTest(this.support[x],this.android18)==true||hardAttackHitTest(this.support[x],this.android17)==true||hitTest(this.support[x],this.android17)==true)&&this.support[x].blasting==false&&this.support[x].superSpeed==false&&this.support[x].stun==false&&app.main.support[x].test==false){//this.support[x].fight = true;
 if(this.android18.farLeft==true&&this.support[x].farLeft==false||this.android18.farRight==true&&this.support[x].farRight==false){if(this.support[x].position.y<400){this.support[x].teleDown=true;}else{this.support[x].teleUp=true;}this.support[x].superSpeed=true;}else{this.support[x].superSpeed=true;}}if((hardAttackHitTest(this.support[x],this.android18)==true||hitTest(this.support[x],this.android18)==true||hardAttackHitTest(this.support[x],this.android17)==true||hitTest(this.support[x],this.android17)==true)&&this.support[x].blasting==true&&this.support[x].superSpeed==false&&app.main.support[x].test==false){this.support[x].triggerBlast=true;//this.support[x].fight = true;
 }if(this.vegeta.focus17==false){//IF FOCUSING 17 == FALSE
 //VEGETA MOVEMENT
@@ -16008,7 +16008,8 @@ this.android18.blocking=true;this.android18.fieldOn=true;if(this.EE==true){this.
 this.keyHeldT=true;if(this.toggle1==false){this.toggle1=true;this.sound.playEffect(65);}else if(this.toggle2==false){this.toggle2=true;this.sound.playEffect(65);}else{this.sound.playEffect(65);this.toggle1=false;this.toggle2=false;}}if(myKeys.keydown[myKeys.KEYBOARD.KEY_J]==true){//CHEAT CODE
 //this.environment.shake = true;
 //this.environment.remote = true;
-this.android18.health-=10;/* this.android17.decision= .5;
+//this.android18.health -=10;
+/* this.android17.decision= .5;
 				this.android17.city = false;
 				this.android17.gone = false;
 				this.android17.evasion = false;
@@ -16119,7 +16120,7 @@ this.sound.stopBGAudio();this.sound.stopBGAudioTutorial();this.sound.stopBGAudio
 			ctx.strokeStyle = "black";
 			ctx.strokeRect(200,300,600,280);
 			ctx.restore(); */ctx.save();ctx.globalAlpha=.1;//ctx.drawImage(this.redRibbon,445,57);
-this.fillText(this.ctx,"...SUSPENSION STATE...",this.WIDTH/2-10,this.HEIGHT/2-130,"63pt heavy_data","black");ctx.restore();ctx.save();ctx.globalAlpha=.1;//ctx.drawImage(this.redRibbon,445,57);
+this.fillText(this.ctx,"...SUSPENSION STATE...",this.WIDTH/2-10,this.HEIGHT/2-80,"63pt heavy_data","black");ctx.restore();ctx.save();ctx.globalAlpha=.1;//ctx.drawImage(this.redRibbon,445,57);
 //this.fillText(this.ctx,"...SUSPENSION STATE...", this.WIDTH/2 - 10, this.HEIGHT/2 - 50, "43pt heavy_data", "darkred");
 ctx.restore();if(this.controllerDetected==false){this.fillText(this.ctx,"Press P to resume",this.WIDTH/2,this.HEIGHT/2+150,"20pt heavy_data","white");}else{this.fillText(this.ctx,"Press PS OR XBOX Button to resume",this.WIDTH/2,this.HEIGHT/2+150,"20pt heavy_data","white");}}else{/* ctx.save();
 			ctx.globalAlpha = .05;
@@ -18548,6 +18549,8 @@ app.Vegeta = function () {
 		this.striking = false;
 		this.energyUse = 0;
 
+		this.fallHitSpecial = false;
+
 		//Timers
 		this.counter = 0;
 		this.stunCounter = 0;
@@ -19986,9 +19989,9 @@ app.Vegeta = function () {
 			this.smallBlasted = false;
 		}
 
-		if (hitTest(app.main.vegeta, app.main.android18) == true && this.stun == false && this.end == false && (this.farRight == true && app.main.android18.farRight == true || this.farLeft == true && app.main.android18.farLeft == true)) {
-			this.superSpeed = true;
-		}
+		/* if(hitTest(app.main.vegeta, app.main.android18) == true && this.stun == false && this.end == false && ((this.farRight == true && app.main.android18.farRight == true) || (this.farLeft == true && app.main.android18.farLeft == true))){
+  	this.superSpeed = true;
+  } */
 
 		if ((this.powerMove == true || this.taunting == true || this.charging == true) && this.air == true) {
 			this.hover = true;
@@ -20701,6 +20704,36 @@ app.Vegeta = function () {
 				this.position.x += 10;
 			}
 		}
+
+		//Falling Kick Support Damage
+		/* if(app.main.activeSupport == true){
+  if(((this.krillin == true && hitTest(app.main.android18, app.main.support[1]) == true ) || (this.tien == true && hitTest(app.main.android18, app.main.support[0]) == true )) && app.main.android18.fallingKick == true && this.fallHitSpecial == false){
+  	this.punched = true;
+  	this.hardHit = true;
+  	this.hit = true;
+  	app.main.sound.playSpecialReaction(16);
+  	this.flying = false;
+  	this.stun = true;
+  	this.fallHitSpecial = true;
+  	this.specialHealth -= 1;
+  	this.jumpVelocity.y = 50;
+  	if(this.ground == true){
+  	app.main.android18.jumpVelocity.y = -50;
+  	if(app.main.android18.right == true){
+  		app.main.android18.velocity.x -= 30;
+  		this.velocity.x += 25;
+  	} else {
+  		app.main.android18.velocity.x += 30;
+  		this.velocity.x -= 25;
+  	}
+  	}
+  }
+  
+  } */
+
+		/* if((this.krillin == true || this.tien == true) && this.superSpeed == true){
+  	this.fallHitSpecial = false;
+  } */
 
 		if (this.teleDelay == this.teleDelayTime) {
 			this.delayingTele = false;
