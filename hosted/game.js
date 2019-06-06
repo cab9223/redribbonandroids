@@ -16120,7 +16120,7 @@ this.sound.stopBGAudio();this.sound.stopBGAudioTutorial();this.sound.stopBGAudio
 			ctx.strokeStyle = "black";
 			ctx.strokeRect(200,300,600,280);
 			ctx.restore(); */ctx.save();ctx.globalAlpha=.1;//ctx.drawImage(this.redRibbon,445,57);
-this.fillText(this.ctx,"...SUSPENSION STATE...",this.WIDTH/2-10,this.HEIGHT/2-80,"63pt heavy_data","black");ctx.restore();ctx.save();ctx.globalAlpha=.1;//ctx.drawImage(this.redRibbon,445,57);
+this.fillText(this.ctx,"...SUSPENSION STATE...",this.WIDTH/2-10,this.HEIGHT/2-130,"63pt heavy_data","black");ctx.restore();ctx.save();ctx.globalAlpha=.1;//ctx.drawImage(this.redRibbon,445,57);
 //this.fillText(this.ctx,"...SUSPENSION STATE...", this.WIDTH/2 - 10, this.HEIGHT/2 - 50, "43pt heavy_data", "darkred");
 ctx.restore();if(this.controllerDetected==false){this.fillText(this.ctx,"Press P to resume",this.WIDTH/2,this.HEIGHT/2+150,"20pt heavy_data","white");}else{this.fillText(this.ctx,"Press PS OR XBOX Button to resume",this.WIDTH/2,this.HEIGHT/2+150,"20pt heavy_data","white");}}else{/* ctx.save();
 			ctx.globalAlpha = .05;
@@ -16128,7 +16128,7 @@ ctx.restore();if(this.controllerDetected==false){this.fillText(this.ctx,"Press P
 			ctx.fillRect(200,360,600,220);
 			ctx.strokeStyle = "black";
 			ctx.strokeRect(200,360,600,220);
-			ctx.restore(); */this.fillText(this.ctx,"...SUSPENSION STATE...",this.WIDTH/2-10,this.HEIGHT/2-80,"63pt heavy_data","black");//this.fillText(this.ctx,"...SUSPENSION STATE...", this.WIDTH/2 - 10, this.HEIGHT/2 + 40, "43pt heavy_data", "black");
+			ctx.restore(); */this.fillText(this.ctx,"...SUSPENSION STATE...",this.WIDTH/2-10,this.HEIGHT/2-130,"63pt heavy_data","black");//this.fillText(this.ctx,"...SUSPENSION STATE...", this.WIDTH/2 - 10, this.HEIGHT/2 + 40, "43pt heavy_data", "black");
 ctx.save();ctx.globalAlpha=.1;//ctx.drawImage(this.redRibbon,445,57);
 //this.fillText(this.ctx,"...SUSPENSION STATE...", this.WIDTH/2 - 10, this.HEIGHT/2 + 40, "43pt heavy_data", "darkred");
 ctx.restore();if(this.controllerDetected==false){this.fillText(this.ctx,"Press P to resume",this.WIDTH/2,this.HEIGHT/2+150,"20pt heavy_data","white");}else{this.fillText(this.ctx,"Press PS OR XBOX Button to resume",this.WIDTH/2,this.HEIGHT/2+150,"20pt heavy_data","white");}}//this.fillText(this.ctx,"...SUSPENSION STATE...", this.WIDTH/2, this.HEIGHT/2 - 37, "43pt heavy_data", "#c9be03");

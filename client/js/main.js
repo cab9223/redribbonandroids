@@ -9343,7 +9343,7 @@ app.main = {
 			ctx.save();
 			ctx.globalAlpha = .1;
 			//ctx.drawImage(this.redRibbon,445,57);
-			this.fillText(this.ctx,"...SUSPENSION STATE...", this.WIDTH/2 - 10, this.HEIGHT/2 - 80, "63pt heavy_data", "black");
+			this.fillText(this.ctx,"...SUSPENSION STATE...", this.WIDTH/2 - 10, this.HEIGHT/2 - 130, "63pt heavy_data", "black");
 			ctx.restore();
 			ctx.save();
 			ctx.globalAlpha = .1;
@@ -9363,7 +9363,7 @@ app.main = {
 			ctx.strokeStyle = "black";
 			ctx.strokeRect(200,360,600,220);
 			ctx.restore(); */
-			this.fillText(this.ctx,"...SUSPENSION STATE...", this.WIDTH/2 - 10, this.HEIGHT/2 - 80, "63pt heavy_data", "black");
+			this.fillText(this.ctx,"...SUSPENSION STATE...", this.WIDTH/2 - 10, this.HEIGHT/2 - 130, "63pt heavy_data", "black");
 			//this.fillText(this.ctx,"...SUSPENSION STATE...", this.WIDTH/2 - 10, this.HEIGHT/2 + 40, "43pt heavy_data", "black");
 			ctx.save();
 			ctx.globalAlpha = .1;
