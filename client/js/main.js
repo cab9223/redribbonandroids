@@ -39,6 +39,8 @@ app.main = {
 	totalScore : 0,
 	totalPoints: 0,
 	
+	reactionSwap: 0,
+	
 	//Statistics
 	version: 1,//level 
 	exp: 0,
@@ -1254,7 +1256,7 @@ app.main = {
 						
 					}
 					//HIT VEGETA
-				if(this.blasts[i].exploding == false && (attackHitTestBlast(this.blasts[i], this.vegeta) == true || ((((hardAttackHitTest(this.android18, this.vegeta) == true && this.vegeta.behind == false) && this.blasts[i].blastUser == 0) || (hardAttackHitTest(this.android17, this.vegeta) == true && this.blasts[i].blastUser == 6)) && ((this.blasts[i].lifetime < 2 || this.blasts[i].type == 1 || (this.blasts[i].type == 2 && this.blasts[i].released == false) || this.blasts[i].type == 7) && ((this.android18.behind == false && this.vegeta.focus17 == false) || (this.android17.behind == false && this.vegeta.focus17 == true)) && this.blasts[i].released == false) && (this.blasts[i].type != 5 || (this.blasts[i].moving == true && this.blasts[i].triggerState == 0)))) && this.blasts[i].activated == true && this.vegeta.superSpeed == false && this.vegeta.vanish == false && ((this.blasts[i].blastUser != 1 && this.blasts[i].blastUser != 2 && this.blasts[i].blastUser != 3) || this.vegeta.hardHit == true) && this.blasts[i].blastUser != 4 && this.blasts[i].blastUser != 5){
+				if(this.blasts[i].exploding == false && (attackHitTestBlast(this.blasts[i], this.vegeta) == true || ((((hardAttackHitTest(this.android18, this.vegeta) == true && this.vegeta.behind == false) && this.blasts[i].blastUser == 0) || (hardAttackHitTest(this.android17, this.vegeta) == true && this.blasts[i].blastUser == 6)) && ((this.blasts[i].lifetime < 2) && ((this.android18.behind == false && this.vegeta.focus17 == false) || (this.android17.behind == false && this.vegeta.focus17 == true)) && this.blasts[i].released == false) && (this.blasts[i].type != 5 || (this.blasts[i].moving == true && this.blasts[i].triggerState == 0)))) && this.blasts[i].activated == true && this.vegeta.superSpeed == false && this.vegeta.vanish == false && ((this.blasts[i].blastUser != 1 && this.blasts[i].blastUser != 2 && this.blasts[i].blastUser != 3) || this.vegeta.hardHit == true) && this.blasts[i].blastUser != 4 && this.blasts[i].blastUser != 5){
 						if(this.blasts[i].type == 0 && (this.blasts[i].lifetime > 1 || this.vegeta.behind == false)){
 							this.vegeta.hit = true;
 							this.vegeta.stun = true;
@@ -1822,7 +1824,7 @@ app.main = {
 						}	
 					}
 					//HIT Android18
-					if(this.blasts[i].exploding == false && (attackHitTestBlast(this.blasts[i], this.android18) == true || (((((hardAttackHitTest(this.vegeta, this.android18) == true  && this.blasts[i].type != 5)&& this.android18.behind == false) && this.blasts[i].blastUser != 0 && this.blasts[i].blastUser != 4 && this.blasts[i].blastUser != 5 && this.blasts[i].blastUser != 6) || (hardAttackHitTest(this.android17, this.android18) == true && this.blasts[i].blastUser == 6)) && ((this.blasts[i].lifetime < 2 || this.blasts[i].type == 1 || this.blasts[i].type == 2 || this.blasts[i].type == 6 || this.blasts[i].type == 7) && this.vegeta.behind == false && this.blasts[i].released == false) && (this.blasts[i].type != 5 || (this.blasts[i].moving == true && this.blasts[i].triggerState == 0)))) && this.blasts[i].activated == true && this.android18.superSpeed == false && this.blasts[i].blastUser != 0 && (this.blasts[i].blastUser != 6 || this.DD == false) && (this.blasts[i].blastUser != 6 || this.together == false)){
+					if(this.blasts[i].exploding == false && (attackHitTestBlast(this.blasts[i], this.android18) == true || (((((hardAttackHitTest(this.vegeta, this.android18) == true  && this.blasts[i].type != 5)&& this.android18.behind == false) && this.blasts[i].blastUser != 0 && this.blasts[i].blastUser != 4 && this.blasts[i].blastUser != 5 && this.blasts[i].blastUser != 6) || (hardAttackHitTest(this.android17, this.android18) == true && this.blasts[i].blastUser == 6)) && ((this.blasts[i].lifetime < 2) && this.vegeta.behind == false && this.blasts[i].released == false) && (this.blasts[i].type != 5 || (this.blasts[i].moving == true && this.blasts[i].triggerState == 0)))) && this.blasts[i].activated == true && this.android18.superSpeed == false && this.blasts[i].blastUser != 0 && (this.blasts[i].blastUser != 6 || this.DD == false) && (this.blasts[i].blastUser != 6 || this.together == false)){
 						if(this.blasts[i].type == 0 && (this.blasts[i].lifetime > 1 || this.android18.behind == false)){
 							if(this.android18.attacking == false || this.android18.blasting == true){
 							if((hardAttackHitTest(this.vegeta, this.android18) == true && this.blasts[i].lifetime < 2 && this.blasts[i].blastUser != 0) && this.android18.behind == false){
@@ -2376,7 +2378,7 @@ app.main = {
 						}
 					}
 					//HIT Android17
-					if(this.blasts[i].exploding == false && (attackHitTestBlast(this.blasts[i], this.android17) == true || (((((hardAttackHitTest(this.vegeta, this.android17) == true && this.blasts[i].type != 5)&& this.android17.behind == false) && this.blasts[i].blastUser != 0) || (hardAttackHitTest(this.android18, this.android17) == true && this.blasts[i].blastUser == 0) ) && ((this.blasts[i].lifetime < 2 || this.blasts[i].type == 1 || this.blasts[i].type == 2 || this.blasts[i].type == 6 || this.blasts[i].type == 7) && this.vegeta.behind == false && this.blasts[i].released == false) && (this.blasts[i].type != 5 || (this.blasts[i].moving == true && this.blasts[i].triggerState == 0)))) && this.blasts[i].activated == true && this.android17.superSpeed == false && this.blasts[i].blastUser != 6 && this.android17.vanish == false && this.android17.city == false && (this.blasts[i].blastUser != 0 || this.together == false)){
+					if(this.blasts[i].exploding == false && (attackHitTestBlast(this.blasts[i], this.android17) == true || (((((hardAttackHitTest(this.vegeta, this.android17) == true && this.blasts[i].type != 5)&& this.android17.behind == false) && this.blasts[i].blastUser != 0) || (hardAttackHitTest(this.android18, this.android17) == true && this.blasts[i].blastUser == 0) ) && ((this.blasts[i].lifetime < 2) && this.vegeta.behind == false && this.blasts[i].released == false) && (this.blasts[i].type != 5 || (this.blasts[i].moving == true && this.blasts[i].triggerState == 0)))) && this.blasts[i].activated == true && this.android17.superSpeed == false && this.blasts[i].blastUser != 6 && this.android17.vanish == false && this.android17.city == false && (this.blasts[i].blastUser != 0 || this.together == false)){
 						if(this.blasts[i].type == 0 && (this.blasts[i].lifetime > 1 || this.android17.behind == false)){
 							if(this.android17.fieldOn == false){
 							if(this.IB == true && this.android17.blocking == true){
@@ -3113,6 +3115,10 @@ app.main = {
 					if((i + 1) == this.blasts.length){
 						this.vegeta.blastTrigger = false;
 					} 
+					
+					if((this.vegeta.end == true || this.android18.end == true) && this.blasts[i].blastUser != 0 && this.blasts[i].blastUser != 6) {
+						this.blasts[i].exploding = true;
+					}
 					
 					if(this.blasts[i].type == 9 && attackHitTestBlast(this.blasts[i], this.vegeta)){
 						if(this.vegeta.aboveSky == false){
@@ -6247,14 +6253,43 @@ app.main = {
 			if(this.vegeta.attacking == true && this.vegeta.hit == false && this.vegeta.hardHit == false && this.vegeta.hard == false && this.detected2 == false){
 				if(this.vegeta.basic == true && this.android18.superSpeed == false && this.android18.fieldOn == false && this.android18.blocking == false && this.android18.hard == false && attackHitTest(this.vegeta,this.android18) == true){
 					this.detected2 = true;
+					this.reactionSwap++;
 					if(this.vegeta.randomEffect >= .75){
-						this.sound.playBasicReaction2(12);
+						if(this.reactionSwap < 1){
+							this.sound.playBasicReaction2(12);
+						} else if(this.reactionSwap < 2){
+							this.sound.playExtra3(12);
+						} else if(this.reactionSwap > 1){
+							this.sound.playExtra4(12);
+							this.reactionSwap = 0;
+						}
 					} else if(this.vegeta.randomEffect > .5 && this.vegeta.randomEffect < .75){
-						this.sound.playBasicReaction2(13);
+						if(this.reactionSwap < 1){
+							this.sound.playBasicReaction2(13);
+						} else if(this.reactionSwap < 2){
+							this.sound.playExtra3(13);
+						} else if(this.reactionSwap > 1){
+							this.sound.playExtra4(13);
+							this.reactionSwap = 0;
+						}
 					} else if(this.vegeta.randomEffect > .25 && this.vegeta.randomEffect <= .5){
-						this.sound.playBasicReaction2(14);
+						if(this.reactionSwap < 1){
+							this.sound.playBasicReaction2(14);
+						} else if(this.reactionSwap < 2){
+							this.sound.playExtra3(14);
+						} else if(this.reactionSwap > 1){
+							this.sound.playExtra4(14);
+							this.reactionSwap = 0;
+						}
 					} else {
-						this.sound.playBasicReaction2(15);
+						if(this.reactionSwap < 1){
+							this.sound.playBasicReaction2(15);
+						} else if(this.reactionSwap < 2){
+							this.sound.playExtra3(15);
+						} else if(this.reactionSwap > 1){
+							this.sound.playExtra4(15);
+							this.reactionSwap = 0;
+						}
 					}
 					this.android18.hit = true;
 					this.android18.stun = true;
@@ -6391,14 +6426,43 @@ app.main = {
 			if(this.vegeta.attacking == true && this.vegeta.hard == false && this.detected2 == false){
 				if(this.vegeta.basic == true && this.android17.superSpeed == false && this.android17.fieldOn == false && this.android17.blocking == false && this.android17.hard == false && hardAttackHitTest(this.vegeta,this.android17) == true){
 					this.detected2 = true;
+					this.reactionSwap++;
 					if(this.vegeta.randomEffect >= .75){
-						this.sound.playBasicReaction2(12);
+						if(this.reactionSwap < 1){
+							this.sound.playBasicReaction2(12);
+						} else if(this.reactionSwap < 2){
+							this.sound.playExtra3(12);
+						} else if(this.reactionSwap > 1){
+							this.sound.playExtra4(12);
+							this.reactionSwap = 0;
+						}
 					} else if(this.vegeta.randomEffect > .5 && this.vegeta.randomEffect < .75){
-						this.sound.playBasicReaction2(13);
+						if(this.reactionSwap < 1){
+							this.sound.playBasicReaction2(13);
+						} else if(this.reactionSwap < 2){
+							this.sound.playExtra3(13);
+						} else if(this.reactionSwap > 1){
+							this.sound.playExtra4(13);
+							this.reactionSwap = 0;
+						}
 					} else if(this.vegeta.randomEffect > .25 && this.vegeta.randomEffect <= .5){
-						this.sound.playBasicReaction2(14);
+						if(this.reactionSwap < 1){
+							this.sound.playBasicReaction2(14);
+						} else if(this.reactionSwap < 2){
+							this.sound.playExtra3(14);
+						} else if(this.reactionSwap > 1){
+							this.sound.playExtra4(14);
+							this.reactionSwap = 0;
+						}
 					} else {
-						this.sound.playBasicReaction2(15);
+						if(this.reactionSwap < 1){
+							this.sound.playBasicReaction2(15);
+						} else if(this.reactionSwap < 2){
+							this.sound.playExtra3(15);
+						} else if(this.reactionSwap > 1){
+							this.sound.playExtra4(15);
+							this.reactionSwap = 0;
+						}
 					}
 					this.android17.hit = true;
 					this.android17.stun = true;
@@ -6557,14 +6621,43 @@ app.main = {
 						if(this.vegeta.superSpeed == false && this.vegeta.unable == false && this.vegeta.blocking == false && this.damageTimer < 1 && hardAttackHitTest(this.android18,this.vegeta) == true){
 							this.vegeta.hit = true;
 							this.vegeta.stun = true;
+							this.reactionSwap++;
 							if(this.android18.randomEffect >= .75){
-								this.sound.playBasicReaction(12);
+								if(this.reactionSwap < 1){
+									this.sound.playBasicReaction(12);
+								} else if(this.reactionSwap < 2){
+									this.sound.playExtra1(12);
+								} else if(this.reactionSwap > 1){
+									this.sound.playExtra2(12);
+									this.reactionSwap = 0;
+								}
 							} else if(this.android18.randomEffect > .5 && this.android18.randomEffect < .75){
-								this.sound.playBasicReaction(13);
+								if(this.reactionSwap < 1){
+									this.sound.playBasicReaction(13);
+								} else if(this.reactionSwap < 2){
+									this.sound.playExtra1(13);
+								} else if(this.reactionSwap > 1){
+									this.sound.playExtra2(13);
+									this.reactionSwap = 0;
+								}
 							} else if(this.android18.randomEffect > .25 && this.android18.randomEffect <= .5){
-								this.sound.playBasicReaction(14);
+								if(this.reactionSwap < 1){
+									this.sound.playBasicReaction(14);
+								} else if(this.reactionSwap < 2){
+									this.sound.playExtra1(14);
+								} else if(this.reactionSwap > 1){
+									this.sound.playExtra2(14);
+									this.reactionSwap = 0;
+								}
 							} else {
-								this.sound.playBasicReaction(15);
+								if(this.reactionSwap < 1){
+									this.sound.playBasicReaction(15);
+								} else if(this.reactionSwap < 2){
+									this.sound.playExtra1(15);
+								} else if(this.reactionSwap > 1){
+									this.sound.playExtra2(15);
+									this.reactionSwap = 0;
+								}
 							}
 							if(this.vegeta.stamina > 64 && this.vegeta.exhausted == true){
 								this.vegeta.stamina = this.vegeta.stamina - 4;
@@ -6698,14 +6791,43 @@ app.main = {
 			if(this.android17.attacking == true && this.android17.hard == false && this.detected3 == false && this.vegeta.unstoppable == false){
 				if(this.android17.basic == true && this.vegeta.unable == false && this.vegeta.superSpeed == false && this.vegeta.blocking == false && this.vegeta.hard == false && hardAttackHitTest(this.android17,this.vegeta) == true){
 					this.detected3 = true;
+					this.reactionSwap++;
 					if(this.android17.randomEffect >= .75){
-						this.sound.playBasicReaction2(12);
+						if(this.reactionSwap < 1){
+							this.sound.playBasicReaction2(12);
+						} else if(this.reactionSwap < 2){
+							this.sound.playExtra3(12);
+						} else if(this.reactionSwap > 1){
+							this.sound.playExtra4(12);
+							this.reactionSwap = 0;
+						}
 					} else if(this.android17.randomEffect > .5 && this.android17.randomEffect < .75){
-						this.sound.playBasicReaction2(13);
+						if(this.reactionSwap < 1){
+							this.sound.playBasicReaction2(13);
+						} else if(this.reactionSwap < 2){
+							this.sound.playExtra3(13);
+						} else if(this.reactionSwap > 1){
+							this.sound.playExtra4(13);
+							this.reactionSwap = 0;
+						}
 					} else if(this.android17.randomEffect > .25 && this.android17.randomEffect <= .5){
-						this.sound.playBasicReaction2(14);
+						if(this.reactionSwap < 1){
+							this.sound.playBasicReaction2(14);
+						} else if(this.reactionSwap < 2){
+							this.sound.playExtra3(14);
+						} else if(this.reactionSwap > 1){
+							this.sound.playExtra4(14);
+							this.reactionSwap = 0;
+						}
 					} else {
-						this.sound.playBasicReaction2(15);
+						if(this.reactionSwap < 1){
+							this.sound.playBasicReaction2(15);
+						} else if(this.reactionSwap < 2){
+							this.sound.playExtra3(15);
+						} else if(this.reactionSwap > 1){
+							this.sound.playExtra4(15);
+							this.reactionSwap = 0;
+						}
 					}
 					this.vegeta.hit = true;
 					this.vegeta.stun = true;
@@ -9363,7 +9485,11 @@ app.main = {
 			ctx.strokeStyle = "black";
 			ctx.strokeRect(200,360,600,220);
 			ctx.restore(); */
-			this.fillText(this.ctx,"...SUSPENSION STATE...", this.WIDTH/2 - 10, this.HEIGHT/2 - 130, "63pt heavy_data", "black");
+			if(this.gameState != this.GAME_STATE.CREDITS){
+				this.fillText(this.ctx,"...SUSPENSION STATE...", this.WIDTH/2 - 10, this.HEIGHT/2 - 130, "63pt heavy_data", "black");
+			} else {
+				this.fillText(this.ctx,"...SUSPENSION STATE...", this.WIDTH/2 - 10, this.HEIGHT/2 - 230, "63pt heavy_data", "black");
+			}
 			//this.fillText(this.ctx,"...SUSPENSION STATE...", this.WIDTH/2 - 10, this.HEIGHT/2 + 40, "43pt heavy_data", "black");
 			ctx.save();
 			ctx.globalAlpha = .1;
@@ -9394,26 +9520,26 @@ app.main = {
 			
 			if(this.controllerDetected == false){
 				this.fillTextPaused(ctx,"'A': Basic Attack", this.WIDTH/2 + 400 - 100, 410, "12pt heavy_data", "#c9be03");
-				this.fillTextPaused(ctx,"'S': Energy Attack", this.WIDTH/2 + 400 - 100, 430, "12pt heavy_data", "#c9be03");
-				this.fillTextPaused(ctx,"'Hold D,A': Strong Attack", this.WIDTH/2 + 400 - 100, 450, "12pt heavy_data", "#c9be03");
+				this.fillTextPaused(ctx,"'Hold D,A': Strong Attack", this.WIDTH/2 + 400 - 100, 430, "12pt heavy_data", "#c9be03");
+				this.fillTextPaused(ctx,"'S': Energy Attack", this.WIDTH/2 + 400 - 100, 450, "12pt heavy_data", "#c9be03");
 				this.fillTextPaused(ctx,"'Hold D,S': Power Energy", this.WIDTH/2 + 400 - 100, 470, "12pt heavy_data", "#c9be03");
-				this.fillTextPaused(ctx,"'Hold D,W': Android Barrier", this.WIDTH/2 + 400 - 100, 490, "12pt heavy_data", "#c9be03");
-				this.fillTextPaused(ctx,"'Hold Q': Super Speed", this.WIDTH/2 + 400 - 100, 510, "12pt heavy_data", "#c9be03");
-				this.fillTextPaused(ctx,"'Quick E': Taunt", this.WIDTH/2 + 400 - 100, 530, "12pt heavy_data", "#c9be03");
-				this.fillTextPaused(ctx,"'Hold D,E': Call 17", this.WIDTH/2 + 400 - 100, 550, "12pt heavy_data", "#c9be03");
-				this.fillTextPaused(ctx,"'W': Block", this.WIDTH/2 + 400 - 100, 570, "12pt heavy_data", "#c9be03");
+				this.fillTextPaused(ctx,"'W': Block", this.WIDTH/2 + 400 - 100, 490, "12pt heavy_data", "#c9be03");
+				this.fillTextPaused(ctx,"'Hold D,W': Android Barrier", this.WIDTH/2 + 400 - 100, 510, "12pt heavy_data", "#c9be03");
+				this.fillTextPaused(ctx,"'Hold Q': Super Speed", this.WIDTH/2 + 400 - 100, 530, "12pt heavy_data", "#c9be03");
+				this.fillTextPaused(ctx,"'Quick E': Taunt", this.WIDTH/2 + 400 - 100, 550, "12pt heavy_data", "#c9be03");
+				this.fillTextPaused(ctx,"'Hold D,E': Call 17", this.WIDTH/2 + 400 - 100, 570, "12pt heavy_data", "#c9be03");
 				this.fillTextPaused(ctx,"'P': Pause", this.WIDTH/2 + 400 - 100, 590, "12pt heavy_data", "#c9be03");
 				this.fillTextPaused(ctx,"'Arrow Keys': Move Or Fly", this.WIDTH/2 + 400 - 100, 610, "12pt heavy_data", "#c9be03");
 				
 				this.fillTextPaused(ctx,"'A':", this.WIDTH/2 + 400 - 100, 410, "12pt heavy_data", "white");
-				this.fillTextPaused(ctx,"'S':", this.WIDTH/2 + 400 - 100, 430, "12pt heavy_data", "white");
-				this.fillTextPaused(ctx,"'Hold D,A':", this.WIDTH/2 + 400 - 100, 450, "12pt heavy_data", "white");
+				this.fillTextPaused(ctx,"'Hold D,A':", this.WIDTH/2 + 400 - 100, 430, "12pt heavy_data", "white");
+				this.fillTextPaused(ctx,"'S':", this.WIDTH/2 + 400 - 100, 450, "12pt heavy_data", "white");
 				this.fillTextPaused(ctx,"'Hold D,S':", this.WIDTH/2 + 400 - 100, 470, "12pt heavy_data", "white");
-				this.fillTextPaused(ctx,"'Hold D,W':", this.WIDTH/2 + 400 - 100, 490, "12pt heavy_data", "white");
-				this.fillTextPaused(ctx,"'Hold Q':", this.WIDTH/2 + 400 - 100, 510, "12pt heavy_data", "white");
-				this.fillTextPaused(ctx,"'Quick E':", this.WIDTH/2 + 400 - 100, 530, "12pt heavy_data", "white");
-				this.fillTextPaused(ctx,"'Hold D,E':", this.WIDTH/2 + 400 - 100, 550, "12pt heavy_data", "white");
-				this.fillTextPaused(ctx,"'W':", this.WIDTH/2 + 400 - 100, 570, "12pt heavy_data", "white");
+				this.fillTextPaused(ctx,"'W':", this.WIDTH/2 + 400 - 100, 490, "12pt heavy_data", "white");
+				this.fillTextPaused(ctx,"'Hold D,W':", this.WIDTH/2 + 400 - 100, 510, "12pt heavy_data", "white");
+				this.fillTextPaused(ctx,"'Hold Q':", this.WIDTH/2 + 400 - 100, 530, "12pt heavy_data", "white");
+				this.fillTextPaused(ctx,"'Quick E':", this.WIDTH/2 + 400 - 100, 550, "12pt heavy_data", "white");
+				this.fillTextPaused(ctx,"'Hold D,E':", this.WIDTH/2 + 400 - 100, 570, "12pt heavy_data", "white");
 				this.fillTextPaused(ctx,"'P':", this.WIDTH/2 + 400 - 100, 590, "12pt heavy_data", "white");
 				this.fillTextPaused(ctx,"'Arrow Keys':", this.WIDTH/2 + 400 - 100, 610, "12pt heavy_data", "white");
 			} else {
@@ -10262,26 +10388,26 @@ app.main = {
 				this.fillText(ctx,"Controls", this.WIDTH/2 + 400 - 100, 335, "32pt heavy_data", "#c9be03");
 				this.fillText(ctx,"Controls", this.WIDTH/2 + 400 - 100, 335, "32pt heavy_data", "white");
 				this.fillText(ctx,"'A': Basic Attack", this.WIDTH/2 + 400 - 100, 410, "12pt heavy_data", "#c9be03");
-				this.fillText(ctx,"'S': Energy Attack", this.WIDTH/2 + 400 - 100, 430, "12pt heavy_data", "#c9be03");
-				this.fillText(ctx,"'Hold D,A': Strong Attack", this.WIDTH/2 + 400 - 100, 450, "12pt heavy_data", "#c9be03");
+				this.fillText(ctx,"'Hold D,A': Strong Attack", this.WIDTH/2 + 400 - 100, 430, "12pt heavy_data", "#c9be03");
+				this.fillText(ctx,"'S': Energy Attack", this.WIDTH/2 + 400 - 100, 450, "12pt heavy_data", "#c9be03");
 				this.fillText(ctx,"'Hold D,S': Power Energy", this.WIDTH/2 + 400 - 100, 470, "12pt heavy_data", "#c9be03");
-				this.fillText(ctx,"'Hold D,W': Android Barrier", this.WIDTH/2 + 400 - 100, 490, "12pt heavy_data", "#c9be03");
-				this.fillText(ctx,"'Hold Q': Super Speed", this.WIDTH/2 + 400 - 100, 510, "12pt heavy_data", "#c9be03");
-				this.fillText(ctx,"'Quick E': Taunt", this.WIDTH/2 + 400 - 100, 530, "12pt heavy_data", "#c9be03");
-				this.fillText(ctx,"'Hold D,E': Call 17", this.WIDTH/2 + 400 - 100, 550, "12pt heavy_data", "#c9be03");
-				this.fillText(ctx,"'W': Block", this.WIDTH/2 + 400 - 100, 570, "12pt heavy_data", "#c9be03");
+				this.fillText(ctx,"'W': Block", this.WIDTH/2 + 400 - 100, 490, "12pt heavy_data", "#c9be03");
+				this.fillText(ctx,"'Hold D,W': Android Barrier", this.WIDTH/2 + 400 - 100, 510, "12pt heavy_data", "#c9be03");
+				this.fillText(ctx,"'Hold Q': Super Speed", this.WIDTH/2 + 400 - 100, 530, "12pt heavy_data", "#c9be03");
+				this.fillText(ctx,"'Quick E': Taunt", this.WIDTH/2 + 400 - 100, 550, "12pt heavy_data", "#c9be03");
+				this.fillText(ctx,"'Hold D,E': Call 17", this.WIDTH/2 + 400 - 100, 570, "12pt heavy_data", "#c9be03");
 				this.fillText(ctx,"'P': Pause", this.WIDTH/2 + 400 - 100, 590, "12pt heavy_data", "#c9be03");
 				this.fillText(ctx,"'Arrow Keys': Move Or Fly", this.WIDTH/2 + 400 - 100, 610, "12pt heavy_data", "#c9be03");
 				
 				this.fillText(ctx,"'A':", this.WIDTH/2 + 400 - 100, 410, "12pt heavy_data", "white");
-				this.fillText(ctx,"'S':", this.WIDTH/2 + 400 - 100, 430, "12pt heavy_data", "white");
-				this.fillText(ctx,"'Hold D,A':", this.WIDTH/2 + 400 - 100, 450, "12pt heavy_data", "white");
+				this.fillText(ctx,"'Hold D,A':", this.WIDTH/2 + 400 - 100, 430, "12pt heavy_data", "white");
+				this.fillText(ctx,"'S':", this.WIDTH/2 + 400 - 100, 450, "12pt heavy_data", "white");
 				this.fillText(ctx,"'Hold D,S':", this.WIDTH/2 + 400 - 100, 470, "12pt heavy_data", "white");
-				this.fillText(ctx,"'Hold D,W':", this.WIDTH/2 + 400 - 100, 490, "12pt heavy_data", "white");
-				this.fillText(ctx,"'Hold Q':", this.WIDTH/2 + 400 - 100, 510, "12pt heavy_data", "white");
-				this.fillText(ctx,"'Quick E':", this.WIDTH/2 + 400 - 100, 530, "12pt heavy_data", "white");
-				this.fillText(ctx,"'Hold D,E':", this.WIDTH/2 + 400 - 100, 550, "12pt heavy_data", "white");
-				this.fillText(ctx,"'W':", this.WIDTH/2 + 400 - 100, 570, "12pt heavy_data", "white");
+				this.fillText(ctx,"'W':", this.WIDTH/2 + 400 - 100, 490, "12pt heavy_data", "white");
+				this.fillText(ctx,"'Hold D,W':", this.WIDTH/2 + 400 - 100, 510, "12pt heavy_data", "white");
+				this.fillText(ctx,"'Hold Q':", this.WIDTH/2 + 400 - 100, 530, "12pt heavy_data", "white");
+				this.fillText(ctx,"'Quick E':", this.WIDTH/2 + 400 - 100, 550, "12pt heavy_data", "white");
+				this.fillText(ctx,"'Hold D,E':", this.WIDTH/2 + 400 - 100, 570, "12pt heavy_data", "white");
 				this.fillText(ctx,"'P':", this.WIDTH/2 + 400 - 100, 590, "12pt heavy_data", "white");
 				this.fillText(ctx,"'Arrow Keys':", this.WIDTH/2 + 400 - 100, 610, "12pt heavy_data", "white");
 			} else {
@@ -10700,7 +10826,7 @@ app.main = {
 				ctx.globalAlpha= .7;
 				this.fillTextConst(this.ctx,"The", this.WIDTH/2, 60, "70pt heavy_data", "#c9be03");
 				this.fillTextConst(this.ctx,"Androids", this.WIDTH/2 + 8, 240, "85pt heavy_data", "#c9be03");
-				this.fillText(this.ctx,"Ver 0.8.0", this.WIDTH/2 + 290, 272, "15pt heavy_data", "grey");
+				this.fillText(this.ctx,"Ver 0.8.1", this.WIDTH/2 + 290, 272, "15pt heavy_data", "grey");
 				if(this.firstTimeMode == true){
 					this.fillText(this.ctx,"First Time Mode: Preparing Systems", this.WIDTH/2, 700, "42pt heavy_data", "#c9be03");
 					this.fillText(this.ctx,"First Time Mode: Preparing Systems", this.WIDTH/2, 700, "42pt heavy_data", "white");
@@ -10777,25 +10903,34 @@ app.main = {
 		} // end if
 	
 		if(this.gameState == this.GAME_STATE.CREDITS){
-			if(this.creditsRoll < (240 + ((this.spacing * 11) + 4200)))
-			{
-				this.creditsRoll += 10;
-			}
 			ctx.save();
-			ctx.fillStyle = "rgb(0,34,7)";
-			ctx.fillRect(0,0, 1024, 768);
+			if(this.creditsRoll < (240 + ((this.spacing * 11) + 4200))) {
+				this.creditsRoll += 10;
+				ctx.fillStyle = "rgb(0,34,7)";
+				ctx.fillRect(0,0, 1024, 768);
+			} else {
+				ctx.fillStyle = "black";
+				ctx.fillRect(0,0, 1024, 768);
+				ctx.globalAlpha = (this.iAlpha/150);
+				ctx.drawImage(this.digitalBackground,0,0);
+				//this.globalAlpha = .3;
+			}
+			/* ctx.fillStyle = "rgb(0,34,7)";
+			ctx.fillRect(0,0, 1024, 768); */
+			ctx.restore();
+			ctx.save();
 			ctx.textAlign = "center";
 			ctx.textBaseline = "middle";
 			ctx.globalAlpha = .7;
-			this.fillText(this.ctx,"Credits", this.WIDTH/2, 300 - this.creditsRoll, "120pt heavy_data", "DarkRed");
+			this.fillText(this.ctx,"CREDITS", this.WIDTH/2, 300 - this.creditsRoll, "120pt heavy_data", "DarkRed");
 			this.fillText(this.ctx,"Creative Director: Christopher Bennett", this.WIDTH/2, ((this.spacing * 1) + 300) - this.creditsRoll, "25pt heavy_data", "#c9be03");
 			this.fillText(this.ctx,"Producer: Christopher Bennett", this.WIDTH/2, ((this.spacing * 2) + 300) - this.creditsRoll, "25pt heavy_data", "#c9be03");
 			this.fillText(this.ctx,"Game Designer: Christopher Bennett", this.WIDTH/2, ((this.spacing * 3) + 300) - this.creditsRoll, "25pt heavy_data", "#c9be03");
-			this.fillText(this.ctx,"Game Programmer: Christopher Bennett", this.WIDTH/2, ((this.spacing * 4) + 300) - this.creditsRoll, "25pt heavy_data", "#c9be03");
+			this.fillText(this.ctx,"Gameplay Programmer: Christopher Bennett", this.WIDTH/2, ((this.spacing * 4) + 300) - this.creditsRoll, "25pt heavy_data", "#c9be03");
 			this.fillText(this.ctx,"Animator: Christopher Bennett", this.WIDTH/2, ((this.spacing * 5) + 300) - this.creditsRoll, "25pt heavy_data", "#c9be03");
 			this.fillText(this.ctx,"Audio Engineer: Christopher Bennett", this.WIDTH/2, ((this.spacing * 6) + 300) - this.creditsRoll, "25pt heavy_data", "#c9be03");
-			this.fillText(this.ctx,"Artist: Christopher Bennett", this.WIDTH/2, ((this.spacing * 7) + 300) - this.creditsRoll, "25pt heavy_data", "#c9be03");
-			this.fillText(this.ctx,"Level Editor: Christopher Bennett", this.WIDTH/2, ((this.spacing * 8) + 300) - this.creditsRoll, "25pt heavy_data", "#c9be03");
+			this.fillText(this.ctx,"Art Editor: Christopher Bennett", this.WIDTH/2, ((this.spacing * 7) + 300) - this.creditsRoll, "25pt heavy_data", "#c9be03");
+			this.fillText(this.ctx,"Level Designer: Christopher Bennett", this.WIDTH/2, ((this.spacing * 8) + 300) - this.creditsRoll, "25pt heavy_data", "#c9be03");
 			this.fillText(this.ctx,"QA Testers: Christopher Bennett", this.WIDTH/2, ((this.spacing * 9) + 300) - this.creditsRoll, "25pt heavy_data", "#c9be03");
 			this.fillText(this.ctx,"                 Raven Roussell", this.WIDTH/2, ((this.spacing * 9) + 335) - this.creditsRoll, "25pt heavy_data", "#c9be03");
 			this.fillText(this.ctx,"                 Tyler Smith", this.WIDTH/2, ((this.spacing * 9) + 370) - this.creditsRoll, "25pt heavy_data", "#c9be03");

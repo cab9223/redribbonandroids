@@ -461,6 +461,10 @@ app.Android18 = (function(){
 	//FUNCTION TO UPDATE MANY VALUES
 	Android18.prototype.update = function(){
 		
+		if(this.end == true){
+			this.scene = false;
+		}
+		
 		this.flySoundDelay++;
 		
 		//Look around
@@ -532,7 +536,7 @@ app.Android18 = (function(){
 				}
 			} else if(this.vanish == false && this.superSpeed == false && this.end == false && this.up == false){
 				this.landDust = true;
-				if((this.velocity.x < 5 && this.velocity.x > -5) || (myKeys.keydown[myKeys.KEYBOARD.KEY_LEFT] != true && myKeys.keydown[myKeys.KEYBOARD.KEY_RIGHT] != true)){
+				if(((this.velocity.x < 5 && this.velocity.x > -5) || this.down == true) || (myKeys.keydown[myKeys.KEYBOARD.KEY_LEFT] != true && myKeys.keydown[myKeys.KEYBOARD.KEY_RIGHT] != true)){
 					this.landed = true;
 				    app.main.sound.playSpecialReaction(3);
 			    } else {

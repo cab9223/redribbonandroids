@@ -1366,6 +1366,10 @@ app.Vegeta = (function(){
 			this.ground = true;
 			this.jumpVelocity.y = 0;
 		}
+		
+		if(this.focus17 == false && app.main.android18.vanish == true){
+			this.velocity.x = 0;
+		}
 
 		//Hit detection adjustment
 		/*
@@ -2357,7 +2361,7 @@ app.Vegeta = (function(){
 		
 		if(this.stun == false && this.end == false && this.dead == false){
 			this.stunCounter = 0;
-		} else if(this.stunCounter > 50 && this.end == false && this.dead == false && app.main.gameState != app.main.GAME_STATE.TUTORIAL && app.main.scene == false){ //Stun stuck fix
+		} else if(this.stunCounter > 60 && this.end == false && this.dead == false && app.main.gameState != app.main.GAME_STATE.TUTORIAL && app.main.scene == false){ //Stun stuck fix
 			this.stun = false;
 		}
 		
@@ -8002,7 +8006,7 @@ app.Vegeta = (function(){
 			}
 		//BASIC HIT
 		} else if(this.hit == true && this.hardHit == false && this.end == false){
-			if(this.stunCounter < 3){
+			if(this.stunCounter < 30){
 				if(app.main.CP == true){
 					if(this.focus17 == false){
 					if(app.main.android18.attacking == true && app.main.android18.missed == false && app.main.android18.attackPrep == false){
@@ -8059,7 +8063,7 @@ app.Vegeta = (function(){
 			}
 		//HARD HIT
 		} else if(this.hardHit == true && this.hit == true && (this.air == false || this.blasted == true) && this.end == false){
-			if(this.stunCounter < 22){
+			if(this.stunCounter < 60){
 				if(app.main.CP == true){
 					if(this.focus17 == false){
 					if(app.main.android18.attacking == true && app.main.android18.missed == false && app.main.android18.attackPrep == false){
@@ -8127,7 +8131,7 @@ app.Vegeta = (function(){
 		//HARD HIT AIR
 		} else if(this.hardHit == true && this.hit == true && this.air == true && this.end == false){
 			if(this.punched == true){
-				if(this.stunCounter < 22){
+				if(this.stunCounter < 60){
 				if(app.main.CP == true){
 					if(this.focus17 == false){
 					if(app.main.android18.attacking == true && app.main.android18.missed == false && app.main.android18.attackPrep == false){
@@ -8192,7 +8196,7 @@ app.Vegeta = (function(){
 					this.flareHit = false;
 				}
 			} else {
-				if(this.stunCounter < 22){
+				if(this.stunCounter < 60){
 					if(app.main.CP == true){
 					if(this.focus17 == false){
 					if(app.main.android18.attacking == true && app.main.android18.missed == false && app.main.android18.attackPrep == false){
@@ -8599,7 +8603,7 @@ app.Vegeta = (function(){
 			}
 		//BASIC HIT
 		} else if(this.hit == true && this.hardHit == false && this.end == false && this.taunting == false){
-			if(this.stunCounter < 3){
+			if(this.stunCounter < 30){
 				if(app.main.CP == true){
 					if(this.focus17 == false){
 					if(app.main.android18.attacking == true && app.main.android18.missed == false && app.main.android18.attackPrep == false){
@@ -8656,7 +8660,7 @@ app.Vegeta = (function(){
 			}
 		//HARD HIT
 		} else if(this.hardHit == true && this.hit == true && (this.air == false || this.blasted == true) && this.end == false){
-			if(this.stunCounter < 22){
+			if(this.stunCounter < 60){
 				if(app.main.CP == true){
 					if(this.focus17 == false){
 					if(app.main.android18.attacking == true && app.main.android18.missed == false && app.main.android18.attackPrep == false){
@@ -8724,7 +8728,7 @@ app.Vegeta = (function(){
 		//HARD HIT AIR
 		} else if(this.hardHit == true && this.hit == true && this.air == true && this.end == false){
 			if(this.punched == true){
-				if(this.stunCounter < 22){
+				if(this.stunCounter < 60){
 					if(app.main.CP == true){
 					if(this.focus17 == false){
 					if(app.main.android18.attacking == true && app.main.android18.missed == false && app.main.android18.attackPrep == false){
@@ -8781,7 +8785,7 @@ app.Vegeta = (function(){
 					this.flareHit = false;
 				}
 			} else {
-				if(this.stunCounter < 22){
+				if(this.stunCounter < 60){
 					if(app.main.CP == true){
 					if(this.focus17 == false){
 					if(app.main.android18.attacking == true && app.main.android18.missed == false && app.main.android18.attackPrep == false){

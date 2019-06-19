@@ -97,6 +97,8 @@ app.Environment = (function(){
 		this.inSmog17 = false;
 		this.inSmog18 = false;
 		
+		this.reactionSwap2 = 0;
+		
 		this.init = [];
 		this.maxParts = 50;
 		this.particles = [];
@@ -2584,6 +2586,16 @@ app.Environment = (function(){
 				this.clashes += 1;
 				this.clashPosition.x = app.main.vegeta.position.x;
 				this.clashPosition.y = app.main.vegeta.position.y;
+				if(this.reactionSwap2 < 1){
+					app.main.sound.playExtra1(Math.round(getRandom(83,86)));
+					this.reactionSwap2++;
+				} else if(this.reactionSwap2 < 2){
+					app.main.sound.playExtra2(Math.round(getRandom(83,86)));
+					this.reactionSwap2++;
+				} else if(this.reactionSwap2 > 1){
+					app.main.sound.playExtra3(Math.round(getRandom(83,86)));
+					this.reactionSwap2 = 0;
+				}
 				app.main.sound.playEffectLoud(Math.round(getRandom(83,86)));
 				
 				if(app.main.vegeta.endurance > 14){
@@ -2609,7 +2621,7 @@ app.Environment = (function(){
 				this.clashSuccess2 = true;
 			} */
 			
-			if(this.clashSuccess == true){
+			if(this.clashSuccess == true && app.main.scene == false){
 				
 			this.clashTimer++;
 			//this.clashDelay++;
@@ -2664,7 +2676,7 @@ app.Environment = (function(){
 			}
 
 		
-		if((app.main.vegeta.superSpeed == true && app.main.vegeta.vanish == true) && ((app.main.android17.superSpeed == true && app.main.android17.vanish == true) || (app.main.android18.superSpeed == true && app.main.android18.vanish == true))){
+		if((app.main.vegeta.superSpeed == true && app.main.vegeta.vanish == true) && ((app.main.android17.superSpeed == true && app.main.android17.vanish == true) || (app.main.android18.superSpeed == true && app.main.android18.vanish == true)) && app.main.scene == false){
 			
 		
 			

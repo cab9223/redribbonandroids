@@ -603,6 +603,14 @@ app.sound = (function(){
 		effectAudio[31].volume = 0.3;
 		effectAudio[32] = document.querySelector("#effectAudio32");
 		effectAudio[32].volume = 0.3;
+		effectAudio[33] = document.querySelector("#effectAudio33");
+		effectAudio[33].volume = 0.2;
+		effectAudio[34] = document.querySelector("#effectAudio34");
+		effectAudio[34].volume = 0.2;
+		effectAudio[35] = document.querySelector("#effectAudio35");
+		effectAudio[35].volume = 0.2;
+		effectAudio[36] = document.querySelector("#effectAudio35");
+		effectAudio[36].volume = 0.2;
 	}
 	
 	
@@ -614,6 +622,34 @@ app.sound = (function(){
 		effectAudio[0].currentTime = 0;
 		effectAudio[0].src = "media/" + effectSounds[num];
 		effectAudio[0].play();
+	}
+	
+	function playExtra1(num){
+		effectAudio[33].pause();
+		effectAudio[33].currentTime = 0;
+		effectAudio[33].src = "media/" + effectSounds[num];
+		effectAudio[33].play();
+	}
+	
+	function playExtra2(num){
+		effectAudio[34].pause();
+		effectAudio[34].currentTime = 0;
+		effectAudio[34].src = "media/" + effectSounds[num];
+		effectAudio[34].play();
+	}
+	
+	function playExtra3(num){
+		effectAudio[35].pause();
+		effectAudio[35].currentTime = 0;
+		effectAudio[35].src = "media/" + effectSounds[num];
+		effectAudio[35].play();
+	}
+	
+	function playExtra4(num){
+		effectAudio[36].pause();
+		effectAudio[36].currentTime = 0;
+		effectAudio[36].src = "media/" + effectSounds[num];
+		effectAudio[36].play();
 	}
 	
 	function playEffect(num){
@@ -1232,6 +1268,10 @@ app.sound = (function(){
 		playEffect2: playEffect2,
 		playEffect3: playEffect3,
 		playEffect4: playEffect4,
+		playExtra1: playExtra1,
+		playExtra2: playExtra2,
+		playExtra3: playExtra3,
+		playExtra4: playExtra4,
 		playEffectLoud: playEffectLoud,
 		rewindEffect: rewindEffect,
 		pauseEffect: pauseEffect,
