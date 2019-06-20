@@ -107,6 +107,7 @@ app.Environment = (function(){
 		this.yajirobeTimer = 0;
 		this.yajirobePosition = 400;
 		this.yajChance = 0;
+		this.yajOnce = false;
 		
 		this.chaotzuTimer = 0;
 		this.chaotzuMoveVert = 0;
@@ -871,7 +872,8 @@ app.Environment = (function(){
 			//console.log("SHAKEN@#@#@#@#@#@#@#@");
 		}
 		
-		if(this.yajChance > .95){
+		if(this.yajChance > .95 && this.yajOnce == false){
+			this.yajOnce = true;
 			this.yajirobe = true;
 			this.yajChance = 0;
 		}
@@ -2103,17 +2105,17 @@ app.Environment = (function(){
 				}
 				
 				if(this.spyLeft == true){
-					this.spyLocation.x = (app.main.vegeta.position.x + 150);
+					this.spyLocation.x = (app.main.vegeta.position.x + 130 - this.spyTimer);
 					if(this.spyExit == false){
-						this.spyLocation.y = ((app.main.vegeta.position.y)/2);
+						this.spyLocation.y = (((app.main.vegeta.position.y)/2) + this.spyTimer);
 					}
 					if(app.main.vegeta.right == true || app.main.vegeta.superSpeed == true){
 						this.spyExit = true;
 					}
 				} else if(this.spyRight == true){
-					this.spyLocation.x = (app.main.vegeta.position.x - 150);
+					this.spyLocation.x = (app.main.vegeta.position.x - 130 + this.spyTimer);
 					if(this.spyExit == false){
-						this.spyLocation.y = ((app.main.vegeta.position.y)/2);
+						this.spyLocation.y = (((app.main.vegeta.position.y)/2) + this.spyTimer);
 					}
 					if(app.main.vegeta.left == true || app.main.vegeta.superSpeed == true){
 						this.spyExit = true;
@@ -2877,14 +2879,22 @@ app.Environment = (function(){
 				if(this.currentSmoke > 40){
 					this.currentSmoke--;
 				}
-				ctx.globalAlpha = (this.currentSmoke / 100);
+				if(app.main.paused == false){
+					ctx.globalAlpha = (this.currentSmoke / 100);
+				} else {
+					ctx.globalAlpha = 0;
+				}
 			} else {
 				if(this.currentSmoke < 65 && app.main.battle == 3){
 					this.currentSmoke++;
 				} else if(this.currentSmoke < 55){
 					this.currentSmoke++;
 				}
-				ctx.globalAlpha = (this.currentSmoke / 100);
+				if(app.main.paused == false){
+					ctx.globalAlpha = (this.currentSmoke / 100);
+				} else {
+					ctx.globalAlpha = 0;
+				}
 			}
 			ctx.drawImage(this.smoke3,this.movingSmoke -150,-850, 6850, 1800);
 			ctx.drawImage(this.smoke3,this.movingSmoke3,-850, 7050, 1800);

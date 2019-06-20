@@ -9432,9 +9432,24 @@ app.main = {
 	//FUNCTION TO DRAW PAUSE
 	drawPauseScreen: function(ctx){
 		ctx.save();
-		ctx.globalAlpha = .02;
+		if(this.gameState == this.GAME_STATE.TUTORIAL){
+			ctx.globalAlpha = .02;
+		} else {
+			ctx.globalAlpha = .015;
+		}
 		ctx.fillStyle = "rgb(0,34,7)";
 		ctx.fillRect(0,0, 1024, 768);
+		/* if(this.gameState == this.GAME_STATE.DEFAULT || this.gameState == this.GAME_STATE.TUTORIAL){
+		if(this.environment.inSmog17 == false && this.android17.superSpeed == false && this.android17.vanish == false){
+			app.main.android17.draw(ctx);
+		}
+		if(this.environment.inSmog18 == false && this.android18.superSpeed == false && this.android18.vanish == false){
+			app.main.android18.draw(ctx);
+		}
+		if(this.environment.enemyInSmog == false && this.vegeta.superSpeed == false && this.vegeta.vanish == false){
+			app.main.vegeta.draw(ctx);
+		}
+		} */
 		ctx.restore();
 		ctx.save();
 		ctx.globalAlpha = .05;
@@ -9473,9 +9488,9 @@ app.main = {
 			//this.fillText(this.ctx,"...SUSPENSION STATE...", this.WIDTH/2 - 10, this.HEIGHT/2 - 50, "43pt heavy_data", "darkred");
 			ctx.restore();
 			if(this.controllerDetected == false){
-				this.fillText(this.ctx,"Press P to resume", this.WIDTH/2, this.HEIGHT/2 + 150, "20pt heavy_data", "white");
+				this.fillText(this.ctx,"Press P to resume", this.WIDTH/2, this.HEIGHT/2 + 180, "20pt heavy_data", "white");
 			} else {
-				this.fillText(this.ctx,"Press PS OR XBOX Button to resume", this.WIDTH/2, this.HEIGHT/2 + 150, "20pt heavy_data", "white");
+				this.fillText(this.ctx,"Press PS OR XBOX Button to resume", this.WIDTH/2, this.HEIGHT/2 + 180, "20pt heavy_data", "white");
 			}
 		} else {
 			/* ctx.save();
@@ -9497,9 +9512,9 @@ app.main = {
 			//this.fillText(this.ctx,"...SUSPENSION STATE...", this.WIDTH/2 - 10, this.HEIGHT/2 + 40, "43pt heavy_data", "darkred");
 			ctx.restore();
 			if(this.controllerDetected == false){
-				this.fillText(this.ctx,"Press P to resume", this.WIDTH/2, this.HEIGHT/2 + 150, "20pt heavy_data", "white");
+				this.fillText(this.ctx,"Press P to resume", this.WIDTH/2, this.HEIGHT/2 + 180, "20pt heavy_data", "white");
 			} else {
-				this.fillText(this.ctx,"Press PS OR XBOX Button to resume", this.WIDTH/2, this.HEIGHT/2 + 150, "20pt heavy_data", "white");
+				this.fillText(this.ctx,"Press PS OR XBOX Button to resume", this.WIDTH/2, this.HEIGHT/2 + 180, "20pt heavy_data", "white");
 			}
 		}
 		//this.fillText(this.ctx,"...SUSPENSION STATE...", this.WIDTH/2, this.HEIGHT/2 - 37, "43pt heavy_data", "#c9be03");
@@ -10924,14 +10939,23 @@ app.main = {
 			ctx.globalAlpha = .7;
 			this.fillText(this.ctx,"CREDITS", this.WIDTH/2, 300 - this.creditsRoll, "120pt heavy_data", "DarkRed");
 			this.fillText(this.ctx,"Creative Director: Christopher Bennett", this.WIDTH/2, ((this.spacing * 1) + 300) - this.creditsRoll, "25pt heavy_data", "#c9be03");
+			this.fillText(this.ctx,"Creative Director:                                    ", this.WIDTH/2, ((this.spacing * 1) + 300) - this.creditsRoll, "25pt heavy_data", "white");
 			this.fillText(this.ctx,"Producer: Christopher Bennett", this.WIDTH/2, ((this.spacing * 2) + 300) - this.creditsRoll, "25pt heavy_data", "#c9be03");
+			this.fillText(this.ctx,"Producer:                                    ", this.WIDTH/2, ((this.spacing * 2) + 300) - this.creditsRoll, "25pt heavy_data", "white");
 			this.fillText(this.ctx,"Game Designer: Christopher Bennett", this.WIDTH/2, ((this.spacing * 3) + 300) - this.creditsRoll, "25pt heavy_data", "#c9be03");
+			this.fillText(this.ctx,"Game Designer:                                    ", this.WIDTH/2, ((this.spacing * 3) + 300) - this.creditsRoll, "25pt heavy_data", "white");
 			this.fillText(this.ctx,"Gameplay Programmer: Christopher Bennett", this.WIDTH/2, ((this.spacing * 4) + 300) - this.creditsRoll, "25pt heavy_data", "#c9be03");
+			this.fillText(this.ctx,"Gameplay Programmer:                                    ", this.WIDTH/2, ((this.spacing * 4) + 300) - this.creditsRoll, "25pt heavy_data", "white");
 			this.fillText(this.ctx,"Animator: Christopher Bennett", this.WIDTH/2, ((this.spacing * 5) + 300) - this.creditsRoll, "25pt heavy_data", "#c9be03");
-			this.fillText(this.ctx,"Audio Engineer: Christopher Bennett", this.WIDTH/2, ((this.spacing * 6) + 300) - this.creditsRoll, "25pt heavy_data", "#c9be03");
+			this.fillText(this.ctx,"Animator:                                    ", this.WIDTH/2, ((this.spacing * 5) + 300) - this.creditsRoll, "25pt heavy_data", "white");
+			this.fillText(this.ctx,"Audio Editor: Christopher Bennett", this.WIDTH/2, ((this.spacing * 6) + 300) - this.creditsRoll, "25pt heavy_data", "#c9be03");
+			this.fillText(this.ctx,"Audio Editor:                                    ", this.WIDTH/2, ((this.spacing * 6) + 300) - this.creditsRoll, "25pt heavy_data", "white");
 			this.fillText(this.ctx,"Art Editor: Christopher Bennett", this.WIDTH/2, ((this.spacing * 7) + 300) - this.creditsRoll, "25pt heavy_data", "#c9be03");
+			this.fillText(this.ctx,"Art Editor:                                    ", this.WIDTH/2, ((this.spacing * 7) + 300) - this.creditsRoll, "25pt heavy_data", "white");
 			this.fillText(this.ctx,"Level Designer: Christopher Bennett", this.WIDTH/2, ((this.spacing * 8) + 300) - this.creditsRoll, "25pt heavy_data", "#c9be03");
+			this.fillText(this.ctx,"Level Designer:                                    ", this.WIDTH/2, ((this.spacing * 8) + 300) - this.creditsRoll, "25pt heavy_data", "white");
 			this.fillText(this.ctx,"QA Testers: Christopher Bennett", this.WIDTH/2, ((this.spacing * 9) + 300) - this.creditsRoll, "25pt heavy_data", "#c9be03");
+			this.fillText(this.ctx,"QA Testers:                                    ", this.WIDTH/2, ((this.spacing * 9) + 300) - this.creditsRoll, "25pt heavy_data", "white");
 			this.fillText(this.ctx,"                 Raven Roussell", this.WIDTH/2, ((this.spacing * 9) + 335) - this.creditsRoll, "25pt heavy_data", "#c9be03");
 			this.fillText(this.ctx,"                 Tyler Smith", this.WIDTH/2, ((this.spacing * 9) + 370) - this.creditsRoll, "25pt heavy_data", "#c9be03");
 			this.fillText(this.ctx,"                 Ethan Cavanaugh", this.WIDTH/2, ((this.spacing * 9) + 405) - this.creditsRoll, "25pt heavy_data", "#c9be03");
@@ -10940,11 +10964,14 @@ app.main = {
 			this.fillText(this.ctx,"                 Andy Magee", this.WIDTH/2, ((this.spacing * 9) + 510) - this.creditsRoll, "25pt heavy_data", "#c9be03");
 			this.fillText(this.ctx,"                 Gavin Root", this.WIDTH/2, ((this.spacing * 9) + 545) - this.creditsRoll, "25pt heavy_data", "#c9be03");
 			this.fillText(this.ctx,"                 Mike Kelsey", this.WIDTH/2, ((this.spacing * 9) + 580) - this.creditsRoll, "25pt heavy_data", "#c9be03");
-			this.fillText(this.ctx,"                 Samantha Updike", this.WIDTH/2, ((this.spacing * 9) + 615) - this.creditsRoll, "25pt heavy_data", "#c9be03");
+			this.fillText(this.ctx,"                 Jacob Schlaufman", this.WIDTH/2, ((this.spacing * 9) + 615) - this.creditsRoll, "25pt heavy_data", "#c9be03");
+			this.fillText(this.ctx,"                 Samantha Updike", this.WIDTH/2, ((this.spacing * 9) + 650) - this.creditsRoll, "25pt heavy_data", "#c9be03");
 			this.fillText(this.ctx,"Special Thanks: Sophie Herdzik -- RR Cover Art 'Login Picture'", this.WIDTH/2, ((this.spacing * 9) + 900) - this.creditsRoll, "25pt heavy_data", "#c9be03");
+			this.fillText(this.ctx,"Special Thanks:                                                                             ", this.WIDTH/2, ((this.spacing * 9) + 900) - this.creditsRoll, "25pt heavy_data", "white");
 			ctx.save();
 			ctx.translate(0,650);
 			this.fillText(this.ctx,"Credited Assets/Resources", this.WIDTH/2, ((this.spacing * 10) + 300) - this.creditsRoll, "50pt heavy_data", "#c9be03");
+			this.fillText(this.ctx,"Credited Assets/Resources", this.WIDTH/2, ((this.spacing * 10) + 300) - this.creditsRoll, "50pt heavy_data", "white");
 			this.fillText(this.ctx,"Used and modified for creative educational purposes", this.WIDTH/2, ((this.spacing * 10) + 360) - this.creditsRoll, "25pt heavy_data", "#c9be03");
 			this.fillText(this.ctx,"Many energy attack sprites: http://www.spriters-resource.com/game_boy_advance/dbzsuperwar/sheet/26657/", this.WIDTH/2, ((this.spacing * 11) + 300) - this.creditsRoll, "12pt arial", "#c9be03");
 			this.fillText(this.ctx,"Android 18 sprites: http://www.spriters-resource.com/3ds/dragonballzextremebutoden/sheet/67257/", this.WIDTH/2, ((this.spacing * 11) + 400) - this.creditsRoll, "12pt arial", "#c9be03");
@@ -10965,13 +10992,15 @@ app.main = {
 			this.fillText(this.ctx,"Warehouse: http://ukfilmlocation.com/Locations/LON1820/LON1820_6-800.jpg", this.WIDTH/2, ((this.spacing * 11) + 1900) - this.creditsRoll, "12pt arial", "#c9be03");
 			this.fillText(this.ctx,"Smoke cloud: http://pgsecurity.co.uk/wp-content/uploads/2013/11/smoke-cloak-security-fog.jpg", this.WIDTH/2, ((this.spacing * 11) + 2000) - this.creditsRoll, "12pt arial", "#c9be03");
 			this.fillText(this.ctx,"Special Effects like dust: http://xypter.deviantart.com/art/Ultimate-Effects-Sheet-6-212140764", this.WIDTH/2, ((this.spacing * 11) + 2100) - this.creditsRoll, "12pt arial", "#c9be03");
-			this.fillText(this.ctx,"Power up auras: http://3.bp.blogspot.com/_2n_u_69YOUA/TUXszCfrbDI/AAAAAAAAAH0/EARaj_EAxLs/s1600/conjuntos%2Bde%2Bauras.png", this.WIDTH/2, ((this.spacing * 11) + 2200) - this.creditsRoll, "12pt arial", "#c9be03");
+			this.fillText(this.ctx,"Power auras: http://3.bp.blogspot.com/_2n_u_69YOUA/TUXszCfrbDI/AAAAAAAAAH0/EARaj_EAxLs/s1600/conjuntos%2Bde%2Bauras.png", this.WIDTH/2, ((this.spacing * 11) + 2200) - this.creditsRoll, "12pt arial", "#c9be03");
 			this.fillText(this.ctx,"Various effects: http://www.deviantart.com/art/Some-Effects-107393192", this.WIDTH/2, ((this.spacing * 11) + 2300) - this.creditsRoll, "12pt arial", "#c9be03");
 			this.fillText(this.ctx,"Rain Tutorial: https://codepen.io/ruigewaard/pen/JHDdF/", this.WIDTH/2, ((this.spacing * 11) + 2400) - this.creditsRoll, "12pt arial", "#c9be03");
-			this.fillText(this.ctx,"Song for some clips: Dream Theater's Home", this.WIDTH/2, ((this.spacing * 11) + 2500) - this.creditsRoll, "12pt arial", "#c9be03");
-			this.fillText(this.ctx,"All other background music: Faulconer Productions", this.WIDTH/2, ((this.spacing * 11) + 2600) - this.creditsRoll, "12pt arial", "#c9be03");
-			this.fillText(this.ctx,"Dragon Ball Z is the property of Toei Entertainment and Funimation", this.WIDTH/2, ((this.spacing * 11) + 3000) - this.creditsRoll, "20pt heavy_data", "#c9be03");
-			this.fillText(this.ctx,"A Christopher Bennett Game", this.WIDTH/2, ((this.spacing * 11) + 3500) - this.creditsRoll, "50pt heavy_data", "#c9be03");
+			this.fillText(this.ctx,"Song from some clips: Dream Theater's Home", this.WIDTH/2, ((this.spacing * 11) + 2500) - this.creditsRoll, "12pt arial", "#c9be03");
+			this.fillText(this.ctx,"All game background music: Faulconer Productions", this.WIDTH/2, ((this.spacing * 11) + 2600) - this.creditsRoll, "12pt arial", "#c9be03");
+			this.fillText(this.ctx,"Dragon Ball Z is the property of Akira Toriama, Toei Entertainment and Funimation", this.WIDTH/2, ((this.spacing * 11) + 3000) - this.creditsRoll, "18pt heavy_data", "white");
+			this.fillText(this.ctx,"Dragon Ball Z is the property of Akira Toriama, Toei Entertainment and Funimation", this.WIDTH/2, ((this.spacing * 11) + 3000) - this.creditsRoll, "18pt heavy_data", "red");
+			this.fillText(this.ctx,"A Christopher Bennett Game", this.WIDTH/2, ((this.spacing * 11) + 3500) - this.creditsRoll, "50pt heavy_data", "white");
+			this.fillText(this.ctx,"A Christopher Bennett Game", this.WIDTH/2, ((this.spacing * 11) + 3500) - this.creditsRoll, "50pt heavy_data", "black");
 			
 				ctx.save();
 				ctx.globalAlpha = .85;
@@ -12030,6 +12059,17 @@ app.main = {
 	pausedGame: function(){
 		this.paused = true;
 		paused = true; //Site
+		if(this.gameState == this.GAME_STATE.DEFAULT && this.introState == false && this.endingState == false && this.specialScene == false){
+		this.ctx.clearRect(0, 0, this.ctx.canvas.width, this.ctx.canvas.height);
+		this.ctx2.clearRect(0, 0, this.ctx2.canvas.width, this.ctx2.canvas.height);
+		this.environment.draw(this.ctx);
+		for (var i = 0; i < this.blasts.length; i++){
+			this.blasts[i].draw(this.ctx);
+		}
+		this.environment.drawForeground(this.ctx);
+		this.environment.drawOverlay(this.ctx2);
+		this.drawHUD(this.ctx);
+		}
 		this.sound.playButton(66);
 		
 		app.main.sound.pauseBackground();

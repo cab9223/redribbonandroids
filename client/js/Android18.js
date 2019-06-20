@@ -2264,12 +2264,15 @@ app.Android18 = (function(){
 					this.attacking = false;
 					this.counter = 0;
 					this.intensify = false;
-				} 
+				}
 			}
 		//BLAST ATTACK
 		} else if(this.blasting == true && this.attacking == true && this.hit == false && this.intensify == false && this.fallingKick == false){
 			if(this.counter < 3){
 				ctx.drawImage(this.blastPrep,1,6);
+				if(this.air == true){
+					this.jumpVelocity.y = -4;
+				}
 			} else if(this.counter < 6){
 				if(this.arms == false){
 					if(this.counter < 4){
@@ -2300,6 +2303,9 @@ app.Android18 = (function(){
 					ctx.drawImage(this.rightBlast,-15,11);
 				} else if(this.arms == true){
 					if(this.counter < 4){
+						if(this.air == true){
+							this.jumpVelocity.y = -4;
+						}
 						app.main.blastsStat += 1;
 						app.main.sound.playEnergyAttack(5);
 						if(app.main.EE == true){

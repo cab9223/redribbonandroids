@@ -569,9 +569,13 @@ app.images16 = Object.freeze({
 window.onblur = function(){
 	//console.log("blur at " + Date());
 	app.main.downsized = true;
-	if(app.main.loaded == true){
+	if(app.main.loaded == true && paused == false){
 		app.main.pausedGame();
 		paused = true;
+	}
+	if(paused == true){
+		app.main.sound.pauseBGAudioPause();
+		app.main.sound.pauseBackground();
 	}
 };
 
