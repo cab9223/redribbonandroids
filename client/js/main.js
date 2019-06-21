@@ -1965,7 +1965,7 @@ app.main = {
 			
 			//TUTORIAL
 			if(this.gameState == this.GAME_STATE.TUTORIAL){
-			if(myKeys.keydown[myKeys.KEYBOARD.KEY_SPACE] == true && this.toggle1 == false && this.next == false){
+			if(myKeys.keydown[myKeys.KEYBOARD.KEY_SPACE] == true && this.toggle1 == false && this.next == false && this.introState == false){
 				this.next = true;
 				if(this.instructions < 24){
 					this.sound.playEffect(68);
@@ -6260,7 +6260,7 @@ app.main = {
 					} else {
 						this.android17.hover = false;
 						this.android17.flying = false;
-						if((this.vegeta.position.y - 50 > this.android17.position.y)){
+						if((this.vegeta.position.y - 50 > this.android17.position.y) && this.android17.air == true){
 							this.android17.aboveBuilding = false;
 							//this.android17.air = true;
 						}
@@ -6551,7 +6551,7 @@ app.main = {
 					} else {
 						this.android17.hover = false;
 						this.android17.flying = false;
-						if((this.vegeta.position.y - 50 > this.android17.position.y)){
+						if((this.vegeta.position.y - 50 > this.android17.position.y) && this.android17.air == true){
 							this.android17.aboveBuilding = false;
 							//this.android17.air = true;
 						}
@@ -6734,7 +6734,7 @@ app.main = {
 						this.vegeta.hover = false;
 						this.vegeta.flying = false;
 						this.vegeta.up = false;
-						if((this.android18.position.y - 50 > this.vegeta.position.y)){
+						if((this.android18.position.y - 50 > this.vegeta.position.y) && this.vegeta.air == true){
 							this.vegeta.aboveBuilding = false;
 							//this.vegeta.air = true;
 						}
@@ -6763,7 +6763,7 @@ app.main = {
 						this.vegeta.hover = false;
 						this.vegeta.flying = false;
 						this.vegeta.up = false;
-						if((this.android18.positionLast.y - 50 > this.vegeta.position.y)){
+						if((this.android18.positionLast.y - 50 > this.vegeta.position.y) && this.vegeta.air == true){
 							this.vegeta.aboveBuilding = false;
 							//this.vegeta.air = true;
 						}
@@ -6795,7 +6795,7 @@ app.main = {
 						this.vegeta.hover = false;
 						this.vegeta.flying = false;
 						this.vegeta.up = false;
-						if((this.android18.position.y - 50 > this.vegeta.position.y)){
+						if((this.android18.position.y - 50 > this.vegeta.position.y) && this.vegeta.air == true){
 							this.vegeta.aboveBuilding = false;
 							//this.vegeta.air = true;
 						}
@@ -6826,7 +6826,7 @@ app.main = {
 						this.vegeta.hover = false;
 						this.vegeta.flying = false;
 						this.vegeta.up = false;
-						if((this.android18.positionLast.y - 50 > this.vegeta.position.y)){
+						if((this.android18.positionLast.y - 50 > this.vegeta.position.y) && this.vegeta.air == true){
 							this.vegeta.aboveBuilding = false;
 							//this.vegeta.air = true;
 						}
@@ -8534,59 +8534,49 @@ app.main = {
 					
 					//VEGETA FLIGHT
 					if(this.support[x].tien == true && this.support[x].dodge == false && this.support[x].blasting == false){
-					if(this.krillinDead == false){
-					if((((this.android18.position.y + 20 < this.support[x].position.y && this.support[x].supportCounter %5 != 0) || (this.android18.position.y > this.android18.GROUND.y - 100 && this.support[x].aboveMid == false)) && this.support[x].hard == false && this.support[x].charging == false && this.support[x].taunting == false && this.support[x].dodge == false && this.support[x].hardHit == false && this.support[x].stun == false && this.support[x].end == false && this.support[x].aboveSky == false) || (this.support[x].position.y > (this.support[x].GROUND.y - 150))){
+					if(((((this.android18.position.y + Math.round(getRandom(0,30))) < this.support[x].position.y && this.support[x].supportCounter %5 != 0) || (this.android18.position.y > this.android18.GROUND.y - 100 && this.support[x].aboveMid == false)) && this.support[x].hard == false && this.support[x].charging == false && this.support[x].taunting == false && this.support[x].dodge == false && this.support[x].hardHit == false && this.support[x].stun == false && this.support[x].end == false && (this.support[x].aboveSky == false || (this.android18.position.y > this.android18.GROUND.y - 100 && this.support[x].aboveMid == false))) || (this.support[x].position.y > (this.support[x].GROUND.y - 150) && this.krillinDead == false)){
 						if(this.support[x].attacking == false && this.support[x].taunting == false && this.support[x].charging == false && this.support[x].blasting == false && this.support[x].blocking == false){
 							this.support[x].up = true;
 						}
 						this.support[x].flying = true;
 						this.support[x].jump();
-						/* if(this.support[x].jumpVelocity.y > 0){
-							this.support[x].jumpVelocity.y = -15;
+						/* if((this.support[x].position.y > this.support[x].GROUND.y - 200) && this.krillinDead == false){
+							this.support[x].jumpVelocity.y = -50;
 						} */
 						this.support[x].hover = false;
 					} else {
 						this.support[x].hover = false;
 						this.support[x].flying = false;
 						this.support[x].up = false;
-						if((this.android18.position.y - 50 > this.support[x].position.y)){
+						if((this.android18.position.y - 50 > this.support[x].position.y) && this.android18.air == true){
 							this.support[x].aboveBuilding = false;
 							//this.support[x].air = true;
 						}
 						//this.support[x].down = true;
-					}
-					} else {
-					if(this.support[x].hard == false && this.support[x].charging == false && this.support[x].taunting == false && this.support[x].dodge == false && this.support[x].hardHit == false && this.support[x].stun == false && this.support[x].end == false && this.support[x].position.y > this.android18.position.y && !(this.support[x].position.y < this.support[x].SKYTOP.y + 10)){
-						if(this.support[x].attacking == false && this.support[x].taunting == false && this.support[x].charging == false && this.support[x].blasting == false && this.support[x].blocking == false){
-							this.support[x].up = true;
-						}
-						this.support[x].flying = true;
-						this.support[x].jump();
-					} else {
-						this.support[x].hover = false;
-						this.support[x].flying = false;
-						this.support[x].up = false;
-						if((this.android18.position.y - 50 > this.support[x].position.y)){
-							this.support[x].aboveBuilding = false;
-							//this.support[x].air = true;
-						}
-						//this.support[x].down = true;
-					}
 					}
 					
+					
 					}
+					
 					if(this.support[x].krillin == true && this.support[x].dodge == false && this.support[x].blasting == false && this.tienDead == true){
-					if((this.android18.position.y < this.support[x].position.y) && this.support[x].hard == false && this.support[x].charging == false && this.support[x].taunting == false && this.support[x].dodge == false && this.support[x].hardHit == false && this.support[x].stun == false && this.support[x].end == false && !(this.support[x].position.y < this.support[x].SKYTOP.y + 10)){
+					if(((this.android18.position.y < this.support[x].position.y) && this.support[x].supportCounter %5 != 0) && this.support[x].hard == false && this.support[x].charging == false && this.support[x].taunting == false && this.support[x].dodge == false && this.support[x].hardHit == false && this.support[x].stun == false && this.support[x].end == false && (this.support[x].aboveSky == false) && !(this.support[x].position.y < this.support[x].SKYTOP.y + 10)){
 						if(this.support[x].attacking == false && this.support[x].taunting == false && this.support[x].charging == false && this.support[x].blasting == false && this.support[x].blocking == false){
 							this.support[x].up = true;
 						}
 						this.support[x].flying = true;
 						this.support[x].jump();
+						if(this.support[x].jumpVelocity.y <= 0){
+							this.support[x].jumpVelocity.y = -15;
+						}
 					} else {
+						//this.support[x].backDown = true;
 						this.support[x].hover = false;
 						this.support[x].flying = false;
 						this.support[x].up = false;
-						if((this.android18.position.y - 50 > this.support[x].position.y)){
+						/* if(this.support[x].air == false || this.android18.position.y + 200 < this.support[x].position.y){
+							this.support[x].backDown = false
+						} */
+						if((this.android18.position.y - 50 > this.support[x].position.y) && this.android18.air == true){
 							this.support[x].aboveBuilding = false;
 							//this.support[x].air = true;
 						}
@@ -8606,24 +8596,7 @@ app.main = {
 						this.support[x].hover = false;
 						this.support[x].flying = false;
 						this.support[x].up = false;
-						if((this.android18.position.y - 50 > this.support[x].position.y)){
-							this.support[x].aboveBuilding = false;
-							//this.support[x].air = true;
-						}
-						//this.support[x].down = true;
-					}
-					} else {
-					if((this.android18.position.y < this.support[x].position.y) && this.support[x].hard == false && this.support[x].charging == false && this.support[x].taunting == false && this.support[x].dodge == false && this.support[x].hardHit == false && this.support[x].stun == false && this.support[x].end == false && !(this.support[x].position.y < this.support[x].SKYTOP.y + 10)){
-						if(this.support[x].attacking == false && this.support[x].taunting == false && this.support[x].charging == false && this.support[x].blasting == false && this.support[x].blocking == false){
-							this.support[x].up = true;
-						}
-						this.support[x].flying = true;
-						this.support[x].jump();
-					} else {
-						this.support[x].hover = false;
-						this.support[x].flying = false;
-						this.support[x].up = false;
-						if((this.android18.position.y - 50 > this.support[x].position.y)){
+						if((this.android18.position.y - 50 > this.support[x].position.y) && this.android18.air == true){
 							this.support[x].aboveBuilding = false;
 							//this.support[x].air = true;
 						}
@@ -8633,7 +8606,7 @@ app.main = {
 					}
 					if(this.support[x].tien == true && this.support[x].dodge == false && this.support[x].blasting == true){
 					if(this.krillinDead == false){
-					if((this.android18.position.y < this.support[x].position.y) && this.support[x].hard == false && this.support[x].charging == false && this.support[x].taunting == false && this.support[x].dodge == false && this.support[x].hardHit == false && this.support[x].stun == false && this.support[x].end == false && (this.support[x].position.y < (this.support[x].GROUND.y + 100) || this.krillinDead == true)){
+					if((this.android18.position.y < this.support[x].position.y) && this.support[x].hard == false && this.support[x].charging == false && this.support[x].taunting == false && this.support[x].dodge == false && this.support[x].hardHit == false && this.support[x].stun == false && this.support[x].end == false && (this.support[x].position.y < (this.support[x].GROUND.y + 200) || this.krillinDead == true)){
 						if(this.support[x].attacking == false && this.support[x].taunting == false && this.support[x].charging == false && this.support[x].blasting == false && this.support[x].blocking == false){
 							this.support[x].up = true;
 						}
@@ -8644,24 +8617,7 @@ app.main = {
 						this.support[x].hover = false;
 						this.support[x].flying = false;
 						this.support[x].up = false;
-						if((this.android18.position.y - 50 > this.support[x].position.y)){
-							this.support[x].aboveBuilding = false;
-							//this.support[x].air = true;
-						}
-						//this.support[x].down = true;
-					}
-					} else {
-					if((this.android18.position.y < this.support[x].position.y) && this.support[x].hard == false && this.support[x].charging == false && this.support[x].taunting == false && this.support[x].dodge == false && this.support[x].hardHit == false && this.support[x].stun == false && this.support[x].end == false && !(this.support[x].position.y < this.support[x].SKYTOP.y + 10)){
-						if(this.support[x].attacking == false && this.support[x].taunting == false && this.support[x].charging == false && this.support[x].blasting == false && this.support[x].blocking == false){
-							this.support[x].up = true;
-						}
-						this.support[x].flying = true;
-						this.support[x].jump();
-					} else {
-						this.support[x].hover = false;
-						this.support[x].flying = false;
-						this.support[x].up = false;
-						if((this.android18.position.y - 50 > this.support[x].position.y)){
+						if((this.android18.position.y - 50 > this.support[x].position.y) && this.android18.air == true){
 							this.support[x].aboveBuilding = false;
 							//this.support[x].air = true;
 						}
@@ -8709,13 +8665,12 @@ app.main = {
 						
 					//VEGETA FLIGHT -- FOCUS 17
 					if(this.support[x].tien == true && this.support[x].dodge == false && this.support[x].blasting == false && this.support[x].dodge == false){
-					if(this.krillinDead == false){
-					if((((this.android17.position.y + 20 < this.support[x].position.y && this.support[x].supportCounter %5 != 0) || (this.android17.position.y > this.android17.GROUND.y - 100 && this.support[x].aboveMid == false)) && this.support[x].hard == false && this.support[x].charging == false && this.support[x].taunting == false && this.support[x].dodge == false && this.support[x].hardHit == false && this.support[x].stun == false && this.support[x].end == false && this.support[x].aboveSky == false) || (this.support[x].position.y > (this.support[x].GROUND.y - 150))){
+					if(((((this.android17.position.y + Math.round(getRandom(0,30))) < this.support[x].position.y && this.support[x].supportCounter %5 != 0) || (this.android17.position.y > this.android17.GROUND.y - 100 && this.support[x].aboveMid == false)) && this.support[x].hard == false && this.support[x].charging == false && this.support[x].taunting == false && this.support[x].dodge == false && this.support[x].hardHit == false && this.support[x].stun == false && this.support[x].end == false && (this.support[x].aboveSky == false || (this.android17.position.y > this.android17.GROUND.y - 100 && this.support[x].aboveMid == false))) || (this.support[x].position.y > (this.support[x].GROUND.y - 150) && this.krillinDead == false)){
 						if(this.support[x].attacking == false && this.support[x].taunting == false && this.support[x].charging == false && this.support[x].blasting == false && this.support[x].blocking == false){
 							this.support[x].up = true;
 						}
-						/* if(this.support[x].jumpVelocity.y > 0){
-							this.support[x].jumpVelocity.y = -25;
+						/* if((this.support[x].position.y > this.support[x].GROUND.y - 200) && this.krillinDead == false){
+							this.support[x].jumpVelocity.y = -50;
 						} */
 						this.support[x].hover = false;
 						this.support[x].flying = true;
@@ -8724,30 +8679,13 @@ app.main = {
 						this.support[x].hover = false;
 						this.support[x].flying = false;
 						this.support[x].up = false;
-						if((this.android17.position.y - 50 > this.support[x].position.y)){
+						if((this.android17.position.y - 50 > this.support[x].position.y) && this.android17.air == true){
 							this.support[x].aboveBuilding = false;
 							//this.support[x].air = true;
 						}
 						//this.support[x].down = true;
 					}
-					} else {
-					if(this.support[x].hard == false && this.support[x].charging == false && this.support[x].taunting == false && this.support[x].dodge == false && this.support[x].hardHit == false && this.support[x].stun == false && this.support[x].end == false && this.support[x].position.y > this.android17.position.y && !(this.support[x].position.y < this.support[x].SKYTOP.y + 10)){
-						if(this.support[x].attacking == false && this.support[x].taunting == false && this.support[x].charging == false && this.support[x].blasting == false && this.support[x].blocking == false){
-							this.support[x].up = true;
-						}
-						this.support[x].flying = true;
-						this.support[x].jump();
-					} else {
-						this.support[x].hover = false;
-						this.support[x].flying = false;
-						this.support[x].up = false;
-						if((this.android17.position.y - 50 > this.support[x].position.y)){
-							this.support[x].aboveBuilding = false;
-							//this.support[x].air = true;
-						}
-						//this.support[x].down = true;
-					}
-					}
+					
 					}
 					if(this.support[x].krillin == true && this.support[x].dodge == false && this.support[x].blasting == true){
 					if(this.tienDead == false){
@@ -8761,24 +8699,7 @@ app.main = {
 						this.support[x].hover = false;
 						this.support[x].flying = false;
 						this.support[x].up = false;
-						if((this.android17.position.y - 50 > this.support[x].position.y)){
-							this.support[x].aboveBuilding = false;
-							//this.support[x].air = true;
-						}
-						//this.support[x].down = true;
-					}
-					} else {
-					if((this.android17.position.y < this.support[x].position.y) && this.support[x].hard == false && this.support[x].charging == false && this.support[x].taunting == false && this.support[x].dodge == false && this.support[x].hardHit == false && this.support[x].stun == false && this.support[x].end == false && !(this.support[x].position.y < this.support[x].SKYTOP.y + 10)){
-						if(this.support[x].attacking == false && this.support[x].taunting == false && this.support[x].charging == false && this.support[x].blasting == false && this.support[x].blocking == false){
-							this.support[x].up = true;
-						}
-						this.support[x].flying = true;
-						this.support[x].jump();
-					} else {
-						this.support[x].hover = false;
-						this.support[x].flying = false;
-						this.support[x].up = false;
-						if((this.android17.position.y - 50 > this.support[x].position.y)){
+						if((this.android17.position.y - 50 > this.support[x].position.y) && this.android17.air == true){
 							this.support[x].aboveBuilding = false;
 							//this.support[x].air = true;
 						}
@@ -8788,7 +8709,7 @@ app.main = {
 					}
 					if(this.support[x].tien == true && this.support[x].dodge == false && this.support[x].blasting == true){
 					if(this.krillinDead == false){
-					if((this.android17.position.y < this.support[x].position.y) && this.support[x].hard == false && this.support[x].charging == false && this.support[x].taunting == false && this.support[x].dodge == false && this.support[x].hardHit == false && this.support[x].stun == false && this.support[x].end == false && this.support[x].position.y < (this.support[x].GROUND.y + 100)){
+					if((this.android17.position.y < this.support[x].position.y) && this.support[x].hard == false && this.support[x].charging == false && this.support[x].taunting == false && this.support[x].dodge == false && this.support[x].hardHit == false && this.support[x].stun == false && this.support[x].end == false && this.support[x].position.y < (this.support[x].GROUND.y + 200)){
 						if(this.support[x].attacking == false && this.support[x].taunting == false && this.support[x].charging == false && this.support[x].blasting == false && this.support[x].blocking == false){
 							this.support[x].up = true;
 						}
@@ -8798,24 +8719,7 @@ app.main = {
 						this.support[x].hover = false;
 						this.support[x].flying = false;
 						this.support[x].up = false;
-						if((this.android17.position.y - 50 > this.support[x].position.y)){
-							this.support[x].aboveBuilding = false;
-							//this.support[x].air = true;
-						}
-						//this.support[x].down = true;
-					}
-					} else {
-					if((this.android17.position.y < this.support[x].position.y) && this.support[x].hard == false && this.support[x].charging == false && this.support[x].taunting == false && this.support[x].dodge == false && this.support[x].hardHit == false && this.support[x].stun == false && this.support[x].end == false && !(this.support[x].position.y < this.support[x].SKYTOP.y + 10)){
-						if(this.support[x].attacking == false && this.support[x].taunting == false && this.support[x].charging == false && this.support[x].blasting == false && this.support[x].blocking == false){
-							this.support[x].up = true;
-						}
-						this.support[x].flying = true;
-						this.support[x].jump();
-					} else {
-						this.support[x].hover = false;
-						this.support[x].flying = false;
-						this.support[x].up = false;
-						if((this.android17.position.y - 50 > this.support[x].position.y)){
+						if((this.android17.position.y - 50 > this.support[x].position.y) && this.android17.air == true){
 							this.support[x].aboveBuilding = false;
 							//this.support[x].air = true;
 						}
@@ -8992,7 +8896,7 @@ app.main = {
 					if(this.support[x].blasting == false && this.support[x].krillin == true){
 						this.support[x].triggerBlast = false;
 					}
-					if(this.support[x].prepBlast == true){
+					if(this.support[x].prepBlast == true && this.support[x].aboveSky == false){
 						if(this.support[x].focus17 == false){
 						if(this.support[x].position.y < this.android18.position.y){
 							this.support[x].flying = false;

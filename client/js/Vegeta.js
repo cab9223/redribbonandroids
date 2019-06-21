@@ -178,6 +178,8 @@ app.Vegeta = (function(){
 		
 		this.stillGero = false;
 		
+		this.backDown = false;
+		
 		//Extras
 		this.flyDust = false;
 		this.landDust = false;
@@ -1542,19 +1544,26 @@ app.Vegeta = (function(){
 				app.main.sound.playSpecialReaction2(3);
 			}
 		} 
-		if(this.tien == false){
+		if(this.tien == false && this.krillin == false){
 		if(this.position.y < this.SKY.y){
 			this.aboveSky = true;
 		} else {
 			this.aboveSky = false;
 		}
 		} else {
-			if(this.position.y < this.SKY.y - 50){
+			if(this.focus17 == false){
+			if(this.position.y < this.SKYTOP.y + app.main.android18.position.y + 50){
 				this.aboveSky = true;
 			} else {
 				this.aboveSky = false;
 			}
-			
+			} else {
+			if(this.position.y < this.SKYTOP.y + app.main.android17.position.y + 50){
+				this.aboveSky = true;
+			} else {
+				this.aboveSky = false;
+			}
+			}
 			if(this.position.y < this.SKY.y + 100){
 				this.aboveMid = true;
 			} else {

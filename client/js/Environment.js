@@ -2031,7 +2031,7 @@ app.Environment = (function(){
 			//Krillin
 			ctx.save();
 			if(app.main.support[1].aboveBuilding == true && app.main.support[1].byBuilding == true && this.buildingActive == false){
-				ctx.translate(app.main.support[1].position.x + 23,app.main.support[1].GROUND.y + 5);
+				ctx.translate(app.main.support[1].position.x + 18,app.main.support[1].GROUND.y + 5);
 			} else {
 				ctx.translate(app.main.support[1].position.x + 23,app.main.support[1].GROUND.y + 105);
 			}

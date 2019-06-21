@@ -461,7 +461,7 @@ app.Android18 = (function(){
 	//FUNCTION TO UPDATE MANY VALUES
 	Android18.prototype.update = function(){
 		
-		if(this.end == true){
+		if(this.end == true && app.main.gameState != app.main.GAME_STATE.TUTORIAL){
 			this.scene = false;
 		}
 		
@@ -1040,7 +1040,7 @@ app.Android18 = (function(){
 			
 			
 		//Death Talk
-			if(this.end == true && this.deathTalk == false && app.main.scene == false){
+			if(this.end == true && this.deathTalk == false && app.main.scene == false && app.main.gameState != app.main.GAME_STATE.TUTORIAL){
 				this.blocking = false;
 				this.deathTalk = true;
 				if(this.position.y < 350){

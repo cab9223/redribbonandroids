@@ -526,17 +526,17 @@ app.sound = (function(){
 	//INITALIZE ALL SOUND CHANNELS
 	function init(){
 		bgAudio = document.querySelector("#bgAudio");
-		bgAudio.volume=0.40;
+		bgAudio.volume=0.35;
 		bgAudioTutorial = document.querySelector("#bgAudioTutorial");
-		bgAudioTutorial.volume=0.40;
+		bgAudioTutorial.volume=0.35;
 		bgAudioWin = document.querySelector("#bgAudio2");
-		bgAudioWin.volume=0.40;
+		bgAudioWin.volume=0.35;
 		bgAudioLoss = document.querySelector("#bgAudio3");
-		bgAudioLoss.volume=0.40;
+		bgAudioLoss.volume=0.35;
 		bgAudioScene = document.querySelector("#bgAudio4");
-		bgAudioScene.volume=0.40;
+		bgAudioScene.volume=0.35;
 		bgAudioPause = document.querySelector("#bgAudio5");
-		bgAudioPause.volume=0.40;
+		bgAudioPause.volume=0.35;
 		effectAudio[0] = document.querySelector("#effectAudio0");
 		effectAudio[0].volume = 0.3;
 		effectAudio[1] = document.querySelector("#effectAudio1");
