@@ -393,14 +393,26 @@ app.Energy = (function(){
 			if(this.dirLeft == true){
 				this.attackPosition.x = this.position.x + 20;
 				this.attackPosition.y = this.position.y - 30;
-				this.attackSize = new Victor(100 + this.totalMovement,60);
+				if(this.lifetime < 11){
+					this.attackSize = new Victor(200 + this.totalMovement,60);
+				} else {
+					this.attackSize = new Victor(100 + this.totalMovement,60);
+				}
 				this.attackPosition2.x = this.position.x + 20;
 				this.attackPosition2.y = this.position.y - 30;
 				this.attackSize2 = new Victor(100,60);
 			} else {
-				this.attackPosition.x = this.position.x + 110 - this.totalMovement;
+				if(this.lifetime < 11){
+					this.attackPosition.x = this.position.x + 10 - this.totalMovement;
+				} else {
+					this.attackPosition.x = this.position.x + 110 - this.totalMovement;
+				}
 				this.attackPosition.y = this.position.y - 30;
-				this.attackSize = new Victor(130 + this.totalMovement,60);
+				if(this.lifetime < 11){
+					this.attackSize = new Victor(230 + this.totalMovement,60);
+				} else {
+					this.attackSize = new Victor(130 + this.totalMovement,60);
+				}
 				this.attackPosition2.x = this.position.x + 110;
 				this.attackPosition2.y = this.position.y - 30;
 				this.attackSize2 = new Victor(130,60);

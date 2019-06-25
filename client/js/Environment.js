@@ -2105,16 +2105,16 @@ app.Environment = (function(){
 				}
 				
 				if(this.spyLeft == true){
-					this.spyLocation.x = (app.main.vegeta.position.x + 130 - this.spyTimer);
 					if(this.spyExit == false){
 						this.spyLocation.y = (((app.main.vegeta.position.y)/2) + this.spyTimer);
+						this.spyLocation.x = (app.main.vegeta.position.x + 130 - this.spyTimer);
 					}
 					if(app.main.vegeta.right == true || app.main.vegeta.superSpeed == true){
 						this.spyExit = true;
 					}
 				} else if(this.spyRight == true){
-					this.spyLocation.x = (app.main.vegeta.position.x - 130 + this.spyTimer);
 					if(this.spyExit == false){
+						this.spyLocation.x = (app.main.vegeta.position.x - 130 + this.spyTimer);
 						this.spyLocation.y = (((app.main.vegeta.position.y)/2) + this.spyTimer);
 					}
 					if(app.main.vegeta.left == true || app.main.vegeta.superSpeed == true){

@@ -96,8 +96,12 @@ app.Vid = (function(){
 	Vid.prototype.check5 = function(){
 		if(this.vid5.currentTime < this.vid5.duration - 2 && !this.vid5.paused){
 			app.main.finished5 = false;
+			app.main.vid5Run = true;
+			app.main.drawHUD2(app.main.ctx3);
 		} else if(this.vid5.currentTime == this.vid5.duration) {
 			app.main.finished5 = true;
+			app.main.vid5Run = false;
+			app.main.drawHUD2(app.main.ctx3);
 			app.main.sceneCounter = 0;
 			upVidTimer = 0;
 		}
@@ -166,11 +170,15 @@ app.Vid = (function(){
 	
 	Vid.prototype.startU = function(){
 		this.videoPos5.style.zIndex = 5;
+		app.main.vid5Run = true;
+		app.main.drawHUD2(app.main.ctx3);
 		this.vid5.play();
 	};
 	
 	Vid.prototype.endU = function(){
 		this.videoPos5.style.zIndex = -2;
+		app.main.vid5Run = false;
+		app.main.drawHUD2(app.main.ctx3);
 		this.vid5.pause();
 	};
 	
